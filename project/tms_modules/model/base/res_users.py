@@ -386,6 +386,18 @@ class ResUsers(models.SecureModel):
         # Get customer/prospect/supplier like company
         context.update({'write_tracking_fields': True,
                         'no_create_partner': vals.get('employer_id', False)})
+
+        # F#36597: strip space on login/email fields on user creation
+        login = vals.get('login', False)
+        email = vals.get('email', False)
+        if login:
+            vals.update({
+                'login': "".join(login.split())
+                })
+        if email:
+            vals.update({
+                'email': "".join(email.split())
+                })
         new_user = super(ResUsers, self.with_context(context)).create(vals)
         partner_vals = {'related_user_id': new_user.id}
         new_user.partner_id.write(partner_vals)

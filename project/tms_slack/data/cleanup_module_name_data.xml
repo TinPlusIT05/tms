@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data>
+  		<!-- temporary remove = we dont have this function in version 7.0 -->
+        <!-- <function id="clear_tms_slack"
+                  model="ir.module.module"
+                  name="clear_renamed_modules"
+                  eval="(['tms_controllers'],)" /> -->
+    </data>
+
+</openerp>
+

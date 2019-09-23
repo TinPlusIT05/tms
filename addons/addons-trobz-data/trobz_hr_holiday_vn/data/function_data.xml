@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<openerp>
+    
+  	<data>
+  		 <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object.hr.holiday.vn')" />
+            <value eval="list(['add_vn_translation_public_holiday'])" />
+        </function>
+  		 
+	</data>
+</openerp>

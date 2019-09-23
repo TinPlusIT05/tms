@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+        
+        <record id="view_hr_employee_booking" model="ir.ui.view">
+            <field name="name">view_hr_employee_booking</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <booking>
+                    <items title="name" />
+                    <calendar base="days" timezone="+07:00" />
+                </booking>
+            </field>
+        </record>
+		
+
+		<record id="resource_allocation_booking_chart" model="booking.chart">
+			<field name="name">Booking Resource Allocation</field>
+			<field name="resource_model" ref="hr.model_hr_employee" />
+            <field name="create_model" ref="tms_modules.model_hr_resource_allocation" />
+			<field name="supported_model_ids"
+				eval="[(6,0,[ref('tms_modules.model_hr_resource_allocation')])]" />
+		</record>
+
+
+		<record id="action_booking_resource_allocation" model="ir.actions.act_window">
+			<field name="name">Booking Resource Allocation</field>
+			<field name="view_mode">booking</field>
+			<field name="view_type">tree</field>
+			<field name="res_model">hr.employee</field>
+			<field name="context"
+				eval="{'booking_chart_id': ref('tms_modules.resource_allocation_booking_chart')}" />
+			<field name="search_view_id"
+				ref="hr.view_employee_filter" />
+		</record>
+
+	</data>
+</openerp>

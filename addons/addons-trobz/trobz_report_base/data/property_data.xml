@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="report_dual_language" model="ir.config_parameter">
+        	<field name="key">report_languages</field>
+        	<field name="value">{}</field>
+        </record>
+        
+        <record id="report_logo_size" model="ir.config_parameter">
+        	<field name="key">report_logo_size</field>
+        	<field name="value">{'width': 150, 'height': 50}</field>
+        </record>
+        
+    </data>
+</openerp>

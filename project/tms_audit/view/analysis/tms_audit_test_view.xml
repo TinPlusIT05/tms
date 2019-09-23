@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="view_tms_audit_test_search" model="ir.ui.view">
+            <field name="name">view_tms_audit_test_search</field>
+            <field name="model">tms.audit.test</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Audit Tests">
+                    <group string="fields">
+                        <field name="name" />
+                        <field name="description" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_tms_audit_test_tree" model="ir.ui.view">
+            <field name="name">view_tms_audit_test_tree</field>
+            <field name="model">tms.audit.test</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Audit Tests">
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="weight" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_audit_test_form" model="ir.ui.view">
+            <field name="name">view_tms_audit_test_form</field>
+            <field name="model">tms.audit.test</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Audit Tests">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="active" />
+                            </group>
+                            <group>
+                                <field name="weight" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <field name="description" nolabel="1" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_tms_audit_test" model="ir.actions.act_window">
+            <field name="name">Audit Tests</field>
+            <field name="res_model">tms.audit.test</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

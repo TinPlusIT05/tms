@@ -1,0 +1,55 @@
+<openerp>
+	<data>
+
+		<record id="view_hr_job_history_tree" model="ir.ui.view">
+            <field name="name">hr.job.history.tree</field>
+            <field name="model">hr.job.history</field>
+            <field name="arch" type="xml">
+                <tree string="Job History" create="false">
+                    <field name="employee_id"/>
+                    <field name="contract_id"/>
+                    <field name="department_id"/>
+                    <field name="previous_job_id"/>
+                    <field name="current_job_id"/>
+                    <field name="date_of_change"/>
+                    <field name="responsible_user_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_hr_job_history_search" model="ir.ui.view">
+        	<field name="name">view.hr.job.history.search</field>
+        	<field name="model">hr.job.history</field>
+			<field name="arch" type="xml">
+				<search string="Job History">
+					<field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="contract_id"/>
+                    <filter name="filter_reponsible_user" string="Reponsible" domain="[('responsible_user_id','=', uid)]"/>
+                    <group expand="0" string="Group By...">
+						<filter name="group_by_employee" string="Employee" domain="" context="{'group_by': 'employee_id'}"/>
+	                    <filter name="group_by_department" string="Department" domain="" context="{'group_by': 'department_id'}"/>
+               		</group>
+				</search>
+			</field> 
+        </record>   
+
+        <record model="ir.actions.act_window" id="action_hr_job_history">
+            <field name="name">Job History</field>
+            <field name="res_model">hr.job.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{}</field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_hr_job_history_employee">
+            <field name="name">Job History</field>
+            <field name="res_model">hr.job.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('employee_id', 'in', active_ids)]</field>
+            <field name="context">{}</field>
+        </record>
+
+	</data>
+</openerp>

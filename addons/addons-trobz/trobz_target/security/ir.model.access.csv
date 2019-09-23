@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+full_access_target_manager,full_access_target,model_target,base.group_user,1,1,1,1
+full_access_target_type_manager,full_access_target_type,model_target_type,base.group_user,1,1,1,1

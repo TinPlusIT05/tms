@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_tms_docker_repo_tags_form" model="ir.ui.view">
+			<field name="name">tms.docker.repo.tags.form</field>
+			<field name="model">tms.docker.repo.tags</field>
+			<field name="arch" type="xml">
+				<form string="Docker tags" create="false" edit="false">
+					<sheet>
+						<group>
+				            <group>
+				                <field name="name" readonly="True"/>
+				                <field name="db_file"/>
+				                <field name="create_date"/>
+				            </group>
+				            <group>
+				                <field name="size"/>
+				                <field name="active"/>
+				            </group>
+				        </group>
+				        <notebook>
+				            <page string="Meta Data">
+				                <field name="meta_data" nolabel="1"/>
+				            </page>
+				        </notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+    	<!-- Wizard Import Attendance -->
+		<record model="ir.actions.act_window" id="action_import_attendance_wizard">
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">import.attendance.wizard</field>
+			<field name="name">Import Attendance</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_import_attendance_wizard_form"/>
+			<field name="target">new</field>
+		</record>
+		
+		<menuitem name="Import Attendance" 
+        	id="menu_import_attendance_wizard"
+        	action="action_import_attendance_wizard"
+        	sequence="15"
+            parent="hr_attendance.menu_hr_attendance"/>
+            
+       	<!-- Wizard Detect Absence -->
+		<record model="ir.actions.act_window" id="action_detect_absence_wizard">
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">detect.absence.wizard</field>
+			<field name="name">Detect Absence</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_detect_absence_wizard_form"/>
+			<field name="target">new</field>
+		</record>
+		
+		<menuitem name="Detect Absence" 
+        	id="menu_detect_absence_wizard"
+        	action="action_detect_absence_wizard"
+        	sequence="10"
+            parent="hr_attendance.menu_hr_attendance"/>
+        
+        <!-- Check Attendance Consistency -->
+		<record model="ir.actions.act_window" id="action_check_attendance_consistency_wizard">
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">check.attendance.consistency.wizard</field>
+			<field name="name">Check Attendance Consistency</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_check_attendance_consistency_wizard_form"/>
+			<field name="target">new</field>
+		</record>
+		
+		<menuitem name="Check Attendance Consistency" 
+        	id="menu_check_attendance_consistency_wizard"
+        	action="action_check_attendance_consistency_wizard"
+        	sequence="5"
+            parent="hr_attendance.menu_hr_attendance"/>
+            
+    </data>
+</openerp>

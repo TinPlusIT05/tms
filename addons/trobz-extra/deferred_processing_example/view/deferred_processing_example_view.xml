@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Deferred Processing Example -->
+        <record id="view_deferred_processing_example_form" model="ir.ui.view">
+            <field name="name">deferred.processing.example.form</field>
+            <field name="model">deferred.processing.example</field>
+            <field name="arch" type="xml">
+                <form string="Deferred Processing Example">
+                	<header>
+                        <button name="test_deferred_function" string="Test Deferred Function" type="object"/>
+						<button name="test_deferred_function_with_args" string="Test Deferred Function with Args" type="object"/>
+						<button name="test_deferred_report" string="Test Deferred Report" type="object"/>
+						<button name="test_deferred_workflow" string="Test Deferred Workflow" type="object"/>                      
+                        <button name="confirm" string="Confirm"/>
+                        <button name="done" string="Done"/>
+	                </header>
+                    <group>
+                        <group>
+                        	<field name="name"/>
+                        	<field name="state"/>                                
+                        </group>
+                    </group>                 
+                    
+                </form>
+            </field>
+        </record>
+     
+
+        <record id="action_deferred_processing_example" model="ir.actions.act_window">
+            <field name="name">Deferred Processing Example</field>
+            <field name="res_model">deferred.processing.example</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem action="action_deferred_processing_example" 
+        	id="menu_action_deferred_processing_example" 
+        	parent="deferred_processing.deferred_processing_menu"/>
+
+        
+
+    </data>
+</openerp>

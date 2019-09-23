@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<openerp>
+	<data noupdate="1">
+		<!-- ====================================================================== 
+			 SUPPORT & PROJECT RELATED CONFIG PARAMETERS
+			 ====================================================================== -->
+
+		<record id="tickets_markdown_color_map" model="ir.config_parameter">
+			<field name="key">tickets_markdown_color_map</field>
+			<field name="value">{"forge": { "assigned": "#333", "wip": "#C4730C",
+				"code_completed": "#337CDA", "ready_to_deploy": "#3B9213", "in_qa":
+				"#9715B8", "closed": "#888" }, "support": { "assigned": "#333",
+				"planned_for_delivery": "#337CDA", "delivered": "#9715B8",
+				"ok_for_production": "#3B9213", "ok_to_close": "#3B9213", "closed":
+				"#888" } }</field>
+		</record>
+
+		<record id="trobz_default_project_mailing_list_email" model="ir.config_parameter">
+			<field name="key">trobz_default_project_mailing_list_email</field>
+			<field name="value">support@lists.trobz.com</field>
+		</record>
+
+		<record id="default_daily_notification_receiver_email" model="ir.config_parameter">
+			<field name="key">default_daily_notification_receiver_email</field>
+			<field name="value">staff@lists.trobz.com</field>
+		</record>
+
+		<record id="default_list_email_to_send" model="ir.config_parameter">
+			<field name="key">Default list email to send</field>
+			<field name="value">dev@lists.trobz.com</field>
+		</record>
+
+		<record id="trobz_default_project_supporter_login" model="ir.config_parameter">
+			<field name="key">trobz_default_project_supporter_login</field>
+			<field name="value">jcdrubay</field>
+		</record>
+
+		<record id="support_default_trobz_owner" model="ir.config_parameter">
+			<field name="key">support_default_trobz_owner</field>
+			<field name="value">jcdrubay</field>
+		</record>
+
+		<!-- TODO: UPDATE VALUE MANUALLY ON TMS PRODUCTION -->
+		<record id="tester_profile_name" model="ir.config_parameter">
+			<field name="key">tester_profile_name</field>
+			<field name="value">Functional Consultant Profile</field>
+		</record>
+
+		<record id="dev_profile_name" model="ir.config_parameter">
+			<field name="key">dev_profile_name</field>
+			<field name="value">Technical Consultant Profile</field>
+		</record>
+		<!-- TODO: UPDATE VALUE MANUALLY ON TMS PRODUCTION -->
+		<record id="fc_profile_name" model="ir.config_parameter">
+			<field name="key">fc_profile_name</field>
+			<field name="value">('FC and HR Profile', 'FC+CRM Profile','Functional
+				Consultant Profile','QC Profile')</field>
+		</record>
+		<record id="trobz_partner_profiles" model="ir.config_parameter">
+			<field name="key">trobz_partner_profiles</field>
+			<field name="value">'tms_modules.group_profile_tms_partner'</field>
+		</record>
+		<record id="db_instance_profiles" model="ir.config_parameter">
+			<field name="key">db_instance_profiles</field>
+			<field name="value">("Technical Project Manager Profile", "Functional
+				Consultant Profile", "Sysadmin Profile","Sysadmin Manager Profile ", "FC and Admin Profile",
+				"FC+CRM Profile","Delivery Team Manager Profile")</field>
+		</record>
+
+		<!-- Profiles can see the native export feature -->
+		<record id="native_export_profiles" model="ir.config_parameter">
+			<field name="key">native_export_profiles</field>
+			<field name="value">["TMS Customer Profile", "TMS Customer Reporter
+				Only Profile", "TMS Customer Viewer Profile", "TMS Partner Profile",
+				"TMS Partner Admin Profile"]</field>
+		</record>
+
+		<!-- Default Forge Ticket Slack Channel -->
+		<record id="default_ft_slack_channel" model="ir.config_parameter">
+			<field name="key">default_ft_slack_channel</field>
+			<field name="value">#for-work</field>
+		</record>
+
+		<!-- Default Activities when creating new Project -->
+		<record id="default_project_activity" model="ir.config_parameter">
+			<field name="key">default_project_activity</field>
+			<field name="value">[{'name': 'Development / Unit Tests', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'Tech Support / Code Review', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'Technical Specifications', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': False}, {'name': 'Functional Tests', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': False}, {'name': 'Supervision / Management', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': False}, {'name': 'External Meeting', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': False}, {'name': 'Internal Meeting', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': False}, {'name': 'User Acceptance Test (UAT)', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': False}, {'name': 'Write down Test cases', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': False}]</field>
+		</record>
+		<!-- [{'name': 'Development / Unit Tests', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'Tech Support / Code Review', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'Technical Specifications', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'Functional Tests', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'Supervision / Management', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'External Meeting', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'Internal Meeting', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'User Acceptance Test (UAT)', 'analytic_secondaxis_id': 'Initial Project Iteratio ns', 'state': 'Planned', 'working_hours_requires_ticket': True}, {'name': 'Write down Test cases', 'analytic_secondaxis_id': 'Initial Project Iterations', 'state': 'Planned', 'working_hours_requires_ticket': True}] -->
+
+		<!--====================================================================== 
+			HUMAN RESOURCES RELATED CONFIG PARAMETERS 
+			====================================================================== -->
+		<!-- Create parameter to be a flag for showing change sick leave (paid) 
+			button -->
+		<record id="default_unpaid_sick_leave_types" model="ir.config_parameter">
+			<field name="key">default_unpaid_sick_leave_types</field>
+			<field name="value">['Sick leave (unpaid)','Sick leave (unclassified)']
+			</field>
+		</record>
+
+		<record id="default_sick_leave_paid" model="ir.config_parameter">
+			<field name="key">default_sick_leave_paid</field>
+			<field name="value">Sick leave (paid)</field>
+		</record>
+
+		<record id="default_sick_leave_paid_new" model="ir.config_parameter">
+			<field name="key">default_sick_leave_paid_new</field>
+			<field name="value">['Sick leave (paid)']</field>
+		</record>
+
+		<record id="default_sick_leave_social_ins" model="ir.config_parameter">
+			<field name="key">default_sick_leave_social_ins</field>
+			<field name="value">['Sick leave (Social Insurance)']</field>
+		</record>
+
+		<record id="country_add_extra_leave" model="ir.config_parameter">
+			<field name="key">country_add_extra_leave</field>
+			<field name="value">['VN']</field>
+		</record>
+
+		<record id="emergency_medical_type_config" model="ir.config_parameter">
+			<field name="key">emergency_medical_type</field>
+			<field name="value">['Emergency Medical Leave']</field>
+		</record>
+
+		<!--====================================================================== 
+			HOST (SYSADMIN) RELATED CONFIG PARAMETERS
+			====================================================================== -->
+		<record id="default_host_audit_doc_link" model="ir.config_parameter">
+			<field name="key">default_host_audit_doc_link</field>
+			<field name="value">"https://sites.google.com/a/trobz.com/sysadmin/procedures/host-auditing"
+			</field>
+		</record>
+		<record id="default_ip_host" model="ir.config_parameter">
+			<field name="key">default_ip_host</field>
+			<field name="value">172.26.8.</field>
+		</record>
+
+		<!--====================================================================== 
+			Docker Repository RELATED CONFIG PARAMETERS
+			====================================================================== -->
+		<record id="default_docker_repository" model="ir.config_parameter">
+			<field name="key">default_docker_repository</field>
+			<field name="value">docker-hub.trobz.com:443/production_data/%s/%s</field>
+		</record>
+		<record id="default_db_backup_location" model="ir.config_parameter">
+			<field name="key">default_db_backup_location</field>
+			<field name="value">/opt/openerp/%s/backup/%s</field>
+		</record>
+		<record id="docker_hub_api_url" model="ir.config_parameter">
+			<field name="key">docker_hub_api_url</field>
+			<field name="value">https://docker-hub.trobz.com/v2</field>
+		</record>
+		<record id="docker_hub_root_url" model="ir.config_parameter">
+			<field name="key">docker_hub_root_url</field>
+			<field name="value">docker-hub.trobz.com:443/</field>
+		</record>
+
+		<!--====================================================================== 
+			HUMAN EMPLOYEES RELATED CONFIG PARAMETERS
+			====================================================================== -->
+		<record id="default_trobz_manager_name" model="ir.config_parameter">
+			<field name="key">default_trobz_manager_name</field>
+			<field name="value">Barbot Denis Raymond Claude</field>
+		</record>
+		
+        <!-- ====================================================================== 
+             FORGE TICKET RELATED CONFIG PARAMETERS
+             ====================================================================== -->
+        <record id="forge_ticket_long_time_spent" model="ir.config_parameter">
+            <field name="key">forge_ticket_long_time_spent</field>
+            <field name="value">14</field>
+        </record>
+        
+		<!--====================================================================== 
+			Group by list of Departments and Job Types 
+			for Trobz member's workload in TMS Daily Notification Email
+			====================================================================== -->
+		<record id="trobz_member_workload_param" model="ir.config_parameter">
+			<field name="key">trobz_member_workload_param</field>
+			<field name="value">{
+				"group_jobs": ["Technical Consultant", "Functional Consultant","Technical Consultant (Trainee)",
+				"Technical Expert", "Lead Technical Consultant", "Functional Consultant (Trainee)","Lead Functional Consultant"]}</field>
+		</record>
+
+		<!-- TMS Email -->
+		<record id="email_tms" model="ir.config_parameter">
+			<field name="key">email_tms</field>
+			<field name="value">tms@trobz.com</field>
+		</record>
+		
+		<!--HR Email -->
+		<record id="email_hr" model="ir.config_parameter">
+			<field name="key">email_hr</field>
+			<field name="value">hr@lists.trobz.com</field>
+		</record>
+		
+		<!--TMS url -->
+		<record id="tms_url_appraisal" model="ir.config_parameter">
+			<field name="key">tms_url_appraisal</field>
+			<field name="value">https://tms.trobz.com</field>
+		</record>
+		
+ 		<record id="default_appraisal_mailing_list" model="ir.config_parameter">
+ 			<field name="key">default_appraisal_mailing_list</field>
+ 			<field name="value">hr@lists.trobz.com</field>
+ 		</record>
+ 
+ 		<record id="support_ticket_auto_actions_default_days" model="ir.config_parameter">
+ 			<field name="key">support_ticket_auto_actions_default_days</field>
+ 			<field name="value">{"auto_low_days": -1, "auto_close_days": -1}</field>
+ 		</record>
+
+ 		<record id="maximum_assigned_overdue_date" model="ir.config_parameter">
+ 			<field name="key">maximum_assigned_overdue_date</field>
+ 			<field name="value">3</field>
+ 		</record>
+
+		<!--Store days ranges when check working hour -->
+		<record id="no_days_check_working_hour" model="ir.config_parameter">
+			<field name="key">no_days_check_working_hour</field>
+			<field name="value">40</field>
+		</record>
+
+		<!-- Groups that allowed to change suppoter of project -->
+		<record id="groups_allowed_change_project_supporter" model="ir.config_parameter">
+			<field name="key">groups_allowed_change_project_supporter</field>
+			<field name="value">[
+				'tms_modules.group_profile_tms_admin',
+				'tms_modules.group_profile_tms_delivery_team_manager',
+				'tms_modules.group_profile_tms_sysadmin',
+				'tms_modules.group_profile_tms_sysadmin_manager'
+			]</field>
+		</record>
+		<!--Store profile allow view STD Developmentt ime of ticket -->
+		<record id="profile_std_dev_time" model="ir.config_parameter">
+			<field name="key">profile_std_dev_time</field>
+			<field name="value">tms_modules.group_profile_tms_delivery_team_manager,tms_modules.group_profile_tms_admin</field>
+		</record>
+
+		<record id="number_of_day_trial_have_allocation" model="ir.config_parameter">
+			<field name="key">number_of_day_trial_have_allocation</field>
+			<field name="value">14</field>
+		</record>
+
+		<record id="leave_in_next_n_days" model="ir.config_parameter">
+			<field name="key">leave_in_next_n_days</field>
+			<field name="value">30</field>
+		</record>
+
+	</data>
+</openerp>

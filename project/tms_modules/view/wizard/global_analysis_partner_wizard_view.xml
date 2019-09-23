@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- Global Analysis Partner Wizard Form View -->
+		<record id="view_global_analysis_partner_wizard_form" model="ir.ui.view">
+			<field name="name">view.global.analysis.partner.wizard.form</field>
+			<field name="model">global.analysis.partner.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Global Analysis Partner">
+					<sheet>
+						<separator string="Global Analysis Partner" />
+						<group>
+							<group>
+								<field name="date_from" />
+								<field name="date_to" />
+							</group>
+							<group>
+								<field name="partner_id" options="{'no_create_edit': True}"/>
+								<field name="project_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
+								<field name='activity_ids' widget="many2many_tags" options="{'no_create_edit': True}"/>
+							</group>
+						</group>
+						<button string="Analyze" name="button_analyze" type="object"
+							class="oe_highlight" />
+						<sheet>
+							<field name="result" />
+						</sheet>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Action Open Global Analysis Partner Wizard -->
+		<record id="action_open_global_analysis_partner_wizard" model="ir.actions.act_window">
+			<field name="name">Global Analysis Partner</field>
+			<field name="res_model">global.analysis.partner.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="view_type">form</field>
+			<field name="target">inline</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+			<field name="view_id" ref="view_global_analysis_partner_wizard_form" />
+		</record>
+
+	</data>
+</openerp>

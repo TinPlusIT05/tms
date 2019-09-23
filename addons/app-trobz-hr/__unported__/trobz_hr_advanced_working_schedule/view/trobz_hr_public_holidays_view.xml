@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+		<!-- Public Holidays -->
+		<record model="ir.ui.view" id="view_trobz_hr_public_holiday_tree_inherit">
+			<field name="name">trobz.hr.public.holidays.tree.inherit</field>
+			<field name="model">trobz.hr.public.holidays</field>
+			<field name="inherit_id" ref="trobz_hr_holiday.view_trobz_hr_public_holiday_tree" />
+			<field name="arch" type="xml">
+				<field name="year" position="after">
+					<field name="state" />
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_trobz_hr_public_holiday_form_inherit">
+			<field name="name">trobz.hr.public.holidays.form.inherit</field>
+			<field name="model">trobz.hr.public.holidays</field>
+			<field name="inherit_id" ref="trobz_hr_holiday.view_trobz_hr_public_holiday_form" />
+			<field name="arch" type="xml">
+				<field name="name" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','=','approved')]}</attribute>
+				</field>
+				<field name="date" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','=','approved')]}</attribute>
+				</field>
+				<field name="country" position="attributes">
+					<attribute name="attrs">{'readonly':[('state','=','approved')]}</attribute>
+				</field>	
+				<xpath expr="//form[@string='List Public Holiday']/group" position="before">
+					<header>
+						<button name="action_process" string="Set to Draft" type="object"
+							states="approved" context="{'hr_advanced_working_schedule_state':'draft'}"/>
+						<button name="action_process" string="Approve" type="object"
+							states="draft" context="{'hr_advanced_working_schedule_state':'approved'}"
+							class="oe_highlight" groups="base.group_hr_manager" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,approved"
+							statusbar_colors='{"draft":"blue", "approved":"red"}' />
+					</header>
+				</xpath>
+				
+			</field>
+		</record>
+	</data>
+</openerp>

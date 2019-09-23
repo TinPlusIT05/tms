@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="mailman_list_form_view_inherit">
+			<field name="name">Mailman List Form</field>
+			<field name="model">mailman.list</field>
+			<field name="inherit_id" ref="mailman.view_mailman_list_form" />
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="project_id" />
+					<field name="is_used_for_sup_notif" />
+					<field name="unsubscribe_me" invisible="1"/>
+				</field>
+				<group name="subscribe" position="before">
+					<div class="oe_right oe_button_box" name="buttons">
+						<button name="button_subscribe_me" type="object" string="Subscribe Me" attrs="{'invisible': [('unsubscribe_me', '=', True)]}"
+							groups="tms_modules.group_tms_mailman_unsubsribe_me"/>
+						<button name="button_unsubscribe_me" type="object" string="Unsubscribe Me" attrs="{'invisible': [('unsubscribe_me', '=', False)]}"
+							groups="tms_modules.group_tms_mailman_unsubsribe_me"/>
+						<button name="button_force_sync" type="object" string="Force Synchronization" />
+					</div>
+				</group>
+				<xpath expr="//sheet" position="after">
+					<footer>
+						<div class="oe_chatter">
+							<field name="message_follower_ids" widget="mail_followers" />
+							<field name="message_ids" widget="mail_thread" />
+						</div>
+					</footer>
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_mailman_list_tree">
+			<field name="name">mailman.list.tree</field>
+			<field name="model">mailman.list</field>
+			<field name="inherit_id" ref="mailman.view_mailman_list_tree" />
+			<field name="arch" type="xml">
+				<field name="description" position="after">
+					<field name="project_id" />
+					<field name="is_used_for_sup_notif" />
+				</field>
+			</field>
+		</record>
+
+		<record id="view_mailman_list_search" model="ir.ui.view">
+			<field name="name">mailman.list.search.inherit</field>
+			<field name="model">mailman.list</field>
+			<field name="inherit_id" ref="mailman.view_mailman_list_search" />
+			<field name="arch" type="xml">
+				<field name="description" position="after">
+					<field name="project_id" />
+					<field name="is_used_for_sup_notif" string="Used for Support Notifications" />
+					<filter string="Used for Support Notifications" domain="[('is_used_for_sup_notif', '=', True)]" />
+					<group string="Group By">
+						<filter string="Project" domain="[]" context="{'group_by':'project_id'}" />
+					</group>
+				</field>
+			</field>
+		</record>
+
+	</data>
+</openerp>

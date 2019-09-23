@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_fc_productivity_wizard_form" model="ir.ui.view">
+            <field name="name">view.fc.productivity.wizard.form</field>
+            <field name="model">fc.productivity.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="FC Productivity Wizard" version="7.0">
+                    <group>
+                        <group>
+                            <field name="from_date" required="1"/>
+                        </group>
+                        <group>
+                            <field name="to_date" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="btn_export_fc_productivity" string="Export"
+                            type="object" class="oe_highlight" context="{'xls_export': True}"/>
+                        <label string="or " />
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_open_fc_productivity_wizard_form" model="ir.actions.act_window">
+            <field name="name">FC Productivity</field>
+            <field name="res_model">fc.productivity.wizard</field>
+            <field name="src_model">tms.working.hour</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_fc_productivity_wizard_form" />
+        </record>
+
+        <menuitem
+            name="FC Productivity" id="menu_fc_productivity_wizard"
+            parent="menu_tms_support_reports_secondary" sequence="60"
+            action="action_open_fc_productivity_wizard_form"
+            groups="base.group_user" />
+
+    </data>
+</openerp>

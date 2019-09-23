@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dowload_all_attachments_normal_user,dowload.all.attachments.normal.user,model_dowload_all_attachments,base.group_user,1,0,0,0
+access_dowload_all_attachments_normal_erp_manager,dowload.all.attachments.normal.erp_manager,model_dowload_all_attachments,base.group_erp_manager,1,1,1,1

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="hr_appraisal_employee_request_email_template" model="email.template">
+			<field name="name">Employee Request</field>	
+			<field name="model_id" ref="model_hr_appraisal_input"/>
+			<field name="email_from">${object.get_value_from_param('email_hr')}</field>		
+			<field name="email_to">${object.author_id.work_email}</field>
+			<field name="email_cc">hr@lists.trobz.com</field>
+			<field name="subject">Request to prepare Appraisal Input</field>
+			<field name="body_html">
+				<![CDATA[
+					<p> Please fill out the following appraisal input related
+					 	to you <b>before ${object.appraisal_id.deadline and object.appraisal_id.deadline}</b>.
+					 </p>
+					 
+					<p><a href="${object.get_url()}">Click here to access the appraisal input form.</a></p>
+
+					<p>Regards, </p>
+
+					<i>This is an automatically generated email.
+					 If you have any questions, please send your questions
+					 to ${object.get_value_from_param('email_hr')} or contact HR department.</i>
+				]]>
+			</field>
+		</record>
+		
+		<record id="hr_appraisal_evaluators_request_email_template" model="email.template">
+            <field name="name">Evaluators Request</field>   
+            <field name="model_id" ref="model_hr_appraisal_input"/>
+            <field name="email_from">${object.get_value_from_param('email_hr')}</field>     
+            <field name="email_to">${object.author_id.work_email}</field>
+            <field name="email_cc">hr@lists.trobz.com</field>
+            <field name="subject">Request to prepare Appraisal Input</field>
+            <field name="body_html">
+                <![CDATA[
+                    <p>Please fill out the following appraisal input related
+                        to ${object.appraisal_id.employee_id.name} <b>before ${object.appraisal_id.deadline}</b>.
+                     </p>
+
+                    <p><a href="${object.get_url()}">Click here to access the appraisal input form.</a></p>
+
+                    <p>Regards, </p>
+
+                    <i>This is an automatically generated email.
+                     If you have any questions, please send your questions
+                     to ${object.get_value_from_param('email_hr')} or contact HR department.</i>
+                ]]>
+            </field>
+        </record>
+        
+        <record id="hr_appraisal_reminder_for_employee_email_template" model="email.template">
+            <field name="name">Reminder for employee</field>    
+            <field name="model_id" ref="model_hr_appraisal_input"/>
+            <field name="email_from">${object.get_value_from_param('email_hr')}</field> 
+            <field name="email_to">${object.author_id.work_email}</field>
+            <field name="email_cc">hr@lists.trobz.com</field>
+            <field name="subject">Reminder to prepare Appraisal Input</field>
+            <field name="body_html">
+                <![CDATA[
+                    <p>Please fill out the following appraisal input
+                       related to you <b>before ${object.appraisal_id.deadline}</b>.
+                    </p>
+
+                    <p><a href="${object.get_url()}">Click here to access the appraisal input form.</a></p>
+
+                    <p>Regards, </p>
+
+                    <i>This is an automatically generated email.
+                     If you have any questions, please send your questions
+                     to ${object.get_value_from_param('email_hr')} or contact HR department.</i>
+                ]]>
+            </field>
+        </record>
+        
+        <record id="hr_appraisal_reminder_for_evaluator_email_template" model="email.template">
+            <field name="name">Reminder for evaluator</field>   
+            <field name="model_id" ref="model_hr_appraisal_input"/>
+            <field name="email_from">${object.get_value_from_param('email_hr')}</field>     
+            <field name="email_to">${object.author_id.work_email}</field>
+            <field name="email_cc">hr@lists.trobz.com</field>
+            <field name="subject">Reminder to prepare Appraisal Input</field>
+            <field name="body_html">
+                <![CDATA[
+                    <p>Please fill out the following appraisal input
+                       related to ${object.appraisal_id.employee_id.name} <b>before ${object.appraisal_id.deadline}</b>.
+                    </p>
+
+                    <p><a href="${object.get_url()}">Click here to access the appraisal input form.</a></p>
+
+                    <p>Regards, </p>
+
+                    <i>This is an automatically generated email.
+                     If you have any questions, please send your questions
+                     to ${object.get_value_from_param('email_hr')} or contact HR department.</i>
+                ]]>
+            </field>
+        </record>
+        
+         <!-- Email template: Notification when an appraisal is done -->
+        <record id="email_template_notification_appraisal_done" model="email.template">
+             <field name="name">Appraisal done notification mail</field>
+             <field name="email_from">${object.get_value_from_param('email_tms')}</field>
+             <field name="subject">${object.get_subject()}</field>
+             <field name="email_to">${object.get_value_from_param('default_appraisal_mailing_list')|safe}</field>
+             <field name="model_id" ref="trobz_hr_simple_appraisal.model_hr_appraisal"/>
+             <field name="body_html"><![CDATA[
+				<p>${object.get_notification_mail_content()}</p>
+				<p><a href="${object.get_url()}">Click here to access the appraisal form.</a></p> 				
+ 				<p>Regards, </p>
+                <i>This is an automatically generated email.
+                 If you have any questions, please send your questions
+                 to ${object.get_value_from_param('email_hr')} or contact HR department.</i>
+             ]]></field>
+         </record>
+         <!-- Email template: Notification when an appraisal input is done -->
+        <record id="email_template_notification_appraisal_input_done" model="email.template">
+             <field name="name">Appraisal input done notification mail</field>
+             <field name="email_from">${object.get_value_from_param('email_tms')}</field>
+             <field name="subject">${object.get_subject()}</field>
+             <field name="email_to">${object.get_value_from_param('default_appraisal_mailing_list')|safe}</field>
+             <field name="model_id" ref="trobz_hr_simple_appraisal.model_hr_appraisal_input"/>
+             <field name="body_html"><![CDATA[
+				<p>${object.get_notification_mail_content()}</p>
+				<p><a href="${object.get_url()}">Click here to access the appraisal input form.</a></p> 				
+ 				<p>Regards, </p>
+                <i>This is an automatically generated email.
+                 If you have any questions, please send your questions
+                 to ${object.get_value_from_param('email_hr')} or contact HR department.</i>
+             ]]></field>
+         </record>
+	</data>
+</openerp>

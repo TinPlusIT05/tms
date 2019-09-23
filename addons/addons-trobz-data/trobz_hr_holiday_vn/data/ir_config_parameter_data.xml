@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data noupdate="1">
+  		<record id="public_holiday_vi_translations" model="ir.config_parameter">
+            <field name="key">public_holiday_vi_translations</field>
+            <field name="value"><![CDATA[
+{
+	"vi_VN": {
+		"New Year": "Tết Dương Lịch",
+		"Vietnamese New Year": "Tết Âm Lịch",
+		"Hung Kings Commemorations": "Ngày Giỗ Tổ Vua Hùng",
+		"Liberation Day/Reunification Day": "Ngày Giải Phóng Miền Nam",
+		"International Workers' Day": "Ngày Quốc Tế Lao Động",
+		"National Day": "Ngày Quốc Khánh",
+	
+	}
+}
+            ]]></field>
+        </record>
+        
+	</data>
+</openerp>

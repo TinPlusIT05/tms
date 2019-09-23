@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record  model="ir.ui.view" id="view_activity_status_tree">
+            <field name="name">activity.status.tree</field>
+            <field name="model">activity.status</field>
+            <field name="arch" type="xml">
+            	<tree string="Status">
+            	    <field name="date"/>
+                    <field name="status" widget="bootstrap_markdown"/>
+            	</tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_activity_status_form">
+            <field name="name">activity.status.form</field>
+            <field name="model">activity.status</field>
+            <field name="arch" type="xml">
+                <form string="Status">
+                <sheet>
+                    
+                    <group>
+                        <group>
+                        	<field name="activity_id" />
+                        </group>
+                        <group>
+                            <field name="date" />
+                        </group>
+                    </group>
+                    <group>
+                    	<label for='status' string='Status' colspan='4'/>
+                    	<field name='status' widget="bootstrap_markdown" nolabel='1'/>
+                    </group>
+        
+                </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_activity_status_form_from_activity">
+            <field name="name">activity.status.form.from.activity</field>
+            <field name="model">activity.status</field>
+            <field name="arch" type="xml">
+                <form string="Status">
+                <sheet>
+                    
+                    <group>
+                        <group>
+                            <field name="date" />
+                        </group>
+                    </group>
+                    <group>
+                    	<label for='status' string='Status' colspan='4'/>
+                    	<field name='status' widget="bootstrap_markdown" nolabel='1'/>
+                    </group>
+        
+                </sheet>
+                </form>
+            </field>
+        </record>        
+        
+        <record model="ir.ui.view" id="view_activity_status_search">
+            <field name="name">activity.status.search</field>
+            <field name="model">activity.status</field>
+            <field name="arch" type="xml">
+                <search string="Status">
+                	<field name='name'
+                		domain_filter="[('name', 'ilike', self)]"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_activity_status" model="ir.actions.act_window">
+			<field name="name">Status</field>
+			<field name="res_model">activity.status</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        
+
+    </data>
+</openerp>

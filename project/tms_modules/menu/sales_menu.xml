@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record id="base.menu_base_partner" model="ir.ui.menu">
+			<field name="action" ref="base.action_partner_customer_form" />
+		</record>
+
+		<record id="base.menu_sales" model="ir.ui.menu">
+			<field name="groups_id"
+				eval="[(6,0,[
+				ref('base.group_no_one'),
+				ref('base.group_sale_manager'),
+				ref('base.group_sale_salesman')
+			])]" />
+		</record>
+
+		<!-- # Ticket 12497 Admin profile see all menu Sales > Configuration -->
+		<record id="base.menu_base_config" model="ir.ui.menu">
+			<field name="groups_id"
+				eval="[(6,0,[ref('base.group_no_one'),ref('base.group_system'),ref('base.group_sale_manager'),ref('tms_modules.group_sales_configuration')])]" />
+		</record>
+		
+		<record id="sales_team.menu_sales_team_act" model="ir.ui.menu">
+			<field name="groups_id"
+				eval="[(6, 0, [ref('base.group_system'),ref('tms_modules.group_sales_configuration')])]" />
+		</record>
+		
+		<record id="crm.menu_crm_leads" model="ir.ui.menu">
+			<field name="groups_id"
+				eval="[(6, 0, [ref('base.group_system'),ref('tms_modules.group_sales_configuration')])]" />
+		</record>
+		
+		<record id="crm.menu_crm_opportunities" model="ir.ui.menu">
+			<field name="groups_id"
+				eval="[(6, 0, [ref('base.group_system'),ref('tms_modules.group_sales_configuration')])]" />
+		</record>
+		
+		<!-- SALES > SALES > PROJECTS -->
+		<menuitem id="menu_tms_sales_projects" name="Projects" 
+		parent="base.menu_sales" 
+		action="tms_modules_sales_projects" sequence="20"/>
+		
+	</data>
+</openerp>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+    	<!-- Invisible probability on CRM Stage-->
+        <record model="ir.ui.view" id="trobz_crm_case_stage_form_inherit">
+	        <field name="name">CRM - Leads Form</field>
+	        <field name="model">crm.case.stage</field>
+            <field name="inherit_id" ref="crm.crm_case_stage_form"/>
+	        <field name="arch" type="xml">
+                <field name="case_default" position="after">
+                    <field name="open_status"/>
+                </field>
+                <field name="type" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </field>
+                <field name="on_change" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </field>
+                <field name="probability" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+		
+		<record model="ir.ui.view" id="trobz_crm_case_stage_tree_inherit">
+            <field name="name">crm.case.stage.tree</field>
+            <field name="model">crm.case.stage</field>
+            <field name="inherit_id" ref="crm.crm_case_stage_tree"/>
+            <field name="arch" type="xml">
+            	<field name="type" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </field>
+            	<field name="probability" position="attributes">
+                	<attribute name="invisible">1</attribute>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

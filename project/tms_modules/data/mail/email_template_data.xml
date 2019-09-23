@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--Email template: Holiday approval -->
+        <record id="trobz_hr_mail_holiday.email_template_holiday_approval" model="email.template">
+            <field name="email_cc">hr-holiday-notifications@lists.trobz.com,${object.employee_id.parent_id.work_email or ''},${object.to_partner_mail()|safe},${object.employee_id.leave_manager_id.work_email or ''}</field>
+        </record>
+
+        <!--Email template: Holiday denial -->
+        <record id="trobz_hr_mail_holiday.email_template_holiday_denial" model="email.template">
+            <field name="email_cc">${object.to_partner_mail()|safe}</field>
+            <field name="email_to">${object.employee_id.work_email or ''},${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''},${object.employee_id.leave_manager_id.work_email or ''}</field>
+        </record>
+        <!--Email template: Email remind manager respect to leave request-->
+        <record id="trobz_hr_mail_holiday.email_template_remind_manager" model="email.template">
+            <field name="email_cc">${object.to_partner_mail()|safe}</field>
+            <field name="email_to">${object.employee_id.parent_id.work_email or ''},${object.employee_id.leave_manager_id.work_email or ''}</field>
+        </record>
+
+        <!-- Email template: Holiday Confirm -->
+        <record id="trobz_hr_mail_holiday.email_template_holiday_confirm" model="email.template">
+            <field name="email_cc">hr-holiday-notifications@lists.trobz.com,${object.employee_id.work_email or ''},${object.to_partner_mail()|safe}</field>
+            <field name="email_to">${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''},${object.employee_id.leave_manager_id.work_email or ''}</field>
+        </record>
+
+        <!-- Email template: Holiday Cancel -->
+        <record id="trobz_hr_mail_holiday.email_template_holiday_cancel" model="email.template">
+            <field name="email_cc">${object.to_partner_mail()|safe}</field>
+            <field name="email_to">${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''},${object.employee_id.leave_manager_id.work_email or ''}</field>
+        </record>
+
+        <!-- Bad project audit Email Template ${('tms@trobz.com')|safe }-->
+        <record id="email_template_bad_project_audit" model="email.template">
+            <field name="name">Bad project audit email template</field>
+            <field name="model_id" search="[('model','=','tms.audit.board')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.get_mail_list()|safe}</field>
+            <field name="email_cc">${('management@lists.trobz.com')|safe}</field>
+            <field name="subject">Bad Project Audit</field>
+            <field name="auto_delete" eval="True" />
+            <field name="body_html"><![CDATA[
+           <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                        <title>[dev] Bad Projects Audit</title>
+                    </head>
+                    <body>
+                        <p>Hello,</p>
+                        <p>
+                            ${object.get_list_bad_projects_info() or ''}
+                        </p>
+
+                        <p>
+                            Have a nice working day,
+                        </p>
+                        <p>
+                            Trobz Team.
+                        </p>
+                        <a href="http://tms.trobz.com" target="_blank">tms.trobz.com</a><br/>
+                        This email is an automatic notification. If you have any question, please contact us at support@lists.trobz.com
+                    </body>
+                </html>
+            ]]></field>
+        </record>
+        <!-- New Equipment Request -->
+        <record id="email_template_notify_hr_equipment_request_confirmed" model="email.template">
+            <field name="name"> New Equipment Request email template</field>
+            <field name="model_id" ref="it_equipment_bonus.model_hr_equipment_request"></field>
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to"><![CDATA[% set email_to = ctx.get('email_to', [])
+${email_to}]]></field>
+            <field name="email_cc"></field>
+            <field name="subject"><![CDATA[% set subject = ctx.get('subject', [])
+${subject}]]></field>
+            <field name="auto_delete" eval="True" />
+            <field name="body_html"><![CDATA[
+           <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                        <title>[hr] New Equipment Request</title>
+                    </head>
+                    <body>
+                        <p>Dear HR Team,</p>
+                        % set request = ctx.get('request', [])
+                        <p>
+                            There is a new equipment request of ${object.get_request_user_name(request.id) or ''}.
+                            Please help check <a href="${object.generate_equipment_request_url(request.id)}">here</a>
+                        </p>
+                        <p>
+                            Details:<br/>
+                            - Employee: ${object.get_request_user_name(request.id) or ''}<br/>
+                            - Category: ${request.category_id.name or ''}<br/>
+                            - Model: ${request.model_req or ''}<br/>
+                            - Balance Benefit: ${request.balance_benefit or ''}<br/>
+                            - Request Date: ${request.request_date or ''}<br/>
+                            - Reason: ${request.reason or ''}<br/>
+                            - Estimated Price: ${request.est_price or ''}<br/>
+                        </p>
+                        <p>
+                            Regards,
+                        </p>
+                        <p>
+                            Trobz Team.
+                        </p>
+                        <a href="http://tms.trobz.com" target="_blank">tms.trobz.com</a><br/>
+                        This email is an automatic notification. If you have any question, please contact us at support@lists.trobz.com
+                    </body>
+                </html>
+            ]]></field>
+        </record>
+        <!-- Equipment Request Change State-->
+        <record id="email_template_notify_equipment_request_change_state" model="email.template">
+            <field name="name"> Equipment Request Change State email template</field>
+            <field name="model_id" ref="it_equipment_bonus.model_hr_equipment_request"></field>
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to"><![CDATA[% set email_to = ctx.get('email_to', [])
+${email_to}]]></field>
+            <field name="subject"><![CDATA[% set subject = ctx.get('subject', [])
+${subject}]]></field>
+            <field name="auto_delete" eval="True" />
+            <field name="body_html"><![CDATA[
+           <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                        <title>[hr] New Equipment Request</title>
+                    </head>
+                    <body>
+                        <p>Dear HR Team,</p>
+                        % set request = ctx.get('request', [])
+                        % set body = ctx.get('content', [])
+                        ${body}
+                        Please see the details of the approval information in TMS: <a href="${object.generate_equipment_request_url(request.id)}"> here</a>
+                        <p>
+                            Regards,
+                        </p>
+                        <p>
+                            Trobz Team.
+                        </p>
+                        <a href="http://tms.trobz.com" target="_blank">tms.trobz.com</a><br/>
+                        This email is an automatic notification. If you have any question, please contact us at support@lists.trobz.com
+                    </body>
+                </html>
+            ]]></field>
+        </record>
+        <!-- Instance Down Email Template -->
+        <record id="tms_instance_down_mail_template" model="email.template">
+            <field name="name">Instance Down Mail</field>
+            <field name="model_id" search="[('model','=','tms.instance')]"/>
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.get_admin_tpm_sysadmin_email()}</field>
+            <field name="subject">${object.get_mail_down_instances_subject()}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[${object.get_mail_down_instances()}]]></field>
+        </record>
+        <!-- Daily Notification Email Template -->
+        <record id="daily_notifications_email" model="email.template">
+            <field name="name">Daily Notifications Email</field>
+            <field name="model_id" search="[('model','=','email.template')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.get_daily_notification_receiver_emails()|safe}</field>
+            <field name="subject">Daily Notifications from TMS</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                        <title>[dev] Daily Notifications from TMS</title>
+                    </head>
+                    <body>
+                        <div>
+                            <h4><div style="font-size:18px;color:orange;font-family:Arial">Support Key figures</div></h4>
+
+                            <div style="font-family:arial">
+                                <div style="font-size: 18px;margin-top:15px;">
+                                    ${object.env['tms.support.ticket'].get_number_of_support_ticket_trobz()}
+                                </div>
+
+                                <div style="font-size: 18px;margin-top:15px;font-weight:bold;">
+                                    ${object.env['tms.support.ticket'].get_new_support_ticket_in_past_24h()}<span style="font-size:14px"><b> new support ticket in past 24 hours</b></span>
+                                </div>
+
+                                <div style="font-size: 18px;margin-top:15px;font-weight:bold;">
+                                    ${object.env['tms.support.ticket'].get_support_ticket_closed_in_past_24h()}<span style="font-size:14px"><b> support ticket closed in past 24 hours</b></span>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div>
+                            <h4><div style="font-size:18px;color:orange;font-family:Arial">Forge Key figures</div></h4>
+                            <div style="font-family:arial">
+
+                                <div style="font-size: 18px;margin-top:15px;">${object.env['tms.forge.ticket'].get_quantity_forge_ticket_sprint_not_estimate()}</div>
+
+                                <div style="font-size: 18px;margin-top:15px;font-weight:bold;">${object.env['daily.mail.notification'].get_remaining_time_on_billable()}<span style="font-size:14px"><b> hours Scheduled</b></span></div>
+
+                                <div style="font-size: 11px;font-style:italic;margin-left:30px">remaining on billable activities and not quotation</div><br/>
+
+                                <h4>
+                                    <div style="font-size:18px;color:orange;font-family:Arial" >Forge Key figures per project</div>
+                                </h4>
+
+                                ${object.env['tms.project'].get_forge_key_figures_per_project()}
+
+                                <br/>
+                                <h4>
+                                    <div style="font-size:18px;color:orange;font-family:Arial" >Opened urgent forge tickets</div>
+                                </h4>
+                                <p>${object.env['tms.forge.ticket'].get_urgent_forge_tickets()}</p>
+
+                                <h4>
+                                    <div style="font-size:18px;color:orange;font-family:Arial" >Opened urgent support tickets</div>
+                                </h4>
+                                <p>${object.env['tms.support.ticket'].get_urgent_support_tickets()}</p>
+
+                                <h4>
+                                    <div style="font-size:18px;color:orange;font-family:Arial" >Forge tickets assigned or WIP with long time spent</div>
+                                    <div style="font-size:12px;font-style:bold;margin-left:30px">
+                                        <p>To avoid this situation;</p>
+                                        <ul>
+                                            <li>[1] Split big tickets into small tickets with same parent ticket.</li>
+                                            <li>[2] Ensure that developers have a plan before they start coding.</li>
+                                            <li>[3] Make sure initial estimate is realistic.</li>
+                                        </ul>
+                                    </div>
+                                </h4>
+                                <p>${object.env['tms.forge.ticket'].get_long_time_spent_forge_tickets()}</p>
+                                <br/>
+                                <h4>
+                                    <div style="font-size:18px;color:orange;font-family:Arial" >Milestones with commitments</div>
+                                    <div style="font-size:11px;font-style:bold;margin-left:30px">Delivery in integration should be done one week before the commitment</div>
+                                </h4>
+                                <p>${object.env['tms.milestone'].get_commitment_milestones()}</p>
+                                <br/>
+                                <h4><div style="font-size:18px;color:orange;font-family:Arial" >Sprint KPIs</div></h4>
+                                <p>${object.env['daily.mail.notification'].get_sprint_done_todo_capacity()}</p>
+                                <br/>
+                                <h4><div style="font-size:18px;color:orange;font-family:Arial" >Trobz member's workload</div></h4>
+                                <p>${object.env['hr.employee'].get_trobz_member_detail()}</p>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+            ]]></field>
+        </record>
+
+        <!-- Daily Support Consumption Status -->
+        <record id="daily_support_consumption_status" model="email.template">
+            <field name="name">Support Consumption Status</field>
+            <field name="model_id" search="[('model','=','email.template')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${('pm@lists.trobz.com')|safe}</field>
+            <field name="subject">Daily Support Consumption Status</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                        <title>Support Consumption Status</title>
+                    </head>
+                    <body>
+                        <div>
+                            <h1>Support Consumption Status</h1>
+                            <br>
+                            <table border="1" style="border-collapse: collapse; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Project</th>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Project's Owner</th>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Support Time Spent (d)</th>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Support Budget (d)</th>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Pro-rata Budget (%)</th>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Pro-rata Consumption (%)</th>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Constract's Start Date</th>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Constract's End Date</th>
+                                <th style="text-align: center; padding: 8px; background-color: #4CAF50; color: white;">Forecasted Date Done</th>
+                            </tr>
+                            <!-- Get infomation form model -->
+                            ${object.env['tms.project'].get_support_consumption_status() or ''}
+                            </table>
+                        </div>
+                    </body>
+                </html>
+            ]]></field>
+        </record>
+        <!-- Test Instance Database Email Template -->
+        <record id="daily_instances_db_template" model="email.template">
+            <field name="name">Test List DB</field>
+            <field name="model_id" search="[('model','=','tms.instance')]"/>
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${('dev@lists.trobz.com')|safe}</field>
+            <field name="subject">[dev] List databases are not consistent between TMS and instances</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                        <title>Forge Ticket Update Autotmatic Notification</title>
+                    </head>
+                    <body>
+                        ${object.mail_instance}
+                    </body>
+                </html>
+            ]]></field>
+        </record>
+        <!-- Customer Support Tickets Status Email Template -->
+        <record id="email_template_to_customers_with_support_status" model="email.template">
+            <field name="name">Email to customers with summary of support status</field>
+            <field name="model_id" search="[('model','=','tms.project')]"/>
+            <field name="email_from">${object.get_partner_project_mailing_list()|safe}</field>
+            <field name="email_to">${object.get_mail_list()|safe}</field>
+            <field name="email_cc">support@lists.trobz.com</field>
+            <field name="subject">${object.name} - Trobz Support Weekly Status</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+            <p>Hello,</p>
+            <p>
+                ${object.get_assigned_tickets() or ''}
+            </p>
+            <p>
+                ${object.get_tickets_ready_for_production() or ''}
+            </p>
+            <p>
+                Have a nice week,
+            </p>
+            <p>
+                Trobz Team.
+            </p>
+            <a href="http://tms.trobz.com" target="_blank">tms.trobz.com</a><br/>
+            This email is an automatic notification. If you have any question, please contact us at support@lists.trobz.com
+            ]]></field>
+        </record>
+        <!-- Email template for Delivery -->
+        <record id="tms_forge_poke_email_template" model="email.template">
+            <field name="name">Forge Poke Email</field>
+            <field name="model_id" search="[('model','=','tms.forge.ticket')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.owner_id.email|safe}</field>
+            <field name="subject">[Poke! ${object.project_id.name}] #${object.name}: ${object.summary}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <div>
+                    <p>You have been requested to check the ticket ${object.name}.</p>
+                    <p>Summary: ${object.summary}</p>
+                    <p>State: ${object.get_state_value_from_key()}</p>
+                    <p>Priority: ${object.get_priority_value_from_key()}</p>
+                    <p>Assignee: ${object.owner_id.name}</p>
+                    <p>${object.get_last_changes()}</p>
+                    <p>--</p>
+                    <p>Ticket URL: ${object.get_ticket_url()}</p>
+                </div>
+            ]]></field>
+        </record>
+        <!-- Email template: Monthly Remind Review Performance of Employee to HR Manager -->
+        <record id="email_template_monthly_remind_hr_manager_review_emp" model="email.template">
+            <field name="name">List employees will be reviewed</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_to">hr@lists.trobz.com</field>
+            <field name="subject">[Automatic Notification] List employees whose contract will be reviewed</field>
+            <field name="model_id" ref="model_hr_contract"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+    <div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>List of employees who need to have performance review next month.</p>
+    <div>${object.get_reviewing_contract_list() | safe}</div>
+    </div>
+            ]]></field>
+        </record>
+        <!-- Sprint Share Email Template -->
+        <record id="tms_sprint_email_template" model="email.template">
+            <field name="name">Sprint Email</field>
+            <field name="model_id" search="[('model','=','tms.ticket.sprint')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.email_list|safe}</field>
+            <field name="subject">Sprint Content ${object.name}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <p>The presentation of the sprint content is ready, you can find it here:</p>
+                <p>${object.url}</p>
+                <p>Any comment is welcome.</p>
+                <p>Have a nice week!</p>
+            ]]></field>
+        </record>
+        <!-- Daily Notification Email Template -->
+        <record id="hr_daily_notifications" model="email.template">
+            <field name="name">HR Daily Notifications</field>
+            <field name="model_id" search="[('model','=','email.template')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${('staff@lists.trobz.com')|safe}</field>
+            <field name="subject">HR Daily Notifications</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                        <title>[dev] HR Daily Notifications</title>
+                    </head>
+                    <body>
+                        <div>
+                            <p>${object.env['hr.employee'].list_employees_leave_in_next_n_days()}</p>
+                            <p>${object.env['hr.employee'].get_birthday_in_next_7_days()}</p>
+                        </div>
+                    </body>
+                </html>
+            ]]></field>
+        </record>
+        <!-- Forge Ticket Missing Workload Estimation Email Template -->
+        <record id="remire_ticket_email_missing_template" model="email.template">
+            <field name="name">Daily Remind Tickets Email Missing Template</field>
+            <field name="model_id" search="[('model','=','tms.forge.ticket')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.get_ticket_missing_workload_email_to_be_send()}</field>
+            <field name="email_cc">${('management@lists.trobz.com')|safe}</field>
+            <field name="subject">Tickets missing workload estimation</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html">
+                ${object.get_ticket_missing_workload_estimation()}
+            </field>
+        </record>
+        <!-- Remain Working Hour Email Template -->
+        <record id="tms_remain_wh_email_template" model="email.template">
+            <field name="name">Remain Working Hour Email</field>
+            <field name="model_id" search="[('model','=','res.users')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.get_email_list()|safe}</field>
+            <field name="email_cc">${('hr@lists.trobz.com, management@lists.trobz.com')|safe}</field>
+            <field name="subject">[dev] Check Working Hour</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <div>
+                    <p>Hello,</p>
+                    <p>Please help to check/update your working hours for below dates:</p>
+                    <p>${object.users_not_working_hour}</p>
+                    <p>Sweet regards, TMS</p>
+                </div>
+            ]]></field>
+        </record>
+        <!-- Email Template: Holiday Second Approval -->
+        <record id="email_template_holiday_second_approval" model="email.template">
+            <field name="name">Holiday Second Approval Reminder</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_cc">${object.employee_id.work_email or ''}</field>
+            <field name="email_to">hr-holiday-notifications@lists.trobz.com</field>
+            <field name="subject">Leave request ${object.id} is waiting for your second level approval: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_hr_holidays"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>A leave request is waiting for your second level approval (<a href="${object.get_request_link() | safe}">View Leave Request</a>).
+    <p>${object.get_email_content() | safe}</p>
+</div>
+            ]]>
+            </field>
+        </record>
+
+        <!-- Business Travel Confirm -->
+        <record id="email_template_business_travel_to_approve" model="email.template">
+            <field name="name">Business Travel Confirm</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_cc">${object.employee_id.work_email or ''}</field>
+            <field name="email_to">hr@lists.trobz.com,${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''}</field>
+            <field name="subject">Business travel request ${object.id} is waiting for your approval: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_tms_support_training"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>A business travel request is waiting for your approval (<a href="${object.get_request_link() | safe}">View Business Travel Request</a>).
+    <p>${object.get_email_content()}</p>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- Business Travel Approval -->
+        <record id="email_template_business_travel_approval" model="email.template">
+            <field name="name">Business Travel Approval</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_cc">hr@lists.trobz.com,${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''}</field>
+            <field name="email_to">${object.employee_id.work_email or ''}</field>
+            <field name="subject">Business travel request ${object.id} has been approved: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_tms_support_training"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>A business travel request has been approved (<a href="${object.get_request_link() | safe}">View Business Travel Request</a>).
+    <p>${object.get_email_content()}</p>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- Business Travel Cancelled -->
+        <record id="email_template_business_travel_cancelled" model="email.template">
+            <field name="name">Business Travel Cancelled</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_cc">hr@lists.trobz.com,${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''}</field>
+            <field name="email_to">${object.employee_id.work_email or ''}</field>
+            <field name="subject">Business travel request ${object.id} has been cancelled: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_tms_support_training"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>A business travel request has been cancelled (<a href="${object.get_request_link() | safe}">View Business Travel Request</a>).
+    <p>${object.get_email_content()}</p>
+</div>
+            ]]></field>
+        </record>
+
+        <!-- Weekly Developer Productivity -->
+        <record id="email_weekly_developer_productivity" model="email.template">
+            <field name="name">Weekly Developer Productivity Last Sprint Email</field>
+            <field name="model_id" search="[('model','=','email.template')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.get_weekly_developer_productivitys()|safe}</field>
+            <field name="subject">Weekly Developer Productivity from TMS</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+                <html xmlns="http://www.w3.org/1999/xhtml">
+                    <head>
+                        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                        <title>[dev] Weekly Developer Productivity from TMS</title>
+                    </head>
+                    <body>
+                        <div>
+                            % set sprint = object.env['developer.productivity.in.sprint'].get_sprint()
+                            <h4><div style="font-size:18px;color:orange;font-family:Arial">Developer Productivity Last Sprint: ${sprint}</div></h4>
+                            <div style="font-family:arial">
+                                <p>${object.env['developer.productivity.in.sprint'].get_developer_productivity(sprint)}</p>
+                                <br/>
+                            </div>
+                        </div>
+                    </body>
+                </html>
+            ]]></field>
+        </record>
+
+	<!-- Email template: Holiday Confirm -->
+	<record id="email_template_input_ot_confirm" model="email.template">
+	<field name="name">OT confirm</field>
+	<field name="email_from">hrmanager@trobz.com</field>
+	<field name="email_cc">hr@lists.trobz.com,${object.employee_id.work_email or ''}</field>
+	<field name="email_to">${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''}</field>
+	<field name="subject">Overtime request ${object.id} is waiting for your approval: ${object.employee_id.name}</field>
+	<field name="model_id" ref="model_hr_input_overtime"/>
+	<field name="auto_delete" eval="True"/>
+	<field name="body_html"><![CDATA[
+	    <div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+		<p>A Overtime request is waiting for your approval (<a href="${object.get_request_link() | safe}">View OT Request</a>).
+		<p>${object.get_email_content()}</p>
+	    </div>
+	]]></field>
+	</record>
+    </data>
+</openerp>

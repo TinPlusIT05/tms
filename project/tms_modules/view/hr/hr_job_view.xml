@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="tms_hr_job_form_view" model="ir.ui.view">
+            <field name="name">tms.hr.job.form.view</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='employee_data']/div"
+                    position="after">
+                    <field name="productivity" />
+                </xpath>
+                <xpath expr="//group[@name='employee_data']/field[@name='department_id']"
+                    position="after">
+                    <field name="job_type_id" class="oe_inline" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

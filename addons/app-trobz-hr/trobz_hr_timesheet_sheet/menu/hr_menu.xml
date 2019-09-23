@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+		<menuitem name="My Current Timesheet" 
+			id="hr_timesheet_sheet.menu_act_hr_timesheet_sheet_form_my_current"
+			parent="hr_attendance.menu_hr_time_tracking" 
+			action="action_hr_timesheet_sheet_sheet"
+			sequence="1" />
+
+	</data>
+</openerp>

@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+         <record model="ir.ui.view" id="view_hr_advanced_working_schedule_tree">
+            <field name="name">view.hr.advanced.working.schedule.tree</field>
+            <field name="model">hr.advanced.working.schedule</field>
+            <field name="arch" type="xml">
+                <tree string="Advanced Working Schedule">
+                    <field name="name"/>
+                    <field name="activity_id"/>
+                    <field name="work_from"/>
+                    <field name="work_to"/>
+                    <field name="break_from"/>
+                    <field name="break_to"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_advanced_working_schedule_form">
+            <field name="name">view.hr.advanced.working.schedule.form</field>
+            <field name="model">hr.advanced.working.schedule</field>
+            <field name="arch" type="xml">
+                <form string="Working Time" version="7.0">
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="activity_id"/>
+                        <label for="work_from" string="Working Time"/>
+                        <div>
+                            <field name="work_from" class="oe_inline"/> - 
+                            <field name="work_to" class="oe_inline"/>
+                        </div>
+                        <label for="break_from" string="Break Time"/>
+                        <div>
+                            <field name="break_from" class="oe_inline"/> - 
+                            <field name="break_to" class="oe_inline"/>
+                        </div>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_advanced_working_schedule_search">
+            <field name="name">view.hr.advanced.working.schedule.search</field>
+            <field name="model">hr.advanced.working.schedule</field>
+            <field name="arch" type="xml">
+                <search string="Advanced Working Schedule">
+                    <field name="name"/>
+                    <field name="activity_id"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<template id="tms_modules.template_analysis_project">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="doc">
+					<div class="row clearfix" witdth="100%">
+						<center>
+							<h1 style="color: #b76401;">Global Analysis Project</h1>
+						</center>
+					</div>
+					<strong style="font-size: 17px; color: #2a5d8f">Global Vision</strong>
+					<t t-set="start_date" t-value="doc.start_date" />
+					<t t-set="end_date" t-value="doc.end_date" />
+					<t t-set="project_id" t-value="doc.project_id.id" />
+					<t t-set="project_activities" t-value="doc.get_project_all_activities(doc.project_id.id)" />
+					<t t-set="min_date" t-value="doc.get_min_date(doc.project_id.id)" />
+					<t t-set="now" t-value="datetime.datetime.now()" />
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th style="background-color:#CCCCCC;text-align:center;" />
+								<th style="background-color:#CCCCCC;text-align:center;">Days sold (Dev)</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Days spent (Dev)</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Days sold (Global)</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Days spent (Global)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<t t-set="activities" t-value="doc.get_project_activities()" />
+							<!-- === INITIAL LINE === -->
+							<tr>
+
+								<t t-if="min_date and min_date > start_date">
+									<t t-set="min_date" t-value="start_date" />
+								</t>
+								<t t-if="doc.activity_ids">
+									<t t-set="days_spent"
+										t-value="round(doc.get_working_hours_project(doc.activity_ids and doc.activity_ids.ids or -1, min_date, now),2)" />
+									<t t-set="days_spent_dev"
+										t-value="round(doc.get_number_of_days_spent_for_activities(activities and activities.ids or -1, min_date, now, project_id=project_id),2)" />
+									<t t-set="project_activities" t-value="doc.activity_ids" />
+								</t>
+								<t t-if="not doc.activity_ids">
+									<t t-set="days_spent"
+										t-value="round(doc.get_working_hours_project(-1, min_date, now),2)" />
+									<t t-set="days_spent_dev"
+										t-value="round(doc.get_number_of_days_spent_for_activities(-1, min_date, now, project_id=project_id),2)" />
+								</t>
+								<td>
+									Global
+									<div>
+										<t t-if="project_activities.mapped('start_date')">
+											<span t-esc="min(project_activities.mapped('start_date'))" />
+										</t>
+										<t t-if="project_activities.mapped('planned_date')">
+											<span>/</span>
+											<span t-esc="max(project_activities.mapped('planned_date'))" />
+										</t>
+									</div>
+								</td>
+								<td style="text-align:right;">
+									<t t-set="days_sold_dev" t-value="round(sum(project_activities.mapped('day_sold_dev')),2)" />
+									<t t-esc="days_sold_dev" />
+								</td>
+								<td style="text-align:right;">
+									<t t-esc="days_spent_dev" />
+								</td>
+								<td style="text-align:right;">
+									<t t-set="days_sold" t-value="round(sum(project_activities.mapped('day_sold')),2)" />
+									<t t-esc="days_sold" />
+								</td>
+								<td style="text-align:right !important">
+									<t t-esc="days_spent" />
+								</td>
+							</tr>
+							<!-- === CALCULATE INITIAL PROGRESS PERCENT === -->
+							<tr>
+								<td />
+								<td />
+								<t t-if="days_sold_dev">
+									<t t-set="percent_dev" t-value="round(days_spent_dev/days_sold_dev*100,2)" />
+								</t>
+								<td t-att-style="doc.get_background_color(percent_dev)">
+									<t t-esc="percent_dev" />
+									<span>%</span>
+								</td>
+								<td />
+								<t t-if="days_sold">
+									<t t-set="percent_global_project" t-value="round(days_spent/days_sold*100,2)" />
+								</t>
+								<td t-att-style="doc.get_background_color(percent_global_project)">
+									<t t-esc="percent_global_project" />
+									<span>%</span>
+								</td>
+							</tr>
+							<!--==== PROGRESS ESTIMATE USING TIME === -->
+							<tr>
+								<t t-set="percent_project" t-value="doc.compute_progress()" />
+								<td>Progress estimate using time
+									<div>
+										<span t-esc="start_date" />
+										<span>/</span>
+										<span t-esc="end_date" />
+									</div>
+								</td>
+								<td style="text-align:right;">
+									<t t-set="day_sold_dev_estimate" t-value="round(project_activities.compute_day_sold_in_time(start_date, end_date, 'dev'),2)" />
+									<span t-esc="day_sold_dev_estimate" />
+								</td>
+								<td style="text-align:right;">
+									<t t-set="day_spent_dev_estimate"
+										t-value="round(doc.get_number_of_days_spent_for_activities(doc.activity_ids and doc.activity_ids.ids or -1, doc.start_date, doc.end_date, project_id=doc.project_id.id),2)" />
+									<span t-esc="day_spent_dev_estimate" />
+								</td>
+								<t t-if="percent_project">
+									<td style="text-align:right;">
+										<t t-set="day_sold_estimate" t-value="round(project_activities.compute_day_sold_in_time(start_date, end_date, 'global'),2)" />
+
+										<span t-esc="day_sold_estimate" />
+									</td>
+								</t>
+								<td style="text-align:right;">
+									<t t-set="day_spent_estimate"
+										t-value="round(doc.get_working_hours_project(doc.activity_ids and doc.activity_ids.ids or -1, start_date, end_date),2)" />
+									<span t-esc="day_spent_estimate" />
+								</td>
+							</tr>
+							<tr>
+								<t t-if="percent_project">
+									<td>
+										<span>Progress:</span>
+										<span t-esc="doc.compute_progress()*100" />
+										<span>%</span>
+									</td>
+								</t>
+								<td />
+								<t t-if="day_sold_dev_estimate">
+									<t t-set="percent_dev_estimate"
+										t-value="round(day_spent_dev_estimate/day_sold_dev_estimate*100,2)" />
+								</t>
+								<td t-att-style="doc.get_background_color(percent_dev_estimate)">
+									<t t-esc="percent_dev_estimate" />
+									<span>%</span>
+								</td>
+								<td style="text-align:right !important" />
+								<t t-if="day_sold_estimate">
+									<t t-set="percent_global_estimate" t-value="round(day_spent_estimate/day_sold_estimate*100,2)" />
+								</t>
+								<td t-att-style="doc.get_background_color(percent_global_estimate)">
+									<t t-esc="percent_global_estimate" />
+									<span>%</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<strong style="font-size: 17px; color: #2a5d8f">Detail by Activities</strong>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th rowspan="2" style="background-color:#CCCCCC;text-align:center;" />
+								<th style="background-color:#CCCCCC;text-align:center;"
+									colspan="4">Global</th>
+								<th style="background-color:#D0E0E3;text-align:center;"
+									colspan="5">Progress
+									estimate using time
+								</th>
+							</tr>
+							<tr>
+								<th style="background-color:#CCCCCC;text-align:center;">Days sold (Dev)</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Days spent (Dev)</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Days sold (Global)</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Days spent (Global)</th>
+								<th width="70" style="background-color:#D0E0E3;text-align:right;">%</th>
+								<th style="background-color:#D0E0E3;text-align:center;">Days sold (Dev)</th>
+								<th style="background-color:#D0E0E3;text-align:center;">Days spent (Dev)</th>
+								<th style="background-color:#D0E0E3;text-align:center;">Days sold (Global)</th>
+								<th style="background-color:#D0E0E3;text-align:center;">Days spent (Global)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<t t-foreach="doc.get_project_activities()" t-as="activity">
+								<tr>
+									<!-- Activity name -->
+									<td>
+										<div>
+											<span t-esc="activity.name" />
+											<br />
+											<span t-esc="activity.start_date" />
+											<span>/</span>
+											<t t-if="activity.planned_date">
+												<span t-esc="activity.planned_date" />
+											</t>
+										</div>
+									</td>
+									<!-- Days sold (Dev) -->
+									<td style="text-align:right !important">
+										<t t-if="activity.day_sold_dev">
+											<t t-set="day_sold_dev_activity" t-value="round(activity.day_sold_dev,2)" />
+											<t t-esc="day_sold_dev_activity" />
+										</t>
+										<t t-if="not activity.day_sold_dev">
+											<t t-set="day_sold_dev_activity" t-value="0" />
+											<t t-esc="day_sold_dev_activity" />
+										</t>
+									</td>
+									<!-- Days spent global -->
+									<td style="text-align:right !important">
+										<t t-set="day_spent_dev_activity"
+											t-value="round(doc.get_number_of_days_spent_for_activities([activity.id], min_date, now),2)" />
+										<t t-esc="day_spent_dev_activity" />
+									</td>
+									<!-- Days sold global -->
+									<td style="text-align:right !important">
+										<t t-if="activity.day_sold">
+											<t t-set="day_sold_activity" t-value="round(activity.day_sold,2)" />
+											<t t-esc="day_sold_activity" />
+										</t>
+										<t t-if="not activity.day_sold">
+											<t t-set="day_sold_activity" t-value="0" />
+											<t t-esc="day_sold_activity" />
+										</t>
+									</td>
+									<!-- Days spent global -->
+									<td style="text-align:right !important">
+										<t t-set="day_sold_spent_activity"
+											t-value="round(doc.get_working_hours_activity(activity.id, min_date, now), 2)" />
+										<t t-esc="day_sold_spent_activity" />
+									</td>
+									<!-- ==== PROGRESS ESTIMATED ==== -->
+									
+									<td />
+									<!-- Number of days sold dev estimated -->
+									
+									<td style="text-align:right !important">
+										<t t-set="day_sold_dev_estimate"
+											t-value="round(activity.compute_day_sold_in_time(start_date, end_date, 'dev'), 2)" />
+										<span t-esc="day_sold_dev_estimate" />
+									</td>
+									<t t-set="percent_activity" t-value="round(activity.day_sold_dev and day_sold_dev_estimate/activity.day_sold_dev or 1, 2)" />
+									<!-- Number of days spent of developsers -->
+									<td style="text-align:right !important">
+										<t t-set="day_spent_dev_estimate"
+											t-value="round(doc.get_number_of_days_spent_for_activities([activity.id], start_date, end_date),2)" />
+										<span t-esc="day_spent_dev_estimate" />
+									</td>
+									<!-- Number of days sold global estimate -->
+									
+									<td style="text-align:right !important">
+										<t t-set="day_sold_estimate" t-value="round(activity.compute_day_sold_in_time(start_date, end_date, 'global'), 2) " />
+										<span t-esc="day_sold_estimate" />
+									</td>
+									
+									<!-- Number of days spent global -->
+									<td style="text-align:right !important">
+										<t t-set="day_spent_estimate" t-value="round(doc.get_working_hours_activity(activity.id, start_date, end_date), 2)" />
+										<span t-esc="day_spent_estimate" />
+									</td>
+								</tr>
+								<tr>
+									<td />
+									<td />
+									<t t-if="day_sold_dev_activity and day_sold_dev_activity != 0">
+										<t t-set="percent_dev_activity"
+											t-value="round(day_spent_dev_activity/day_sold_dev_activity*100,2)" />
+									</t>
+									<t t-if="day_sold_dev_activity == 0">
+										<t t-set="percent_dev_activity" t-value="0" />
+									</t>
+									<td t-att-style="doc.get_background_color(percent_dev_activity)">
+										<t t-esc="percent_dev_activity" />
+										<span>%</span>
+									</td>
+									<td />
+									<t t-if="day_sold_activity and day_sold_activity != 0">
+										<t t-set="percent_global_activity"
+											t-value="round(day_sold_spent_activity/day_sold_activity*100,2)" />
+									</t>
+									<t t-if="day_sold_activity == 0">
+										<t t-set="percent_global_activity" t-value="0" />
+									</t>
+									<td t-att-style="doc.get_background_color(percent_global_activity)">
+										<t t-esc="percent_global_activity" />
+										<span>%</span>
+									</td>
+									<t t-if="percent_activity">
+										<td style="text-align: right;">
+											<span t-esc="percent_activity*100" />
+											<span>%</span>
+										</td>
+									</t>
+									<td />
+									<t t-if="day_sold_dev_estimate and day_sold_dev_estimate!= 0">
+										<t t-set="percent_dev_estimate"
+											t-value="round(day_spent_dev_estimate/day_sold_dev_estimate*100,2)" />
+									</t>
+									<t t-if="day_sold_dev_estimate == 0">
+										<t t-set="percent_dev_estimate" t-value="0" />
+									</t>
+									<td t-att-style="doc.get_background_color(percent_dev_estimate)">
+										<t t-esc="percent_dev_estimate" />
+										<span>%</span>
+									</td>
+									<td />
+									<t t-if="day_sold_estimate and day_sold_estimate != 0">
+										<t t-set="percent_global_estimate" t-value="round(day_spent_estimate/day_sold_estimate*100,2)" />
+									</t>
+									<t t-if="day_sold_estimate == 0">
+										<t t-set="percent_global_estimate" t-value="0" />
+									</t>
+									<td t-att-style="doc.get_background_color(percent_global_estimate)">
+										<t t-esc="percent_global_estimate" />
+										<span>%</span>
+									</td>
+								</tr>
+							</t>
+						</tbody>
+					</table>
+					<div class="col-md-12">
+						<strong style="font-size: 17px; color: #2a5d8f">Support Tickets</strong>
+						<table class="table table-bordered" style="margin-top: 8px">
+							<col width="23%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<tr>
+								<th style="background-color:#CCCCCC;text-align:center;">Assignee</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Total</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Open</th>
+								<th style="background-color:#CCCCCC;text-align:center;">%</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Very high</th>
+								<th style="background-color:#CCCCCC;text-align:center;">High</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Normal</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Low</th>
+							</tr>
+							<t t-foreach="doc.get_support_ticket_by_user()" t-as="obj">
+								<tr>
+									<t t-if="obj['data']['name']=='Global'">
+										<td>
+											<span t-esc="obj['data']['name']" />
+										</td>
+									</t>
+									<t t-if="obj['data']['name']!='Global'">
+										<td>
+											<span style="margin-left: 10px;" t-esc="obj['data']['name']" />
+										</td>
+									</t>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['total']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['Open']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['%']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['Very High']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['High']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['Normal']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['Low']" />
+									</td>
+								</tr>
+							</t>
+						</table>
+					</div>
+					<div class="col-md-12">
+						<strong style="font-size: 17px; color: #2a5d8f">Force Tickets</strong>
+						<table class="table table-bordered" style="margin-top: 8px">
+							<col width="23%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<col width="11%" />
+							<tr>
+								<th style="background-color:#CCCCCC;text-align:center;">Assignee</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Total</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Open</th>
+								<th style="background-color:#CCCCCC;text-align:center;">%</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Very high</th>
+								<th style="background-color:#CCCCCC;text-align:center;">High</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Normal</th>
+								<th style="background-color:#CCCCCC;text-align:center;">Low</th>
+							</tr>
+							<t t-foreach="doc.get_forge_ticket_by_user()" t-as="obj">
+								<tr>
+									<t t-if="obj['data']['name']=='Global'">
+										<td>
+											<span t-esc="obj['data']['name']" />
+										</td>
+									</t>
+									<t t-if="obj['data']['name']!='Global'">
+										<td>
+											<span style="margin-left: 10px;" t-esc="obj['data']['name']" />
+										</td>
+									</t>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['total']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['Open']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['%']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['Very High']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['High']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['Normal']" />
+									</td>
+									<td style="text-align: right;">
+										<span t-esc="obj['data']['Low']" />
+									</td>
+								</tr>
+							</t>
+						</table>
+					</div>
+				</t>
+			</t>
+		</template>
+
+		<report id="report_analysis_project" string="Report Analysis Project"
+			model="global.analysis.project.wizard" report_type="qweb-html"
+			name="tms_modules.template_analysis_project" file="tms_modules.template_analysis_project"
+			menu="False" />
+
+	</data>
+</openerp>

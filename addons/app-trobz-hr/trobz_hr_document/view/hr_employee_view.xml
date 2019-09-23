@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="trobz_hr_document_employee_view_form_inherit" model="ir.ui.view">
+            <field name="name">trobz.hr.document.employee.view.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//div[@name='button_box']" position="inside">
+                        <button name="%(action_open_hr_document_from_hr_employee)d"
+                                            class="oe_stat_button"
+                                            icon="fa-file-text"
+                                            type="action">
+                            <field name="documents_count" widget="statinfo" string="Documents"/>
+                        </button>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

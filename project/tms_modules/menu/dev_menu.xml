@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="action_view_tree_tms_host_sysadmin_info" model="ir.actions.act_window">
+            <field name="name">Hosts</field>
+            <field name="res_model">tms.host</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tree_tms_host_sysadmin_info"/>
+            <field name="search_view_id" ref="view_search_tms_host_sysadmin_info"/>
+            <field name="context">{'search_default_open':1}</field>
+        </record>
+        
+        <record id="action_view_tree_tms_host_group" model="ir.actions.act_window">
+            <field name="name">Host Group</field>
+            <field name="res_model">tms.host.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_view_tree_tms_operating_system" model="ir.actions.act_window">
+            <field name="name">Operating System</field>
+            <field name="res_model">tms.operating.system</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tree_tms_operating_system"/>
+        </record>
+
+		<record id="action_view_tms_project" model="ir.actions.act_window">
+            <field name="name">Projects</field>
+            <field name="res_model">tms.project</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tms_project_tree"/>
+            <field name="context" eval="'{\'search_default_open\':1}'"/>
+        </record>
+
+		<record id="action_view_tms_instance" model="ir.actions.act_window">
+            <field name="name">Instance (OpenERP)</field>
+            <field name="res_model">tms.instance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tms_instance_tree"/>
+            <field name="context">{'search_default_open':1}</field>
+        </record>
+        
+        <record id="action_view_tms_forge_ticket_reopening" model="ir.actions.act_window">
+            <field name="name">Forge Tickets Reopenings</field>
+            <field name="res_model">forge.ticket.reopening</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context"> {'search_default_group_by_date':1,'search_default_group_by_name': 1} </field>
+        </record>
+
+        <record id="action_view_tms_functional_block" model="ir.actions.act_window">
+            <field name="name">Functional Block</field>
+            <field name="res_model">tms.functional.block</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+		<record id="action_view_tms_virtualization_tree" model="ir.actions.act_window">
+			<field name="res_model">tms.host.virtualization</field>
+			<field name="name">Virtualization</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>	
+		</record>
+		
+        <record id="action_view_tms_project_tag" model="ir.actions.act_window">
+            <field name="name">Project Tag</field>
+            <field name="res_model">tms.project.tag</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+		<record id="action_view_tms_ticket_task_type" model="ir.actions.act_window">
+            <field name="name">Ticket Task Type</field>
+            <field name="res_model">tms.ticket.task.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <record id="action_view_tms_ticket_task_type_family" model="ir.actions.act_window">
+            <field name="name">Ticket Task Type Family</field>
+            <field name="res_model">tms.ticket.task.type.family</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+		<!-- 
+		================================================================
+				DEV (MAIN MENU)
+		================================================================
+		-->
+        <menuitem 
+            name="Dev" id="dev_main_menu" sequence="3"
+            action="action_view_tms_forge_ticket_open" />
+
+		<!--
+		================================================================
+		DEV > Tickets (SECONDARY)
+		================================================================ 
+		-->
+        <menuitem 
+            name="Tickets" id="menu_tms_forge_ticket"
+            parent="dev_main_menu" sequence="2" />
+
+		<!-- Dev > Tickets > Forge Tickets -->
+        <menuitem 
+            name="Forge Tickets" id="menu_tms_forge_ticket_list"
+            parent="menu_tms_forge_ticket" sequence="1"
+            action="action_view_tms_forge_ticket_open" />
+
+		<!-- Dev > Tickets > My Tickets in this sprint -->
+        <menuitem 
+            name="My Tickets in this sprint" id="menu_tms_my_tickets_in_this_sprint"
+            parent="menu_tms_forge_ticket" sequence="2"
+            action="action_tms_my_tickets_in_this_sprint" />
+
+		<!-- Dev > Tickets > Latest Modified -->      
+        <menuitem 
+            name="Latest Modified" id="menu_tms_latest_modified"
+            parent="menu_tms_forge_ticket" sequence="3"
+            action="action_tms_latest_modified" />
+
+		<!-- Dev > Tickets > Productivity Analysis -->
+        <menuitem 
+            name="Productivity Analysis" id="menu_tms_forge_tickets_analysis"
+            parent="menu_tms_forge_ticket" sequence="4"
+            action="action_view_tms_forge_ticket_analysis" />
+
+		<!-- Dev > Tickets > Forge Ticket Reopening -->
+        <menuitem 
+            name="Forge Ticket Reopening" id="menu_forge_tickets_reopening"
+            parent="menu_tms_forge_ticket" sequence="5"
+            action="action_view_tms_forge_ticket_reopening" />
+
+		<!-- Dev > Tickets > Functional Block Update -->       
+        <menuitem 
+            name="Functional Block Update" id="menu_tms_functional_block_update"
+            parent="menu_tms_forge_ticket" sequence="6"
+            action="action_tms_functional_block_update" />
+
+		<!-- Dev > Tickets > Daily Notifications Update -->
+       	<menuitem 
+            name="Daily Notifications Email" id="menu_send_daily_notifications_email"
+            parent="menu_tms_forge_ticket" sequence="7"
+            action="action_open_send_mail_notification" />
+
+		<!--
+		================================================================
+		DEV > Deliveries (SECONDARY)
+		================================================================
+		-->
+        <menuitem name="Deliveries" id="menu_tms_delivery"
+        	parent="dev_main_menu" sequence="3" />
+
+       	<!-- Dev > Deliveries > Openerp Deliveries -->
+        <menuitem 
+        	name="Openerp Deliveries" id="menu_tms_openerp_delivery"
+        	parent="menu_tms_delivery" sequence="1"
+        	action="action_view_tms_delivery" />
+        
+        <!-- Dev > Deliveries > Free Deliveries -->
+        <menuitem 
+        	name="Free Deliveries" id="menu_tms_free_delivery"
+        	parent="menu_tms_delivery" sequence="2"
+        	action="action_open_tms_free_delivery_tree" />
+
+		<!--
+		================================================================
+		Menu Dev - Repositories
+		================================================================
+		-->
+        <menuitem 
+            name="Repositories" id="menu_tms_repository"
+            parent="dev_main_menu" sequence="4"
+            action="action_view_tms_repository"/>
+
+		<!-- Menu Dev - Repositories - Repositories -->
+        <menuitem 
+            name="Repositories" id="menu_repository"
+            parent="menu_tms_repository" sequence="1"
+            action="action_view_tms_repository"/>
+
+		<!--
+		================================================================
+		DEV > Projects (SECONDARY)
+		================================================================
+		-->
+		<menuitem 
+        	name="Project"  id="menu_tms_project_main"
+        	parent="dev_main_menu" sequence="5" />
+
+		<!-- Dev > Projects > Projects -->
+        <menuitem 
+        	name="Projects" id="menu_tms_project"
+        	parent="menu_tms_project_main" sequence="10"
+        	action="action_view_tms_project" />
+
+        <!-- Dev > Projects > Support Contracts -->
+        <menuitem 
+            name="Support Contracts" id="menu_tms_support_contracts"
+            parent="menu_tms_project_main" sequence="20"
+            action="action_project_support_contracts" />
+
+		<!-- Dev > Projects > Milestones -->       
+        <menuitem 
+        	name="Milestones" id="menu_tms_milestone"
+        	parent="menu_tms_project_main" sequence="30" 
+        	action="action_view_tms_milestone" />
+
+		<!-- Dev > Projects > Features -->
+        <menuitem 
+        	name="Features" id="menu_tms_project_feature"
+        	parent="menu_tms_project_main" sequence="40"
+        	action="action_open_tms_project_feature_tree" />
+
+		<!-- Dev > Projects > URLs -->
+		<menuitem 
+        	name="URLs" id="menu_tms_project_feature_urls"
+        	parent="menu_tms_project_main" sequence="50"
+        	action="action_open_view_tms_project_feature_url_tree" />
+
+		<!-- Dev > Projects > Feature Groups -->
+		<menuitem 
+        	name="Feature Groups" id="menu_tms_project_feature_groups"
+        	parent="menu_tms_project_main" sequence="60"
+        	action="action_open_view_tms_project_feature_group_tree" />
+
+		<!-- Dev > Projects > Feature Tags -->
+		<menuitem 
+        	name="Feature Tags" id="menu_tms_project_feature_tags"
+        	parent="menu_tms_project_main" sequence="70"
+        	action="action_open_view_tms_project_feature_tag_tree" />
+
+		<!--
+		================================================================
+		DEV > Sysadmin (SECONDARY)
+		================================================================
+		-->
+        <menuitem 
+            name="Sysadmin" id="menu_sysadmin"
+            parent="dev_main_menu" sequence="6" />
+
+		<!-- Dev > Sysadmin > Instance (OpenERP) -->
+		<menuitem 
+			name="Instance (OpenERP)" id="menu_tms_instance_child"
+			parent="menu_sysadmin" sequence="1"
+			action="action_view_tms_instance" />
+
+		<!-- Dev > Sysadmin > Instance (Free) -->
+        <menuitem 
+			name="Instance (Free)" id="menu_tms_free_instance"
+			action="action_view_tms_free_instance_tree" sequence="2"
+			parent="menu_sysadmin" />
+
+		<!-- Dev > Sysadmin > Hosts -->
+		<menuitem
+			name="Hosts" id="menu_tms_host_sysadmin_info"
+			parent="menu_sysadmin" sequence="3"
+			action="action_view_tree_tms_host_sysadmin_info" />
+
+		<!-- Dev > Sysadmin > Generate SSH Config -->
+		<menuitem 
+			name="Generate SSH Config" id="menu_generate_ssh"
+			parent="menu_sysadmin" sequence="4"
+			action="action_generate_ssh_config" />
+
+        <!-- Dev > Sysadmin > Docker Repositories -->
+        <menuitem
+            name="Docker Repositories" id="menu_tms_docker_repository"
+            parent="menu_sysadmin" sequence="4"
+            action="action_view_tms_docker_repo_form" />
+
+        <!-- Dev > Sysadmin > Docker Repositories -->
+        <menuitem
+            id="menu_tms_internal_tools"
+            parent="menu_sysadmin" sequence="10"
+            action="action_view_tms_internal_tools" />
+		<!--
+		================================================================
+		DEV > Configuration (SECONDARY)
+		================================================================
+		-->
+		<menuitem 
+			name="Configuration" id="menu_configuration"
+			parent="dev_main_menu" sequence="7"
+			groups="tms_modules.group_tms_dev_user"/>
+
+		<!-- ==== menu Dev > Configuration > Target ==== -->
+		<menuitem
+			name="Target" id="menu_tms_target"
+			parent="menu_configuration" sequence="1" />
+
+		<!-- Dev > Configuration > Target > Target -->   
+		<menuitem
+			name="Target" id="trobz_target.menu_target"
+			parent="menu_tms_target" sequence="1"
+			action="trobz_target.action_target"
+			groups="base.group_hr_user" />
+
+        <!-- Dev > Configuration > Target > Target Type -->   
+        <menuitem
+			name="Target Type" id="trobz_target.menu_target_type"
+			parent="menu_tms_target" sequence="2"
+			action="trobz_target.action_target_type"
+			groups="base.group_hr_user" />
+
+		<!-- ==== Dev > Configuration > Sysadmin ==== -->
+        <menuitem 
+			name="Sysadmin" id="menu_conf_sysadmin"
+			parent="menu_configuration" sequence="2" /> 
+
+		<!-- Dev > Configuration > Sysadmin > Operating Systems -->
+		<menuitem 
+			name="Operating Systems" id="menu_tms_operating_system"
+			parent="menu_conf_sysadmin" sequence="2"
+			action="action_view_tree_tms_operating_system" />
+
+		<!-- Dev > Configuration > Sysadmin > Virtualizations -->
+		<menuitem 
+			name="Virtualization" id="menu_virtualization"
+			parent="menu_conf_sysadmin" sequence="3"
+			action="action_view_tms_virtualization_tree" />
+
+
+		<!-- Dev > Configuration > Sysadmin > Host Groups -->
+		<menuitem 
+			name="Host Groups" id="menu_tms_host_group"
+			parent="menu_conf_sysadmin" sequence="4"
+			action="action_view_tree_tms_host_group" />
+
+		<!-- ==== Dev > Configuration > Forge ==== -->
+        <menuitem 
+			name="Forge" id="menu_conf_forge"
+			parent="menu_configuration" sequence="3" />
+
+		<!-- Dev > Configuration > Forge > Functional Block -->
+		<menuitem 
+			name="Functional Block" id="menu_tms_functional_block"
+			parent="menu_conf_forge" sequence="1"
+			action="action_view_tms_functional_block" />
+
+		<!-- Dev > Configuration > Forge > Task Type -->
+		<menuitem 
+			name="Task Type" id="menu_tms_ticket_task_type"
+			parent="menu_conf_forge" sequence="3"
+			action="action_view_tms_ticket_task_type" />
+			
+		<!-- Dev > Configuration > Forge > Task Type Family -->
+		<menuitem 
+			name="Task Type Family" id="menu_tms_ticket_task_type_family"
+			parent="menu_conf_forge" sequence="4"
+			action="action_view_tms_ticket_task_type_family" />
+			
+		<!-- ==== Dev > Configuration > Project ==== -->
+        <menuitem 
+			name="Project" id="menu_conf_project"
+			parent="menu_configuration" sequence="4" />
+		
+		<!-- Dev > Configuration > Project > Project Type -->
+		<menuitem 
+			name="Project Type" id="menu_tms_project_type"
+			parent="menu_conf_project" sequence="1"
+			action="action_view_tms_project_type_tree" />
+		
+		<!-- Dev > Configuration > Project > Project Frame Work -->
+		<menuitem 
+			name="Framework Version" id="menu_tms_framework_version"
+			parent="menu_conf_project" sequence="2"
+			action="action_view_tms_framework_version_tree" />
+        
+        <!--  Dev > Configuration > Project > Tags  -->
+        <menuitem
+            name="Tags" id="menu_tms_project_tag"
+            parent="menu_conf_project" sequence="2"
+            action="action_view_tms_project_tag"/>
+		
+		<!-- ==== menu Dev > Configuration > Estimation ==== -->
+		<menuitem
+			name="Estimation" id="menu_dev_config_estimation"
+			parent="menu_configuration" sequence="10"
+			groups="tms_modules.group_profile_tms_delivery_team_manager,tms_modules.group_profile_tms_technical_project_manager"/>
+		
+		<!-- ==== menu Dev > Configuration > Estimation > Standard Ref ==== -->
+		<menuitem
+			name="Standard Ref" id="menu_dev_config_estimation_standard_ref"
+			parent="menu_dev_config_estimation" sequence="5"
+			action="action_view_workload_estimation"/>
+		
+		<!-- ==== menu Dev > Configuration > Estimation > Risk Ref ==== -->
+		<menuitem
+			name="Risk Ref" id="menu_dev_config_estimation_risk_ref"
+			parent="menu_dev_config_estimation" sequence="10"
+			action="action_view_workload_estimation_risk"/>
+    </data>
+</openerp>

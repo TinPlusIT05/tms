@@ -1,0 +1,172 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <!-- Button from Employee Action -->
+        <record model="ir.actions.act_window" id="action_open_hr_equipment_request_employee">
+            <field name="name">List of Approved Requests</field>
+            <field name="res_model">hr.equipment.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_employee_id': active_id}</field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_hr_equipment_request_tree" model="ir.ui.view">
+            <field name="name">view.hr.equipment.request.tree</field>
+            <field name="model">hr.equipment.request</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="it_equipment_bonus.view_hr_equipment_request_tree"/>
+            <field name="arch" type="xml">
+                <field name="purchase_price" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="est_price" position="after">
+                    <field name="total_purchase_amount" sum="Total Purchase Amount"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_hr_equipment_request_form" model="ir.ui.view">
+            <field name="name">view.hr.equipment.request.form</field>
+            <field name="model">hr.equipment.request</field>
+            <field name="type">form</field>
+            <field name="priority" eval="10" />
+            <field name="arch" type="xml">
+                <form string="HR Equipment Request Information">
+                    <header>
+                        <button name="button_confirm" states="draft" string="Submit to Manager"
+                            type="object" class="oe_highlight"/>
+                        <button name="button_request" states="confirmed" string="Approve Request"
+                            type="object" groups="tms_modules.group_tms_hr_manager" class="oe_highlight" />
+                        <button name="button_purchase" states="request_apprvd"
+                            string="Approve Purchase" type="object"
+                            groups="tms_modules.group_tms_hr_manager" class="oe_highlight" />
+                        <button name="button_done" states="purchase_apprvd" string="Done"
+                            type="object" groups="tms_modules.group_profile_tms_admin,tms_modules.group_profile_fc_admin,tms_modules.group_profile_hr_officer" class="oe_highlight" />
+                        <button name="button_force_create_assets" states="purchased" string="Force Create Assets"
+                            type="object" groups="tms_modules.group_profile_tms_admin,tms_modules.group_profile_fc_admin,tms_modules.group_profile_hr_officer"/>
+                        <button name="button_cancel" states="request_apprvd" string="Cancel" type="object" groups="base.group_user" />
+                        <button name="button_cancel" states="confirmed,purchase_apprvd" string="Cancel" type="object"
+                            groups="tms_modules.group_profile_tms_admin,tms_modules.group_profile_hr_officer,tms_modules.group_profile_fc_admin" />
+                        <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,confirmed,request_apprvd,purchase_apprvd,purchased,cancel"/>
+                    </header>
+                    <sheet style="width: 80%; margin: 0 auto;">
+                        <!-- Request Name -->
+                        <group name="group_header" colspan="4">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                            <field name="warning" invisible="1" />
+                            <field name="warning" attrs="{'invisible': [('warning', '=', None)]}" style="color: red" nolabel="1"/>
+                        </group>
+
+                        <group style="width: 40%">
+                            <group>
+                                <field name="type" required="1"/>
+                            </group>
+                        </group>
+
+                        <group name="group_basic_info" colspan="4" col="4"
+                                attrs="{'invisible': [('type', '!=', 'personal')]}"
+                                string="Employee Infomation">
+                            <group name="group_left" colspan="2" col="2">
+                                <field name="employee_id" style="width: 50%;"
+                                    attrs="{'required': [('type', '=', 'personal')],
+                                            'invisible': [('type', '=', 'trobz')]}"/>
+                                <field name="job_id" />
+                            </group>
+                            <group name="group_right" colspan="2" col="2">
+                                <field name="benefit_start" style="width: 50%;" readonly="True"/>
+                                <field name="balance_benefit" style="width: 50%;" readonly="True"/>
+                            </group>
+                        </group>
+
+                        <group name="group_initial_request" colspan="4" col="4"
+                                string="Initial Request">
+                            <group colspan="4">
+                                <group name="group_initial_request_left">
+                                    <field name="request_date" />
+                                    <field name="category_id" required="1" options="{'no_create_edit': True}"/>
+                                    <field name="model_req" />
+                                </group>
+                                <group name="group_initial_request_right">
+                                    <field name="est_price" />
+                                    <field name="number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="total_amount" />
+                                </group>
+                                <group>
+                                    <field name="reason"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group name="group_approval_info" colspan="4" col="4"
+                                string="Approval Information">
+                            <group colspan="4">
+                                <group name="group_approval_left">
+                                    <field name="schd_pur_date" />
+                                    <field name="partial_apprv" />
+                                    <field name="trobz_contr_amt"
+                                        attrs="{'readonly': [('state', 'not in', ['draft', 'confirmed', 'request_apprvd'])],
+                                                'required':[('partial_apprv','=',True)]}" />
+                                    <field name="financial_aggr"
+                                        attrs="{'readonly': [('state', 'not in', ['draft', 'confirmed', 'request_apprvd'])],
+                                                'invisible':[('partial_apprv','=',False)]}"/>
+                                </group>
+                                <group name="group_approval_right">
+                                    <div class="oe_button_box" name="button_box">
+                                        <button name="%(it_equipment_bonus.action_open_hr_equipment_request)d" class="oe_stat_button"
+                                            widget="statinfo" icon="fa-files-o" type="action" string="Approved Reqs"
+                                            context="{'search_default_employee_id': employee_id}"/>
+                                        <br/>
+                                        <button name="open_employee_assets" class="oe_stat_button"
+                                            widget="statinfo" icon="fas fa-laptop" type="object" string="Assets"/>
+                                    </div>
+                                </group>
+                            </group>
+                        </group>
+
+                        <group name="group_purchase_info" colspan="4" col="4"
+                                string="Purchase Information">
+                            <group colspan="4">
+                                <group name="group_approval_left">
+                                    <field name="supplier_code" style="width: 50%;"/>
+                                    <field name="supplier" style="width: 50%;"/>
+                                </group>
+                                <group name="group_approval_right">
+                                    <field name="delivery_date"
+                                        attrs="{'readonly': [('state', 'in', ['purchased', 'cancel'])]}"/>
+                                    <field name="invoicing_date" />
+                                    <field name="supp_invoice" style="width:25%;"/>
+                                </group>
+                            </group>
+                            <group >
+                                <group >
+                                    <field name="unit_price" />
+                                    <field name="total_purchase_amount" readonly="True"/>
+                                    <field name="depreciation_period" style="width:12.5%;"
+                                        attrs="{'invisible': [('type', '!=', 'trobz')]}"/>
+                                </group>
+                            </group>
+                        </group>
+                        <group name="group_extra_info" colspan="4" col="4"
+                                string="Extra Information">
+                            <group>
+                                <field name="extra_info" nolabel="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers" />
+                            <field name="message_ids" widget="mail_thread" />
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

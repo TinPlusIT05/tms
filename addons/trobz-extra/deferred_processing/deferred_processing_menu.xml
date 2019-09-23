@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+	<data>
+		<menuitem name='Deferred Processing' sequence='10'
+			id='deferred_processing_menu' parent='base.menu_custom' icon='STOCK_OPEN' />
+		<record model='ir.actions.act_window'
+			id='action_deferred_processing_task_deferred_processing'>
+			<field name='context'>{}</field>
+			<field name='name'>Deferred processing</field>
+			<field name='res_model'>deferred_processing.task</field>
+			<field name='target'>current</field>
+			<field name='view_mode'>tree,form</field>
+			<field name='view_type'>form</field>
+			<field name="search_view_id" ref="view_deferred_processing_task_search" />
+			<field name="context">{'search_default_type_process': True,'search_default_type_my_task': True}</field>
+		</record>
+		<menuitem name='Processes' parent='deferred_processing_menu'
+			sequence='10' action='action_deferred_processing_task_deferred_processing'
+			id='processes_menu' icon='STOCK_JUSTIFY_FILL' />
+	</data>
+</openerp>

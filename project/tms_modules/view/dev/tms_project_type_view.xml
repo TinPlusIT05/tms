@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_tms_project_type_tree" model="ir.ui.view">
+			<field name="name">tms.project.type.tree</field>
+			<field name="model">tms.project.type</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Project Type">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="view_tms_project_type_filter" model="ir.ui.view">
+            <field name="name">tms.project.type.filter</field>
+            <field name="model">tms.project.type</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Project Type">
+					<field name="name" string="Name" />
+                </search>
+            </field>
+        </record>
+
+		<record id="view_tms_project_type_form" model="ir.ui.view">
+			<field name="name">tms.project.type.form</field>
+			<field name="model">tms.project.type</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Project Type">
+					<field name="name" />
+				</form>
+			</field>
+		</record>
+
+		<record id="action_view_tms_project_type_tree" model="ir.actions.act_window">
+			<field name="name">Project Type</field>
+			<field name="res_model">tms.project.type</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</openerp>
+

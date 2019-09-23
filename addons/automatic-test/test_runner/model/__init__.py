@@ -1,0 +1,2 @@
+import module_automatic_test
+import run_tests

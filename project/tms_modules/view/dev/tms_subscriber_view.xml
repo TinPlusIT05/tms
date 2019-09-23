@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_tms_subscriber_form" model="ir.ui.view">
+			<field name="name">tms.subscriber.form</field>
+			<field name="model">tms.subscriber</field>
+			<field name="arch" type="xml">
+				<form string="Tms Subscriber" version="7.0">
+					<group>
+						<group>
+							<field name="name" />
+							<field name="tk_default_notif_pre_id" />
+							<field name="tk_notif_pref_id" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_tms_subscriber_tree" model="ir.ui.view">
+			<field name="name">tms.subscriber.tree</field>
+			<field name="model">tms.subscriber</field>
+			<field name="arch" type="xml">
+				<tree string="Tms Subscriber">
+					<field name="name" />
+					<field name="tk_default_notif_pre_id" readonly="1"/>
+					<field name="tk_notif_pref_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_tms_subscriber_search" model="ir.ui.view">
+			<field name="name">tms.subscriber.search</field>
+			<field name="model">tms.subscriber</field>
+			<field name="arch" type="xml">
+				<search string="Search Tms Subscriber">
+					<field name="name" />
+					<field name="tk_default_notif_pre_id" />
+					<field name="tk_notif_pref_id" />
+				</search>
+			</field>
+		</record>
+
+		<record id="action_tms_subscriber" model="ir.actions.act_window">
+			<field name="name">Tms Subscriber</field>
+			<field name="res_model">tms.subscriber</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</openerp>

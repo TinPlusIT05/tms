@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record  model="ir.ui.view" id="view_activity_task_tree">
+            <field name="name">activity.task.tree</field>
+            <field name="model">activity.task</field>
+            <field name="arch" type="xml">
+            	<tree string="Tasks">
+            	    <field name="name"/>
+                    <field name="deadline"/>
+                    <field name="active"/>
+                    <field name="create_date"/>
+            	</tree>
+            </field>
+        </record>
+
+        <record  model="ir.ui.view" id="view_activity_task_tree_from_activity">
+            <field name="name">activity.task.tree.from.activity</field>
+            <field name="model">activity.task</field>
+            <field name="arch" type="xml">
+            	<tree string="Tasks">
+            	    <field name="name"/>
+                    <field name="deadline"/>
+            	</tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_activity_task_form">
+            <field name="name">activity.task.form</field>
+            <field name="model">activity.task</field>
+            <field name="arch" type="xml">
+                <form string="Task">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="activity_id" />
+                            </group>
+                            <group>
+                                <field name="active" />
+                                <field name="deadline" />
+                            </group>
+                        </group>
+                        <group>
+                            <label for='description' string='Description' colspan='4'/>
+                            <field name='description' widget="bootstrap_markdown" nolabel='1'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_activity_task_form_from_activity">
+             <field name="name">view.activity.task.form.from.activity</field>
+             <field name="model">activity.task</field>
+             <field name="arch" type="xml">
+                 <form string="Task">
+                 <sheet>
+                     <group>
+                         <group colspan='4'>
+                             <field name="name" />
+                         </group>
+                         <group>
+                         	<field name="deadline" />
+                         </group>
+                         <group>
+                         	<field name='active'/>
+                         </group>
+                     </group>
+                     <group>
+                     	<label for='description' string='Description' colspan='4'/>
+                     	<field name="description" widget="bootstrap_markdown" nolabel='1'/>
+                     </group>
+                 </sheet>
+                 </form>
+             </field>
+         </record>
+
+        <record model="ir.ui.view" id="view_activity_task_search">
+            <field name="name">activity.task.search</field>
+            <field name="model">activity.task</field>
+            <field name="arch" type="xml">
+                <search string="Tasks">
+                	<field name='name'
+                		domain_filter="[('name', 'ilike', self)]"/>
+                </search>
+            </field>
+        </record>
+
+		<record id="action_activity_task" model="ir.actions.act_window">
+			<field name="name">Tasks</field>
+			<field name="res_model">activity.task</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+        
+
+    </data>
+</openerp>

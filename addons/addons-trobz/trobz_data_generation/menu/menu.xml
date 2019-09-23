@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<menuitem id="menu_data_generation" name="Data Generation" parent="base.menu_administration"/>
+
+        <menuitem 
+        	id="trobz_menu_maintenance_contract" 
+        	parent="menu_data_generation"
+        	action="action_generate_demo_data" />
+
+    </data>
+</openerp>

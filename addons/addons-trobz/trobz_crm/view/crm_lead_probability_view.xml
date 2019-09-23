@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>	
+    
+		<!-- Lead Probability tree view -->
+		<record id="view_crm_lead_probability_tree" model="ir.ui.view">
+			<field name="name">crm.lead.probability.tree.view</field>
+			<field name="model">crm.lead.probability</field>
+			<field name="arch" type="xml">
+				<tree string="Opportunity Probability" editable="top">
+					<field name="name"/>
+					<field name="probability_percentage"/>
+					<field name="description"/>
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

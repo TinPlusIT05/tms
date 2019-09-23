@@ -1,0 +1,203 @@
+.resources-container .resource-group-element,
+.resources-container .resource-group-bar {
+    margin: 3px 0;
+    height: 17px;
+    border-radius: 3px;
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+    z-index: 1;
+}
+
+.resources-container .resource-group-bar.multi,
+.resources-container .resource-group-bar.single[target-model],
+.resources-container .resource-group-element[target-model] {
+    cursor: pointer;
+}
+
+.resources-container .resource-group-element span,
+.resources-container .resource-group-bar span {
+    font-size: 12px;
+    display: block;
+    line-height: 18px;
+    overflow: hidden;
+    height: 18px;
+    padding: 0 0 0 2px;
+}
+
+
+.resources-container .resource-group-bar.single,
+.resources-container .resource-group-element {
+    background: rgba(146, 146, 146, 0.7);
+    color: #333;
+}
+
+/*
+ * overlap
+ */
+
+.resources-container .resource-group-bar.multi {
+    background: #333;
+    color: #eee;
+}
+
+.resources-container .resource-group-bar.multi:hover {
+    background: #000;
+}
+
+.resources-container .resource-group-bar.multi .graph-name {
+    margin: 0 28px;
+}
+
+.resources-container .resource-group {
+    position: relative;
+}
+
+.resources-container .resource-group .group-icon {
+    position: absolute;
+    right: 5px;
+    font-size: 12px;
+    top: 3px;
+}
+
+.resources-container .resource-group .group-count {
+    position: absolute;
+    left: 0px;
+    background: #666;
+    display: block;
+    height: 100%;
+    width: 2em;
+    border-right: 2px solid #999;
+}
+
+
+.resources-container .resource-group-detail {
+    display: none;
+}
+
+/*
+ * icons (tags)
+ */
+
+.resources-container .resource-icons {
+    float: left;
+    margin-top: 3px;
+    max-width: 64px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.resources-container .resource-group-bar.multi .resource-icons {
+    margin-left: 28px;
+}
+
+.resources-container .resource-icons span {
+    margin: 0 2px;
+    float: left;
+}
+
+/*
+ * open state
+ */
+
+.resources-container.open .resource-group-bar {
+    margin:  6px 0 0 0;
+    height: 10px;
+    background: #333;
+}
+
+.resources-container.open .resource-group-bar span {
+    display: none;
+}
+
+
+.resources-container.open .resource-group .group-icon:before {
+    content: "\f068";
+}
+
+.resources-container.open .resource-group .group-icon {
+    top: 1px;
+    font-size: 10px;
+}
+
+
+.resources-container.open .resource-group-detail {
+    display: block;
+}
+
+/*
+ * tooltip info, see calendar.css for tooltip style
+ */
+
+.resources-container .resource-group-detail .tooltip-info {
+    display: none;
+}
+
+
+/*
+ * booking resource color (booking_resource.css_class):
+ * dark-blue, blue, light-blue, yellow, red, light-red, green, light-green, pink, light-pink, orange, black
+ */
+
+.resources-container .resource-group-bar.single.dark-blue,
+.resources-container .resource-group-element.dark-blue {
+    background: rgba(20, 30, 80, 0.7);
+    color: rgba(256, 256, 256, 0.7);
+}
+
+
+.resources-container .resource-group-bar.single.blue,
+.resources-container .resource-group-element.blue {
+    background: rgba(105, 126, 209, 0.7);
+}
+
+.resources-container .resource-group-bar.single.light-blue,
+.resources-container .resource-group-element.light-blue {
+    background: rgba(154, 208, 230, 0.7);
+}
+
+.resources-container .resource-group-bar.single.yellow,
+.resources-container .resource-group-element.yellow {
+    background: rgba(235, 227, 21, 0.7);
+}
+
+.resources-container .resource-group-bar.single.red,
+.resources-container .resource-group-element.red {
+    background: rgba(218, 43, 43, 0.7);
+}
+
+.resources-container .resource-group-bar.single.light-red,
+.resources-container .resource-group-element.light-red {
+    background: rgba(243, 205, 205, 0.7);
+}
+
+.resources-container .resource-group-bar.single.green,
+.resources-container .resource-group-element.green {
+    background: rgba(59, 172, 54, 0.7);
+}
+
+.resources-container .resource-group-bar.single.light-green,
+.resources-container .resource-group-element.light-green {
+    background: rgba(180, 240, 180, 0.7);
+}
+
+.resources-container .resource-group-bar.single.pink,
+.resources-container .resource-group-element.pink {
+    background: rgba(232, 100, 243, 0.7);
+}
+
+.resources-container .resource-group-bar.single.light-pink,
+.resources-container .resource-group-element.light-pink {
+    background: rgba(246, 192, 244, 0.7);
+}
+
+.resources-container .resource-group-bar.single.orange,
+.resources-container .resource-group-element.orange {
+    background: rgba(248, 177, 25, 0.7);
+}
+.resources-container .resource-group-bar.single.black,
+.resources-container .resource-group-element.black {
+    background: rgba(19, 19, 19, 0.7);
+    color: #eee;
+}

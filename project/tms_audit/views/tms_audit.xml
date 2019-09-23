@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <template id="tms_audit_assets_backend" name="tms_audit_assets_backend" inherit_id="web_unleashed.assets_backend">
+            <xpath expr="." position="inside">
+
+                <!-- add custom style -->
+                <link rel="stylesheet" type="text/css" href="/tms_audit/static/src/css/base.css" />
+
+                <!-- add new progress bar custom widget -->
+                <script type="text/javascript" src="/tms_audit/static/src/js/view_form.js"></script>
+
+                <!-- add collections and models -->
+                <script type="text/javascript" src="/tms_audit/static/src/js/models/audit_result.js"></script>
+                <script type="text/javascript" src="/tms_audit/static/src/js/collections/audit_results.js"></script>
+                <script type="text/javascript" src="/tms_audit/static/src/js/models/audit_board.js"></script>
+                <script type="text/javascript" src="/tms_audit/static/src/js/collections/audit_boards.js"></script>
+
+                <!-- add component views -->
+                <script type="text/javascript" src="/tms_audit/static/src/js/views/buttons.js"></script>
+                <script type="text/javascript" src="/tms_audit/static/src/js/views/audit_view_layout.js"></script>
+
+                <script type="text/javascript" src="/tms_audit/static/src/js/views/audit_result.js"></script>
+                <script type="text/javascript" src="/tms_audit/static/src/js/views/audit_results.js"></script>
+
+                <script type="text/javascript" src="/tms_audit/static/src/js/views/audit_board.js"></script>
+                <script type="text/javascript" src="/tms_audit/static/src/js/views/audit_boards.js"></script>
+
+                <!-- main custom view -->
+                <script type="text/javascript" src="/tms_audit/static/src/js/audit_view.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,711 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* hr_attendance
+#	* trobz_hr_attendance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-04 03:21+0000\n"
+"PO-Revision-Date: 2014-03-04 03:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "(*) A negative delay means that the employee worked more than encoded."
+msgstr "(*) A negative delay means that the employee worked more than encoded."
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "(*) A positive delay means that the employee worked less than recorded."
+msgstr "(*) A positive delay means that the employee worked less than recorded."
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "---"
+msgstr "---"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "1. The file must have UTF-8 or ISO-8859-15 encoding."
+msgstr "1. The file must have UTF-8 or ISO-8859-15 encoding."
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "1. The name of the columns must be written as expected and in the correct order."
+msgstr "1. The name of the columns must be written as expected and in the correct order."
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "1. To create a csv file with Microsoft Office, see here: http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx"
+msgstr "1. To create a csv file with Microsoft Office, see here: http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "2. The delimiter must be , or ; (If which one is chosen then it must be used in the whole file) and the quote char must be "
+msgstr "2. The delimiter must be , or ; (If which one is chosen then it must be used in the whole file) and the quote char must be "
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "2. There must be no missing or extra column."
+msgstr "2. There must be no missing or extra column."
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "2. To create a csv file with Libre Office, see here: http://help.libreoffice.org/Calc/Importing_and_Exporting_CSV_Files"
+msgstr "2. To create a csv file with Libre Office, see here: http://help.libreoffice.org/Calc/Importing_and_Exporting_CSV_Files"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "3. Here is the possible header: \"Employee\";\"Date\";\"Action\";\"Action Reason\""
+msgstr "3. Here is the possible header: \"Employee\";\"Date\";\"Action\";\"Action Reason\""
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "3. In order to see the real content of your csv file, you should open it with Notepad in Windows or gedit in Ubuntu."
+msgstr "3. In order to see the real content of your csv file, you should open it with Notepad in Windows or gedit in Ubuntu."
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "3. To create a csv file with Open Office, see here: http://sheepdogguides.com/fdb/opof8csv.htm"
+msgstr "3. To create a csv file with Open Office, see here: http://sheepdogguides.com/fdb/opof8csv.htm"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "4. Make sure that there are no empty fields."
+msgstr "4. Make sure that there are no empty fields."
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "5. Make sure that there is only one customer for each sales order."
+msgstr "5. Make sure that there is only one customer for each sales order."
+
+#. module: hr_attendance
+#: selection:hr.employee,state:0
+msgid "Absent"
+msgstr "Vắng mặt"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: field:hr.attendance,action:0
+#: selection:hr.attendance,action:0
+#: field:check.attendance.consistency.wizard.line,action:0
+#: selection:check.attendance.consistency.wizard.line,action:0
+#: field:import.attendance.error,action:0
+msgid "Action"
+msgstr "Hành động"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: field:hr.attendance,action_desc:0
+#: model:ir.model,name:hr_attendance.model_hr_action_reason
+#: field:check.attendance.consistency.wizard.line,action_desc:0
+#: field:import.attendance.error,action_reason_id:0
+msgid "Action Reason"
+msgstr "Action Reason"
+
+#. module: hr_attendance
+#: field:hr.action.reason,action_type:0
+msgid "Action Type"
+msgstr "Action Type"
+
+#. module: hr_attendance
+#: help:hr.config.settings,group_hr_attendance:0
+msgid "Allocates attendance group to all users."
+msgstr "Allocates attendance group to all users."
+
+#. module: hr_attendance
+#: view:hr.attendance.error:0
+msgid "Analysis Information"
+msgstr "Analysis Information"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "April"
+msgstr "Tháng Tư"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: view:hr.attendance:0
+#: field:hr.employee,state:0
+#: model:ir.model,name:hr_attendance.model_hr_attendance
+#: field:check.attendance.consistency.wizard.line,att_id:0
+#: model:ir.model,name:trobz_hr_attendance.model_hr_attendance
+msgid "Attendance"
+msgstr "Điểm danh"
+
+#. module: hr_attendance
+#: field:hr.employee,attendance_access:0
+msgid "Attendance Access"
+msgstr "Attendance Access"
+
+#. module: hr_attendance
+#: model:ir.actions.act_window,name:hr_attendance.action_hr_attendance_error
+#: model:ir.actions.report.xml,name:hr_attendance.attendance_error_report
+msgid "Attendance Error Report"
+msgstr "Attendance Error Report"
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "Attendance Errors"
+msgstr "Attendance Errors"
+
+#. module: hr_attendance
+#: model:ir.actions.act_window,name:hr_attendance.open_view_attendance_reason
+#: model:ir.ui.menu,name:hr_attendance.menu_open_view_attendance_reason
+msgid "Attendance Reasons"
+msgstr "Attendance Reasons"
+
+#. module: hr_attendance
+#: view:hr.action.reason:0
+msgid "Attendance reasons"
+msgstr "Attendance reasons"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: model:ir.actions.act_window,name:hr_attendance.open_view_attendance
+#: model:ir.ui.menu,name:hr_attendance.menu_hr_attendance
+#: model:ir.ui.menu,name:hr_attendance.menu_open_view_attendance
+#: field:check.attendance.consistency.wizard,line_ids:0
+msgid "Attendances"
+msgstr "Attendances"
+
+#. module: hr_attendance
+#: model:ir.actions.act_window,name:hr_attendance.action_hr_attendance_month
+msgid "Attendances By Month"
+msgstr "Attendances By Month"
+
+#. module: hr_attendance
+#: model:ir.actions.act_window,name:hr_attendance.action_hr_attendance_week
+msgid "Attendances By Week"
+msgstr "Attendances By Week"
+
+#. module: hr_attendance
+#: code:addons/hr_attendance/report/attendance_by_month.py:190
+#, python-format
+msgid "Attendances by Month"
+msgstr "Attendances by Month"
+
+#. module: hr_attendance
+#: code:addons/hr_attendance/report/timesheet.py:120
+#, python-format
+msgid "Attendances by Week"
+msgstr "Attendances by Week"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "August"
+msgstr "Tháng Tám"
+
+#. module: hr_attendance
+#: view:hr.attendance.error:0
+msgid "Bellow this delay, the error is considered to be voluntary"
+msgstr "Bellow this delay, the error is considered to be voluntary"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "CREATING"
+msgstr "CREATING"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: view:hr.attendance.error:0
+#: view:hr.attendance.month:0
+#: view:hr.attendance.week:0
+#: view:check.attendance.consistency.wizard:0
+#: view:detect.absence.wizard:0
+#: view:import.attendance.wizard:0
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+#. module: trobz_hr_attendance
+#: code:addons/trobz_hr_attendance/wizard/hr/import_attendance_wizard.py:34
+#, python-format
+msgid "Cannot read the csv file!"
+msgstr "Cannot read the csv file!"
+
+#. module: trobz_hr_attendance
+#: view:check.attendance.consistency.wizard:0
+#: field:check.attendance.consistency.wizard.line,check_att_consis_id:0
+#: model:ir.actions.act_window,name:trobz_hr_attendance.action_check_attendance_consistency_wizard
+#: model:ir.ui.menu,name:trobz_hr_attendance.menu_check_attendance_consistency_wizard
+msgid "Check Attendance Consistency"
+msgstr "Check Attendance Consistency"
+
+#. module: hr_attendance
+#: code:addons/hr_attendance/static/src/js/attendance.js:36
+#, python-format
+msgid "Click to Sign In at %s."
+msgstr "Click to Sign In at %s."
+
+#. module: trobz_hr_attendance
+#: view:hr.attendance:0
+msgid "Consistency"
+msgstr "Consistency"
+
+#. module: trobz_hr_attendance
+#: field:hr.attendance,consistency_checked:0
+msgid "Consistency Checked"
+msgstr "Consistency Checked"
+
+#. module: trobz_hr_attendance
+#: view:hr.attendance:0
+msgid "Consistent Attendances"
+msgstr "Consistent Attendances"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: field:hr.attendance,name:0
+#: field:check.attendance.consistency.wizard.line,name:0
+#: field:detect.absence.wizard,date:0
+#: field:import.attendance.error,date:0
+msgid "Date"
+msgstr "Ngày"
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "Date Recorded"
+msgstr "Ngày Ghi nhận"
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "Date Signed"
+msgstr "Date Signed"
+
+#. module: trobz_hr_attendance
+#: field:hr.attendance,day_tz:0
+#: field:hr.attendance,name_tz:0
+msgid "Date TZ"
+msgstr "Date TZ"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: view:hr.attendance:0
+#: field:hr.attendance,day:0
+#: view:hr.attendance:0
+msgid "Day"
+msgstr "Ngày"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "December"
+msgstr "Tháng Mười Hai"
+
+#. module: hr_attendance
+#: view:hr.action.reason:0
+msgid "Define attendance reason"
+msgstr "Define attendance reason"
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "Delay"
+msgstr "Delay"
+
+#. module: trobz_hr_attendance
+#: view:detect.absence.wizard:0
+#: model:ir.actions.act_window,name:trobz_hr_attendance.action_detect_absence_wizard
+#: model:ir.ui.menu,name:trobz_hr_attendance.menu_detect_absence_wizard
+msgid "Detect Absence"
+msgstr "Detect Absence"
+
+#. module: trobz_hr_attendance
+#: model:ir.actions.report.xml,name:trobz_hr_attendance.detect_absence_report
+msgid "Detect Absence Report"
+msgstr "Detect Absence Report"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: view:hr.attendance:0
+#: field:hr.attendance,employee_id:0
+#: model:ir.model,name:hr_attendance.model_hr_employee
+#: field:check.attendance.consistency.wizard.line,employee_id:0
+#: field:import.attendance.error,employee_id:0
+msgid "Employee"
+msgstr "Người lao động"
+
+#. module: hr_attendance
+#: view:hr.attendance:0
+msgid "Employee attendances"
+msgstr "Employee attendances"
+
+#. module: hr_attendance
+#: field:hr.attendance.error,end_date:0
+#: field:hr.attendance.week,end_date:0
+msgid "Ending Date"
+msgstr "Ngày kết thúc"
+
+#. module: trobz_hr_attendance
+#: field:import.attendance.error,error:0
+msgid "Error"
+msgstr "Error"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: constraint:hr.attendance:0
+#: constraint:hr.attendance:0
+msgid "Error ! Sign in (resp. Sign out) must follow Sign out (resp. Sign in)"
+msgstr "Error ! Sign in (resp. Sign out) must follow Sign out (resp. Sign in)"
+
+#. module: trobz_hr_attendance
+#: code:addons/trobz_hr_attendance/wizard/hr/import_attendance_wizard.py:34
+#: code:addons/trobz_hr_attendance/wizard/hr/import_attendance_wizard.py:120
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "FORMAT"
+msgstr "FORMAT"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "February"
+msgstr "Tháng Hai"
+
+#. module: trobz_hr_attendance
+#: field:import.attendance.wizard,csv_file:0
+msgid "File CSV"
+msgstr "File CSV"
+
+#. module: hr_attendance
+#: view:hr.attendance:0
+msgid "Group By..."
+msgstr "Nhóm theo..."
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "HEADER"
+msgstr "HEADER"
+
+#. module: hr_attendance
+#: view:hr.attendance:0
+msgid "Hr Attendance Search"
+msgstr "Hr Attendance Search"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "Import"
+msgstr "Import"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+#: model:ir.actions.act_window,name:trobz_hr_attendance.action_import_attendance_wizard
+#: model:ir.ui.menu,name:trobz_hr_attendance.menu_import_attendance_wizard
+msgid "Import Attendance"
+msgstr "Import Attendance"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.error:0
+#: model:ir.actions.act_window,name:trobz_hr_attendance.action_import_attendance_error
+msgid "Imported Attendance Error"
+msgstr "Imported Attendance Error"
+
+#. module: trobz_hr_attendance
+#: view:hr.attendance:0
+msgid "Inconsistent Attendances"
+msgstr "Inconsistent Attendances"
+
+#. module: trobz_hr_attendance
+#: field:check.attendance.consistency.wizard.line,is_inconsistent:0
+#: field:hr.attendance,is_inconsistent:0
+msgid "Is Inconsistent"
+msgstr "Is Inconsistent"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "January"
+msgstr "Tháng Giêng"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "July"
+msgstr "Tháng Bảy"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "June"
+msgstr "Tháng Sáu"
+
+#. module: hr_attendance
+#: field:hr.employee,last_sign:0
+msgid "Last Sign"
+msgstr "Last Sign"
+
+#. module: hr_attendance
+#: code:addons/hr_attendance/static/src/js/attendance.js:34
+#, python-format
+msgid "Last sign in: %s,<br />%s.<br />Click to sign out."
+msgstr "Last sign in: %s,<br />%s.<br />Click to sign out."
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "March"
+msgstr "Tháng Ba"
+
+#. module: hr_attendance
+#: field:hr.attendance.error,max_delay:0
+msgid "Max. Delay (Min)"
+msgstr "Max. Delay (Min)"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "May"
+msgstr "Tháng Năm"
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "Min Delay"
+msgstr "Min Delay"
+
+#. module: hr_attendance
+#: field:hr.attendance.month,month:0
+msgid "Month"
+msgstr "Tháng"
+
+#. module: hr_attendance
+#: view:hr.attendance:0
+msgid "My Attendance"
+msgstr "My Attendance"
+
+#. module: hr_attendance
+#: code:addons/hr_attendance/wizard/hr_attendance_error.py:49
+#, python-format
+msgid "No Data Available!"
+msgstr "No Data Available!"
+
+#. module: hr_attendance
+#: code:addons/hr_attendance/wizard/hr_attendance_error.py:49
+#, python-format
+msgid "No records are found for your selection!"
+msgstr "No records are found for your selection!"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "November"
+msgstr "Tháng Mười Một"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "October"
+msgstr "Tháng Mười"
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "Operation"
+msgstr "Thao tác"
+
+#. module: trobz_hr_attendance
+#: code:addons/trobz_hr_attendance/wizard/hr/import_attendance_wizard.py:120
+#, python-format
+msgid "Please check file input !"
+msgstr "Please check file input !"
+
+#. module: hr_attendance
+#: selection:hr.employee,state:0
+msgid "Present"
+msgstr "Có mặt"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: view:hr.attendance.error:0
+#: view:hr.attendance.month:0
+#: view:hr.attendance.week:0
+#: view:detect.absence.wizard:0
+msgid "Print"
+msgstr "In"
+
+#. module: hr_attendance
+#: view:hr.attendance.error:0
+msgid "Print Attendance Report Error"
+msgstr "Print Attendance Report Error"
+
+#. module: hr_attendance
+#: view:hr.attendance.month:0
+msgid "Print Attendance Report Monthly"
+msgstr "Print Attendance Report Monthly"
+
+#. module: hr_attendance
+#: view:hr.attendance.week:0
+msgid "Print Attendance Report Weekly"
+msgstr "Print Attendance Report Weekly"
+
+#. module: hr_attendance
+#: model:ir.model,name:hr_attendance.model_hr_attendance_error
+msgid "Print Error Attendance Report"
+msgstr "Print Error Attendance Report"
+
+#. module: hr_attendance
+#: model:ir.model,name:hr_attendance.model_hr_attendance_month
+msgid "Print Monthly Attendance Report"
+msgstr "Print Monthly Attendance Report"
+
+#. module: hr_attendance
+#: model:ir.model,name:hr_attendance.model_hr_attendance_week
+msgid "Print Week Attendance Report"
+msgstr "Print Week Attendance Report"
+
+#. module: hr_attendance
+#: field:hr.action.reason,name:0
+msgid "Reason"
+msgstr "Lý do"
+
+#. module: hr_attendance
+#: selection:hr.attendance.month,month:0
+msgid "September"
+msgstr "Tháng Chín"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: code:addons/hr_attendance/hr_attendance.py:154
+#: selection:hr.attendance,action:0
+#: view:hr.employee:0
+#: selection:check.attendance.consistency.wizard.line,action:0
+#, python-format
+msgid "Sign In"
+msgstr "Đăng nhập"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: code:addons/hr_attendance/hr_attendance.py:154
+#: selection:hr.attendance,action:0
+#: view:hr.employee:0
+#: selection:check.attendance.consistency.wizard.line,action:0
+#, python-format
+msgid "Sign Out"
+msgstr "Đăng xuất"
+
+#. module: hr_attendance
+#: selection:hr.action.reason,action_type:0
+msgid "Sign in"
+msgstr "Đăng nhập"
+
+#. module: hr_attendance
+#: selection:hr.action.reason,action_type:0
+msgid "Sign out"
+msgstr "Đăng xuất"
+
+#. module: trobz_hr_attendance
+#: code:addons/trobz_hr_attendance/model/hr_attendance.py:53
+#: code:addons/trobz_hr_attendance/model/hr_attendance.py:79
+#, python-format
+msgid "Some attendances are inconsistent. Please fix the attendances before generating the employee productivity."
+msgstr "Some attendances are inconsistent. Please fix the attendances before generating the employee productivity."
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: help:hr.attendance,action_desc:0
+#: help:check.attendance.consistency.wizard.line,action_desc:0
+msgid "Specifies the reason for Signing In/Signing Out in case of extra hours."
+msgstr "Specifies the reason for Signing In/Signing Out in case of extra hours."
+
+#. module: hr_attendance
+#: help:hr.action.reason,name:0
+msgid "Specifies the reason for Signing In/Signing Out."
+msgstr "Specifies the reason for Signing In/Signing Out."
+
+#. module: hr_attendance
+#: field:hr.attendance.error,init_date:0
+#: field:hr.attendance.week,init_date:0
+msgid "Starting Date"
+msgstr "Ngày bắt đầu"
+
+#. module: hr_attendance
+#: model:ir.actions.act_window,help:hr_attendance.open_view_attendance
+msgid "The Time Tracking functionality aims to manage employee attendances from Sign in/Sign out actions. You can also link this feature to an attendance device using OpenERP's web service features."
+msgstr "The Time Tracking functionality aims to manage employee attendances from Sign in/Sign out actions. You can also link this feature to an attendance device using OpenERP's web service features."
+
+#. module: hr_attendance
+#: model:ir.ui.menu,name:hr_attendance.menu_hr_time_tracking
+msgid "Time Tracking"
+msgstr "Theo dõi Thời gian"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: view:hr.attendance:0
+#: view:hr.attendance:0
+msgid "Today"
+msgstr "Hôm nay"
+
+#. module: hr_attendance
+#: report:report.hr.timesheet.attendance.error:0
+msgid "Total period:"
+msgstr "Total period:"
+
+#. module: hr_attendance
+#: field:hr.config.settings,group_hr_attendance:0
+msgid "Track attendances for all employees"
+msgstr "Track attendances for all employees"
+
+#. module: hr_attendance
+#: code:addons/hr_attendance/hr_attendance.py:161
+#, python-format
+msgid "Warning"
+msgstr "Cảnh báo"
+
+#. module: trobz_hr_attendance
+#: code:addons/trobz_hr_attendance/model/hr_attendance.py:53
+#: code:addons/trobz_hr_attendance/model/hr_attendance.py:79
+#, python-format
+msgid "Warning!"
+msgstr "Warning!"
+
+#. module: trobz_hr_attendance
+#: view:import.attendance.wizard:0
+msgid "We recommend you to use Open Office or Libre Office, then Save As > yourfilename.csv > A window will appear where you have to select: character set UTF8, delimiter , and quote char ¨."
+msgstr "We recommend you to use Open Office or Libre Office, then Save As > yourfilename.csv > A window will appear where you have to select: character set UTF8, delimiter , and quote char ¨."
+
+#. module: hr_attendance
+#: field:hr.attendance.month,year:0
+msgid "Year"
+msgstr "Năm"
+
+#. module: hr_attendance
+#: code:addons/hr_attendance/hr_attendance.py:161
+#, python-format
+msgid "You tried to %s with a date anterior to another event !\n"
+"Try to contact the HR Manager to correct attendances."
+msgstr "You tried to %s with a date anterior to another event !\n"
+"Try to contact the HR Manager to correct attendances."
+
+#. module: trobz_hr_attendance
+#: model:ir.model,name:trobz_hr_attendance.model_check_attendance_consistency_wizard
+msgid "check.attendance.consistency.wizard"
+msgstr "check.attendance.consistency.wizard"
+
+#. module: trobz_hr_attendance
+#: model:ir.model,name:trobz_hr_attendance.model_check_attendance_consistency_wizard_line
+msgid "check.attendance.consistency.wizard.line"
+msgstr "check.attendance.consistency.wizard.line"
+
+#. module: trobz_hr_attendance
+#: model:ir.model,name:trobz_hr_attendance.model_detect_absence_wizard
+msgid "detect.absence.wizard"
+msgstr "detect.absence.wizard"
+
+#. module: hr_attendance
+#: model:ir.model,name:hr_attendance.model_hr_config_settings
+msgid "hr.config.settings"
+msgstr "hr.config.settings"
+
+#. module: trobz_hr_attendance
+#: model:ir.model,name:trobz_hr_attendance.model_import_attendance_error
+msgid "import.attendance.error"
+msgstr "import.attendance.error"
+
+#. module: trobz_hr_attendance
+#: model:ir.model,name:trobz_hr_attendance.model_import_attendance_wizard
+msgid "import.attendance.wizard"
+msgstr "import.attendance.wizard"
+
+#. module: trobz_hr_attendance
+#: field:check.attendance.consistency.wizard,name:0
+msgid "name"
+msgstr "name"
+
+#. modules: hr_attendance, trobz_hr_attendance
+#: view:hr.attendance.error:0
+#: view:hr.attendance.month:0
+#: view:hr.attendance.week:0
+#: view:detect.absence.wizard:0
+#: view:import.attendance.wizard:0
+msgid "or"
+msgstr "or"
+
+#. module: trobz_hr_attendance
+#: view:hr.attendance:0
+msgid "red:is_inconsistent is True"
+msgstr "red:is_inconsistent is True"
+

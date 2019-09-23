@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record id="view_check_attendance_consistency_wizard_form" model="ir.ui.view">
+            <field name="name">view.check.attendance.consistency.wizard.form</field>
+            <field name="model">check.attendance.consistency.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Check Attendance Consistency" version="7.0">
+                	<sheet>
+                	<group>
+                		<field name="line_ids">
+                   			<tree colors="red:status=='inconsistent';grey:status=='duplicated'">
+                    			<field name="name"/>
+                    			<field name="action"/>
+                    			<field name="action_desc"/>
+                    			<field name="employee_id"/>
+                    			<field name="status"/>
+                    			<!-- <field name="is_inconsistent"/> -->
+                   			</tree>
+                    	</field>
+                	</group>
+                	</sheet>
+					<footer>
+                    	<button string="Cancel" class="oe_link" special="cancel" />
+                	</footer>
+                </form>
+            </field>
+        </record>
+	</data>
+</openerp>

@@ -1,0 +1,6 @@
+import hr_holidays_line
+import resource_calendar_attendance
+import hr_payroll_structure
+import hr_salary_rule
+import hr_payslip
+import hr_payslip_line

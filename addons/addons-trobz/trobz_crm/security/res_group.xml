@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+        <!-- F#11277 - Rename Leads into Opportunity -->
+        <record id="base.group_sale_salesman_all_leads" model="res.groups">
+            <field name="name">User: All Opportunity</field>
+        </record>
+        <record id="base.group_sale_salesman" model="res.groups">
+            <field name="name">User: Own Opportunity Only</field>
+        </record>
+	</data>
+</openerp>

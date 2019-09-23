@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_hr_overtime_search" model="ir.ui.view">
+            <field name="name">view.hr.overtime.search</field>
+            <field name="model">hr.overtime</field>
+            <field name="priority" eval="0"/>
+            <field name="arch" type="xml">
+            	<search string="Overtime">
+            		<field name="name"/>
+            		<field name="employee_id"/>
+            		<filter string="Open" name="filter_open" domain="[('state', 'not in', ('done', 'cancel'))]"/>
+            		<separator/>
+            		<filter string="My Overtime" icon="terp-personal" name="my_overtime" domain="[('mode', '=', 'by_employee'),('employee_id.user_id','=', uid)]" help="My orvetime"/>
+            		<filter string="Draft" domain="[('state', '=', 'draft')]" name="filter_draft"/>
+            		<filter string="Confirmed" domain="[('state', '=', 'confirmed')]" name="filter_confirmed"/>
+            		<filter string="Done" domain="[('state', '=', 'done')]" name="filter_done"/>
+            		<separator/>
+            		<filter string="Current Month" domain="[('month_year', '=', time.strftime('%%m/%%Y'))]" name="filter_current_month"/>
+            		<newline/>
+            		<group string="Group by">
+            			<filter string="Employee" context="{'group_by': 'employee_id'}" name="group_by_employee"/>
+            			<filter string="State" context="{'group_by': 'state'}" name="group_by_state"/>
+            			<filter string="Mode" context="{'group_by': 'mode'}" name="group_by_mode"/>
+            			<filter string="Month/Year" context="{'group_by': 'month_year'}" name="group_by_month_year"/>
+            		</group>
+            	</search>
+            </field>
+		</record>
+		
+		<record id="view_hr_overtime_tree" model="ir.ui.view">
+            <field name="name">view.hr.overtime.tree</field>
+            <field name="model">hr.overtime</field>
+            <field name="priority" eval="0"/>
+            <field name="arch" type="xml">
+            	<tree string="Overtimes" colors="grey:(state=='cancel' or mode=='by_employees')">
+            		<field name="name"/>
+            		<field name="month_year" invisible="1"/>
+            		<field name="mode" invisible="1"/>
+            		<field name="employee_id"/>
+            		<field name="datetime_start"/>
+            		<field name="datetime_stop"/>
+            		<field name="working_hour"/>
+            		<field name="state"/>
+            	</tree>
+            </field>
+		</record>
+		
+		<record id="view_hr_overtime_form" model="ir.ui.view">
+            <field name="name">"view_hr_overtime_form"</field>
+            <field name="model">hr.overtime</field>
+            <field name="priority" eval="0"/>
+            <field name="arch" type="xml">
+            	<form string="Overtime" version="7.0">
+            		<header>
+	                    <button string="Comfirm" name="button_confirm" states="draft" type="workflow" groups="base.group_hr_manager" class="oe_highlight"/>
+	                    <button string="Done" name="button_done" type="workflow" invisible="1" groups="base.group_hr_manager" class="oe_highlight"/>
+	                    <button string="Cancel" name="button_cancel" states="confirmed" type="workflow" groups="base.group_hr_manager" class="oe_highlight"/>
+	                    <button string="Set to draft" name="button_set_to_draft" states="cancel" type="object" groups="base.group_hr_manager" class="oe_highlight"/>
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancel,done" statusbar_colors='{"confirm":"blue"}'/>
+	                </header>
+	                <sheet string="Overtime">
+	                	<div class="oe_title">
+							<h1>
+								<label for="name" string="Overtime" class="oe_edit_only"/>
+								<field name="name" class="oe_inline" readonly="1"/>
+							</h1>
+						</div>
+	                    <group>
+	                        <group>
+	                            <field name="type"/>
+	                            <field name="compensation_date" attrs="{'invisible':[('type', '=', 'overtime')]}"/>
+	                            <field name="mode" on_change="onchange_mode(mode)"/>
+	                            <field name="employee_id"
+	                                   on_change="onchange_employee_id(mode, employee_id, name)" 
+	                                   attrs="{'invisible':[('mode','=','by_employees')], 'required': [('mode','=','by_employee')]}"/>
+	                            <field name="contract_id" readonly="1"
+	                                   attrs="{'invisible':[('mode','=','by_employees')], 'required': [('mode','=','by_employee')]}"/>
+	                        </group>
+	                        <group>
+	                            <field name="datetime_start" on_change="onchange_start_stop(name, mode, employee_id, datetime_start, datetime_stop, break_start, break_stop)"/>
+	                            <field name="datetime_stop" on_change="onchange_start_stop(name, mode, employee_id, datetime_start, datetime_stop, break_start, break_stop)"/>
+	                            <field name="break_start" on_change="onchange_start_stop(name, mode, employee_id, datetime_start, datetime_stop, break_start, break_stop)"/>
+                                <field name="break_stop" on_change="onchange_start_stop(name, mode, employee_id, datetime_start, datetime_stop, break_start, break_stop)"/>
+                                <field name="break_hour"/>
+	                            <field name="working_hour"/>
+	                            <field name="month_year" invisible="1"/>
+	                        </group>
+	                    </group>
+	                    <separator string="List of Employees" attrs="{'invisible':[('mode','=','by_employee')]}"/>
+	                    <field name="employee_ids" attrs="{'invisible':[('mode','=','by_employee')], 'required': [('mode','=','by_employees')]}"/>
+	                    <separator string="Reason"/>
+	                    <field name="reason" placeholder="Reason of the Overtime..."/>
+	                </sheet>
+	                <div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+	                </div>
+            	</form>
+            </field>
+		</record>
+		
+    </data>
+</openerp>

@@ -1,0 +1,314 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<!-- Holidays: Leave Request -->
+		<record id="view_hr_holidays_search_inherit" model="ir.ui.view">
+			<field name="name">view.hr.holidays.search.inherit</field>
+			<field name="inherit_id" ref="hr_holidays.view_hr_holidays_filter" />
+			<field name="model">hr.holidays</field>
+			<field name="arch" type="xml">
+				<field name="holiday_status_id" position="after">
+					<field name="month_year" />
+                    <field name="date_from" filter_domain="[('date_from','&gt;=',self)]" />
+                    <field name="date_to" filter_domain="[('date_to','&lt;=',self)]" />
+                </field>
+				<filter string="To Confirm" position="before">
+                    <filter name="open" string="Open" domain="[('state','in',['draft', 'confirm', 'validate', 'validate1']), ('employee_id.active','=',True)]" />
+				</filter>
+                <filter string="My Department Leaves" position="after">
+                    <filter string="Over Allocation Days"
+                        domain="[('is_over_allocation_days','=',True)]"
+                        help="Filters the leaves that have the balance of allowed holidays is negative" />
+                    <filter string="Unpaid" domain="[('is_unpaid','=',1)]" help="Leave requests without salary payment."/> 
+                </filter>
+			</field>
+		</record>
+        <!-- TODO: Get back button Validate when the double validation is fixed (based on leave request line) -->
+		<record model="ir.ui.view" id="view_hr_holidays_tree_inherit">
+			<field name="name">view.hr.holidays.tree.inherit</field>
+			<field name="model">hr.holidays</field>
+			<field name="inherit_id" ref="hr_holidays.view_holiday" />
+			<field name="arch" type="xml">
+				<tree position="replace">
+					<tree
+						colors="red:state == 'refuse';blue:state == 'draft';black:state in ('confirm','validate','validate1')"
+						string="Leave Requests">
+						<field name="employee_id" />
+						<field name="department_id"/>
+						<field name="holiday_status_id" invisible="1" />
+						<field name="name" />
+						<field name="number_of_days_temp" string="Number of Days" sum='Remaining Days' />
+						<field name="date_from" />
+						<field name="date_to" />
+						<field name="manager_id" invisible="1" />
+						<field name="user_id" invisible="1" />
+						<field name="is_over_allocation_days" />
+						<field name="state" />
+						<button string="Validate" name="second_validate" invisible="1"
+                            type="workflow" icon="gtk-apply" groups="base.group_hr_user" />
+                        <button string="Approve" name="validate"
+							type="workflow" icon="gtk-apply" groups="base.group_hr_user" />
+						<button name="refuse" type="workflow"
+                            string="Refuse" icon="gtk-cancel" groups="base.group_hr_user"/>
+					</tree>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="hr_holidays_form_inherit">
+			<field name="name">Leave Request</field>
+			<field name="model">hr.holidays</field>
+			<field name="inherit_id" ref="hr_holidays.edit_holiday_new" />
+			<field name="arch" type="xml">
+				<!-- Allow "Set to Draft" when in canceled status. -->
+                <button string="Reset to Draft" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('can_reset', '=', False), ('state', 'not in', ['confirm', 'refuse', 'cancel'])]}</attribute>
+                </button>
+                <!-- Add new button on leave requests to cancel an approved leave request -->
+				<button string="Reset to Draft" position="after">
+					<button string="Request The Leave Cancellation"
+                        name="request_cancellation"
+						states="validate,validate1" type="workflow"/>
+					<button string="Accept The Cancellation Request"
+                        name="accept_cancellation"
+						states="cancel_request" type="workflow"
+                        groups="base.group_hr_user" />
+					<button string="Refuse The Cancellation Request"
+                        name="refuse_cancellation"
+						states="cancel_request" type="workflow"
+                        groups="base.group_hr_user" />
+					<button string="Cancel" name="change_state_to_cancel"
+						states="confirm" type="object"/>
+				</button>
+
+				<!-- Add is_over_allocation_days -->
+				<xpath expr="//group/group" position="before">
+					<field name="is_over_allocation_days" invisible="1" />
+					<group colspan="4"
+						attrs="{'invisible':[('is_over_allocation_days','=',False)]}">
+						<h3>The balance of allowed holidays is negative, it is a request
+							for advance leaves!</h3>
+					</group>
+					<newline />
+				</xpath>
+				
+				<!-- Change attrs base on holiday_type-->
+                <field name="employee_id" position="attributes">
+                    <attribute name="attrs">{'invisible':[('holiday_type','!=','employee')],'required':[('holiday_type','=','employee')]}</attribute>
+                </field>
+                <field name="category_id" position="attributes">
+                    <attribute name="attrs">{'invisible':[('holiday_type','!=','category')],'required':[('holiday_type','=','category')]}</attribute>
+                </field>
+                <field name="department_id" position="attributes">
+                    <attribute name="attrs">{'invisible':[('holiday_type','!=','employee')]}</attribute>
+                </field>
+                
+				<!-- Invisible date_from, date_to -->
+				<group col="3" position="replace">
+					<field name="date_from" invisible="1" />
+					<field name="date_to" invisible="1" />
+				</group>
+
+				<!-- invisible holiday_status_id -->
+				<field name="holiday_status_id" position="attributes">
+					<attribute name="invisible">1</attribute>
+					<attribute name="context"></attribute>
+					<attribute name="attrs"></attribute>
+				</field>
+
+				<!-- readonly number_of_days_temp -->
+				<field name="number_of_days_temp" position="attributes">
+					<attribute name="readonly">1</attribute>
+				</field>
+
+				<!-- Remove on_change function on holiday_type -->
+				<field name="holiday_type" position="attributes">
+					<attribute name="on_change"></attribute>
+					<attribute name="attrs">{}</attribute>
+				</field>
+
+				<!-- Add employee_ids and holiday_line -->
+				<group position="after">
+					<!-- Add employee many2many field to allow multiple leave request to 
+						be created at a time -->
+					<group col="4" string="Employees"
+						attrs="{'invisible':[('holiday_type','!=','employees')]}">
+						<field name="employee_ids" nolabel="1"
+							attrs="{'required':[('holiday_type','=','employees')]}">
+							<tree>
+								<field name="name" />
+								<field name="job_id" />
+								<field name="department_id" />
+								<field name="work_email" />
+								<field name="mobile_phone" />
+								<field name="company_id" />
+							</tree>
+						</field>
+					</group>
+					<!-- Add leave lines -->
+					<group col="4">
+						<field name="holiday_line" context="{'employee_id':employee_id}"
+							colspan="4" nolabel="1">
+							<tree string="Holiday Line" editable="bottom">
+								<field name="holiday_status_id" context="{'employee_id':parent.employee_id}" />
+								<field name="first_date" required="1"/>
+								<field name="last_date" required="1"/>
+								<field name="first_date_type" required="1"/>
+								<field name="last_date_type" required="1"/>
+								<field name="number_of_days" />
+							</tree>
+						</field>
+						<field name="manager_id" invisible="1" />
+						<field name="manager_id2" invisible="1" />
+					</group>
+				</group>
+			</field>
+		</record>
+        
+		<!-- Holidays: Allocation Request -->
+        
+        <!-- New search view -->       
+        <record id="view_hr_holidays_allocation_request_filter" model="ir.ui.view">
+            <field name="name">hr.holidays.allocation.request.filter</field>
+            <field name="model">hr.holidays</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Leave">
+                    <group string="Fields">
+                        <field name="holiday_status_id" />
+                        <field name="month_year" />
+                    </group>
+                    <group string="Filters">
+                        <separator />
+                        <filter name="filter_to_confirm" string="To Confirm"
+                            domain="[('state','=','draft')]" />
+                        <filter name="filter_to_approve" string="To Approve" 
+                            domain="[('state','=','confirm')]" />
+                        <filter name="filter_to_validated" string="Validated"
+                            domain="[('state','=','validate')]" />
+                        <separator />
+                        <filter name="filter_this_year" string="Year" help="Holidays during this year"
+                            domain="[('allo_date','&gt;=',time.strftime('%%Y-1-1')),('allo_date','&lt;=',time.strftime('%%Y-12-31'))]"/>
+                        <filter name="filter_this_month" string="Month" help="Holidays during this month"
+                            domain="[('allo_date','&lt;=',(context_today() + relativedelta(day=31)).strftime('%%Y-%%m-%%d')),('allo_date','&gt;=',(context_today() - relativedelta(day=1)).strftime('%%Y-%%m-%%d'))]"/>
+                        <filter name="filter_previous_month" string=" Month-1" help="Holidays during last month"
+                            domain="[('allo_date','&lt;=', (context_today() - relativedelta(day=31, months=1)).strftime('%%Y-%%m-%%d')),('allo_date','&gt;=',(context_today() - relativedelta(day=1,months=1)).strftime('%%Y-%%m-%%d'))]" />
+                        <separator />
+                        <field name="employee_id">
+                            <filter name="my_leaves" help="My Leaves" domain="[('employee_id.user_id','=', uid)]" />
+                        </field>
+                        <separator />
+                        <field name="department_id">
+                            <filter name="filter_my_department_leave" help="My Department Leaves" 
+                                domain="[('department_id.manager_id','=',uid)]"/>
+                        </field>
+                    </group>
+                    <group string="Group By">
+                        <separator />
+                        <!-- shall we remove this group by -->
+                        <filter name="group_date_from" string="Start Date"
+                            domain="[]" context="{'group_by':'date_from'}"/>
+                        <separator />
+                        <filter name="group_employee" string="Employee"
+                            domain="[]" context="{'group_by':'employee_id'}"/>
+                        <separator />
+                        <filter name="group_category" string="Category"
+                            domain="[]" context="{'group_by':'category_id'}"/>
+                        <separator />
+                        <filter name="group_manager" string="Manager"
+                            domain="[]" context="{'group_by':'manager_id'}"/>
+                        <separator />
+                        <filter name="group_department" string="Department"
+                            domain="[]" context="{'group_by':'department_id','set_visible':True}"/>
+                        <separator />
+                        <filter name="group_type" string="Type"
+                            domain="[]" context="{'group_by':'holiday_status_id'}"/>
+                        <separator />
+                        <filter name="group_state" string="State"
+                            domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <!-- New form view -->
+		<record model="ir.ui.view" id="view_hr_holidays_form_allocation">
+			<field name="name">view.hr.holidays.form.allocation</field>
+			<field name="model">hr.holidays</field>
+			<field name="arch" type="xml">
+				<form string="Allocation Requests">
+					<field name="can_reset" invisible="1" />
+					<field name="type" invisible="1" />
+					<header>
+						<button string="Confirm" name="confirm" states="draft"
+							type="workflow" class="oe_highlight"/>
+						<button string="Approve" name="validate" states="confirm"
+							type="workflow" groups="base.group_hr_user" class="oe_highlight" />
+						<button string="Validate" name="second_validate" states="validate1"
+							type="workflow" groups="base.group_hr_user" class="oe_highlight" />
+						<button string="Refuse" name="refuse" states="confirm,validate,validate1"
+							type="workflow" groups="base.group_hr_user" />
+						<button string="Reset to Draft" name="reset" type="workflow"
+							attrs="{'invisible': ['|', ('can_reset', '=', False), ('state', 'not in', ['confirm', 'refuse'])]}" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,confirm,validate"
+							statusbar_colors='{"confirm":"blue","validate1":"blue","refuse":"red"}' />
+					</header>
+					<sheet>
+						<group>
+							<group>
+								<field name="allo_date" invisible="1" />
+								<field name="month_year" />
+								<field name="name" required="1"/>
+								<field name="holiday_status_id" required="1"/>
+								<label for="number_of_days_temp" string="Duration" />
+								<div>
+									<field name="number_of_days_temp" class="oe_inline" />
+									days
+								</div>
+							</group>
+							<group>
+								<field name="holiday_type"
+									attrs="{'readonly':[('type', '=', 'remove'),('state','!=','draft')]}"
+									string="Mode" groups="base.group_hr_user" context="{'employee_id':employee_id}" />
+								<field name="employee_id"
+									attrs="{'required':[('holiday_type','=','employee')],'invisible':[('holiday_type','=','category')]}"
+									groups="base.group_hr_user" />
+								<field name="category_id"
+									attrs="{'required':[('holiday_type','=','category')], 'readonly': [('type', '=', 'remove'),('state','!=','draft'), ('state','!=','confirm')], 'invisible':[('holiday_type','=','employee')]}" />
+								<field name="department_id"
+									attrs="{'readonly':['|', ('type','=','add'),('holiday_type','=','category')],'invisible':[('holiday_type','=','category')]}"
+									groups="base.group_hr_user" />
+								<field name="create_date" invisible="1"/>
+							</group>
+						</group>
+						<field name="notes" nolabel="1" colspan="4" placeholder="Add a reason..."
+							attrs="{'invisible': [('type', '=', 'remove')]}" />
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_hr_holidays_tree_allocation_inherit">
+			<field name="name">view.hr.holidays.tree.allocation.inherit</field>
+			<field name="model">hr.holidays</field>
+            <field name="inherit_id" ref="hr_holidays.view_holiday_allocation_tree"/>
+			<field name="arch" type="xml">
+                <field name="holiday_type" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="category_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+				<field name="state" position="after">
+					<field name="create_date"/>
+                    <field name="month_year" />
+                </field>
+			</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <record id="view_hr_applicant_inherit" model="ir.ui.view">
+            <field name="name">view.hr.applicant.inherit</field>
+			<field name="model">hr.applicant</field>
+			<field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+			<field name="arch" type="xml">
+				<field name="emp_id" position="attributes">
+					<attribute name="attrs">{'invisible': [('emp_id','=', False)]}</attribute>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

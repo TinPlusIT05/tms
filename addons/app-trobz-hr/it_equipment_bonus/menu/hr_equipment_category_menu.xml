@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+		<menuitem id="menu_hr_equipment_category" name="Equipment Category"
+			parent="hr.menu_hr_configuration" 
+			action="action_hr_equipment_category" />
+	</data>
+</openerp>

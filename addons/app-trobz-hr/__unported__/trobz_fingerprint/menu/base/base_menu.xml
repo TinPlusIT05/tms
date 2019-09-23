@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- Finger -->
+        <menuitem 
+            name="Fingerprint"
+            id="finger_root_menu"
+            parent="hr.menu_hr_configuration"
+            sequence="1"
+            />
+    	
+		<!-- Finger Record -->
+		<record id="action_view_fingerprint_record" model="ir.actions.act_window">
+            <field name="name">Fingerprint Records</field>
+            <field name="res_model">fingerprint.record</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            name="Fingerprint Records"
+            id="finger_record_menu"
+            parent="finger_root_menu"
+            action="action_view_fingerprint_record"
+            />
+		
+		<!-- Connection Config-->
+		<record id="action_view_connection_config" model="ir.actions.act_window">
+            <field name="name">Connection Config</field>
+            <field name="res_model">connection.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            name="Connection Config"
+            id="connection_config_menu"
+            parent="finger_root_menu"
+            action="action_view_connection_config"
+            />
+		
+    </data>
+</openerp>

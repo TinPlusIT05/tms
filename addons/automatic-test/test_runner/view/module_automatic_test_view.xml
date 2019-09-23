@@ -1,0 +1,56 @@
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="view_module_automatic_test_tree">
+			<field name="name">module.automatic.test.tree</field>
+			<field name="model">module.automatic.test</field>
+			<field name="arch" type="xml">
+				<tree string="Module Automatic Test" version="7.0">
+					<field name="name"/>
+					<field name="specific_test_case"/>
+					<field name="test_conclusion"/>
+					<field name="date_check"/>
+					<field name="result_detail" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_module_automatic_test_search">
+			<field name="name">module.automatic.test.search</field>
+			<field name="model">module.automatic.test</field>
+			<field name="arch" type="xml">
+				<search string="Module Automatic Test" version="7.0">
+					<field name="name"/>
+				</search>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="view_module_automatic_test_form">
+			<field name="name">module.automatic.test.form</field>
+			<field name="model">module.automatic.test</field>
+			<field name="arch" type="xml">
+				<form string="Module Automatic Test" version="7.0">
+                    <button name="button_test"
+                        class="oe_highlight"
+                        string="Launch Test" type="object"
+                        icon="terp-gtk-go-back-rtl" context="{'module_name': name}" />
+                    <group>
+                        <field name="name" select="1"/>
+						<field name="specific_test_case"/>
+                        <field name="test_conclusion"/>
+                        <field name="date_check"/>
+                        <field name="result_detail" attrs="{'readonly': True}" />
+                    </group>
+                </form>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="module_automatic_test_action">
+            <field name="name">Module Automatic Test</field>
+            <field name="res_model">module.automatic.test</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+	</data>
+</openerp>

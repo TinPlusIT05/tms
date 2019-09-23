@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data>
+  		<record id="maximum_early_minutes" model="ir.config_parameter">
+            <field name="key">maximum_early_minutes</field>
+            <field name="value">60</field>
+        </record>
+        <record id="maximum_late_minutes" model="ir.config_parameter">
+            <field name="key">maximum_late_minutes</field>
+            <field name="value">60</field>
+        </record> 
+        
+        <record id="hr_working_activity_public_holiday" model="ir.config_parameter">
+            <field name="key">public_holiday_act</field>
+            <field name="value">Public Holiday</field>
+        </record>
+	</data>
+</openerp>

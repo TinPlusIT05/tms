@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        
+        <!-- Public holiday -->
+        <record model="ir.ui.view" id="view_hr_public_holiday_tree">
+            <field name="name">hr.public.holiday.tree</field>
+            <field name="model">hr.public.holiday</field>
+            <field name="arch" type="xml">
+                <tree string="Public Holidays" colors="red:weekday in ('Saturday', 'Sunday')">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="weekday" />
+                    <field name="country_id"/>
+                    <field name="year" />
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_public_holiday_form">
+            <field name="name">hr.public.holiday.form</field>
+            <field name="model">hr.public.holiday</field>
+            <field name="arch" type="xml">
+                <form string="Public Holidays">
+                	<group col="4">
+	                    <field name="name"/>
+	                    <field name="date"/>
+	                    <field name="country_id"/>
+	                </group>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_public_holiday_search">
+            <field name="name">hr.public.holiday.search</field>
+            <field name="model">hr.public.holiday</field>
+            <field name="arch" type="xml">
+                <search string="Public Holidays">
+                	 <filter name="this_year" string="This Year" domain="[('year','=',time.strftime('%%Y'))]"/>
+                	 <filter name="next_year" string="Next Year" domain="[('year','=',(context_today()+relativedelta(years=1)).strftime('%%Y'))]"/>
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_public_holiday_tree_template">
+            <field name="name">hr.public.holiday.tree.template</field>
+            <field name="model">hr.public.holiday</field>
+            <field name="arch" type="xml">
+                <tree string="Public Holiday Templates">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="country_id"/>
+                    <field name="is_template"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_public_holiday_form_template">
+            <field name="name">hr.public.holiday.form.template</field>
+            <field name="model">hr.public.holiday</field>
+            <field name="arch" type="xml">
+                <form string="Public Holiday Templates">
+                    <group col="4">
+	                    <field name="name"/>
+	                    <field name="date"/>
+	                    <field name="country_id"/>
+	                    <field name="is_template"/>
+                    </group>
+                </form>
+            </field>
+        </record>    
+    </data>
+</openerp>

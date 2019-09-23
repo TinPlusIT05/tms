@@ -1,0 +1,29 @@
+.oe_followers{
+    display: none !important;
+}
+.oe_msg_vote{
+    display: none;
+}
+.oe_compose_post {
+    display: none;
+}
+
+.oe_grey.oe_sep_word {
+    display: none;
+}
+
+.oe_unread {
+    display: none;
+}
+
+.oe_reply {
+    display: none;
+}
+
+.oe_read {
+    display: none;
+}
+
+.oe_record_thread{
+	width: 100%;
+}

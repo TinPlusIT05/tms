@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Trobz Support Activity Search View -->
+		<record id="view_tms_ticket_comment_search" model="ir.ui.view">
+			<field name="name">tms.ticket.comment.search</field>
+			<field name="model">tms.ticket.comment</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Trobz Support Activity">
+					<group string="Filter">
+						<filter icon="terp-go-today" string="Today" 
+							domain="[('name','&gt;=',time.strftime('%%Y-%%m-%%d'))]" />
+						<filter icon="terp-go-today" string="Yesterday" 
+							domain="[('name','&gt;=',((context_today()-datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d')))]" />
+						<filter icon="terp-go-week" string="-7 days"
+							domain="[('name','&gt;=',((context_today()-datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d')))]" />
+						<filter icon="terp-go-month" string="1 Month"
+							domain="[('name','&gt;=',((context_today()-datetime.timedelta(1*365/12)).strftime('%%Y-%%m-%%d')))]" />
+						<filter icon="terp-go-month" string="3 Months" 
+							domain="[('name','&gt;=',((context_today()-datetime.timedelta(3*365/12)).strftime('%%Y-%%m-%%d')))]" />
+						<separator />
+						<filter icon="tms_trobz" string="Trobz" 
+							domain="[('author_id.is_trobz_member','=',True)]" />
+						<filter icon="tms_user" string="Customer" 
+							domain="[('author_id.is_trobz_member','=',False)]" />
+						<separator />
+						<field name="author_id" />
+						<field name="trobz_partner_id" />
+						<field name="comment" filter_domain="[('comment', 'ilike', self)]" />
+						<field name="project_id" />
+					</group>
+					<group string="Group By">
+						<filter icon="terp-go-today" string="Date" context="{'group_by':'name'}" />
+						<separator />
+						<filter icon="tms_user" string="Author" context="{'group_by':'author_id'}" />
+						<separator />
+						<filter icon="tms_user" string="Assignee" context="{'group_by':'support_owner_id'}" />
+						<separator />
+						<filter icon="tms_planned" string="Ownership Duration" context="{'group_by':'support_ownership_duration'}" />
+						<separator />
+						<filter icon="tms_type" string="Ticket Type" context="{'group_by':'support_type'}" />
+						<separator />
+						<filter icon="tms_project" string="Project" context="{'group_by':'project_id'}" />
+						<separator />
+						<filter icon="tms_user" string="Customer" context="{'group_by':'employer_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Trobz Support Activity Tree View -->
+		<record id="view_tms_ticket_comment_tree" model="ir.ui.view">
+			<field name="name">tms.ticket.comment.tree</field>
+			<field name="model">tms.ticket.comment</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Trobz Support Activity">
+					<field name="name" />
+					<field name="tms_support_ticket_id" />
+					<field name="project_id" />
+					<field name="support_summary" />
+					<field name="support_owner_id" />
+					<field name="support_ownership_duration" invisible="1" />
+					<field name="support_type" />
+					<field name="support_priority" />
+					<field name="comment" widget="bootstrap_markdown" />
+					<field name="author_id" />
+					<field name="partner_id" invisible="1" />
+					<field name="trobz_partner_id" invisible="1" />
+					<field name="is_invalid" invisible="1" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Trobz Support Activity Form View -->
+		<record id="view_tms_ticket_comment_form" model="ir.ui.view">
+			<field name="name">tms.ticket.comment.form</field>
+			<field name="model">tms.ticket.comment</field>
+			<field name="priority" eval="15" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Trobz Support Activity" version="7.0">
+					<sheet>
+						<group>
+							<group>
+								<field name="type" invisible="1"/>
+								<field name="name" />
+								<field name="author_id" />
+							</group>
+							<group>
+								<field name="tms_support_ticket_id" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Comment / Changes">
+								<field name="comment" nolabel="1" widget="bootstrap_markdown" />
+							</page>
+							<page string="Description changes">
+								<field name="description_change" nolabel="1" widget="diff_view"/>
+							</page>
+							<page string="Invalidation">
+								<group>
+									<field name="is_invalid"/>
+									<field name="user_set_invalid_id"/>
+									<field name="invalid_date"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Ticket Comment Form View -->
+		<record id="view_tms_ticket_comment_form_ticket_ref" model="ir.ui.view">
+			<field name="name">tms.ticket.comment.form.ticket.ref</field>
+			<field name="model">tms.ticket.comment</field>
+			<field name="priority" eval="16" />
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Trobz Support Activity" version="7.0">
+					<sheet>
+						<group>
+							<group>
+								<field name="type" invisible="1"/>
+								<field name="name" />
+							</group>
+							<group>
+								<field name="author_id" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Comment / Changes">
+								<field name="comment" nolabel="1" widget="bootstrap_markdown" />
+							</page>
+							<page string="Description changes">
+								<field name="description_change" nolabel="1" widget="diff_view"/>
+							</page>
+							<page string="Invalidation">
+								<group>
+									<field name="is_invalid"/>
+									<field name="user_set_invalid_id"/>
+									<field name="invalid_date"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Test Log Form View -->
+		<record id="view_tms_ticket_test_log_form" model="ir.ui.view">
+			<field name="name">view.tms.ticket.test.log.form</field>
+			<field name="model">tms.ticket.comment</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Test Log">
+					<sheet>
+						<group>
+							<group>
+								<field name="type" invisible="1"/>
+								<field name="name" />
+							</group>
+							<group>
+								<field name="author_id" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Result">
+								<group>
+									<field name="test_result" />
+									<label for="expected_test_result" string="Expected Result" />
+									<field name="expected_test_result" nolabel="1" widget="bootstrap_markdown" />
+									<label for="actual_test_result" string="Actual Result" />
+									<field name="actual_test_result" nolabel="1" widget="bootstrap_markdown" />
+								</group>
+							</page>
+							<page string="Summary &amp; Procedure">
+								<group>
+									<label for="comment" string="Summary" />
+									<field name="comment" nolabel="1" widget="bootstrap_markdown" />
+									<label for="test_procedure" string="Procedure" />
+									<field name="test_procedure" nolabel="1" widget="bootstrap_markdown" />
+									<label for="test_data" string="Test Data" />
+									<field name="test_data" nolabel="1" widget="bootstrap_markdown" />
+								</group>
+							</page>
+							<page string="Remarks">
+								<field name="test_remark" nolabel="1" widget="bootstrap_markdown" />
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- tms.ticket.comment (for support tickets)-->
+		<record id="action_view_tms_ticket_comment_open" model="ir.actions.act_window">
+			<field name="name">Trobz Support Activity</field>
+			<field name="res_model">tms.ticket.comment</field>
+			<field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tms_ticket_comment_tree" />
+            <field name="search_view_id" ref="view_tms_ticket_comment_search" />
+            <field name="context">{'orderby_date_desc':True}</field>
+            <field name="domain">[('tms_support_ticket_id','!=',False),('tms_support_ticket_id.state','!=','closed')]</field>
+		</record>
+	</data>
+</openerp>

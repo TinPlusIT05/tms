@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<!-- ================================ ANALYSIS ================================ -->
+		<menuitem name="Analysis" id="analysis_main_menu" action="action_view_tms_activity"
+			sequence="7"
+			groups="group_tms_activity_viewer,group_tms_activity_customer,group_tms_activity_user,base.group_hr_user,base.group_no_one,base.group_user" />
+			
+
+		<!-- ================================ ANALYSIS > Activities ================================ -->
+		<menuitem name="Activities" id="menu_tms_activity_secondary"
+			parent="analysis_main_menu" sequence="1"
+			groups="base.group_user,base.group_no_one" />
+
+		<!-- ANALYSIS > Activities > Billable Production Activities -->
+		<menuitem name="Billable Production Activities" id="menu_tms_billable_activity" 
+			parent="menu_tms_activity_secondary"
+			action="action_view_tms_billable_activity"
+			sequence="10"/>
+			
+		<!-- ANALYSIS > Activities > All Billable Activities-->
+		<menuitem name="All Billable Activities" id="menu_tms_customer_activity" 
+			parent="menu_tms_activity_secondary"
+			action="action_view_tms_customer_activity"
+			sequence="20"/>
+			
+		<!-- ANALYSIS > Activities > All Activities-->
+		<menuitem name="All Activities" id="menu_tms_all_activity" 
+			parent="menu_tms_activity_secondary"
+			sequence="30" action="action_view_tms_activity"/>
+
+		<!-- ANALYSIS > Activities > Invoice Lines -->
+		<menuitem id="tms_invoice_line_menu" name="Invoice Lines"
+					sequence="40"
+					parent="menu_tms_activity_secondary" 
+					action="action_view_tms_invoice_line"
+					groups="group_profile_tms_admin,group_profile_tms_delivery_team_manager,group_profile_tms_functional_consultant,group_profile_fc_admin"/>
+		
+		<!-- ANALYSIS > Activities > Calculate KPIs -->
+		<menuitem id="tms_invoice_line_menu" name="Calculate KPIs"
+					sequence="50"
+					parent="menu_tms_activity_secondary" 
+					action="action_tms_calculate_kpi"
+		/>
+
+		<!-- ================================ ANALYSIS > Analytic ================================ -->
+		<menuitem name="Analytic" id="menu_analytic" parent="analysis_main_menu"
+			sequence="2" groups="group_tms_analytic_manager,base.group_no_one,base.group_user" />
+
+		<!-- ANALYSIS > Analytic > Analytic Accounts -->
+		<menuitem name="Analytic Accounts" id="menu_account_analytic_account"
+			parent="menu_analytic" action="action_view_account_analytic_account"
+			groups="group_tms_analytic_manager,base.group_no_one,base.group_user" />
+
+		<!-- ANALYSIS > Analytic > Account Analytic Second Axis -->
+		<menuitem name="Account Analytic Second Axis" id="menu_analytic_secondaxis"
+			parent="menu_analytic" action="action_analytic_secondaxis_list"
+			groups="group_tms_analytic_manager,base.group_no_one,base.group_user" />
+		
+        <!-- ================================ ANALYSIS > Global Analysis ================================ -->
+        <menuitem name="Global Analysis" id="menu_global_analysis" parent="analysis_main_menu"
+            sequence="3" groups="base.group_no_one,base.group_user" />
+        
+        <!-- ANALYSIS > Global Analysis > Global analysis Partner -->
+        <menuitem name="Global analysis Partner" id="menu_global_analysis_partner"
+            parent="menu_global_analysis" action="action_open_global_analysis_partner_wizard"
+            groups="base.group_no_one,base.group_user" />
+        
+		<!-- ================================ ANALYSIS > Team ================================ -->
+		<menuitem name="Team" id="menu_analysis_team"
+			parent="analysis_main_menu"/>
+
+		<!-- ANALYSIS > Team > Teams -->
+		<menuitem name="Teams" id="menu_analysis_team_teams"
+			parent="menu_analysis_team" action="action_hr_team"/>
+
+		<menuitem name="Global Analysis" id="menu_global_analysis"
+			parent="analysis_main_menu" sequence="3"
+			groups="base.group_no_one,base.group_user" />
+
+		<!-- ANALYSIS > Global Analysis > Global Analysis Partner -->
+		<menuitem name="Global Analysis Partner" id="menu_global_analysis_partner"
+			parent="menu_global_analysis" action="action_open_global_analysis_partner_wizard"
+			groups="base.group_no_one,base.group_user" />
+
+		<!-- ANALYSIS > Global Analysis > Global Analysis Project -->
+		<menuitem name="Global Analysis Project" id="menu_analysis_global_analysis_project"
+			groups="base.group_no_one,base.group_user" parent="menu_global_analysis"
+			action="global_analysis_project_wizard_action" />
+
+	</data>
+</openerp>

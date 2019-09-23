@@ -1,0 +1,6 @@
+<openerp>
+	<data>
+		<menuitem id="menu_hr_employee_asset" parent="hr.menu_hr_main"
+			action="action_hr_employee_asset" />
+	</data>
+</openerp>

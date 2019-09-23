@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- Daily Notofication Form View -->
+    	<record id="view_daily_mail_notification_form" model="ir.ui.view">
+    		<field name="name">view.daily.mail.notification.form</field>
+    		<field name="model">daily.mail.notification</field>
+    		<field name="type">form</field>
+    		<field name="arch" type="xml">
+    			<form string="Daily Notification Email" version="7.0">
+    				<h3>Are you sure want to send daily notification email?</h3>
+					<p>** If the current user is admin, this email is sent to everybody in
+                        <span style="color: #7c7bad;">pm@lists.trobz.com</span> mailing list.</p>
+					<p>** Otherwise, the email is sent to user who clicks on the button.</p>
+					<field name="user_id" invisible="1" />
+					<footer>
+	 					<button type="object" string="Send" name="button_send_email_notification"
+                            class="oe_highlight" />
+	 					<label string="or " />
+	 					<button string="Cancel" special="cancel" class="oe_link" />
+ 					</footer>
+    			</form>
+    		</field>
+    	</record>
+
+    	<!-- Action Open Send Daily Notification Email Form View -->
+    	<record id="action_open_send_mail_notification" model="ir.actions.act_window">
+    		<field name="name">Daily Notification Email</field>
+    		<field name="res_model">daily.mail.notification</field>
+    		<field name="view_type">form</field>
+    		<field name="view_mode">form</field>
+    		<field name="target">new</field>
+    		<field name="domain">[]</field>
+    		<field name="context">{}</field>
+    	</record>
+    </data>
+</openerp>

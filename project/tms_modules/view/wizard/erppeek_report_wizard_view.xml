@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_erppeek_report_wizard_form" model="ir.ui.view">
+			<field name="name">view.erppeek.report.wizard.form</field>
+			<field name="model">erppeek.report.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="ERP Peek Report Wizard">
+					<group>
+						<field name="erppeek_config_id" />
+						<field name="password" password="1"/>
+						<field name="command_options_guide" />
+						<field name="command_options" />
+					</group>
+					<footer>
+						<button name="button_export_erppeek_report" string="Export"
+							type="object" class="oe_highlight" />
+						<label string="or  " />
+						<button special="cancel" string="Cancel" class="oe_link" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		
+		<record id="view_erppeek_report_wizard_form_download" model="ir.ui.view">
+            <field name="name">view.erppeek.report.wizard.form.download</field>
+            <field name="model">erppeek.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Download">
+                    <group string="ERP Peek Report, please download below file to check">
+                        <field name="xlsx_file" filename="res_fname" readonly="1" />
+                        <field name="res_fname" invisible="1" />
+                    </group>
+                    <footer>
+                        <button string="Close" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+		<record id="action_view_erppeek_report_wizard_form" model="ir.actions.act_window">
+			<field name="name">Generate Report</field>
+			<field name="res_model">erppeek.report.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="view_type">form</field>
+			<field name="target">new</field>
+			<field name="view_id" ref="view_erppeek_report_wizard_form" />
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_ssh_config_wizard" model="ir.ui.view">
+            <field name="name">SSH config</field>
+            <field name="model">ssh.config</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="ssh config" version="7.0">
+                    <group colspan="4" col="2">
+                        <group col="4" colspan="2">
+                            <field name="state" invisible="1"/>
+                            <field name="data" invisible="1"/>
+                            <field name="username" required="1"/>
+                        </group>
+                        <group col="4" colspan="2" states="down">
+                            <field name="name" invisible="1" colspan="4"/>
+                            <label string="Here is the exported"/>
+                            <field name="data" readonly="1" filename="name"/>
+                        </group>
+                    </group>
+                    <footer states="export">
+                        <button name="generate_ssh_config_file" string="Generate file" type="object" class="oe_highlight" />
+                        <label string="or " />
+                        <button string="Cancel" special="cancel" class="oe_link" />
+                    </footer>
+                </form> 
+            </field>
+        </record>
+
+        <act_window name="Generate SSH Config"
+            res_model="ssh.config"
+            view_mode="form"
+            view_id="view_ssh_config_wizard"
+            target="new"
+            id="action_generate_ssh_config"/>
+    </data>
+</openerp>

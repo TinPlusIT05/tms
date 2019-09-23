@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="trobz_hr_appraisal_hr_configuration_view" model="ir.ui.view">
+            <field name="name">trobz.hr.appraisal.hr.configuration.view</field>
+            <field name="model">hr.config.settings</field>
+            <field name="inherit_id" ref="hr.view_human_resources_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='contract_grp']" position="after">
+						<field name="default_appraisal_mailing_list" class="oe_inline"/>
+				</xpath>
+            </field>
+        </record>
+ 
+    </data>
+</openerp>

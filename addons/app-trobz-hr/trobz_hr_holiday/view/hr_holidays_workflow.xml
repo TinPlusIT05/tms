@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+		<!-- Workflow definition Add a status `cancel_request` that allows employee 
+			request to his manager that he want to cancel his approved leave request 
+			1. draft->submitted (confirm signal) if can_reset 2. submitted->draft (reset 
+			signal) if can_reset 2. submitted->accepted (validate signal) if not double_validation 
+			2. submitted->first_accepted (validate signal) if double_validation 2. submitted->refused 
+			(refuse signal) 3. accepted->cancel_request (request_cancellation signal) 
+			if not double_validation - trobz 3. accepted->refused (refuse signal) 4. 
+			first_accepted -> accepted (second_validate signal) 4. first_accepted -> 
+			refused (refuse signal) 5. refuse -> draft (reset signal) if can_reset 7. 
+			cancel_request->cancel (accept_cancellation signal) - trobz 7. cancel_request->accepted 
+			(refuse_cancellation signal) - trobz 8. cancel->draft (reset signal) if can_reset 
+			- trobz -->
+
+		<record model="workflow.activity" id="act_request_cancellation"> <!-- request_cancellation -->
+			<field name="wkf_id" ref="hr_holidays.wkf_holidays" />
+			<field name="name">request_cancellation</field>
+			<field name="kind">function</field>
+			<field name="action">holidays_cancellation_request()</field>
+		</record>
+
+		<record model="workflow.activity" id="act_accept_cancellation"> <!-- accept_cancellation -->
+			<field name="wkf_id" ref="hr_holidays.wkf_holidays" />
+			<field name="name">accept_cancellation</field>
+			<field name="kind">function</field>
+			<field name="action">change_state_to_cancel()</field>
+		</record>
+
+		<!-- workflow transition -->
+
+		<record model="workflow.transition" id="holiday_draft2cancelrequest"> <!-- 3. accepted->cancel_request (request_cancellation signal) -->
+			<field name="act_from" ref="hr_holidays.act_validate" />
+			<field name="act_to" ref="act_request_cancellation" />
+			<field name="signal">request_cancellation</field>
+			<field name="condition">True</field>
+			<field name="group_id" ref="base.group_user" />
+		</record>
+
+		<record model="workflow.transition" id="holiday_cancelrequest2cancel"> <!-- 7. cancel_request->cancel (accept_cancellation signal) - trobz -->
+			<field name="act_from" ref="act_request_cancellation" />
+			<field name="act_to" ref="act_accept_cancellation" />
+			<field name="signal">accept_cancellation</field>
+			<field name="condition">True</field>
+			<field name="group_id" ref="base.group_hr_user" />
+		</record>
+
+		<record model="workflow.transition" id="holiday_cancelrequest2approve"> <!-- 7. cancel_request->accepted (refuse_cancellation signal) - trobz -->
+			<field name="act_from" ref="act_request_cancellation" />
+			<field name="act_to" ref="hr_holidays.act_validate" />
+			<field name="signal">refuse_cancellation</field>
+			<field name="condition">True</field>
+			<field name="group_id" ref="base.group_hr_user" />
+		</record>
+
+		<record model="workflow.transition" id="cancel2draft"> <!-- 8. cancel->draft (reset signal) if can_reset - trobz -->
+			<field name="act_from" ref="act_accept_cancellation" />
+			<field name="act_to" ref="hr_holidays.act_draft" />
+			<field name="signal">reset</field>
+			<field name="condition">can_reset</field>
+			<field name="group_id" ref="base.group_user" />
+		</record>
+
+		<!-- override holiday_refuse2draft transition, allow HR officer use button reset to draft -->
+		<record model="workflow.transition" id="hr_holidays.holiday_refuse2draft"> <!-- 5. refused->draft (reset signal) -->
+			<field name="act_from" ref="hr_holidays.act_refuse" />
+			<field name="act_to" ref="hr_holidays.act_draft" />
+			<field name="signal">reset</field>
+			<field name="condition">can_reset</field>
+			<field name="group_id" ref="base.group_hr_user" />
+		</record>
+
+	</data>
+</openerp>

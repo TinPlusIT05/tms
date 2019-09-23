@@ -1,0 +1,6 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"trobz_access_crm_event", "trobz.crm.event","model_trobz_crm_event","base.group_sale_salesman",1,1,1,1
+"trobz_access_crm_event_type","trobz.crm.event.type","model_trobz_crm_event_type","base.group_sale_salesman",1,1,1,1
+"access_crm_lost_reason","access_crm_lost_reason","model_crm_lost_reason","base.group_sale_salesman",1,1,1,1
+"calendar.access_calendar_alarm","calendar.alarm.employee","calendar.model_calendar_alarm","base.group_user",1,0,0,0
+"access_calendar_alarm_admin","calendar.alarm.admin","calendar.model_calendar_alarm","base.group_system",1,1,1,1

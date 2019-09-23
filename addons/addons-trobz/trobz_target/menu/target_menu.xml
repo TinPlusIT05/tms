@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- Menu Setting - Target-->
+    		<menuitem
+			name="Target"
+			id="menu_target_parent"
+			parent="base.menu_administration"
+			sequence="3" />
+
+		<!-- Menu Setting - Target - Target -->
+    		<menuitem
+			name="Target"
+			id="menu_target"
+			parent="menu_target_parent"
+			sequence="10"
+			action="action_target" />
+
+		<!-- Menu Setting - Target - Target Type -->
+    		<menuitem
+			name="Target Type"
+			id="menu_target_type"
+			parent="menu_target_parent"
+			sequence="20"
+			action="action_target_type" />
+    </data>
+</openerp>

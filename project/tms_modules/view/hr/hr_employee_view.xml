@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- HR Employee Form View -->
+        <record id="tms_hr_employee_form_view" model="ir.ui.view">
+            <field name="name">tms.hr.employee.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_holidays.view_employee_form_leave_inherit" />
+            <field name="arch" type="xml">
+                <data>
+                    <label for="remaining_leaves" position="attributes">
+                        <attribute name="string">Legal leaves days</attribute>
+                    </label>
+                    <field name="address_home_id" position="after">
+                        <label for="street" string="Current Address"/>
+                        <div name="div_address">
+                            <field name="current_country_id" placeholder="Country..." options='{"no_open": True}' />
+                            <div class="address_format" attrs="{'invisible': [('current_country_id', '!=', %(base.vn)d)]}">
+                                <field name="current_state_id"
+                                   class="oe_no_button"
+                                   placeholder="State"
+                                   domain="[('country_id', '=', current_country_id)]"
+                                   style="width: 30%%"
+                                   options='{"no_open": True}'/>
+                                <field name="current_district_id"
+                                   placeholder="District"
+                                   domain="[('state_id', '=', current_state_id)]"
+                                   style="width: 35%%"
+                                   options='{"no_open": True}'/>
+                                <field name="current_ward_id"
+                                   placeholder="Ward"
+                                   domain="[('district_id', '=', current_district_id)]"
+                                   style="width: 35%%"
+                                   options='{"no_open": True}'/>
+                            </div>
+                            <field name="current_street"
+                                   placeholder="No - Street" class="oe_no_button"
+                                   options='{"no_open": True}'/>
+                        </div>
+                        <field name="skype_id" />
+                    </field>
+                    <field name="address_id" position="attributes">
+                       <attribute name="options">{'no_create': True, 'create_edit': False, 'no_open': True}</attribute>
+                    </field>
+                    <field name="passport_id" position="after">
+                        <field name="issued_date" />
+                        <field name="issued_place" />
+                    </field>
+                    <notebook position="inside">
+                        <page string="Capacity">
+                            <group>
+                                <group>
+                                    <field name="current_employee_capacity"/>
+                                </group>
+                                <group>
+                                    <field name="employee_capacity_three_months"/>
+                                </group>
+                            </group>
+                            <group string="Employee Capacity" name="employee_capacity">
+                                <field name="employee_capacity_ids" nolabel="1"/>
+                            </group>
+                            <group string="Employee Capacity Weekly" name="employee_capacity_weekly">
+                                <field name="employee_capacity_weekly_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </data>
+            </field>
+        </record>
+
+        <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">view.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div/field[@name='category_ids']" position="after">
+                    <label for="employee_code" class="oe_edit_only"/>
+                    <field name="employee_code"/>
+                </xpath>
+                <xpath expr="//page/group/group[2]/field[@name='parent_id']" position="before">
+                    <field name="team_id" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//page/group/group[2]/field[@name='parent_id']" position="after">
+                    <field name="leave_manager_id"/>
+                </xpath>
+                <xpath expr="//field[@name='active']" position="after">
+                    <button name="button_remove_former_employee_as_follower" type="object" string="Remove as Follower" attrs="{'invisible': [('active', '=', True)]}" confirm="Are you sure to remove this employee from all Job Positions/Applications he/she following?"/>
+                </xpath>
+                <field name="manager" position="after">
+                    <field name="is_dedicated_resource" />
+                </field>
+                <xpath expr="//notebook[1]" position="inside">
+                    <page string="Assets" >
+                        <group string="Benefit Infomation" name="benefit_info_group">
+                            <group>
+                                <field name="benefit_start" />
+                                <field name="benefit_months" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="cred_benefit" />
+                                <field name="debit_benefit" />
+                                <field name="balance_benefit" />
+                            </group>
+                        </group>
+                        <group string="Personal Assets" name="assets">
+                            <field name="asset_ids" nolabel="1">
+                                <tree create="false" delete="false" edit="false"
+                                    colors="blue:(type&lt;='personal')" >
+                                    <field name="internal_code"/>
+                                    <field name="name"/>
+                                    <field name="type" invisible="1"/>
+                                    <field name="request_id"/>
+                                    <field name="item_condition_id"/>
+                                    <field name="trobz_contribution" sum="Total Trobz Contribution"/>
+                                    <field name="purchased_price" sum="Total amount"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Trobz Assets" name="assets">
+                            <field name="depreciate_line_ids" nolabel="1">
+                                <tree create="false" delete="false" edit="false">
+                                    <field name="asset_id"/>
+                                    <field name="employee_id"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+                <field name="parent_id" position="before">
+                    <field name="team_manager"/>
+                </field>
+                <field name="otherid" position="before">
+                    <field name="tax_code"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- HR Employee Tree View -->
+        <record id="tms_view_employee_tree_view_inherit" model="ir.ui.view">
+            <field name="name">tms.hr.employee.tree.view.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree" />
+            <field name="arch" type="xml">
+                <data>
+                    <field name="parent_id" position="after">
+                        <field name="team_manager" invisible="1"/>
+                    </field>
+                    <field name="work_email" position="after">
+                        <field name="skype_id" />
+                        <field name="birthday" />
+                        <field name="birthday_month" invisible="1" />
+                    </field>
+                    <field name="name" position="before">
+                        <field name="login" />
+                        <field name="employee_code"/>
+                        <field name="leave_manager_id" invisible="1"/>
+
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <!-- HR Employee Search View (inherit) -->
+        <record id="tms_hr_view_employee_filter_inherit" model="ir.ui.view">
+            <field name="name">tms.hr.view.employee.filter.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter" />
+            <field name="arch" type="xml">
+                <data>
+                    <field name="department_id" position="after">
+                        <field name="birthday_month" />
+                        <field name="leave_manager_id"/>
+                        <field name="employee_code"/>
+
+                    </field>
+                    <xpath expr="//group/filter[@string='Company']" position="after">
+                       <filter string="User Job Type" icon="terp-personal" domain="[]" context="{'group_by':'job_type_id'}"/>
+                        <!--<filter string="Team" icon="terp-personal" domain="[]" context="{'group_by':'team_id'}"/>-->
+                    </xpath>
+                    <xpath expr="//group/filter[@string='Manager']" position="after">
+                        <filter string="Team Manager" icon="terp-personal" domain="[]" context="{'group_by':'team_manager'}"/>
+                        <filter string="Leave Manager" icon="terp-personal" domain="[]" context="{'group_by':'leave_manager_id'}"/>
+
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <!-- Action Open HR Employee Tree View -->
+        <record id="tms_open_view_employee_list_my" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_id" eval="False" />
+            <field name="search_view_id" ref="hr.view_employee_filter" />
+            <field name="domain">[]</field>
+            <field name="context">{"search_default_active": True}</field>
+        </record>
+    </data>
+</openerp>

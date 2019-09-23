@@ -1,0 +1,147 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* trobz_security_safe_password
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-05 08:09+0000\n"
+"PO-Revision-Date: 2013-10-05 08:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: module
+#: type:name:res_id
+msgid "src"
+msgstr "value"
+
+#. module: trobz_security_safe_password
+#: sql_constraint:res.users:0
+msgid "You can not have two users with the same login !"
+msgstr "VOus ne pouvez pas avoir deux utilsiateurs avec le même login !"
+
+#. module: trobz_security_safe_password
+#: model:ir.model,name:trobz_security_safe_password.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:24
+#: code:addons/trobz_security_safe_password/model/res_user.py:26
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid " "
+msgstr " "
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:26
+#, python-format
+msgid "Password must have: <br/>                                                        - at least one letter in lower case <br/>                                                        - at least one letter in upper case <br/>                                                        - at least one number"
+msgstr "Le mot de passe doit avoir: <br/>                                                        - au moins une lettre minuscule <br/>                                                        - au moins une lettre masjuscule <br/>                                                        - au moins un chiffre"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:24
+#, python-format
+msgid "Password must have at least %s characters"
+msgstr "Le mot de passe doit avoir au moins %s caractères"
+
+#. module: trobz_security_safe_password
+#: constraint:res.users:0
+msgid "The chosen company is not in the allowed companies for this user"
+msgstr "La société choisie n'est pas autorisée pour cet utilisateur."
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "you are not registered in the password file"
+msgstr "vous n'êtes pas enregistré dans le fichier de mot de passe"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is based on your username"
+msgstr "basé sur votre nom d'utilisateur"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is based upon your password entry"
+msgstr "basé sur votre mot de passe"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is derived from your password entry"
+msgstr "dérivé de votre mot de passe"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it's derived from your password entry"
+msgstr "dérivé de votre mot de passe"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is derivable from your password entry"
+msgstr "dérivable de votre mot de passe"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it's derivable from your password entry"
+msgstr "dérivable de votre mot de passe"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is WAY too short"
+msgstr "BEAUCOUP trop court"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is too short"
+msgstr "trop court"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it does not contain enough DIFFERENT characters"
+msgstr "ne contient pas suffisamment de caractères DIFFÉRENTS"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is all whitespace"
+msgstr "il n'y a que des espaces"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is too simplistic/systematic"
+msgstr "trop simple/systématique"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it looks like a National Insurance number."
+msgstr "ressemble à un numéro de sécurité sociale"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is based on a dictionary word"
+msgstr "basé sur un mot du dictionnaire"
+
+#. module: trobz_security_safe_password
+#: code:addons/trobz_security_safe_password/model/res_user.py:37
+#, python-format
+msgid "it is based on a (reversed) dictionary word"
+msgstr "basé sur un mot du dictionnaire à l'envers"
+

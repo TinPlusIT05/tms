@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_wizard_quality_check_tree" model="ir.ui.view">
+            <field name="name">Results of Quality Checks</field>
+            <field name="model">module.quality.check</field>
+            <field name="arch" type="xml">
+                <tree string="Result">
+                    <field name="date_check"/>
+                    <field name="name"/>
+                    <field name="final_score"/>
+                    <button name="button_check_quality" 
+                            string="Check Quality" type="object" 
+                            icon="terp-gtk-go-back-rtl" context="{'module_name': name}" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_wizard_quality_check_form" model="ir.ui.view">
+            <field name="name">Results of Quality Checks</field>
+            <field name="model">module.quality.check</field>
+            <field name="arch" type="xml">
+                <form string="Result">
+                	<sheet>
+	                    <div class="oe_title">
+	                        <button name="button_check_quality" 
+	                            string="Check Quality" type="object" 
+	                            class="oe_highlight" context="{'module_name': name}" />
+	                    </div>
+	                    <h1>
+	                        <field name="name"/>
+	                    </h1>
+	                    <h2 class="oe_fade">
+	                            <field name="final_score" readonly="1"/>
+	                    </h2>
+	                    <separator colspan="4" string="Tests"/>
+	                    <field name="check_detail_ids" nolabel="1" colspan="4" height="350" width="800" readonly="1">
+	                   	</field>
+                   	</sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_wizard_quality_detail_form" model="ir.ui.view">
+            <field name="name">Results of Quality Checks with detail</field>
+            <field name="model">module.quality.detail</field>
+            <field name="arch" type="xml">
+                <form string="Result">
+                	<notebook>
+                        <page string="Summary">
+                        	<group>
+	                            <field name="name" readonly="1"/>
+	                            <field name="score" readonly="1"/>
+	                            <field name="ponderation" readonly="1"/>
+	                            <field name="state" readonly="1"/>
+                            </group>
+                            <group string="Notes">
+                            	<field name="note" readonly="1" colspan="4" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Detail">
+	                        <button name="%(action_view_quality_save_report)d" string="Save Report" type="action"/>
+                            <field name="detail" widget="text_html" nolabel="1" colspan="4" readonly="1"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_wizard_quality_detail_tree" model="ir.ui.view">
+            <field name="name">Results of Quality Checks with detail</field>
+            <field name="model">module.quality.detail</field>
+            <field name="arch" type="xml">
+                <tree string="Result"  colors="grey:ponderation==0;blue:score!=100.00">
+                    <field name="name" required="1"/>
+                    <field name="state"/>
+                    <field name="score" required="1"/>
+                    <field name="ponderation"/>
+                    <field name="message" />
+                </tree>
+            </field>
+        </record>
+        
+        
+        
+    </data>
+</openerp>

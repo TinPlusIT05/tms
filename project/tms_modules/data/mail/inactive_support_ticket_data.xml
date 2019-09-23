@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+	<data>
+		<!--Notification for automatic actions on support tickets Email Template -->
+		<record id="email_inactive_ticket_to_supporter_template" model="email.template">
+			<field name="name">Notification for automatic actions scheduled on Support Tickets</field>
+			<field name="model_id" search="[('model','=','tms.project')]" />
+			<field name="email_from">${object.get_partner_project_mailing_list()|safe}</field>
+			<field name="email_to">${object.get_mail_list()|safe}</field>
+			<field name="email_cc">support@lists.trobz.com</field>
+			<field name="subject">${object.name} - Notification for automatic actions scheduled in next 2 weeks on Support Tickets</field>
+			<field name="auto_delete" eval="True" />
+			<field name="body_html"><![CDATA[
+			<p>This is an automatic notification to notify you that automatic actions will take place in coming days. <br/>
+			To avoid those actions to be implemented, you can add a comment to each ticket or reply this email with an explanation of what should be done with those tickets.</p>
+
+			% if object.get_tickets_set_low(7):
+				<br/>
+				<strong>In</strong> 7 days, the below tickets will be <strong>set to</strong> low priority because <strong>no</strong> actions were done <strong>in</strong> the past ${object.auto_low_days} days:
+				% for line in object.get_tickets_set_low(7):
+					<p>
+						<a href="${line.get_ticket_url()}">- S#${line.name}</a>, assigned <strong>to</strong> ${line.owner_id.name} - ${line.summary}
+					</p>
+				% endfor
+			% endif
+
+			% if object.get_tickets_set_low(14):
+				<br/>
+				<strong>In</strong> 14 days, the below tickets will be <strong>set to</strong> low priority because <strong>no</strong> actions were done <strong>in</strong> the past ${object.auto_low_days} days:
+				% for line in object.get_tickets_set_low(14):
+					<p>
+						<a href="${line.get_ticket_url()}">- S#${line.name}</a>, assigned <strong>to</strong> ${line.owner_id.name} - ${line.summary}
+					</p>
+				% endfor
+			% endif
+
+			% if object.get_tickets_close(7):
+				<br/>
+				<strong>In</strong> 7 days, the below tickets will be marked <strong>as</strong> closed <strong>with</strong> resolution Unscheduled because <strong>no</strong> actions were done <strong>in</strong> the past ${object.auto_low_days} days:
+				% for line in object.get_tickets_close(7):
+					<p>
+						<a href="${line.get_ticket_url()}">- S#${line.name}</a>, assigned <strong>to</strong> ${line.owner_id.name} - ${line.summary}
+					</p>
+				% endfor
+			% endif
+
+			% if object.get_tickets_close(14):
+				<br/>
+				<strong>In</strong> 14 days, the below tickets will be marked <strong>as</strong> closed <strong>with</strong> resolution Unscheduled because <strong>no</strong> actions were done <strong>in</strong> the past ${object.auto_low_days} days:
+				% for line in object.get_tickets_close(14):
+					<p>
+						<a href="${line.get_ticket_url()}">- S#${line.name}</a>, assigned <strong>to</strong> ${line.owner_id.name} - ${line.summary}
+					</p>
+				% endfor
+			% endif
+			]]></field>
+		</record>
+
+	</data>
+</openerp>

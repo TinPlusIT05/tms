@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <report
+            id="monthly_timesheet_report_xlsx"
+            model="hr.monthly.timesheet.wizard"
+            string="Print to XLSX"
+            report_type="xlsx"
+            name="report.workinghour.timesheet.xlsx"
+            file="report.workinghour.timesheet.xlsx"
+            attachment_use="False"
+        />  
+        <report
+            id="monthly_ot_report_xlsx"
+            model="hr.monthly.timesheet.wizard"
+            string="Print to XLSX"
+            report_type="xlsx"
+            name="report.workinghour.timesheet.ot.xlsx"
+            file="report.workinghour.timesheet.ot.xlsx"
+            attachment_use="False"
+        />  
+	</data>
+</openerp>

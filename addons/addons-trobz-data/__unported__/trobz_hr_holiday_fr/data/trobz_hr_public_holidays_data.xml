@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data>
+  	    <!-- Public Holiday Template-->
+  	    <!-- New Year -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_new_year">
+            <field name="name">New Year's Day</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-01-01')"/>
+            <field name="template_holidays">True</field>
+        </record>
+
+  	    <!-- Easter Monday -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_easter_monday">
+            <field name="name">Easter Monday</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-04-21')"/>
+            <field name="template_holidays">True</field>
+        </record>
+  	    
+  	    <!-- Labour Day -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_labour_day">
+            <field name="name">Labour Day</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-05-01')"/>
+            <field name="template_holidays">True</field>
+        </record>
+  	    
+  	    <!-- Victory in Europe Day -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_victory_europe_day">
+            <field name="name">Victory in Europe Day</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-05-08')"/>
+            <field name="template_holidays">True</field>
+        </record>
+  	    
+  	    <!-- Ascension Day -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_ascension_day">
+            <field name="name">Ascension Day</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-05-29')"/>
+            <field name="template_holidays">True</field>
+        </record>
+        
+  	    <!-- Whit Monday -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_whit_monday">
+            <field name="name">Whit Monday</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-06-09')"/>
+            <field name="template_holidays">True</field>
+        </record>
+  	    
+  	    <!-- Bastille Day -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_national_day">
+            <field name="name">Bastille Day</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-07-14')"/>
+            <field name="template_holidays">True</field>
+        </record>
+  	    
+  	    <!-- Assumption of Mary to Heaven -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_assumption">
+            <field name="name">Assumption of Mary to Heaven</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-08-15')"/>
+            <field name="template_holidays">True</field>
+        </record>
+        
+  	    <!-- All Saints' Day -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_all_saints_day">
+            <field name="name">All Saints' Day</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-11-01')"/>
+            <field name="template_holidays">True</field>
+        </record>
+        
+  	    <!-- Veterans Day, Armistice Day, Remembrance Day -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_veteran_day">
+            <field name="name">Veteran Day, Armistice Day, Remembrance Day</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-11-11')"/>
+            <field name="template_holidays">True</field>
+        </record>
+        
+  	    <!-- Christmas Day -->
+  	    <record model="trobz.hr.public.holidays" id="trobz_hr_public_holidays_fr_christmas">
+            <field name="name">Christmas Day</field>
+            <field name="country" ref="base.fr"/>
+            <field name="date" eval="time.strftime('%Y-12-25')"/>
+            <field name="template_holidays">True</field>
+        </record>
+	</data>
+</openerp>

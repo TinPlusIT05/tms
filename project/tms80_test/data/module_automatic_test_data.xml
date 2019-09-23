@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="module_automatic_test_tms80_test" model="module.automatic.test">
+            <field name="name">tms80_test</field>
+            <field name="specific_test_case">openerp.addons.tms80_test.tests.test_support_ticket.TestSupportTicket</field>
+        </record>
+    </data>
+</openerp>

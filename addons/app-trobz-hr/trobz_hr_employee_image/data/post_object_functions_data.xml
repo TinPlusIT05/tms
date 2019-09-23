@@ -1,0 +1,8 @@
+<openerp>
+    <data noupdate="0">
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('trobz.hr.employee.image.post.object')" />
+            <value eval="list(['run_store_image_file'])"/>
+        </function>
+    </data>
+</openerp>

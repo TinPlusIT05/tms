@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- Forge Change Email Notification -->
+		<record id="tms_forge_notification_email_html_div_template" model="email.template">
+            <field name="name">Forge Notification Email HTML Div</field>
+            <field name="model_id" search="[('model','=','tms.forge.ticket')]" />
+            <field name="email_from">${('tms@trobz.com')|safe}</field>
+            <field name="email_to">${object.get_subscriber_email_list()|safe}</field>
+            <field name="subject">[Forge ${object.project_id.name}] #${object.name}: ${object.summary}</field>
+            <field name="body_html"><![CDATA[
+				<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+				<html xmlns="http://www.w3.org/1999/xhtml">
+					<head>
+						<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+						<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+						<title>Forge Ticket Update Autotmatic Notification</title>
+					</head>
+					<body>
+					
+						<div id="MAIN" style="background: #FFFFFF;font: 12px Verdana, Arial, Helvetica;color:#333333;">
+							<center>
+								<div style="background: orange;height:5px;margin-bottom:10px;"></div>
+								<div style="text-align:center;font-style:italic;font-size:16px;">
+									Forge Ticket Update Automatic Notification
+								</div>
+								
+								<div style="color:#828078;font-style:italic;text-align:center;">
+											The ticket ${object.name} has been created/updated.<br/>
+											To open the ticket, click <a href="${object.get_ticket_url()}" style="color:#04047b;text-decoration:underline">here</a>
+								</div>
+								<div style="background: orange;height:5px;margin-top:10px;"></div>
+							</center>
+							<div id="CONTENT" style="background:#FFFFFF;padding:15px"> 
+								 <div style="font-size:20px;margin-bottom:10px;" >
+										${object.summary}
+								</div>
+								<div style="margin-left:15px;">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td style="font-weight:bold;" width="70">State:&nbsp;</td>
+											<td style="text-align:left">${object.get_state_value_from_key()}</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold;" width="70">Priority:&nbsp;</td>
+											<td style="text-align:left">${object.get_priority_value_from_key()}</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold;" width="70">Assignee:&nbsp;</td>
+											<td style="text-align:left">${object.owner_id and object.owner_id.name or ''}</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold;" width="70">Milestone:&nbsp;</td>
+											<td style="text-align:left">${object.milestone_id and object.milestone_id.name or ''}</td>
+										</tr>
+										<tr>
+											<td style="font-weight:bold;" width="70">Activity:&nbsp;</td>
+											<td style="text-align:left">${object.tms_activity_id and object.tms_activity_id.name or ''}</td>
+										</tr>
+									</table>
+								</div>
+								
+								<div style="font-size:16px;margin-bottom:10px;margin-top:20px;" >
+									Changes & Comments
+								</div>
+								<div style="margin-left:15px;">
+						            ${object.get_last_changes()}
+						            
+						            <!--
+						            <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:12px">
+										<tr>
+											<td style="text-align:center;font-weight:bold;border:1px solid #ffe083;border-collapse:collapse;padding:3px;">Field</td>
+											<td style="text-align:center;font-weight:bold;border:1px solid #ffe083;border-collapse:collapse;padding:3px;">New value</td>
+											<td style="text-align:center;font-weight:bold;border:1px solid #ffe083;border-collapse:collapse;padding:3px;">Old value</td>
+										</tr>                                      
+										<tr>
+											<td style="text-align:center;border:1px solid #ffe083;border-collapse:collapse;padding:3px;">Priority</td>
+											<td style="text-align:center;border:1px solid #ffe083;border-collapse:collapse;padding:3px;">Very High</td>
+											<td style="color:#999;text-align:center;font-weight:lighter;border:1px solid #ffe083;border-collapse:collapse;padding:3px;">High</td>
+										</tr>
+									</table>
+									-->
+								</div>
+								<div style="font-size:16px;margin-bottom:10px;margin-top:20px;" >
+									Description
+								</div>			
+									
+								<div style="max-width:700px;font-size:11px;word-wrap:break-word;font-style:italic;">
+									${object.get_html_description()}
+								</div>
+								
+							</div>
+							<center>
+								<div style="background: orange;height:5px;margin-bottom:10px;"></div>
+								<div style="width:150px;text-align:center">
+									<img src="http://code.trobz.com/trobz-logo-small.png" alt="trobz" height="31" width="90" />
+								</div>
+							</center>
+						
+							<br/>
+							<div style="color:#828078;font-style:italic;">
+								You are receiving this notfication because you have been involved on this ticket. <br/>
+								If you don't want to receive other notification, please send a message to <a href="mailto:support@lists.trobz.com">support@lists.trobz.com</a><br/>
+							</div>	
+						
+						</div> <!-- div id="MAIN" -->
+					
+					</body>
+				</html>
+			]]>
+			</field>
+        </record>
+    </data>
+</openerp>

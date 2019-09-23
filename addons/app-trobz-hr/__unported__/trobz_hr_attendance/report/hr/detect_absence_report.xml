@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	    <!-- Detect Absence Report -->
+	    <record id="detect_absence_report" model="ir.actions.report.xml">
+            <field name="name">Detect Absence Report</field>
+            <field name="type">ir.actions.report.xml</field>
+            <field name="model">hr.attendance</field>
+            <field name="report_name">detect_absence_report</field>
+            <field name="report_type">aeroo</field>
+            <field name="in_format">oo-ods</field>
+            <field name="out_format" eval="ref('report_aeroo_ooo.report_mimetypes_xls_odt')"/>
+            <field name="parser_loc">trobz_hr_attendance/report/hr/detect_absence_report.py</field>
+            <field name="report_rml">trobz_hr_attendance/report/hr/detect_absence_report.ods</field>
+            <field name="parser_state">loc</field>
+            <field name="tml_source">file</field>
+        </record>
+    </data>
+</openerp>

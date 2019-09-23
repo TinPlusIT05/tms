@@ -1,0 +1,2 @@
+unidecode==0.4.17
+xlsxwriter==0.7.3

@@ -1,0 +1,110 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* trobz_hr_payroll_vietnam
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-02 10:17+0000\n"
+"PO-Revision-Date: 2013-04-02 10:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: module
+#: type:name:res_id
+msgid "src"
+msgstr "value"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:76
+#, python-format
+msgid "Code"
+msgstr "Code"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:70
+#, python-format
+msgid "From"
+msgstr "From"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:75
+#, python-format
+msgid "Description"
+msgstr "Description"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:72
+#, python-format
+msgid "Reference"
+msgstr "Reference"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:71
+#, python-format
+msgid "To"
+msgstr "To"
+
+#. module: trobz_hr_payroll_vietnam
+#: field:hr.contract,monthly_allowance:0
+msgid "Monthly Allowance"
+msgstr "Monthly Allowance"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:74
+#: model:ir.model,name:trobz_hr_payroll_vietnam.model_hr_contract
+#, python-format
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:69
+#, python-format
+msgid "PAYSLIP"
+msgstr "PAYSLIP"
+
+#. module: trobz_hr_payroll_vietnam
+#: field:hr.employee,number_of_dependent:0
+msgid "Number of Dependent"
+msgstr "Number of Dependent"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:79
+#, python-format
+msgid "Total"
+msgstr "Total"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:78
+#, python-format
+msgid "Formula"
+msgstr "Formula"
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:73
+#: model:ir.model,name:trobz_hr_payroll_vietnam.model_hr_employee
+#, python-format
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: trobz_hr_payroll_vietnam
+#: constraint:hr.contract:0
+msgid "Error! Contract start-date must be less than contract end-date."
+msgstr "¡Error! la fecha de inicio de contrato debe ser anterior a la de fin."
+
+#. module: trobz_hr_payroll_vietnam
+#: constraint:hr.employee:0
+msgid "Error! You cannot create recursive hierarchy of Employee(s)."
+msgstr "¡Error! No puede crear una jerarquia recursiva de empleado(s)."
+
+#. module: trobz_hr_payroll_vietnam
+#: code:addons/trobz_hr_payroll_vietnam/report/employee_payslip.py:77
+#, python-format
+msgid "Name"
+msgstr "Name"
+

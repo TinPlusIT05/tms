@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+		
+        <record id="profiler_enabled" model="ir.config_parameter">
+        	<field name="key">profiler.enabled</field>
+        	<field name="value">False</field>
+        </record>
+
+        <record id="profiler_csv_file" model="ir.config_parameter">
+        	<field name="key">profiler.csv_file</field>
+        	<field name="value">path/to/profiler.csv</field>
+        </record>
+
+    </data>
+</openerp>

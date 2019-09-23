@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="view_reopen_ticket_wizard" model="ir.ui.view">
+			<field name="name">Reopen Forge Ticket</field>
+			<field name="model">reopen.ticket.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Ticket Reopen Wizard" version="7.0">
+					<group>
+						<group>
+							<field name="reopening_type" />
+						</group>
+						<group>
+							<field name="reopen_sprint" options="{'datepicker':{'beforeShowDay': [0,1,2,3,4,5]}}"
+								attrs="{'invisible': [('reopening_type', '!=', 'new_requirement')]}"/>
+						</group>
+					</group>
+					<group>
+						<field name="comment" />
+					</group>
+					<footer>
+						<button name="re_open_ticket" type="object" string="Re-open" class="oe_highlight" attrs="{'invisible': [('reopening_type', '=', 'new_requirement')]}"/>
+                        <button name="button_create_new_ticket" type="object" string="Create New Ticket" class="oe_highlight" attrs="{'invisible': [('reopening_type', '!=', 'new_requirement')]}"/>
+                        <label string="-" attrs="{'invisible': [('reopening_type', '!=', 'new_requirement')]}"/>
+						<button string="Cancel" special="cancel" class="oe_link" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_tms_reopen_forge_ticket">
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">reopen.ticket.wizard</field>
+			<field name="name">Reopen Forge Ticket</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_reopen_ticket_wizard"/>
+			<field name="target">new</field>
+		</record>
+    </data>
+</openerp>

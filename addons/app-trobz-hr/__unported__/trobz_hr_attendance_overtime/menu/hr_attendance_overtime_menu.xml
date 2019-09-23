@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+		<menuitem 
+    		name="Attendance"
+            id="hr_attendance_overtime_report_menu"
+            sequence="29"
+            parent="hr.menu_hr_reporting"
+            action="action_hr_attendance_overtime_report_wizard"
+        />
+	</data>
+</openerp> 

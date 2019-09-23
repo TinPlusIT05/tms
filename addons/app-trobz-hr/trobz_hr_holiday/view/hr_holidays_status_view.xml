@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="holiday_status_form_inherit">
+            <field name="name">hr.holidays.status.form.inherit</field>
+            <field name="model">hr.holidays.status</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <!-- TODO: visible this field when fix feature double validation based on leave request line -->  
+                <field name="double_validation" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="name" position="after">
+                    <field name="code"/>
+                </field>
+                 
+            	<field name="active" position="before">
+                	<field name="max_days_allowed"/>
+                	<field name="payment_type"/>
+                </field>
+            </field>
+        </record>
+		
+		<record model="ir.ui.view" id="holiday_status_tree_inherit">
+            <field name="name">hr.holidays.status.tree.inherit</field>
+            <field name="model">hr.holidays.status</field>
+            <field name="inherit_id" ref="hr_holidays.view_holiday_status_tree"/>
+            <field name="arch" type="xml">
+                <tree string="Leave Type" position="replace">
+                    <tree string="Leave Type">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="max_leaves"/>
+                        <field name="leaves_taken"/>
+                        <field name="remaining_leaves"/>
+                        <field name="limit"/>
+                        <field name="payment_type"/>
+                    </tree>
+                </tree>
+            </field>
+        </record>
+    </data>
+</openerp>

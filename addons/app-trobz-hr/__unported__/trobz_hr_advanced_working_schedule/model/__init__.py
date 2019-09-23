@@ -1,0 +1,12 @@
+import hr_advanced_working_time 
+import hr_advanced_working_schedule
+import resource_calendar
+import resource_calendar_attendance
+import hr_employee
+import hr_expected_working_day
+import trobz_hr_public_holidays
+import hr_holidays_line
+import hr_overtime
+import hr_attendance
+import hr_payroll_working_hour
+import hr_payslip

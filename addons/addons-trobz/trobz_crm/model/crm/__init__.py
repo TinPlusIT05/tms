@@ -1,0 +1,8 @@
+import crm_lead
+import trobz_crm_event_type
+import trobz_crm_event
+import crm_lost_reason
+import crm_case_stage
+import crm_lead_probability
+import trobz_crm_business_sector
+import base_partner_merge

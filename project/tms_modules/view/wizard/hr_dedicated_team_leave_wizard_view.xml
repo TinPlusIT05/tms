@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_dedicated_team_leave_wizard_form" model="ir.ui.view">
+            <field name="name">view.hr.dedicated.team.leave.wizard.form</field>
+            <field name="model">hr.dedicated.team.leave.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Dedicated Team Leave" version="7.0">
+                    <group>
+                        <group>
+                            <field name="year" />
+                        </group>
+                        <group>
+                            <field name="month" />
+                        </group>
+                    </group>
+                    <group string="Fillter Condition" col="8">
+                        <group col="2" colspan="2">
+                            <br colspan="2"/>
+                            <field name="condition_1" nolabel="1" colspan="2" attrs="{'required': ['&amp;', ('team_leader_ids','!=', [(6, False, [])]), ('team_ids','!=', [(6, False, [])])]}"/>
+                            <field name="condition_2" nolabel="1" colspan="2" attrs="{'required': ['|', '&amp;', ('leave_manager_ids','!=', [(6, False, [])]), ('team_ids','!=', [(6, False, [])]), '&amp;', ('team_leader_ids','!=', [(6, False, [])]), ('leave_manager_ids','!=', [(6, False, [])])]}"/>
+                        </group>
+                        <group col="6" colspan="6">
+                            <field name="team_ids" nolabel="1" placeholder="Team" widget="many2many_tags" colspan="6"/>
+                            <field name="team_leader_ids" nolabel="1" placeholder="Team Leader" widget="many2many_tags" colspan="6" attrs="{'required': [('condition_1','!=', False)]}"/>
+                            <field name="leave_manager_ids" nolabel="1" placeholder="Leave Manager" widget="many2many_tags" colspan="6" attrs="{'required': [('condition_2','!=', False)]}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="button_print_em_leave_report" string="Print"
+                            type="object" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_hr_dedicated_team_leave_wizard_form" model="ir.actions.act_window">
+            <field name="name">Dedicated Team Leave</field>
+            <field name="res_model">hr.dedicated.team.leave.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_hr_dedicated_team_leave_wizard_form" />
+        </record>
+
+    </data>
+</openerp>

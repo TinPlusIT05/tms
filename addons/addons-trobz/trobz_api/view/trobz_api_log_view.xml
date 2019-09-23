@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+                        
+        <record id="trobz_api_log_tree" model="ir.ui.view">
+            <field name="name">trobz.api.log.tree</field>
+            <field name="model">trobz.api.log</field>
+            <field name="arch" type="xml">
+                <tree string="Fields">
+                    <field name="name" />
+                    <field name="uid" />
+                    <field name="model" />
+                    <field name="action" />
+                    <field name="resource_id" />
+                    <field name="status" />
+                    <field name="domain" />
+                    <field name="message" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="trobz_api_log_search_view" model="ir.ui.view">
+            <field name="name">dasboard_field_search_view</field>
+            <field name="model">trobz.api.log</field>
+            <field name="arch" type="xml">
+                <search string="Field Search">
+                    <field name="uid"/>
+                    <field name="model" />
+                    <field name="action" />
+                    <field name="message" />
+                    <field name="resource_id" />
+                    <field name="status" />
+                    <group expand="0" string="Group By...">
+                        <filter string="Date" context="{'group_by': 'name'}"/>
+                        <filter string="Model" context="{'group_by': 'model'}"/>
+                        <filter string="Action" context="{'group_by': 'action'}"/>
+                        <filter string="Status" context="{'group_by': 'status'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="trobz_api_log_form" model="ir.ui.view">
+            <field name="name">trobz.api.log.form</field>
+            <field name="model">trobz.api.log</field>
+            <field name="arch" type="xml">
+                <form string="Field">
+                    
+                    <group>
+	                    <field name="name" />
+	                    <field name="uid" />
+	                    <field name="status" />
+	                </group>
+	                <group>    
+	                    <field name="model" />
+                        <field name="action" />
+	                    <field name="resource_id" />
+                    </group>
+                    <group colspan="4">
+                        <field name="domain" />
+                        <field name="message" />
+                        <field name="vals" widget="serialized"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+
+        
+    </data>
+</openerp>

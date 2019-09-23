@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+        
+        <record id="product.list0" model="product.pricelist">
+            <field name="currency_id" ref="base.AED"/>
+        </record>
+        
+        <record id="purchase.list0" model="product.pricelist">
+            <field name="currency_id" ref="base.EUR"/>
+        </record>
+        
+    </data>
+</openerp>
+

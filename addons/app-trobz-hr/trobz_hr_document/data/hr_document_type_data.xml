@@ -1,0 +1,21 @@
+<openerp>
+	<data>
+
+        <record model="hr.document.type" id="doc_type_passport">
+             <field name="name">Passport</field>
+        </record>
+
+        <record model="hr.document.type" id="doc_type_visa">
+             <field name="name">Visa</field>
+        </record>
+
+        <record model="hr.document.type" id="doc_type_identification_card">
+             <field name="name">Identification Card</field>
+        </record>
+
+        <record model="hr.document.type" id="doc_type_driving_license">
+             <field name="name">Driving License</field>
+        </record>
+
+	</data>
+</openerp>

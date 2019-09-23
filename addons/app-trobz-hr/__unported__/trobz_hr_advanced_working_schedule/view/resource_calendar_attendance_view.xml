@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="view_resource_calendar_attendance_tree" model="ir.ui.view">
+            <field name="name">resource.calendar.attendance.tree</field>
+            <field name="model">resource.calendar.attendance</field>
+            <field name="inherit_id" ref="resource.view_resource_calendar_attendance_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="editable">bottom</attribute>
+                </tree>
+                <field name="name" position="after">
+                    <field name="day" on_change="onchange_schedule(advanced_schedule_id, day, context)"/>
+                </field>
+                <field name="name" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="hour_from" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="hour_to" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="dayofweek" position="after">
+                    <field name="advanced_schedule_id" on_change="onchange_schedule(advanced_schedule_id, day, context)"/>
+                    <field name="is_flexible"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

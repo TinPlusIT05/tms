@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+  <data>
+    <record model='ir.rule' id='deferred_processing_task_3f8cd13203d198da2d5e5ef2b0e258d2'>
+      <field ref='deferred_processing.model_deferred_processing_task' name='model_id'/>
+      <field name='domain_force'>[('user_id','=',user.id)]</field>
+      <field name='name'>Deferred Processing</field>
+      <field name='perm_create' eval='True'/>
+      <field name='perm_read' eval='True'/>
+      <field name='perm_unlink' eval='True'/>
+      <field name='perm_write' eval='True'/>
+    </record>
+  </data>
+</openerp>

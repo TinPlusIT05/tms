@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_working_hours_export_wizard_form" model="ir.ui.view">
+            <field name="name">view.working.hours.export.wizard.form</field>
+            <field name="model">working.hours.export.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Working Hours Export Wizard" version="7.0">
+                    <group>
+                        <group>
+                            <field name="from_date" />
+                        </group>
+                        <group>
+                            <field name="to_date" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="project_ids" widget="many2many_tags" />
+                    </group>
+                    <footer>
+                        <button name="button_export_working_hour_to_report" string="Export"
+                            type="object" class="oe_highlight" context="{'xls_export': True}"/>
+                        <label string="or " />
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_working_hours_dedicate_export_wizard_form" model="ir.ui.view">
+            <field name="name">view.working.hours.dedicate.export.wizard.form</field>
+            <field name="model">working.hours.export.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Working Hours (Dedicate) Export Wizard" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="from_date" />
+                            </group>
+                            <group>
+                                <field name="to_date" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="project_ids" widget="many2many_tags" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="button_export_working_hour_dedicate" string="Export"
+                            type="object" class="oe_highlight" context="{'xls_export': True}"/>
+                        <label string="or " />
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_working_hours_export_wizard_form" model="ir.actions.act_window">
+            <field name="name">Working Hours Export</field>
+            <field name="res_model">working.hours.export.wizard</field>
+            <field name="src_model">tms.working.hour</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_working_hours_export_wizard_form" />
+        </record>
+
+        <record id="action_open_working_hours_dedicate_export_wizard_form" model="ir.actions.act_window">
+            <field name="name">Working Hours(Dedicate Team)</field>
+            <field name="res_model">working.hours.export.wizard</field>
+            <field name="src_model">tms.working.hour</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_working_hours_dedicate_export_wizard_form" />
+        </record>
+    </data>
+</openerp>

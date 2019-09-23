@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="booking_resource_tree" model="ir.ui.view">
+			<field name="name">booking.resource.tree</field>
+			<field name="model">booking.resource</field>
+			<field name="arch" type="xml">
+				<tree string="Booking Resource">
+					<field name="name"/>
+				    <field name="resource_ref"/>
+                    <field name="origin_ref"/>
+                    <field name="target_ref"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="css_class"/>
+                    <field name="message"/>
+                </tree>
+			</field>
+		</record>
+		
+		<record id="booking_resource_form" model="ir.ui.view">
+			<field name="name">booking.resource.form</field>
+			<field name="model">booking.resource</field>
+			<field name="arch" type="xml">
+				<form string="Resource Booking" version="7.0">
+					<sheet>
+						<group col="4">
+							<field name="name"/>
+                            
+                            <field name="chart_id" widget="booking_chart_selector" />
+							
+							<field name="date_start"/>
+							<field name="date_end"/>
+							<field name="css_class"/>
+							
+							<field name="tag_ids"  widget="many2many_tags" placeholder="Tags..."/>
+							
+							<separator string="Resource" colspan="4"/>
+							<field name="resource_ref"  widget="booking_resource_selector" />
+							
+							<separator string="Origin" colspan="4"/>
+							<field name="origin_ref" widget="booking_supported_models_selector" />
+							
+							<separator string="Target" colspan="4"/>
+							<field name="target_ref" widget="booking_supported_models_selector" />
+							
+							<separator string="Message" colspan="4"/>
+							<field name="message" colspan="4" nolabel="1"/>
+							
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="booking_resource_search" model="ir.ui.view">
+			<field name="name">booking.resource.search</field>
+			<field name="model">booking.resource</field>
+			<field name="arch" type="xml">
+				<search string="Resource Booking">
+					<field name="name" />
+					
+				</search>
+			</field>
+		</record>
+    	        
+                  
+	</data>
+</openerp>

@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        
+        <record model="ir.ui.view" id="view_hr_payslip_parameter_tree">
+            <field name="name">hr.payslip.parameter.tree</field>
+            <field name="model">hr.payslip.parameter</field>
+            <field name="arch" type="xml">
+                <tree string="Payslip Parameter">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_payslip_parameter_form">
+            <field name="name">hr.payslip.parameter.form</field>
+            <field name="model">hr.payslip.parameter</field>
+            <field name="arch" type="xml">
+                <form string="Payslip Parameter" version="7.0">
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                    <separator string="Notes"/>
+                    <field name="note" placeholder="Add Notes"/>
+                </form>
+            </field>
+        </record>
+                
+        <record model="ir.ui.view" id="view_hr_payslip_parameter_search">
+            <field name="name">hr.payslip.parameter.search</field>
+            <field name="model">hr.payslip.parameter</field>
+            <field name="arch" type="xml">
+                <search string="Payslip Parameter">
+                    <field name="name"/>
+                    <field name="code"/>
+                </search>
+            </field>
+        </record>    
+        
+    </data>
+</openerp>

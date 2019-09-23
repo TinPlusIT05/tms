@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<menuitem id="menu_erppeek_report_all" parent="base.menu_reporting"
+			name="ERP Peeks" sequence="50" />
+
+		<menuitem action="action_view_erppeek_report_config" id="menu_erppeek_report_config_report"
+			parent="menu_erppeek_report_all" sequence="0" />
+
+		<menuitem action="action_view_erppeek_report_wizard_form" id="menu_erppeek_report_wizard"
+			parent="menu_erppeek_report_all" sequence="20" />
+	</data>
+</openerp>

@@ -1,0 +1,12 @@
+diff --git a/openerp/http.py b/openerp/http.py
+index 18b91b94e206d..4c401f6a91650 100644
+--- a/openerp/http.py
++++ b/openerp/http.py
+@@ -1476,6 +1476,7 @@ def db_filter(dbs, httprequest=None):
+     d, _, r = h.partition('.')
+     if d == "www" and r:
+         d = r.partition('.')[0]
++    d, h = re.escape(d), re.escape(h)
+     r = openerp.tools.config['dbfilter'].replace('%h', h).replace('%d', d)
+     dbs = [i for i in dbs if re.match(r, i)]
+     return dbs

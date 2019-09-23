@@ -1,0 +1,66 @@
+/**************/
+/* LOGIN FORM */
+/**************/
+.oe_website_login_container {
+	width: auto;
+	margin: 0;
+	background-image: url('../img/nyc.jpg')
+}
+
+.tms_login {
+	width: 425px;
+	margin: 40px auto 0px auto;
+	padding: 10px;
+  	background-color: white;
+  	-webkit-box-shadow: 7px 7px 8px -2px rgba(0,0,0,1);
+	-moz-box-shadow: 7px 7px 8px -2px rgba(0,0,0,1);
+	box-shadow: 7px 7px 8px -2px rgba(0,0,0,1);
+}
+
+.tms_login img, .tms_icon img {
+	width: 100%;
+	height: auto;
+}
+
+.oe_website_login_container form {
+	width: 90%;
+	margin: 10px auto
+}
+
+.tms_icon.dashboard {
+	background-color: #ADA07F;
+}
+
+.tms_icon.pm {
+	background-color: #91D6D2;
+}
+
+.tms_icon.support {
+	background-color: #F37411;
+}
+
+.mt_minus {
+	margin-top: -25px;
+}
+
+.tms_summary {
+	margin: 20px auto 80px auto;
+	padding: 10px;
+	display: block;
+	text-align: center;
+	color: white;
+	font-size: 2em;
+}
+
+.tms_description {
+	margin-top: 15px;
+	font-size: 20px;
+}
+
+.block_summary {
+	margin-bottom: 30px;
+}
+
+footer {
+	background-color: #FFFFFF;
+}

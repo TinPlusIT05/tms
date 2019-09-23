@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- add field password inside user form view -->
+        <record id="view_res_users_form_adjust_password" model="ir.ui.view">
+            <field name="name">trobz.res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+            	<data>
+	            	<div class="oe_title" position="replace">
+		                <div class="oe_title">
+		                    <label for="name" class="oe_edit_only"/>
+		                    <h1><field name="name"/></h1>
+		                    <label for="login" class="oe_edit_only"/>
+		                    <h2><field name="login"/></h2>
+		                    <label for="new_password" class="oe_edit_only"/>
+		                    <h2><field name="new_password" password="True" attrs="{'required': [('id','=',False)]}"/></h2>
+		                    <label for="group_profile_id" class="oe_edit_only" attrs="{'invisible': [('id','=',1)]}"/>
+		                    <h2><field name="group_profile_id" attrs="{'required': [('id','!=',1)], 'invisible': [('id','=',1)]}"/></h2>
+		                    <label for="company_id" class="oe_edit_only" groups="base.group_multi_company"/>
+                            <field name="company_id" context="{'user_preference': 0}" groups="base.group_multi_company"/>
+		                </div>
+	                </div>
+	                <field name="notify_email" position="before">
+	                	 <field name="email"/>
+	                </field>
+	                
+                </data>
+                   
+            </field>
+        </record>
+        
+        <record id="view_res_users_tree_inherit" model="ir.ui.view">
+            <field name="name">res.users.tree</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='login']" position="after">
+                   <field name="group_profile_id"/>
+                </xpath>
+                <xpath expr="/tree" position="attributes">
+					<attribute name="colors">grey: active==False</attribute>
+				</xpath>
+				<xpath expr="/tree" position="inside">
+					<field name="active" invisible="1" />
+				</xpath>
+            </field>
+        </record>
+        
+        <record id="view_res_users_search_inherit" model="ir.ui.view">
+			<field name="name">res.users.search</field>
+			<field name="model">res.users</field>
+			<field name="inherit_id" ref="base.view_users_search"/>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<field name="group_profile_id" />
+					<group expand="0" string="Group By...">
+						<filter string="Profile" context="{'group_by': 'group_profile_id'}"/>
+					</group>
+				</field>
+				
+			</field>
+		</record>
+    </data>
+</openerp>

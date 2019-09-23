@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <report
+            id="hr_dedicated_team_leave_report_xlsx"
+            model="hr.dedicated.team.leave.wizard"
+            string="Print to XLSX"
+            report_type="xlsx"
+            name="report.dedicated.team.leave.xlsx"
+            file="report.dedicated.team.leave.xlsx"
+            attachment_use="False"
+        />  
+	</data>
+</openerp>

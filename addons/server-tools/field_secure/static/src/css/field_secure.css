@@ -1,0 +1,53 @@
+.wizard-step-names .wizard-step,
+.oe_dialog_custom_buttons .loading-wrapper,
+.oe_dialog_custom_buttons .button-wrapper,
+.oe_dialog_custom_buttons .loading-wrapper,
+.oe_dialog_custom_buttons .message-wrapper,
+.oe_dialog_custom_buttons .button-wrapper .next-button,
+.oe_dialog_custom_buttons .button-wrapper .submit-button {
+    display: none;
+}
+
+.wizard-step-names .wizard-step.active,
+.oe_dialog_custom_buttons .loading-wrapper.active,
+.oe_dialog_custom_buttons .button-wrapper.active,
+.oe_dialog_custom_buttons .loading-wrapper.active,
+.oe_dialog_custom_buttons .message-wrapper.active,
+.oe_dialog_custom_buttons .button-wrapper .next-button.active,
+.oe_dialog_custom_buttons .button-wrapper .submit-button.active {
+    display: inline-block;
+}
+
+.wizard-step-names .wizard-step {
+    padding: 5px 0px;
+}
+
+.oe_dialog_custom_buttons .secure-buttons-wrapper {
+    overflow: hidden;
+}
+.oe_dialog_custom_buttons .button-wrapper {
+    float: right;
+}
+
+.request-secure {
+    border: 0px !important;
+    background: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    padding: 2px 5px !important;
+    margin: 0px 0px 0px 5px !important;
+}
+.secure-textarea-input {
+	resize: vertical;
+	width: 100% !important;
+	min-height: 120px !important;
+}
+
+.field-secure-value {
+    position: relative;
+}
+.field-secure-value input + .field-secure-icon-indicator,
+.field-secure-value textarea + .field-secure-icon-indicator {
+    position: absolute; right: 10px; top: 7px;
+}

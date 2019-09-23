@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+
+		<record model="ir.cron" id="weekly_send_mail_from_hr_documents">
+			<field name="name">Weekly Send Mail From HR Documents</field>
+			<field name="user_id" ref="base.user_root" />
+			<field name="interval_number">1</field>
+			<field name="interval_type">weeks</field>
+			<field name="numbercall">-1</field>
+			<field eval="False" name="doall" />
+			<field eval="True" name="active" />
+			<field eval="'hr.employee'" name="model" />
+			<field eval="'run_send_email_cron'" name="function" />
+			<field eval="'()'" name="args" />
+            <field name="nextcall" eval="(DateTime.now()+timedelta(days=7-DateTime.now().weekday())).strftime('%Y-%m-%d 00:00:00')"/>
+		</record>
+
+	</data>
+</openerp>

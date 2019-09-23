@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record id="view_detect_absence_wizard_form" model="ir.ui.view">
+            <field name="name">view.detect.absence.wizard.form</field>
+            <field name="model">detect.absence.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Detect Absence" version="7.0">
+                	<group>
+                		<field name="date"/>
+                	</group>
+                	
+					<footer>
+                    	<button name="submit" string="Print" type="object" class="oe_highlight" />
+                        	or
+                    	<button string="Cancel" class="oe_link" special="cancel" />
+                	</footer>
+                </form>
+            </field>
+        </record>
+	</data>
+</openerp>

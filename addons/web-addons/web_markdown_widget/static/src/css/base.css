@@ -1,0 +1,40 @@
+.openerp .oe_form .oe_form_field_markdown {
+	width: 100%;
+}
+.openerp .oe_form .oe_form_field_markdown .oe_form_text_content {
+	text-overflow: ellipsis;
+	display: inline-block;
+	overflow-x: hidden;
+	width: 100%;
+}
+.openerp .oe_form .oe_form_field_markdown textarea {
+	width: 100%;
+}
+.openerp .oe_form .oe_notebook_page .oe_form_field_markdown textarea {
+	min-height: 96px;
+}
+.openerp .oe_form .oe_form_field_markdown.oe_inline, .openerp .oe_form .oe_form_field_markdown.oe_inline > textarea {
+	width: 500px;
+}
+/* hacking style for desired display */
+.openerp .oe_form .oe_form_field_markdown .oe_form_text_content blockquote,
+.openerp .oe_list_content > tbody > tr > td.oe_list_field_cell.oe_list_field_markdown blockquote {
+	background: #EEE; margin: 5px; padding: 5px 10px;
+}
+.openerp .oe_form .oe_form_field_markdown .oe_form_text_content table {
+	border-collapse: collapse;
+}
+.openerp .oe_form .oe_form_field_markdown .oe_form_text_content table th,
+.openerp .oe_form .oe_form_field_markdown .oe_form_text_content table td,
+.openerp .oe_list_content > tbody > tr > td.oe_list_field_cell.oe_list_field_markdown table th,
+.openerp .oe_list_content > tbody > tr > td.oe_list_field_cell.oe_list_field_markdown table td {
+	border: 1px solid #DDD; padding: 5px 10px;
+}
+.openerp .oe_form .oe_form_field_markdown .oe_form_text_content table th,
+.openerp .oe_list_content > tbody > tr > td.oe_list_field_cell.oe_list_field_markdown table th {
+	background: #EEE;
+}
+
+.openerp .oe_list_content > tbody > tr > td.oe_list_field_cell.oe_list_field_markdown {
+	white-space: normal; /* display: block; max-height: 120px; overflow-y: scroll; */
+}

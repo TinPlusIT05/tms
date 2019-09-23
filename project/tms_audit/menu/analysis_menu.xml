@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <!--
+        ================================
+        ANALYSIS > Audit
+        ================================
+        -->
+        <menuitem
+            name="Audit" id="menu_tms_audit_secondary"
+            parent="tms_modules.analysis_main_menu" sequence="2" />
+
+        <!-- Analysis > Audit > Audit Test -->
+        <menuitem
+            action="action_open_tms_audit_test"
+            name="Audit Test" id="menu_tms_audit_test"
+            parent="menu_tms_audit_secondary" sequence="1" />
+
+        <!-- Analysis > Audit > Audit Result -->
+        <menuitem
+            action="action_open_tms_audit_result"
+            name="Audit Result" id="menu_tms_audit_result"
+            parent="menu_tms_audit_secondary" sequence="2" />
+
+        <!-- Analysis > Audit > Audit Board -->
+        <menuitem
+            action="action_open_tms_audit_board"
+            name="Audit Board" id="menu_tms_audit_board"
+            parent="menu_tms_audit_secondary" sequence="3" />
+    </data>
+</openerp>

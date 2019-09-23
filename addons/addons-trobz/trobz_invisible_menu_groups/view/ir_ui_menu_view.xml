@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="menu_form_inherit_view">
+			<field name="name">menu.form.inherit.view</field>
+			<field name="model">ir.ui.menu</field>
+			<field name="inherit_id" ref="base.edit_menu_access" />
+			<field name="arch" type="xml">
+				<page string="Groups" position="after">
+                    <page string="Invisible Groups">
+                        <field name="invisible_groups_ids"/>
+                    </page>
+                </page>
+			</field>
+		</record>
+    </data>
+</openerp>

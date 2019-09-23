@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_add_comment_ticket_wizard" model="ir.ui.view">
+			<field name="name">Add Comment</field>
+			<field name="model">add.comment.ticket.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Update Subcription Wizard" version="8.0">
+					<sheet>
+						<group colspan="2">
+							<field name="comment" widget="bootstrap_markdown" nolabel="1" colspan="2" placeholder="Write a comment here..." />
+						</group>
+						<footer>
+							<button icon="gtk-execute" string="Add Comment"
+								name="button_add_comment" type="object" />
+							or
+							<button icon="gtk-cancel" special="cancel" string="Cancel" />
+						</footer>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		        
+        <record id="action_add_comment_in_ticket" model="ir.actions.act_window">
+            <field name="name">Add Comment</field>
+            <field name="res_model">add.comment.ticket.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_add_comment_ticket_wizard"/>
+            <field name="target">new</field>
+            <field name="context">{'ticket_id': active_id}</field>
+        </record>
+	</data>
+</openerp>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data>
+  		<record id="public_holiday_fr_translations" model="ir.config_parameter">
+            <field name="key">public_holiday_fr_translations</field>
+            <field name="value"><![CDATA[
+{
+	"fr_FR": {
+		"New Year's Day": "Jour de l' an",
+		"Easter Monday": "Lundi de Pâques",
+		"Labour Day": "Fête des Travailleurs",
+		"Victory in Europe Day": "Fête de la Victoire 1945",
+		"Ascension Day": "Jeudi de l'Ascension",
+		"Whit Monday": "Lundi de Pentecôte",
+		"Bastille Day": "Fête Nationale",
+		"Assumption of Mary to Heaven": "Assomption",
+		"All Saints' Day": "Toussaint",
+		"Veteran Day, Armistice Day, Remembrance Day": "Armistice de 1918",
+		"Christmas Day": "Noël",
+	},
+	"vi_VN": {
+		"New Year's Day": "Năm Mới",
+		"Easter Monday": "Thứ Hai Phục Sinh",
+		"Labour Day": "Ngày Quốc Tế Lao Động",
+		"Victory in Europe Day": "Fête de la Victoire 1945",
+		"Ascension Day": "Jeudi de l'Ascension",
+		"Whit Monday": "Lundi de Pentecôte",
+		"Bastille Day": "Ngày Quốc khánh",
+		"Assumption of Mary to Heaven": "Assomption",
+		"All Saints' Day": "Ngày Lễ Các Thánh",
+		"Veteran Day, Armistice Day, Remembrance Day": "Armistice de 1918",
+		"Christmas Day": "Ngày lễ Noel",
+	}
+}
+            ]]></field>
+        </record>
+        
+	</data>
+</openerp>

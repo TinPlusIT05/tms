@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<!-- tree view -->
+		<record model="ir.ui.view" id="view_hr_holidays_line_tree">
+			<field name="name">view.hr.holidays.line.tree</field>
+			<field name="model">hr.holidays.line</field>
+			<field name="arch" type="xml">
+				<tree string="Leave Request Lines">
+					<field name="employee_id" />
+					<field name="holiday_id" string="Description" />
+					<field name="holiday_status_id" />
+					<field name="payment_type" invisible="1" />
+					<field name="first_date" widget="date" />
+					<field name="last_date"  widget="date" />
+					<field name="first_date_type" />
+					<field name="last_date_type" />
+					<field name="number_of_days_temp" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+		
+		<!-- search view -->
+		<record model="ir.ui.view" id="view_hr_holidays_line_search">
+			<field name="name">view.hr.holidays.line.search</field>
+			<field name="model">hr.holidays.line</field>
+			<field name="arch" type="xml">
+				<search string="Leave Request Lines">
+					<!--  filter -->
+                    <filter name="open" string="Open" domain="[('employee_id.active','=',True), ('state','not in',('cancel','refuse'))]"/>
+                    <filter name="filter_my_leaves" help="My Leaves" domain="[('employee_id.user_id','=', uid)]" />
+					<filter name="unpaid" string="Unpaid" domain="[('payment_type','=','unpaid')]" help="List unpaid leave request lines" />
+					<!-- Search fields -->
+                    <field name="first_date" widget="date" filter_domain="[('first_date','&gt;=',self)]" />
+					<field name="last_date" widget="date" filter_domain="[('last_date','&lt;=',self)]" />
+					<field name="period"/>
+					<field name="employee_id"/>
+                    <field name="holiday_status_id"/>
+					<!-- group by -->
+					<group expand="1" string="Group By">
+                        <filter name="group_type" string="Leave Type" domain="[]" context="{'group_by':'holiday_status_id'}"  />
+						<filter name="employee" string="Employee" domain="[]" context="{'group_by':'employee_id'}"  />
+						<filter string="Period" domain="[]" context="{'group_by':'first_date'}"  />
+					</group>
+				</search>
+			</field>
+		</record>
+		
+		<!-- form view -->
+		<record model="ir.ui.view" id="view_hr_holidays_line_form">
+			<field name="name">view.hr.holidays.line.form</field>
+			<field name="model">hr.holidays.line</field>
+			<field name="arch" type="xml">
+				<form string="Leave Request Lines">
+					<group>
+						<group>
+							<field name="employee_id" readonly="1"/>
+							<field name="holiday_id" readonly="1" string="Description" />
+							<field name="holiday_status_id" readonly="1"/>
+							<field name="number_of_days_temp" readonly="1"/>
+						</group>
+						<group>
+							<field name="first_date" widget="date" readonly="1"/>
+							<field name="last_date"  widget="date" readonly="1"/>
+							<field name="first_date_type" readonly="1"/>
+							<field name="last_date_type" readonly="1"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		<!-- calendar view -->
+		<record model="ir.ui.view" id="view_hr_holidays_line_calendar">
+			<field name="name">view.hr.holidays.line.calendar</field>
+			<field name="model">hr.holidays.line</field>
+			<field name="type">calendar</field>
+			<field name="arch" type="xml">
+				<calendar date_start="first_date" date_stop="last_date" color="employee_id">
+					<field name="employee_id"/>
+					<field name="holiday_status_id"/>
+				</calendar>
+			</field>
+		</record>
+		 
+		<record model="ir.actions.act_window" id="hr_holidays.open_company_allocation">
+            <field name="name">Leaves Summary</field>
+            <field name="res_model">hr.holidays.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="view_hr_holidays_line_tree"/>
+            <field name="context">{'search_default_open': 1, 'search_default_employee': 1, 'search_default_group_type': 1}</field>
+            <field name="domain">[('holiday_id.holiday_type', '=', 'employee'), ('state', 'not in', ('refuse', 'cancel'))]</field>
+            <field name="search_view_id" ref="view_hr_holidays_line_search"/>
+        </record>
+	</data>
+</openerp>

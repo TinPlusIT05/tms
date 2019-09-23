@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="menu_view_localization"
+            parent="hr.menu_hr_configuration"
+            name="Localization"
+            sequence="60"/>
+
+        <record id="open_view_res_country_state_form"
+                model="ir.actions.act_window">
+            <field name="name">States</field>
+            <field name="res_model">res.country.state</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+                id="menu_view_res_country_state_form"
+                action="open_view_res_country_state_form"
+                parent="menu_view_localization"
+                sequence="10"/>
+
+        <record id="open_view_res_country_state_district_form"
+                model="ir.actions.act_window">
+            <field name="name">District</field>
+            <field name="res_model">res.country.state.district</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+                id="menu_view_res_country_state_district_form"
+                action="open_view_res_country_state_district_form"
+                parent="menu_view_localization"
+                sequence="20"/>
+
+        <record id="open_view_res_country_state_district_ward_form"
+                model="ir.actions.act_window">
+            <field name="name">Commune/Ward</field>
+            <field name="res_model">res.country.state.district.ward</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                id="menu_view_res_country_state_district_ward_form"
+                action="open_view_res_country_state_district_ward_form"
+                parent="menu_view_localization"
+                sequence="30"/>
+    </data>
+</openerp>

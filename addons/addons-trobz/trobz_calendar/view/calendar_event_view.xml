@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- add field resource_field in calendar.event form view -->
+        <record id="trobz_crm_view_calendar_event_form_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.inherit.form</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location']" position="after">
+                    <field name="resource_id" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_calendar_event_form_popup_inherit" model="ir.ui.view">
+            <field name="name">Meetings Popup Inherit</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form_popup" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='location']" position="after">
+                    <field name="resource_id" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

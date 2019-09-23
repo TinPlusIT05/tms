@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <menuitem
+            name="Mailing Lists"
+            id="mailman_mailinglist"
+            action="action_view_mailman_list"
+            parent="base.menu_users"
+            sequence="500"/>
+            
+    </data>
+</openerp>

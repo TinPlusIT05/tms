@@ -1,0 +1,23 @@
+<openerp>
+	<data>
+		<record id="hr_employee_view_form2_inherit" model="ir.ui.view">
+			<field name="name">hr.hr.employee.view.form2.inherit</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//div[@name='button_box']" position="inside">
+                        <button name="%(action_hr_job_history_employee)d" 
+                            class="oe_stat_button"
+                            help="Show history of changing Job Title on his contracts."
+                            icon="fa-pencil"
+                            type="action"
+                            groups="base.group_hr_manager">
+                            <field name="job_history_count" widget="statinfo" string="Position History"/>
+                        </button>
+                     </xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</openerp>

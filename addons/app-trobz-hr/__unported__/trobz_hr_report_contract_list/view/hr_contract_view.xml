@@ -1,0 +1,58 @@
+<openerp>
+	<data>
+		<record id="hr_contract_view_form_inherit" model="ir.ui.view">
+			<field name="name">hr.contract.view.form.inherit</field>
+			<field name="model">hr.contract</field>
+			<field name="inherit_id" ref="hr_payroll_account.hr_contract_form_inherit"/>
+			<field eval="1" name="priority"/>
+			<field name="arch" type="xml">
+				<xpath expr="//group[@string='Duration']" position="after">
+					<group string="Department Hierarchy">
+						<field name ='root_department_id'/>
+						<field name ='team_id'/>
+						<field name ='sub_team_id'/>
+					</group>
+				</xpath>
+			</field>
+		</record>
+		<record id="hr_payroll_hr_contract_view_form_gt_inherit" model="ir.ui.view">
+			<field name="name">hr.payroll.hr.contract.view.form.gt.form.inherit</field>
+			<field name="model">hr.contract</field>
+			<field name="inherit_id" ref="hr_payroll.hr_contract_form_inherit"/>
+			<field eval="1" name="priority"/>
+			<field name="arch" type="xml">
+				<field name="struct_id" position="attributes">
+					<attribute name="attrs">{'readonly':[('employee_active','=',False)]}</attribute>
+				</field>
+				<field name="schedule_pay" position="attributes">
+					<attribute name="attrs">{'readonly':[('employee_active','=',False)]}</attribute>
+				</field>
+			</field>
+		</record>
+		<record id="hr_contract_view_tree_inherit" model="ir.ui.view">
+			<field name="name">hr.contract.view.tree.inherit</field>
+			<field name="model">hr.contract</field>
+			<field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+			<field eval="1" name="priority"/>
+			<field name="arch" type="xml">
+				<field name="employee_id" position="after">
+					<field name ='root_department_id' invisible='1'/>
+					<field name ='team_id' invisible='1'/>
+					<field name ='sub_team_id' invisible='1'/>
+				</field>
+			</field>
+		</record>
+		
+		<record id="view_hr_contract_search_inherit" model="ir.ui.view">
+            <field name="name">view.hr.contract.search.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Group By...']/filter[@string='Contract Type']" position="after">
+					<filter string="Root Department" domain="" context="{'group_by':'root_department_id'}"/>
+					<filter string="Team" domain="" context="{'group_by':'team_id'}"/>
+				</xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

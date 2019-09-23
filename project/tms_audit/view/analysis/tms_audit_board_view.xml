@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="view_tms_audit_board_search" model="ir.ui.view">
+            <field name="name">view_tms_audit_board_search</field>
+            <field name="model">tms.audit.board</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Audit Board">
+                    <group string="Fields">
+                        <field name="project_id" />
+                    </group>
+                    <field name="active" />
+                    <field name="noti_trobz_audit" />
+                    <filter name="noti_trobz_audit" string="Notice Trobz Audit" domain="[('noti_trobz_audit', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_tms_audit_board_tree" model="ir.ui.view">
+            <field name="name">view_tms_audit_board_tree</field>
+            <field name="model">tms.audit.board</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Audit Board">
+                    <field name="project_id" />
+                    <field name="project_health" />
+                    <field name="failed_tests" />
+                    <field name="pass_tests" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_audit_board_form" model="ir.ui.view">
+            <field name="name">view_tms_audit_board_form</field>
+            <field name="model">tms.audit.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Audit Board">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="project_id" />
+                                <field name="project_health" widget="audit_progress_bar" />
+								<field name="error_message"/>
+                            </group>
+                            <group>
+                                <field name="pass_tests" />
+                                <field name="failed_tests" />
+                            </group>
+                            <group>
+                                <field name="write_date" />
+                            </group>
+                        </group>
+                        <group>
+                        	<button name="btn_recalculate_project_health" type="object" string="Re-calculate Project Health" />
+                        </group>
+
+                        <!-- list of available tested audit standards -->
+                        <group>
+                            <field name="audit_test_result_ids" nolabel="1" colspan="4">
+                                <!-- click on the row should not open popup, we have all information -->
+                                <tree string="Audit Results" editable="top" colors="#F00:result=='0';#1E6600:result=='1'">
+                                    <field name="audit_test_id" />
+                                    <field name="target" />
+                                    <field name="result" />
+                                    <field name="score" />
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tms_audit_board_form_tms_audit_list" model="ir.ui.view">
+            <field name="name">view_tms_audit_board_form</field>
+            <field name="model">tms.audit.board</field>
+            <field name="type">tms_audit_board_list</field>
+            <field name="arch" type="xml">
+                <tms_audit_board_list />
+            </field>
+        </record>
+
+        <record id="action_open_tms_audit_board" model="ir.actions.act_window">
+            <field name="name">Audit Board</field>
+            <field name="res_model">tms.audit.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tms_audit_board_list</field>
+            <field name="context">{'search_default_noti_trobz_audit': 1}</field>
+        </record>
+    </data>
+</openerp>

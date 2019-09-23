@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="hr_payslip_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.inherit</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <button string="Confirm" position="replace">
+                </button>
+                <button string="Compute Sheet" position="after">
+                    <button string="Approve" name="hr_verify_sheet" states="draft" class="oe_highlight"/>
+                </button>
+                <field name="date_to" position="attributes">
+                    <attribute name="on_change">onchange_employee_id(date_from, date_to, employee_id, contract_id, context)</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

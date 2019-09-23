@@ -1,0 +1,9 @@
+<openerp>
+	<data>
+		<menuitem name="Position History"
+		    id="hr_job_history_menu"
+			parent="hr.menu_hr_reporting"
+			action="action_hr_job_history"
+		/>
+	</data>
+</openerp>

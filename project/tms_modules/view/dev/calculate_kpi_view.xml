@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+        <!-- calculate.kpi tree view -->
+        <record id="model_name_view_tree" model="ir.ui.view">
+            <field name="name">calculate.kpi.view.tree</field>
+            <field name="model">calculate.kpi</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sprint"/>
+                </tree>
+            </field>
+        </record>
+        <!-- calculate.kpi form view -->
+        <record id="calculate_kpi_view_form" model="ir.ui.view">
+            <field name="name">calculate.kpi.view.form</field>
+            <field name="model">calculate.kpi</field>
+            <field name="arch" type="xml">
+                    <form string="">
+                        <header>
+                            <button name="button_calculate_kpi" string="Calculate KPIs" class="oe_highlight"  type="object"/>
+                        </header>
+                        <sheet>
+                            <group>
+                                <field name="sprint" options="{'datepicker':{'beforeShowDay': [0,1,2,3,4,5]}}"/>
+                            </group>
+                            <group>
+                                <separator string="Global KPIs" colspan="4"/>
+								<field name="trobz_kpi_global" widget="text_WYSIWYG" nolabel="1" colspan="4"/>
+								<separator string="Developer KPIs" colspan="4"/>
+								<field name="trobz_kpi_developer" widget="text_WYSIWYG" nolabel="1" colspan="4"/>
+								<separator string="Milestone KPIs" colspan="4"/>
+								<field name="trobz_kpi_milestone" widget="text_WYSIWYG" nolabel="1" colspan="4"/>
+                            </group>
+                        </sheet>
+                    </form>
+            </field>
+        </record>
+        <!-- calculate.kpi action window -->
+        <record id="action_tms_calculate_kpi" model="ir.actions.act_window">
+            <field name="name">Calculate KPIs</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">calculate.kpi</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_dedicated_resource_contract_form" model="ir.ui.view">
+            <field name="name">hr.dedicated.resource.contract.form</field>
+            <field name="model">hr.dedicated.resource.contract</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Dedicated Resource Contract">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="start_date" />
+                            </group>
+                            <group>
+                                <field name="employee_id" />
+                                <field name="end_date" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Comment">
+                                <field name="comment" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_hr_dedicated_resource_contract_tree" model="ir.ui.view">
+            <field name="name">hr.dedicated.resource.contract.tree</field>
+            <field name="model">hr.dedicated.resource.contract</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Dedicated Resource Contract">
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hr_dedicated_resource_contract_filter" model="ir.ui.view">
+            <field name="name">hr.dedicated.resource.contract.filter</field>
+            <field name="model">hr.dedicated.resource.contract</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Dedicated Resource Contract">
+                    <group string="Filters">
+                        <field name="name" />
+                        <field name="employee_id" />
+                        <filter string="Current" name="current"
+                            domain="[('start_date', '&lt;=', context_today().strftime('%%Y-%%m-%%d')), '|', ('end_date','&gt;',context_today().strftime('%%Y-%%m-%%d')), ('end_date','=',False)]" />
+                    </group>
+                    <group string="Group By">
+                        <filter string="Start Date" domain="[]"
+                            context="{'group_by':'start_date'}" />
+                        <separator />
+                        <filter string="End Date" domain="[]"
+                            context="{'group_by':'end_date'}" />
+                        <separator />
+                        <filter string="Employee" domain="[]"
+                            context="{'group_by':'employee_id'}" />
+                        <separator />
+                        <filter string="Partner" domain="[]"
+                            context="{'group_by':'name'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_hr_dedicated_resource_contract_gantt" model="ir.ui.view">
+            <field name="name">Dedicated Resource Contract Gantt</field>
+            <field name="model">hr.dedicated.resource.contract</field>
+            <field name="type">gantt</field>
+            <field name="arch" type="xml">
+                <gantt date_stop="end_date" date_start="start_date"
+                    string="Dedicated Resource Contract"
+                    default_group_by="employee_id" mode="year" color="employee_id">
+                </gantt>
+            </field>
+        </record>
+
+        <record id="action_hr_dedicated_resource_contract" model="ir.actions.act_window">
+            <field name="name">Dedicated Resource Contract</field>
+            <field name="res_model">hr.dedicated.resource.contract</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,gantt</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_current':1}</field>
+            <field name="search_view_id" ref="view_hr_dedicated_resource_contract_filter" />
+        </record>
+    </data>
+</openerp>

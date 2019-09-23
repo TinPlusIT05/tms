@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.cron" id="generate_hr_public_holiday_automatically">
+            <field name="name">Generate Public Holidays Automatically</field>
+            <field name="interval_number">12</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="True"/>
+            <field name="model" eval="'hr.public.holiday'"/>
+            <field name="function" eval="'automatic_generate_hr_public_holiday'"/>
+            <field name="args" eval="'()'" />
+        </record>
+	</data>
+</openerp>
+

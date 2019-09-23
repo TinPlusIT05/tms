@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- Employees Leave Request Details Wizard Form View -->
+		<record id="view_hr_holidays_detail" model="ir.ui.view">
+			<field name="name">hr.holidays.detail.form</field>
+			<field name="model">hr.holidays.detail</field>
+			<field name="arch" type="xml">
+				<form string="Leave Request Details" version="7.0">
+					<group>
+						<field name="year"/>
+					</group>
+					<footer>
+						<button name="execute_detail_employee" string="Watch"
+                            type="object" class="oe_highlight" />
+						<label string="or" />
+						<button special="cancel" string="Cancel" class="oe_link" />
+					</footer>
+				</form>
+			</field>
+        </record>
+
+		<!-- Action Open Employees Leave Request Details Wizard Form View -->
+		<record model="ir.actions.act_window" id="action_hr_holidays_detail">
+			<field name="name">Employees Leave Request Details</field>
+			<field name="res_model">hr.holidays.detail</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="view_hr_holidays_detail"/>
+			<field name="target">new</field>
+		</record>
+    </data>
+</openerp>

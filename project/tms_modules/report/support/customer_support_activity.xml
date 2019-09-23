@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Translatable template -->
+        <template id="report_customer_activity_support_document">
+        
+            <div class="header" style="padding-top:10px; padding-bottom:10px; width: 100%;">
+                <div class="row clearfix">
+                    <div class="col-md-12">
+                        <table style="width:100%;">
+                            <col width="70%" />
+                            <col width="35%" />
+                            <tr>
+	                            <td style="vertical-align: top; padding-left:20px;">
+	                                <img t-if="o.customer_id and o.customer_id.company_id.logo"
+	                                    t-att-src="'data:image/png;base64,%s' % o.customer_id.company_id.logo"
+	                                    style="padding-left:5px; max-height:70px" />
+	                            </td>
+	                            <td style="vertical-align: top; text-align:right; padding-right:10px; font-style:italic;">
+	                                <span t-esc="get_today()" />
+	                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" style="font-name: 'Arial'; font-size: 13px;">
+                <div class="row clearfix">
+                    <div class="col-md-12"
+                        style="text-align:center; padding:15px 0;">
+                        <h2>
+                            <b style="color:#EC7316">
+                                Activity Report
+                                <t t-if='o.description'>
+                                    -
+                                    <span t-field="o.description" />
+                                </t>
+                            </b>
+                        </h2>
+                    </div>
+                    <div class="col-md-12">
+                        <table style="margin-left:20px; width:95%; font-size:100%; border-collapse: collapse;">
+                            <col width="50%" />
+                            <col width="50%" />
+                            <tr>
+                                <td>
+                                    <b>Customer: </b>
+                                    <span t-field="o.customer_id" />
+                                </td>
+                                <td>
+                                    <b>Status date: </b>
+                                    <span t-esc="get_format_date(get_today(), o.lang)" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding-top:20px">
+                                    <p>
+                                        The tables below list the tickets approved by
+                                        <span t-field="o.customer_id"/><t t-if="data['form']['previous_status_date'] and get_previous_status_date(data['form']['previous_status_date'], o.lang, o.customer_id)"> since the last activity report on <span t-esc="data['form']['previous_status_date'] and get_previous_status_date(data['form']['previous_status_date'], o.lang, o.customer_id)"/></t>.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <t t-if="get_support_tickets(data['form'],'Consulting')">
+                        <div class="col-md-12"
+                            style="margin-left:20px; text-align:left;">
+                            <h2>
+                                <b style="background-color:#EC7316; color:#FFFFFF">Consulting</b>
+                            </h2>
+                        </div>
+                        <div class="col-md-12"
+                            style="margin-left:20px; text-align:left;">
+                            <b>
+                                Total:
+                                <span t-esc="get_total_workload(data['form'], 'Consulting')" />
+                                day(s)
+                            </b>
+                        </div>
+                        <div class="col-md-12">
+                            <table style="margin-left:20px;  width:95%; font-size:100%; border-collapse: collapse;">
+                                <col width="10%" />
+                                <col width="80%" />
+                                <col width="10%" />
+                                <thead>
+                                    <tr>
+                                        <th style="border: 1px solid black; padding:5px; text-align:center; vertical-align: middle;">Ticket ID</th>
+                                        <th style="border: 1px solid black; padding:5px; text-align:left; vertical-align: middle;">Description</th>
+                                        <th style="border: 1px solid black; padding:5px; text-align:center; vertical-align: middle;">
+                                            Workload
+                                            <br />
+                                            (days)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="get_support_tickets(data['form'],'Consulting')"
+                                    t-as="obj">
+                                    <tr>
+                                        <td style="border: 1px solid black; padding-top:5px; padding-bottom:5px; padding-right:5px; text-align:right">
+                                            <span t-esc="obj.name" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding-top:5px; padding-bottom:5px; padding-left:5px;">
+                                            <span t-esc="obj.summary" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding-top:5px; padding-bottom:5px; padding-right:5px; text-align:right">
+                                            <span t-esc="_format_workload_number(obj.workload_char)" />
+                                        </td>
+                                    </tr>
+                                </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+
+                    <t t-if="get_support_tickets(data['form'], 'Evolution')">
+                        <div class="col-md-12"
+                            style="margin-left:20px; text-align:left;">
+                            <h2>
+                                <b style="background-color:#EC7316 ;color:#FFFFFF">Evolutions</b>
+                            </h2>
+                        </div>
+                        <div class="col-md-12"
+                            style="margin-left:20px; text-align:left;">
+                            <b>
+                                Total:
+                                <span t-esc="get_total_workload(data['form'], 'Evolution')" />
+                                day(s)
+                            </b>
+                        </div>
+                        <div class="col-md-12">
+                            <table style="margin-left:20px; width:95%; font-size:100%; border-collapse: collapse;">
+                                <col width="10%" />
+                                <col width="80%" />
+                                <col width="10%" />
+                                <thead>
+                                    <tr>
+                                        <th
+                                            style="border: 1px solid black; padding:5px; text-align:center; vertical-align: middle;">Ticket ID</th>
+                                        <th
+                                            style="border: 1px solid black; padding:5px; text-align:left; vertical-align: middle;">Description</th>
+                                        <th
+                                            style="border: 1px solid black; padding:5px; text-align:center; vertical-align: middle;">
+                                            Workload
+                                            <br />
+                                            (days)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="get_support_tickets(data['form'],'Evolution')"
+                                    t-as="obj">
+                                    <tr>
+                                        <td style="border: 1px solid black; padding-right:5px; padding-top:5px; padding-bottom:5px; text-align:right">
+                                            <span t-esc="obj.name" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding-left:5px; padding-top:5px; padding-bottom:5px;">
+                                            <span t-esc="obj.summary" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding-right:5px; text-align:right; padding-top:5px; padding-bottom:5px; ">
+                                            <span t-esc="_format_workload_number(obj.workload_char)" />
+                                        </td>
+                                    </tr>
+                                </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+
+                    <t t-if="get_support_tickets(data['form'],'Other')">
+                        <div class="col-md-12"
+                            style="margin-left:20px; text-align:left;">
+                            <h2>
+                                <b style="background-color:#EC7316 ;color:#FFFFFF">Other</b>
+                            </h2>
+                        </div>
+                        <div class="col-md-12"
+                            style="margin-left:20px; text-align:left;">
+                            <b>
+                                Total:
+                                <span t-esc="get_total_workload(data['form'], 'Other')" />
+                                day(s)
+                            </b>
+                        </div>
+                        <div class="col-md-12">
+                            <table style="margin-left:20px; width:95%; font-size:100%; border-collapse: collapse;">
+                                <col width="10%" />
+                                <col width="80%" />
+                                <col width="10%" />
+                                <thead>
+                                    <tr>
+                                        <th style="border: 1px solid black; padding:5px; text-align:center; vertical-align: middle;">Ticket ID</th>
+                                        <th style="border: 1px solid black; padding:5px; text-align:left; vertical-align: middle;">Description</th>
+                                        <th style="border: 1px solid black; padding:5px; text-align:center; vertical-align: middle;">
+                                            Workload
+                                            <br />
+                                            (days)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <t t-foreach="get_support_tickets(data['form'],'Other')"
+                                    t-as="obj">
+                                    <tr>
+                                        <td style="border: 1px solid black; padding-right:5px; padding-top:5px; padding-bottom:5px; text-align:right">
+                                            <span t-esc="obj.name" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding-top:5px; padding-bottom:5px; padding-left:5px;">
+                                            <span t-esc="obj.summary" />
+                                        </td>
+                                        <td style="border: 1px solid black; padding-top:5px; padding-bottom:5px; padding-right:5px; text-align:right">
+                                            <span t-esc="_format_workload_number(obj.workload_char)" />
+                                        </td>
+                                    </tr>
+                                </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </div>
+            </div>
+
+            <div class="footer" style="padding: 10px 0 5px; width: 100%;">
+                <div class="row clearfix">
+                    <div class="col-md-12">
+                        <table style="margin-left:20px; width:95%;">
+                            <col width="70%" />
+                            <col width="30%" />
+                            <td style="vertical-align: top; padding-left:20px; font-style:italic;">
+                                <span t-field="o.customer_id" />
+                                <t t-if='o.description'>
+                                    -
+                                    <span t-field="o.description" />
+                                </t>
+                                - Activity Report
+                            </td>
+                            <td style="vertical-align: top; text-align:right; padding-right:10px;">
+                                <p style="font-size:100%;display:inline">
+                                    <span class="page" />
+                                    /
+                                    <span class="topage" />
+                                </p>
+                            </td>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="tms_modules.report_customer_support_activity_template">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <!-- This command use covert language for report -->
+                    <t t-raw="translate_doc(doc_id, doc_model, 'lang', 'tms_modules.report_customer_activity_support_document')" />
+                </t>
+            </t>
+        </template>
+
+        <record id="tms_modules.report_customer_support_activity_paper"
+            model="report.paperformat">
+            <field name="name">Support Activity A4</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report id="report_customer_support_activity" string="Support Activity"
+            model="customer.support.activity.wizard" report_type="qweb-pdf"
+            name="tms_modules.report_customer_support_activity_template" 
+            file="tms_modules.report_customer_support_activity_template" />
+
+        <report id="report_customer_support_activity_html" string="Support Activity"
+            model="customer.support.activity.wizard" report_type="qweb-html"
+            name="tms_modules.report_customer_support_activity_template_html"
+            file="tms_modules.report_customer_support_activity_template_html" />
+
+        <record id="report_customer_support_activity" model="ir.actions.report.xml">
+            <field name="paperformat_id"
+                ref="tms_modules.report_customer_support_activity_paper" />
+        </record>
+    </data>
+</openerp>

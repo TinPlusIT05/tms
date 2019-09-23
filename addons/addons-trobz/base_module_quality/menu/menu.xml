@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="quality_check_menu">
+            <field name="name">Quality Check</field>
+            <field name="res_model">module.quality.check</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="usage">menu</field>
+        </record>
+        <menuitem id="menu_quality_check" name="Quality Check" sequence="20" groups="base.group_system"
+             parent="base.menu_management" action="quality_check_menu"/>
+             
+        <act_window
+            name="Re-check Quality"
+            id="act_base_module_quality_recheck"
+            res_model="quality.check"
+            src_model="module.quality.check"
+            view_mode="form"
+            target="new"
+            />
+    </data>
+</openerp>

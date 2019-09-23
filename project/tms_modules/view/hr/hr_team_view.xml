@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- Team (form) > Activities button -->
+		<record id="action_tms_activity_from_team" model="ir.actions.act_window">
+            <field name="name">Activities</field>
+            <field name="res_model">tms.activity</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_activity_filter"/>
+            <field name="context">{'search_default_open': 1,
+            	'search_default_team_id': active_id}</field>    
+        </record>
+        
+		<!-- Team (form) > Projects button -->
+		<record id="action_tms_project_from_team" model="ir.actions.act_window">
+            <field name="name">Projects</field>
+            <field name="res_model">tms.project</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_project_filter"/>
+            <field name="context">{'search_default_open': 1,
+            	'search_default_team_id': active_id}</field>    
+        </record>
+        
+		<!-- Team (form) > Forge button -->
+		<record id="action_tms_forge_from_team" model="ir.actions.act_window">
+            <field name="name">Forge Tickets</field>
+            <field name="res_model">tms.forge.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_forge_ticket_filter"/>
+            <field name="context">{'search_default_open': 1,
+            	'tree_view_ref': 'tms_modules.view_tms_forge_ticket_tree',
+            	'search_default_team_id': active_id}</field>    
+        </record>
+        
+		<!-- Team (form) > Support button -->
+		<record id="action_tms_support_from_team" model="ir.actions.act_window">
+            <field name="name">Support Tickets</field>
+            <field name="res_model">tms.support.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_support_ticket_search"/>
+            <field name="context">{'search_default_open': 1,
+            	'tree_view_ref': 'tms_modules.view_tms_support_ticket_tree',
+            	'search_default_team_id': active_id}</field>    
+        </record>
+
+        <record  model="ir.ui.view" id="view_team_load_tree">
+            <field name="name">hr.team.tree</field>
+            <field name="model">hr.team</field>
+            <field name="arch" type="xml">
+            	<tree string="Teams">
+            	    <field name="name"/>
+                    <field name="team_manager"/>
+                    <field name="number_members" sum="Total Members"/>
+                    <field name="three_month_capacity" sum="Total Capacity"/>	
+                    <field name="total_workload" sum="Total Workload"/>
+                    <field name="load"/>
+            	</tree>
+            </field>
+        </record>    
+
+        <record id="view_hr_team_form" model="ir.ui.view">
+            <field name="name">hr.team.form</field>
+            <field name="model">hr.team</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Teams">
+                	<sheet>
+                    	<div class="oe_right oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                    icon="fa fa-exchange"
+                                    help="Open the list of related active activities for this team"
+                                    type='action'
+                                    name='%(action_tms_activity_from_team)d'>
+                            	<field name='number_activities' string="Activities" widget="statinfo"/>
+                            </button>
+                             <button class="oe_stat_button"
+                                    icon="fa fa-bolt"
+                                    type='action'
+                                    name='%(action_tms_project_from_team)d'>
+                            	<field name='number_project' widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button"
+                                    icon="fa fa-star"
+                                    type='action'
+                                    name='%(action_tms_forge_from_team)d'>
+                            	<field name='number_forge' widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button"
+                                    icon="fa fa-star-o"
+                                    type='action'
+                                    name='%(action_tms_support_from_team)d'>
+                            	<field name='number_support' widget="statinfo"/>
+                            </button>
+                        </div>
+                		<separator string="Team"/>
+	                    <group>
+	                        <group>
+		                        <field name="name"/>
+	                        </group>
+	                        <group>
+	                        	<field name='team_manager'/>
+	                        </group>
+	                    </group>
+	                    <group>
+	                    	<label for='members_ids' string='Members' colspan='4'/>
+	                    	<field name='members_ids' nolabel='1' >
+	                    		<tree>
+	                    			<field name='name'/>
+	                    			<field name='job_id'/>
+	                    			<field name='department_id'/>
+	                    			<field name='coach_id'/>
+	                    			<field name='mobile_phone'/>
+	                    			<field name='birthday'/>
+	                    			<field name='current_employee_capacity'/>
+	                    			<field name='employee_capacity_three_months'/>
+	                    		</tree>
+	                    	</field>
+	                    </group>
+	                    
+	                    <group>
+	                    	<field name="number_members" />
+	                    </group>
+	                    
+	                    <group string="DTM">
+	                    	<field name="dtm_workload" />
+	                    </group>
+	                    
+	                    <group string="Dev">
+	                    	<group>
+	                    		<field name="daily_capacity" />
+	                    		<field name="three_month_capacity" />
+	                    	</group>
+	                    	<group>
+	                    		<field name="total_workload" />
+	                    		<field name="load" />
+	                    	</group>
+	                    </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                    	<field name="message_follower_ids" widget="mail_followers"/>
+                    	<field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record  model="ir.ui.view" id="view_team_load_earch">
+            <field name="name">hr.team.search</field>
+            <field name="model">hr.team</field>
+            <field name="arch" type="xml">
+                <search string="Report Search">
+                
+                	<!-- Search -->
+                    <field name="name" string='Name'
+                        domain_filter="[('name', 'ilike', self)]"/>
+                    <field name="team_manager" string='Manager'
+                        domain_filter="[('team_manager', 'ilike', self)]"/>
+
+
+                    <!-- Group By -->
+                    <group expand="0" string="Group By">
+	                    <filter name="team_manager" string="Team Manager" 
+	                    context="{'group_by': 'team_manager'}" />
+                    </group>
+                    
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_hr_team" model="ir.actions.act_window">
+            <field name="name">Teams</field>
+            <field name="res_model">hr.team</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

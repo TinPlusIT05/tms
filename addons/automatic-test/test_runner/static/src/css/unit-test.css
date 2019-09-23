@@ -1,0 +1,34 @@
+span.unit-test {
+    font-family: "Courier New", courier, monospace;
+    font-size: 10px;
+}
+
+span.unit-test .info,
+span.unit-test .warning,
+span.unit-test .error {
+    font-weight: bolder;
+}
+
+span.unit-test span.info {
+    color: #1fe01f;
+}
+
+span.unit-test span.warning {
+    color: #fae334;
+}
+
+span.unit-test span.error {
+    color: #f12929;
+}
+
+div.test-results {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 5px;
+    background: #333;
+    color: #efefef;
+}
+
+.oe_form div.test-results {
+    width: 140%;
+}

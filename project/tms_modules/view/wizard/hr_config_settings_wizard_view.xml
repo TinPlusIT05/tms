@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="trobz_hr_appraisal_hr_configuration_view" model="ir.ui.view">
+            <field name="name">trobz.tms.module.hr.configuration.view</field>
+            <field name="model">hr.config.settings</field>
+            <field name="inherit_id" ref="hr.view_human_resources_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='contract_grp']" position="after">
+                    <group name="contract_grp">
+                        <label for="id" string="Leave Type Unpaid"/>
+                        <div>
+                            <div>
+                                <field name="leave_type_unpaid_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                            </div>
+                        </div>
+                    </group>
+				</xpath>
+            </field>
+        </record>
+ 
+    </data>
+</openerp>

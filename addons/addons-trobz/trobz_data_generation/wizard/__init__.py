@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+
+import generate_demo_data_wizard
+import generate_demo_data_booking_resource
+import generate_demo_data_hr_attendance_wizard
+import generate_demo_data_hr_employee_wizard
+import generate_demo_data_product_category_wizard
+import generate_demo_data_product_product_wizard
+import generate_demo_data_sale_order_wizard
+import generate_demo_data_res_partner_wizard
+import generate_demo_data_res_users_wizard
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

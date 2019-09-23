@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+	<menuitem id="menu_hr_document_type"
+              action= "action_hr_document_type_tree"
+	          parent="hr.menu_hr_configuration"
+	          name="Document Types" />
+
+	<menuitem id="menu_hr_document"
+	          action= "action_hr_document_tree"
+	          parent="hr.menu_hr_main"
+	          name="Documents"/>
+
+    </data>
+</openerp>

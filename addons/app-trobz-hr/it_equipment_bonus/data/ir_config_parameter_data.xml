@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record id="benefit_base_amount" model="ir.config_parameter">
+			<field name="key">amt_benefit</field>
+			<field name="value">580000</field>
+		</record>
+		<record id="benefit_start_date" model="ir.config_parameter">
+			<field name="key">benefit_it_eq_bonus_start_date</field>
+			<field name="value">2014-01-01</field>
+		</record>
+	</data>
+</openerp>

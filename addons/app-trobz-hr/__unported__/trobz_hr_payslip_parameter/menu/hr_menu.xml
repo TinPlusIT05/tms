@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+        <menuitem 
+            name="Employee Grade"
+            id="employee_grade_menu"
+            sequence="0"
+            parent="hr.menu_hr_configuration"
+            />
+            
+        <!-- Employee Level -->
+        <record id="action_hr_employee_level" model="ir.actions.act_window">
+            <field name="name">Employee Levels</field>
+            <field name="res_model">hr.employee.level</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            id="hr_employee_level_menu"
+            sequence="2"
+            parent="employee_grade_menu"
+            action="action_hr_employee_level"
+            />
+        
+        <!-- Employee Grade -->
+        <record id="action_hr_employee_grade" model="ir.actions.act_window">
+            <field name="name">Employee Grades</field>
+            <field name="res_model">hr.employee.grade</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            id="hr_employee_grade_menu"
+            sequence="3"
+            parent="employee_grade_menu"
+            action="action_hr_employee_grade"
+            />
+            
+	   <menuitem 
+            name="Payslip Parameter"
+            sequence="0"
+            id="payslip_parameter_menu"
+            parent="hr_payroll.payroll_configure"
+            />
+            
+	   <!-- Payslip Parameter -->
+	   <record id="action_hr_payslip_parameter" model="ir.actions.act_window">
+            <field name="name">Payslip Parameters</field>
+            <field name="res_model">hr.payslip.parameter</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            sequence="0"
+            id="hr_payslip_parameter_menu"
+            parent="payslip_parameter_menu"
+            action="action_hr_payslip_parameter"
+            />
+            
+	   <!-- Payslip Parameter group -->
+        <record id="action_hr_payslip_parameter_group" model="ir.actions.act_window">
+            <field name="name">Payslip Parameter Groups</field>
+            <field name="res_model">hr.payslip.parameter.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            sequence="1"
+            id="hr_payslip_parameter_group_menu"
+            parent="payslip_parameter_menu"
+            action="action_hr_payslip_parameter_group"
+            />
+	</data>
+</openerp>

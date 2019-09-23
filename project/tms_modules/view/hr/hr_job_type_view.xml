@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_job_type_form" model="ir.ui.view">
+            <field name="name">view.hr.job.type.form</field>
+            <field name="model">hr.job.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="User Job Types">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_hr_job_types" model="ir.actions.act_window">
+            <field name="name">User Job Types</field>
+            <field name="res_model">hr.job.type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>
+
+

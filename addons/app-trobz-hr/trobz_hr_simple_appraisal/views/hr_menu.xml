@@ -1,0 +1,16 @@
+<openerp>
+	<data>
+		<menuitem name="Appraisal" parent="hr.menu_hr_root" id="menu_hr_appraisal_parent" />
+		<menuitem name="Appraisals" parent="menu_hr_appraisal_parent"
+			id="menu_hr_appraisal" sequence="10" action="action_hr_appraisal" />
+		<menuitem name="Inputs" parent="menu_hr_appraisal_parent" id="menu_hr_appraisal_input"
+			action="action_hr_appraisal_input" />
+
+		<menuitem name="Appraisal" parent="hr.menu_hr_configuration"
+			id="menu_hr_appraisal_parent_configuration" />
+		<menuitem name="Templates" parent="menu_hr_appraisal_parent_configuration"
+			id="menu_hr_appraisal_template" action="action_hr_appraisal_template" />
+		<menuitem name="Question Groups" parent="menu_hr_appraisal_parent_configuration"
+			id="menu_hr_appraisal_question_group" action="action_hr_appraisal_question_group" />
+	</data>
+</openerp>

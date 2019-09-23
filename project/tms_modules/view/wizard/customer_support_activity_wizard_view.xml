@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Customer Support Ticket Wizard Report Form View -->
+        <record id="view_customer_support_activity_wizard_form" model="ir.ui.view">
+            <field name="name">view.customer.support.activity.wizard.form</field>
+            <field name="model">customer.support.activity.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Customer Support Actitvity Export">
+                    <group>
+                        <group>
+                            <field name="customer_id" required="1"/>
+                            <field name="previous_status_date"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="lang" required ="1"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button string="Export PDF" name="button_export_support_activity_by_pdf" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Export HTML" name="button_export_support_activity_by_html" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action Open Support Ticket Wizard (report used by customer) -->
+        <record id="action_open_customer_support_activity_report_wizard" model="ir.actions.act_window">  
+            <field name="name">Support Activity Report</field>
+            <field name="res_model">customer.support.activity.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" ref="view_customer_support_activity_wizard_form" />
+        </record>
+    </data>
+</openerp>

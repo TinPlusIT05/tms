@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- add field is_profile in res groups form view -->
+        <record id="view_res_groups_form_inherit" model="ir.ui.view">
+            <field name="name">res.groups.form</field>
+            <field name="model">res.groups</field>
+            <field name="inherit_id" ref="base.view_groups_form"/>
+            <field name="arch" type="xml">
+            	<field name="name" position="after">
+					<field name="is_profile"/>
+                    <field name="action_id" attrs="{'invisible': [('is_profile', '=', False)]}"/>
+				</field>
+				<field name="implied_ids" position="attributes">
+					<attribute name="domain">[('is_profile','=',False)]</attribute>
+				</field>
+				<field name="users" position="attributes">
+					<attribute name="readonly">1</attribute>
+				</field>
+				<page string="Notes" position="after">
+					<page string="Test Access" attrs="{'invisible': [('is_profile', '=', False)]}">
+							<group>
+								<group>
+				                	<field name="test_model_id" colspan="2"/>
+									<field name="test_user_id" colspan="2"/>
+								</group>
+								<group>
+				                	<field name="test_record_id" colspan="2"/>
+								</group>
+							</group>            				
+							<group>
+								<group>
+				                	<field name="read_access" colspan="2"/>
+				                	<field name="create_access" colspan="2"/>
+								</group>
+								<group>
+									<field name="write_access" colspan="2"/>
+				                	<field name="delete_access" colspan="2"/>
+								</group>
+							</group>
+							<button name="check_model" 
+								string="Check"
+								type="object"/>
+               		</page>
+               		<page string="Profiles" attrs="{'invisible': [('is_profile', '=', True)]}">
+               			<field name="profile_ids"/>
+               		</page>
+				</page>
+            </field>
+        </record>
+        
+        <record id="view_res_groups_search_inherit" model="ir.ui.view">
+			<field name="name">res.groups.search</field>
+			<field name="model">res.groups</field>
+			<field name="inherit_id" ref="base.view_groups_search"/>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<filter name="is_profile" string="Profile Group" domain="[('is_profile','=',True)]"/>
+				</field>
+			</field>
+		</record>
+    </data>
+</openerp>

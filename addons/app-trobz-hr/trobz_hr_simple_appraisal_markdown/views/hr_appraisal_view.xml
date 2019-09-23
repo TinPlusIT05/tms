@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_appraisal_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.appraisal.form.inherit</field>
+            <field name="model">hr.appraisal</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="trobz_hr_simple_appraisal.view_hr_appraisal_form" />
+            <field name="arch" type="xml">
+                <field name="interview_result" position="attributes">
+                    <attribute name="widget">bootstrap_markdown</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

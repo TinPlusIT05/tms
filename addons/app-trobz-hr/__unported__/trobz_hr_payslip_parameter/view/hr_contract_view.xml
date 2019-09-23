@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <!--Inherit contract form
+        Add the Employee Grade, Only show the grade link to the job position of this contract
+        Add the Payslip Paramter Group, auto get the one link to the employee grade of this contract
+              -->
+        <record id="view_hr_contract_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.contract.view.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <field name="type_id" position="after">
+                    <field name="grade_id" 
+                        on_change="onchange_grade(grade_id, context)"
+                        domain="[('job_id','=',job_id)]"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="view_hr_contract_form_inherit_paramater_group" model="ir.ui.view">
+            <field name="name">hr.employee.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_payroll.hr_contract_form_inherit"/>
+            <field name="arch" type="xml">
+                <field name="struct_id" position="after">
+                    <field name="payslip_parameter_group_id"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

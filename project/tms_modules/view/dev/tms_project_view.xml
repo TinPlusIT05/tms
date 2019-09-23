@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record id="view_tms_project_tree" model="ir.ui.view">
+			<field name="name">tms.project.tree</field>
+			<field name="model">tms.project</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Project">
+					<field name="partner_id" invisible="1" />
+					<field name="trobz_partner_id" invisible="1" />
+					<field name="name" />
+					<field name="owner_id" />
+					<field name="technical_project_manager_id" />
+					<field name="tester_id" />
+					<field name="framework_version_id" />
+					<field name="project_tag_id" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_tms_project_filter" model="ir.ui.view">
+			<field name="name">tms.project.filter</field>
+			<field name="model">tms.project</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Project">
+					<group string="Filter">
+						<filter name="open" icon="tms_open" string="Opened"
+							domain="[('state','in',('potential','active'))]" />
+						<filter string="Internal" name="internal"
+							domain="[('partner_id.name','=','Trobz Co., Ltd.')]" />
+						<filter string="External" name="external"
+							domain="[('partner_id.name','!=','Trobz Co., Ltd.')]" />
+						<separator />
+						<field name="name" />
+						<field name="owner_id" />
+						<field name="technical_project_manager_id" />
+						<field name="tester_id" />
+						<field name="default_supporter_id" />
+						<field name="default_assignee_id"/>
+						<field name="project_type_id" />
+						<field name="framework_version_id" />
+						<field name="project_tag_id" />
+						<field name="state" />
+						<field name="team_id"/>
+						<field name="team_manager_id"/>
+					</group>
+					<group expand="1" string="Group By...">
+						<filter string="TPM" icon="tms_user" domain="[]"
+							context="{'group_by':'technical_project_manager_id'}" />
+						<separator orientation="vertical" />
+						<filter string="Partner" icon="tms_user" domain="[]"
+							context="{'group_by':'trobz_partner_id'}" />
+						<separator orientation="vertical" />
+						<filter string="Tester" icon="tms_to_test" domain="[]"
+							context="{'group_by':'tester_id'}" />
+						<filter string="Support Project Manager" icon="tms_user"
+							domain="[]" context="{'group_by':'default_supporter_id'}" />
+						<filter string="Default Assignee" icon="tms_user"
+							domain="[]" context="{'group_by':'default_assignee_id'}" />
+						<separator orientation="vertical" />
+						<separator orientation="vertical" />
+						<filter string="Status" icon="tms_state" domain="[]"
+							context="{'group_by':'state'}" />
+						<filter string="Project Type" icon="tms_version" domain="[]"
+							context="{'group_by':'project_type_id'}" />
+						<filter string="Framework Version" icon="tms_version"
+							domain="[]" context="{'group_by':'framework_version_id'}" />
+						<filter string="Owner" icon="tms_version" domain="[]"
+							context="{'group_by':'owner_id'}" />
+						<filter string="Intensity" icon="tms_version" domain="[]"
+							context="{'group_by':'tms_project_intensity_id'}" />
+						<filter string="Team" icon="tms_version"
+							domain="[]" context="{'group_by':'team_id'}" />
+						<filter string="Team Manager" icon="tms_version"
+							domain="[]" context="{'group_by':'team_manager_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Actions for smart button on Project -->
+
+		<record id="act_project2activity" model="ir.actions.act_window">
+			<field name="res_model">tms.activity</field>
+			<field name="view_type">form</field>
+			<field name="name">Activity</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_project_id': [active_id],
+				'default_project_id': active_id}
+			</field>
+		</record>
+
+		<record id="act_project2milestone" model="ir.actions.act_window">
+			<field name="res_model">tms.milestone</field>
+			<field name="view_type">form</field>
+			<field name="name">Milestone</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_project_id': [active_id],
+				'default_project_id': active_id}
+			</field>
+		</record>
+
+		<record id="act_project2delivery" model="ir.actions.act_window">
+			<field name="res_model">tms.delivery</field>
+			<field name="view_type">form</field>
+			<field name="name">Delivery</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_project_id': [active_id],
+				'default_project_id': active_id}
+			</field>
+		</record>
+
+		<record id="act_project2tag" model="ir.actions.act_window">
+			<field name="res_model">tms.project.tag</field>
+			<field name="view_type">form</field>
+			<field name="name">Tags</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_project_id': [active_id],
+				'default_project_id': active_id}
+			</field>
+		</record>
+
+		<record id="act_project2forge_ticket" model="ir.actions.act_window">
+			<field name="res_model">tms.forge.ticket</field>
+			<field name="view_type">form</field>
+			<field name="name">Forge Tickets</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_open': 1,
+				'search_default_project_id': [active_id], 'default_project_id':
+				active_id}
+			</field>
+		</record>
+
+		<record id="act_project_to_support_ticket" model="ir.actions.act_window">
+			<field name="res_model">tms.support.ticket</field>
+			<field name="view_type">form</field>
+			<field name="name">Support Tickets</field>
+			<field name="view_mode">tree,form</field>
+			<field name="search_view_id" ref="view_tms_support_ticket_search" />
+			<field name="view_id" ref="view_tms_support_ticket_tree" />
+			<field name="context">{'search_default_open': 1,
+				'search_default_project_id': [active_id], 'default_project_id':
+				active_id}
+			</field>
+		</record>
+		<record id="action_project_support_contracts_2" model="ir.actions.act_window">
+			<field name="name">Support Contracts</field>
+			<field name="res_model">project.support.contracts</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_project_support_contracts_tree"/>
+			<field name="context">{
+				'search_default_open': 1,
+				'default_project_ids': [active_id]}
+			</field>
+		</record>
+
+		<record id="view_tms_project_form" model="ir.ui.view">
+			<field name="name">tms.project.form</field>
+			<field name="model">tms.project</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Project">
+					<!-- <header> BUTTON TO USE INSTEAD OF one2many FIELDS FOR ODOO VERSION
+						PERHAPS <button type="action" string="Milestones" name="3" /> <button type="action"
+						string="Activities" name="3" /> <button type="action" string="Instances"
+						name="3" /> <button type="action" string="Repositories" name="3" /> </header> -->
+					<sheet>
+						<group col="4">
+							<group colspan="2">
+								<div class="oe_title">
+									<label for="name" class="oe_edit_only" string="Project Name" />
+									<h1>
+										<field name="name" colspan="4" />
+									</h1>
+								</div>
+							</group>
+
+							<!-- Smart Buttons -->
+							<div class="oe_right oe_button_box" name="button_box">
+								<button type="action" class="oe_inline oe_stat_button"
+									icon="fa-exchange" name="%(act_project2activity)d">
+									<field name="activity_count" widget="statinfo" string="Activities"
+										modifiers="{'readonly': true}" />
+								</button>
+
+								<button type="action" class="oe_inline oe_stat_button"
+									icon="fa-navicon" name="%(act_project2milestone)d">
+									<field name="milestone_count" widget="statinfo" string="Milestones"
+										modifiers="{'readonly': true}" />
+								</button>
+
+								<button type="action" class="oe_inline oe_stat_button"
+									icon="fa fa-star" name="%(act_project2forge_ticket)d">
+									<field name="forge_ticket_count" widget="statinfo"
+										string="Forge Tickets" modifiers="{'readonly': true}" />
+								</button>
+
+								<button type="action" class="oe_inline oe_stat_button"
+									icon="fa fa-star-o" name="%(act_project_to_support_ticket)d">
+									<field name="support_ticket_count" widget="statinfo"
+										string="Support Tickets" modifiers="{'readonly': true}" />
+								</button>
+
+								<button type="object" class="oe_inline oe_stat_button"
+									icon="fa fa-star-o" name="support_contract_by_project">
+									<field name="support_contracts_count" widget="statinfo"
+										string="Support Contracts" modifiers="{'readonly': true}" 
+										/>
+								</button>
+								<button type="object" class="oe_inline oe_stat_button"
+									icon="fa fa-star-o" name="button_remove_subscribe" string="Unsubscribe" groups="tms_modules.group_profile_tms_admin, tms_modules.group_profile_tms_delivery_team_manager, tms_modules.group_profile_tms_sysadmin, tms_modules.group_profile_tms_sysadmin_manager">
+								</button>
+							</div>
+
+						</group>
+
+						<group colspan="4" col="2">
+							<field name="functional_block_ids" placeholder="Functional Blocks"
+								widget="many2many_tags" />
+						</group>
+
+						<notebook>
+							<page string="General Info">
+								<group>
+									<group string="Description">
+										<field name="trobz_partner_id" options="{'no_create': True, 'create_edit': False}" />
+										<field name="partner_id" options="{'no_create': True, 'create_edit': False}" />
+										<field name="description" nolabel="1" colspan="2"
+											placeholder="A functional description of the project in 3 to 5 lines to let anyone know what this project is about. " />
+									</group>
+									<group string="Technical Classification">
+										<field name="project_type_id" />
+										<field name="framework_version_id" />
+										<field name="wkhtmltopdf_version_id" />
+									</group>
+									<group string="Status">
+										<field name="state" />
+										<field name="active" />
+										<field name="tms_project_intensity_id" />
+									</group>
+									<group string="Follow-up tools">
+										<field name="project_tag_id" placeholder="Project Tags"
+											widget="many2many_tags" domain="[('project_id', '=', active_id)]" />
+										<field name="cal_delivery_status" />
+									</group>
+								</group>
+								<group>
+									<group string="Target">
+										<field name="target_ticket_ready_for_integration" />
+										<field name="target_ticket_ready_for_staging" />
+										<field name="target_ticket_ready_in_qa" />
+									</group>
+								</group>
+							</page>
+
+							<page string="Team">
+								<group>
+									<group>
+										<field name="customer_project_manager" />
+										<field name="technical_project_manager_id" />
+										<field name="is_all_pm_fc_view_qc_est" />
+										<field name="tester_id" />
+									</group>
+									<group>
+										<field name="team_id" />
+										<field name="is_all_pm_fc_view_qc_est" />
+										<field name="owner_id" />
+										<field name="default_supporter_id"
+											domain="[('id', 'in', project_supporter_rel_ids and project_supporter_rel_ids[0] and project_supporter_rel_ids[0][2] or False)]" />
+										<field name="default_assignee_id"
+											domain="[('id', 'in', project_supporter_rel_ids and project_supporter_rel_ids[0] and project_supporter_rel_ids[0][2] or False)]" />
+									</group>
+								</group>
+								<group>
+									<field name="project_supporter_rel_ids" string="Supporters"
+										colspan="4" />
+								</group>
+								<group>
+									<field name="external_dev_ids" string="External Developers"
+										colspan="4" />
+								</group>
+							</page>
+
+							<page string="Support">
+								<group>
+									<group col="4">
+										<field name="is_support_contract" string="Application Support Contract" />
+										<field name="manage_documentation" />
+										<field name="support_contract_hours" string="Application Support Hours"/>
+										<field name="invc_by_trobz_vn" />
+										<field name="is_blocked" />
+										<field name="show_project_analysis" />
+										<field name="noti_trobz_audit" />
+										<field name="manage_dealine_on_sp_tickets" />
+										<field name="default_activity_id"/>
+									</group>
+								</group>
+								<group string="Automatic actions on support tickets">
+									<field name="auto_low_days" />
+									<field name="auto_close_days" />
+								</group>
+								<group>
+									<group string="Server Support Contract">
+										<field name="server_support_contract" nolabel="1" />
+									</group>
+								</group>
+							</page>
+
+							<page string="Mail">
+								<group>
+									<group>
+										<group colspan="4">
+											<field name="check_missing_workload" colspan="2" />
+											<label for="mailing_list_ids" string="Mailling List" />
+											<field name="mailing_list_ids" colspan="4" nolabel="1" />
+										</group>
+										<group string="Support Subscribers" colspan="4">
+											<field name="readonly_mute_mail" invisible="1" />
+											<field name="mute_mail_noti"
+												attrs="{'readonly': [('readonly_mute_mail','=',True)]}" />
+											<field name="additional_subscribers" />
+											<label for="tms_project_support_subscriber_ids" string="Default Subscibers" />
+											<field name="tms_project_support_subscriber_ids"
+												colspan="4" nolabel="1">
+												<tree editable="bottom">
+													<field name="name"
+														domain="[('id', 'in', parent.project_supporter_rel_ids and parent.project_supporter_rel_ids[0] and parent.project_supporter_rel_ids[0][2] or False)]" />
+													<field name="notif_pref_id" />
+												</tree>
+											</field>
+										</group>
+
+										<group string="Forge Subscribers" colspan="4">
+											<label for="forge_subscriber_ids" string="Default Forge Subscribers" />
+											<field name="forge_subscriber_ids" nolabel="1" colspan="4">
+												<tree editable="bottom">
+													<field name="name" domain="[('is_trobz_member', '=', True)]" />
+													<field name="forge_notif_ref_id" />
+												</tree>
+											</field>
+										</group>
+									</group>
+								</group>
+							</page>
+
+							<page string="DevOps">
+								<group>
+									<field name="repository"
+										placeholder="git@gitlab.trobz.com:project/&lt;your-project&gt;.git" />
+								</group>
+								<group string='Dockerization' name='dockerization' groups="tms_modules.group_profile_tms_sysadmin,tms_modules.group_profile_tms_technical_project_manager">
+									<field name="allow_dockerization_of_production_db" />
+								</group>
+								<group string="Instances" col="4">
+									<field name="instance_ids" colspan="4" nolabel="1"
+										context="{'project_id':active_id}">
+										<tree
+											colors="grey:state=='inactive';lightgrey:state=='deleted';red:state=='exception';blue:state=='sleep'">
+											<field name="name" />
+											<field name="server_type" />
+											<field name="milestone_id" />
+											<field name="host_id" />
+											<field name="url" />
+											<field name="instance_database_ids" />
+											<field name="custom_parameter" />
+											<field name="state" invisible="1" />
+										</tree>
+									</field>
+								</group>
+							</page>
+
+							<page string="Specific actions for deployment">
+								<group>
+									<label for="actions" string="Specific actions for deployment" />
+									<field name="actions" nolabel="1" />
+								</group>
+							</page>
+
+							<page string="Documentation">
+								<group>
+									<field name="project_portal_url" colspan="4" widget="url" />
+								</group>
+
+								<group>
+									<field name="standard_workflow" colspan="4" />
+								</group>
+
+								<group>
+									<field name="requirement" colspan="4" />
+								</group>
+
+								<group>
+									<field name="user_documentation" colspan="4" />
+								</group>
+							</page>
+
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>
+

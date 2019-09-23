@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="tms_modules_assets_backend" name="tms_modules_assets_backend" inherit_id="web_unleashed.assets_backend">
+            <xpath expr="." position="inside">
+
+                <!-- stylesheet -->
+                <link rel="stylesheet" type="text/css" href="/tms_modules/static/src/css/tms.css" />
+
+                <!-- javascript -->
+                <script type="text/javascript" src="/tms_modules/static/lib/tabby/jquery.textarea.min.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/lib/diff_match_patch.js"></script>
+				
+				<script type="text/javascript" src="/tms_modules/static/src/js/chrome.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/src/js/view_form.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/src/js/view_list.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/src/js/markdown.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/src/js/diff_view.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/src/js/mail.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/src/js/customScript.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/src/js/resource.js"></script>
+                <script type="text/javascript" src="/tms_modules/static/src/js/form_color_picker_widget.js"></script>
+            </xpath>
+        </template>
+
+        <!-- change default favicon on the backend -->
+        <template id="tms_modules_assets_backend_favicon"
+                  name="tms_modules_assets_backend_favicon"
+                  inherit_id="web.layout">
+            <xpath expr="//link[@rel='shortcut icon']" position="replace">
+                <link rel="icon" type="image/png" href="/tms_modules/static/src/img/trobz_favicon.png" />
+            </xpath>
+        </template>
+
+        <!-- change default favicon on the backend -->
+        <template id="tms_modules_assets_frontend_favicon_website"
+                  name="tms_modules_assets_frontend_favicon_website"
+                  inherit_id="website.layout">
+            <xpath expr="//meta[@name='viewport']" position="after">
+                <link rel="icon" type="image/png" href="/tms_modules/static/src/img/trobz_favicon.png" />
+            </xpath>
+        </template>
+    </data>
+</openerp>

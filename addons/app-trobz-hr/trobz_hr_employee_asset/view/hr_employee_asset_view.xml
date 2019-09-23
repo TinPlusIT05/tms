@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data>        			
+		<record id="view_hr_employee_asset_search" model="ir.ui.view">
+            <field name="name">view.hr.employee.asset.search</field>
+            <field name="model">hr.employee.asset</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name='product_id'/>
+                    <field name='lot_id'/>
+                    <field name='employee_id'/>
+                    <filter string="Employee" domain="" context="{'group_by':'employee_id'}"/>
+                    <filter string="Product" domain="" context="{'group_by':'product_id'}"/>
+                </search>
+             </field>
+        </record>
+        <record id="view_hr_employee_asset_tree" model="ir.ui.view">
+            <field name="name">view.hr.employee.asset.tree</field>
+            <field name="model">hr.employee.asset</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Assets" editable="bottom">
+                    <field name='employee_id'/>
+                    <field name='product_id'/>
+                    <field name='lot_id'/>
+                    <field name='delivery_date'/>
+                    <field name='comment'/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_hr_employee_asset" model="ir.actions.act_window">
+            <field name="name">Employee Assets</field>
+            <field name="res_model">hr.employee.asset</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,13 @@
+diff --git a/addons/report/models/report.py b/addons/report/models/report.py
+index 31181f7bc4059..054a454f60934 100644
+--- a/addons/report/models/report.py
++++ b/addons/report/models/report.py
+@@ -518,7 +518,7 @@ def _build_wkhtmltopdf_args(self, paperformat, specific_paperformat_args=None):
+         :specific_paperformat_args: a dict containing prioritized wkhtmltopdf arguments
+         :returns: list of string representing the wkhtmltopdf arguments
+         """
+-        command_args = []
++        command_args = ['--disable-local-file-access']
+         if paperformat.format and paperformat.format != 'custom':
+             command_args.extend(['--page-size', paperformat.format])
+ 

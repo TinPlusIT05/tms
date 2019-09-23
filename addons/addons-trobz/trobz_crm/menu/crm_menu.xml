@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+
+		<!-- Actions -->
+		<record id="trobz_crm_action_view_event" model="ir.actions.act_window">
+			<field name="name">CRM Events</field>
+			<field name="res_model">trobz.crm.event</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,calendar</field>
+			<field name="domain">[]</field>
+			<field name="view_id" ref="trobz_crm.trobz_crm_event_tree_view" />
+			<field name="search_view_id" ref="trobz_crm.trobz_crm_event_filter_view" />
+			<field name="context">{'group_by':[],'group_by_no_leaf':0,'search_default_open':1,'search_default_my_event':1}
+			</field>
+		</record>
+
+        <!-- F#11277 - Rename Leads into Opportunity -->
+        <record model="ir.actions.act_window" id="crm.crm_case_category_act_leads_all">
+            <field name="name">Opportunity</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|', ('type','=','lead'), ('type','=',False)]</field>
+            <field name="view_id" ref="crm.crm_case_tree_view_leads"/>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+                    'default_type':'lead',
+                    'stage_type':'lead',
+                    'needaction_menu_ref': 'crm.menu_crm_opportunities',
+                    'search_default_unassigned':1,
+                }
+            </field>
+            <field name="help" type="html">
+                <p>
+                    Use opportunity if you need a qualification step before creating an
+                    opportunity or a customer. It can be a business card you received,
+                    a contact form filled in your website, or a file of unqualified
+                    prospects you import, etc.
+                </p><p>
+                    Once qualified, the opportunity can be converted into a business
+                    opportunity and/or a new customer in your address book.
+                </p>
+            </field>
+        </record>
+        <record id="crm.action_report_crm_lead" model="ir.actions.act_window">
+           <field name="name">Opportunity Analysis</field>
+           <field name="res_model">crm.lead.report</field>
+           <field name="view_type">form</field>
+           <field name="view_mode">graph</field>
+           <field name="context">{}</field>
+           <field name="domain">[]</field>
+           <field name="help">Opportunity Analysis allows you to check different CRM related information like the treatment delays or number of opportunity per state. You can sort out your opportunity analysis by different groups to get accurate grained analysis.</field>
+        </record>
+
+		<!-- ============================== -->
+		<!-- Menu Items -->
+		<!-- ============================== -->
+		<menuitem name="CRM Events" id="trobz_crm_menu_event" parent="base.menu_sales"
+			action="trobz_crm_action_view_event" sequence="1" />
+
+		<!-- Overwrite the form view of Opportunities -->
+		<record model="ir.actions.act_window.view" id="crm.action_crm_tag_form_view_oppor11">
+			<field name="view_id" ref="crm.crm_case_form_view_leads" />
+		</record>
+
+		<!-- Right link to Events from Lead/Opportunity -->
+		<act_window id="trobz_act_crm_lead_crm_events" name="Events by Type"
+			res_model="trobz.crm.event" src_model="crm.lead" view_mode="tree,form"
+			context="{'search_default_group_by_type':1, 'group_by_no_leaf':0}"
+			domain="[('lead_id', '=', active_id)]" view_type="form" />
+
+		<record id="sales_team.menu_sales_team_act" model="ir.ui.menu">
+			<field name="parent_id" ref="base.menu_base_config" />
+			<field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+		</record>
+		<record id="crm.menu_crm_leads" model="ir.ui.menu">
+            <field name="name">Opportunity</field>
+            <field name="sequence">2</field>
+			<field name="parent_id" ref="base.menu_crm_config_lead" />
+			<field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+		</record>
+		<record id="crm.menu_crm_opportunities" model="ir.ui.menu">
+            <field name="sequence">3</field>
+			<field name="parent_id" ref="base.menu_crm_config_lead" />
+			<field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]" />
+		</record>
+		
+		<!-- F#11273 Hide the menu "Phone Call" and sub menu  "Logged Calls", "Scheduled Calls" -->
+		<menuitem name="Phone Calls" id="crm.menu_crm_case_phone"
+        groups="base.group_no_one"
+        parent="base.menu_base_partner" sequence="4" />
+        
+        <menuitem name="Logged Calls" id="crm.menu_crm_case_phone_inbound"
+        parent="crm.menu_crm_case_phone"
+        groups="base.group_no_one"
+        action="crm.crm_case_categ_phone_incoming0" />
+        
+        <menuitem name="Scheduled Calls" id="crm.menu_crm_case_phone_outbound"
+        parent="crm.menu_crm_case_phone"
+        groups="base.group_no_one"
+        action="crm.crm_case_categ_phone_outgoing0"/>
+
+		<!-- Menu Sales > Configuration > CRM > Lost Reason -->
+		<record model="ir.actions.act_window" id="trobz_crm_action_view_lost_reason">
+			<field name="name">CRM Lost Reason</field>
+			<field name="res_model">crm.lost.reason</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_type">form</field>
+		</record>
+
+		<menuitem name="Lost Reason"
+		id="menu_trobz_crm_lost_reason"
+		parent="base.menu_crm_config_lead"
+		sequence="4"
+		action="trobz_crm_action_view_lost_reason" />
+
+        <!-- Menu Sales > Configuration > CRM -->
+        <menuitem id="base.menu_crm_config_lead" name="CRM"
+            parent="base.menu_base_config" sequence="80" groups="base.group_sale_manager"/>
+		
+		<!-- Menu Sales > Configuration > Lead > Probability -->
+		<record model="ir.actions.act_window" id="action_crm_lead_probability">
+			<field name="name">Opportunity Probability</field>
+			<field name="res_model">crm.lead.probability</field>
+			<field name="view_mode">tree</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="view_crm_lead_probability_tree"/>
+		</record>
+		
+		<menuitem name="Probability"
+			id="menu_lead_probability"
+			parent="base.menu_crm_config_lead"
+			groups="base.group_sale_manager"
+			action="action_crm_lead_probability"/>
+		
+		<record model="ir.actions.act_window" id="trobz_crm_action_view_lead_opportunity">
+			<field name="name">My Opportunities</field>
+			<field name="res_model">crm.lead</field>
+			<field name="view_mode">tree,form,kanban</field>
+			<field name="view_id" ref="crm.crm_case_tree_view_leads" />
+			<field name="search_view_id" ref="trobz_crm_lead_filter" />
+			<field name="context">{'search_default_my_opportunity':1}
+			</field>
+		</record>
+
+		<menuitem parent="base.menu_sales" name="My Opportunities"
+			id="menu_trobz_crm_my_lead_opportunity_open" action="trobz_crm_action_view_lead_opportunity"
+			sequence="10" />
+
+		<!-- Sales > Configuration > Address Book > Business Sector -->
+		<record id="action_trobz_crm_business_sector" model="ir.actions.act_window">
+			<field name="name">Business Sector</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">trobz.crm.business.sector</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		<menuitem id="menu_business_sector" parent="base.menu_config_address_book"
+			action="action_trobz_crm_business_sector" sequence="5" />
+
+	    <record id="calendar.action_calendar_alarm" model="ir.actions.act_window">
+	        <field name="name">Reminders</field>
+	        <field name="res_model">calendar.alarm</field>
+	        <field name="view_type">form</field>
+	        <field name="view_id" ref="calendar.view_calendar_alarm_tree"/>
+	    </record>
+    	<menuitem id="calendar.menu_calendar_alarm" 
+    	parent="calendar.menu_calendar_configuration" 
+    	action="calendar.action_calendar_alarm" 
+    	groups="base.group_no_one"/>
+       
+        <!-- F#11277 - Rename Leads into Opportunity -->
+        <record id="crm.menu_report_crm_leads_tree" model="ir.ui.menu">
+            <field name="name">Opportunity Analysis</field>
+        </record>
+    	
+        <!-- Add new menu & action Customers -->
+        <record id="base.action_partner_form" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_customer":1,"search_default_type_company":1,"default_is_company":True}
+            </field>
+            <field name="search_view_id" ref="base.view_res_partner_filter" />
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a contact in your address book.
+                </p>
+                <p>
+                    OpenERP helps you easily track all activities related to
+                    a customer; discussions, history of business opportunities,
+                    documents, etc.
+                </p>
+            </field>
+        </record>
+
+        <!-- Add new menu & action Prospects -->
+        <record id="action_prospect_form" model="ir.actions.act_window">
+            <field name="name">Prospects</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'search_default_prospect':1,'default_customer':
+                0,'default_supplier': 0,'default_prospect': 1,'default_is_company': False}
+            </field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a contact in your address book.
+                </p>
+                <p>
+                    Odoo helps you easily track all activities related to
+                    a customer; discussions, history of business opportunities,
+                    documents, etc.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_partner_form" parent="base.menu_sales"
+            action="action_prospect_form" sequence="3" />
+            
+        <!-- Override menu Deduplicate Contacts -->
+        <menuitem id='crm.partner_merge_automatic_menu'
+            action='crm.base_partner_merge_automatic_act'
+            groups='base.group_system,base.group_sale_manager'
+            parent='crm.root_menu' />
+
+	</data>
+</openerp>

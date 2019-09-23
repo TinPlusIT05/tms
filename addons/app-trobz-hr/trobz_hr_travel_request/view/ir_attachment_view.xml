@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="travel_request_attachment_search_view" model="ir.ui.view">
+            <field name="name">travel.request.attachment.search.view</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="base.view_attachment_search" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="travel_request_id" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

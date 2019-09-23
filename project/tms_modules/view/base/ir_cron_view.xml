@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="base.ir_cron_view_search" model="ir.ui.view">
+            <field name="name">ir.cron.search</field>
+            <field name="model">ir.cron</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Scheduled Actions">
+					<group string="Filter">
+						<filter name="active" string="Active" 
+							domain="[('active', '=', True)]"/>
+						<filter name="active" string="Inactive" 
+							domain="[('active', '=', False)]"/>
+					</group>
+					<group string="Field">
+						<field name="name" />
+						<field name="user_id" />
+						<field name="nextcall" />
+					</group>
+					<group string="Group By">
+						<filter string="User" domain="[]"
+							context="{'group_by':'user_id'}"/>
+						<filter string="Execution"
+							domain="[]" context="{'group_by':'nextcall'}" />
+					</group>
+				</search>
+            </field>
+        </record>
+    </data>
+</openerp>

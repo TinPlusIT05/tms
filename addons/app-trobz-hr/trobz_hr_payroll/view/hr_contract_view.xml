@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <!-- TODO: Merge to trobz_hr_contract -->
+        <!--
+        Add filter:
+            - Current contract
+            - Overpassed contract
+            - Trial contract
+            - Contract to sign in net 30 days  -->
+        <!-- 
+        <record id="view_hr_contract_search_inherit" model="ir.ui.view">
+            <field name="name">view.hr.contract.search.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                   <filter string="Current" name="current"  domain="['|','&amp;',('date_start','&lt;=', context_today().strftime('%%Y-%%m-%%d')),('date_end','&gt;=', context_today().strftime('%%Y-%%m-%%d')),('date_end','=',False)]" help="Contracts in progress"/>
+                   <filter string="Overpassed" domain="[('date_end','&lt;', context_today().strftime('%%Y-%%m-%%d'))]" help="Contracts whose end date already passed"/>
+                   <separator string=""/>
+                   <filter string="Contracts to Sign"
+                        domain="[('date_end', '!=', False), ('date_end','&gt;=', context_today().strftime('%%Y-%%m-%%d')), ('date_end', '&lt;=', (context_today() + datetime.timedelta(30)).strftime('%%Y-%%m-%%d') )]"
+                        help="List all contracts that are expiring in 30 days." />
+                </field>
+            </field>
+        </record>
+         -->
+    </data>
+</openerp>

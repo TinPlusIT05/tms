@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="field_secure_assets_backend" name="field_secure assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+
+                <!-- module css resources -->
+                <link rel="stylesheet" type="text/css"
+                    href="/field_secure/static/src/css/field_secure.css" />
+
+                <!-- module js resources -->
+                <script type="text/javascript"
+                    src="/field_secure/static/src/js/view_form.js"></script>
+
+                <script type="text/javascript"
+                    src="/field_secure/static/src/js/view_list.js"></script>
+
+                <script type="text/javascript"
+                    src="/field_secure/static/src/js/field_secure.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

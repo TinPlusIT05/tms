@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Translatable template -->
+        <template id="report_global_analysis_partner_activity">
+            <div class="page" style="font-name: 'Arial'; font-size: 13px;">
+                <div class="row clearfix" witdth="100%">
+                	<center>
+                		<h1 style="color: #b76401;">Global Analysis Partner</h1>
+                	</center>
+                </div>
+                <div class="row clearfix" witdth="100%">
+                    <div class="col-md-4">
+                        <strong style="font-size: 17px; color: #2a5d8f">Global vision</strong>
+                        <table class="table table-bordered" style="margin-top: 8px">
+                            <col width="50%" />
+                            <col width="50%" />
+                            <head>
+                            	<tr>
+                                    <th style="background-color: #cccccc; text-align: center;">
+                                        Days spent (Dev)
+                                    </th>
+                                     <th style="background-color: #cccccc; text-align: center;">
+                                        Days spent (Global)
+                                    </th>
+                                </tr>
+                            </head>
+                            <tbody>
+
+                                <tr>
+                                    <td style="text-align: right;">
+                                        <span t-esc="get_total_dev_workload(data['form'])" />
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span t-esc="get_total_global_workload(data['form'])" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row clearfix" witdth="100%">
+                    <div class="col-md-6">
+                        <strong style="font-size: 17px; color: #2a5d8f">Detail by Projects</strong>
+                        <table class="table table-bordered" style="margin-top: 8px">
+                            <col width="50%" />
+                            <col width="25%" />
+                            <col width="25%" />
+                            <tr>
+                                <th style="background-color: #cccccc; text-align: center;">
+
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Days spent (Dev)
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Days spent (Global)
+                                </th>
+                            </tr>
+                            <t t-foreach="get_workload_by_project(data['form'])"
+                                t-as="obj">
+                                <tr>
+                                    <td>
+                                        <span t-esc="obj[0]['project_name']" />
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span t-esc="obj[0]['dev_workload']" />
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span t-esc="obj[0]['global_workload']" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+                <div class="row clearfix" witdth="100%">
+                    <div class="col-md-6">
+                        <strong style="font-size: 17px; color: #2a5d8f">Detail by Activities</strong>
+                        <table class="table table-bordered" style="margin-top: 8px">
+                            <col width="50%" />
+                            <col width="25%" />
+                            <col width="25%" />
+                            <tr>
+                                 <th style="background-color: #cccccc; text-align: center;">
+
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Days spent (Dev)
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Days spent (Global)
+                                </th>
+                            </tr>
+                            <t t-foreach="get_workload_by_activity(data['form'])"
+                                t-as="obj">
+                                <tr>
+                                    <td>
+                                        <span t-esc="obj[0]['activity_name']" /> ( <span t-esc="obj[0]['project_name']" /> )
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span t-esc="obj[0]['dev_workload']" />
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span t-esc="obj[0]['global_workload']" />
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12">
+                        <strong style="font-size: 17px; color: #2a5d8f">Support Tickets</strong>
+                        <table class="table table-bordered" style="margin-top: 8px">
+                            <col width="20%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <tr>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Assignee
+                                </th>
+                                <th style="background-color: #cccccc; text-align: center;">
+                                    Total
+                                </th>
+                                <th style="background-color: #cccccc; text-align: center;">
+                                    Total Workload <br/> (days)
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Open
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    %
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Very high
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    High
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Normal
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Low
+                                </th>
+                            </tr>
+                            <t t-foreach="get_support_ticket_by_user(data['form'])"
+                                t-as="obj">
+                                <tr>
+                                    <t t-if="obj['data']['name'] != 0">
+                                        <td>
+                                            <span t-esc="obj['data']['name']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['name'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['total'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['total']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['total'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Total Workload'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Total Workload']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Total Workload'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Open'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Open']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Open'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['%'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['%']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['%'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Very High'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Very High']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Very High'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['High'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['High']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['High'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Normal'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Normal']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Normal'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Low'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Low']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Low'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+
+                    <div class="col-md-12">
+                        <strong style="font-size: 17px; color: #2a5d8f">Force Tickets</strong>
+                        <table class="table table-bordered" style="margin-top: 8px">
+                            <col width="28%" />
+                            <col width="8%" />
+                            <!-- <col width="8%" /> -->
+                            <col width="8%" />
+                            <col width="8%" />
+                            <col width="8%" />
+                            <col width="8%" />
+                            <col width="8%" />
+                            <col width="8%" />
+                            <col width="8%" />
+                            <tr>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Assignee
+                                </th>
+                                <th style="background-color: #cccccc; text-align: center;">
+                                    Total
+                                </th>
+                                <th style="background-color: #cccccc; text-align: center;">
+                                    Total Time Spent <br/> (hours)
+                                </th>
+                                <!-- <th style="background-color: #cccccc; text-align: center;">
+                                    Total Time Spent on Development <br/> (hr)
+                                </th> -->
+                                <th style="background-color: #cccccc; text-align: center;">
+                                    Open
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    %
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Very high
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    High
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Normal
+                                </th>
+                                 <th style="background-color: #cccccc; text-align: center;">
+                                    Low
+                                </th>
+                            </tr>
+                            <t t-foreach="get_forge_ticket_by_user(data['form'])"
+                                t-as="obj">
+                                <tr>
+                                    <t t-if="obj['data']['name'] != 0">
+                                        <td>
+                                            <span t-esc="obj['data']['name']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['name'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['total'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['total']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['total'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['total time spend'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['total time spend']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['total time spend'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <!-- <t t-if="obj['data']['total time spend dev'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['total time spend']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['total time spend dev'] == 0">
+                                        <td>
+                                        </td>
+                                    </t> -->
+                                    <t t-if="obj['data']['Open'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Open']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Open'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['%'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['%']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['%'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Very High'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Very High']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Very High'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['High'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['High']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['High'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Normal'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Normal']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Normal'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Low'] != 0">
+                                        <td style="text-align: right;">
+                                            <span t-esc="obj['data']['Low']" />
+                                        </td>
+                                    </t>
+                                    <t t-if="obj['data']['Low'] == 0">
+                                        <td>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="tms_modules.report_global_analysis_partner_template">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <!-- This command use covert language for report -->
+                    <t t-raw="translate_doc(doc_id, doc_model, 'lang', 'tms_modules.report_global_analysis_partner_activity')" />
+                </t>
+            </t>
+        </template>
+
+        <record id="tms_modules.report_global_analysis_partner_paper" model="report.paperformat">
+            <field name="name">Support Activity A4</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">25</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report id="report_global_analysis_partner" string="Support Activity"
+            model="global.analysis.partner.wizard" report_type="qweb-html"
+            name="tms_modules.report_global_analysis_partner_template"
+            file="tms_modules.report_global_analysis_partner_template" />
+
+        <record id="report_global_analysis_partner" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="tms_modules.report_global_analysis_partner_paper" />
+        </record>
+    </data>
+</openerp>

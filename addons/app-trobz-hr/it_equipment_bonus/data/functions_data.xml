@@ -1,0 +1,5 @@
+<openerp>
+    <data noupdate="0">
+        <function model="it.equipment.bonus.post.object.security" name="start" />
+    </data>
+</openerp>

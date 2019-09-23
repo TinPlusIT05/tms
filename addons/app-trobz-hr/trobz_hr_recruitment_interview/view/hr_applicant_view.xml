@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_hr_applicant_inherit">
+            <field name="name">view.hr.applicant.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job" />
+            <field name="arch" type="xml">
+                <field name="description" position="after">
+                    <separator string="Interview Feedbacks" />
+                    <field name="interview_ids" colspan="4">
+                        <tree string="Interview Feedback" editable="bottom">
+                            <field name="date" />
+                            <field name="feedback" widget="markdown" />
+                            <field name="priority" />
+                            <field name="user_id" readonly="1" />
+                        </tree>
+                    </field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

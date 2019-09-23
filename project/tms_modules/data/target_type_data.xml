@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="target_missing_estimations" model="target.type">
+            <field name="name">Missing estimations</field>
+        </record>
+        <record id="target_ready_for_intergration" model="target.type">
+            <field name="name">Max ready for integration per project</field>
+        </record>
+        <record id="target_QA_tickets" model="target.type">
+            <field name="name">QA tickets</field>
+        </record>
+        <record id="target_ready_for_staging" model="target.type">
+            <field name="name">Tickets ready for staging</field>
+        </record>
+        <record id="target_assigned_trobz" model="target.type">
+            <field name="name">Support tickets assigned to trobz</field>
+        </record>
+
+        <record id="target_ready_for_integration" model="target.type">
+            <field name="name">Ready for integration</field>
+        </record>
+        <record id="target_missing_reactivity" model="target.type">
+            <field name="name">Ticket missing reactivity</field>
+        </record>
+        <record id="project_missing_reactivity" model="target.type">
+            <field name="name">Project missing reactivity</field>
+        </record>
+        <record id="target_average_opening_time" model="target.type">
+            <field name="name">Average opening time</field>
+        </record>
+        <record id="target_longest_opening_time_urgent_support_ticket" model="target.type">
+            <field name="name">Longest opening time for urgent support ticket</field>
+        </record>
+        <record id="target_longest_opening_time_normal_support_ticket" model="target.type">
+            <field name="name">Longest opening time for normal support ticket</field>
+        </record>
+
+        <record id="tms_net_productivity_rate" model="target.type">
+            <field name="name">Net Productivity rate</field>
+        </record>
+        <record id="tms_reopening_rate" model="target.type">
+            <field name="name">Reopening rate</field>
+        </record>
+        <record id="tms_average_trobz_ownership_total_time_in_low" model="target.type">
+            <field name="name">Average Trobz Ownership Total Time Of Opened And Not Low Support Ticket</field>
+        </record>
+
+        <record id="tms_average_trobz_ownership_total_time_in_close" model="target.type">
+            <field name="name">Average Trobz Ownership Total Time Of Closed And Not Low Support Ticket</field>
+        </record>
+        
+        <record id="target_minimum_tickets_ready_for_staging" model="target.type">
+            <field name="name">Minimum tickets ready for staging</field>
+            <field name="description">5</field>
+        </record>
+    </data>
+</openerp>

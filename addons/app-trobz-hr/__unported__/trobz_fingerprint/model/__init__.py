@@ -1,0 +1,3 @@
+import hr_attendance
+import fingerprint_record
+import connection_config

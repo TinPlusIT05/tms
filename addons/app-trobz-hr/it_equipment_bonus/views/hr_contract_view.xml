@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="view_hr_contract_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.contract.view.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+               <group name="duration_group" position="after">
+                   <group name="benefit" string="Benefit">
+                        <label for="amt_benefit"></label>
+                        <div>
+                            <field name="amt_benefit"/>
+                            <button name="action_generate_it_equipment_bonus" class="oe_highlight"
+                                widget="statinfo" type="object"
+                                help="Replace old or Generate new IT Equipment Bonus for this contract."
+                                string="Generate IT Equipment Bonus">
+                            </button>
+                        </div>
+                   </group>
+               </group>
+            </field>
+        </record>
+    </data>
+</openerp>

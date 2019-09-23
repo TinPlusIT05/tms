@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+	<tr t-name="ListView.row"
+	        t-att-data-id="record.get('id')"
+	        t-att-style="view.style_for(record)"
+	        t-att-class="view.class_for(record)">
+	    <t t-set="asData" t-value="record.toForm().data"/>
+	    <t t-foreach="columns" t-as="column">
+	        <td t-if="column.meta"> </td>
+	    </t>
+	    <th t-if="options.selectable" class="oe_list_record_selector" width="1">
+	        <t t-set="checked" t-value="options.select_view_id == record.get('id') ? 'checked' : null"/>
+	        <input t-if="options.radio" type="radio" name="radiogroup" t-att-checked="checked"/>
+	        <input t-if="!options.radio" type="checkbox" name="radiogroup" t-att-checked="checked"/>
+	    </th>
+	    <t t-foreach="columns" t-as="column">
+	        <t t-set="number" t-value="column.type === 'integer' or column.type == 'float'"/>
+	        <t t-set="modifiers" t-value="column.modifiers_for(asData)"/>
+	        <td t-if="!column.meta and column.invisible !== '1'" t-att-title="column.help"
+	            t-attf-class="oe_list_field_cell oe_list_field_#{column.widget or column.type} #{number ? 'oe_number' : ''} #{column.tag === 'button' ? 'oe-button' : ''} #{modifiers.readonly ? 'oe_readonly' : ''} #{modifiers.required ? 'oe_required' : ''}"
+	            t-att-data-field="column.id"
+	            ><t t-raw="render_cell(record, column)"/></td>
+	    </t>
+	    <td t-if="options.deletable" class='oe_list_record_delete' width="13px">
+	        <button type="button" name="delete" class="oe_i">d</button>
+	    </td>
+	</tr>
+    <t t-extend="UserMenu">
+        <t t-jquery=".dropdown-menu li a[data-menu='account']" t-operation="replace" />
+        <t t-jquery=".dropdown-menu li a[data-menu='help']" t-operation="replace" />
+        <t t-jquery=".dropdown-menu li a[data-menu='odoo_support']" t-operation="replace" />
+    </t>
+
+    <!-- template for color picker field widget -->
+    <t t-name="FormViewFieldColorPicker">
+        <div class="form-field-color-picker">
+        <t t-set="field_value" t-value="widget.get_field_value()" />
+
+        <t t-if="widget.get('effective_readonly')">
+            <div class="color"><a href="#" t-att-data-color="color_index" t-attf-class="oe-form-picker-color-#{field_value}"></a></div>
+        </t>
+
+        <t t-if="!widget.get('effective_readonly')">
+        <t t-foreach="widget.number_of_color_schemes" t-as="color">
+            <t t-if="field_value == color">
+            <div class="color selected"><a href="#" t-att-data-color="color_index" t-attf-class="oe-form-picker-color-#{color}"></a></div>
+            </t>
+            <t t-if="field_value != color">
+            <div class="color"><a href="#" t-att-data-color="color_index" t-attf-class="oe-form-picker-color-#{color}"></a></div>
+            </t>
+        </t>
+        </t>
+        </div>
+    </t>
+
+    <t t-name="FieldChar">
+        <span t-att-class="'oe_form_field '+widget.widget_class" t-att-style="widget.node.attrs.style">
+            <t t-if="!widget.get('effective_readonly')">
+                <input t-att-type="widget.password ? 'password' : 'text'"
+                    t-att-id="widget.id_for_label"
+                    t-att-tabindex="widget.node.attrs.tabindex"
+                    t-att-autofocus="widget.node.attrs.autofocus"
+                    t-att-placeholder="widget.node.attrs.placeholder"
+                    t-att-maxlength="widget.field.size"
+                    t-att-autocomplete="widget.password ? 'new-password' : widget.node.attrs.autocomplete"
+                /><img class="oe_field_translate oe_input_icon" t-if="widget.field.translate" t-att-src='_s + "/web/static/src/img/icons/terp-translate.png"' width="16" height="16" border="0"/>
+            </t>
+            <t t-if="widget.get('effective_readonly')">
+                <span class="oe_form_char_content"></span>
+            </t>
+        </span>
+    </t>
+
+</templates>

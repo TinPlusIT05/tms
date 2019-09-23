@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!--Test Salary calculation  -->
+		<record model="ir.actions.act_window" id="action_salary_calculation_wizard">
+            <field name="name">Calculate Gross/Net Salary</field>
+            <field name="res_model">salary.calculation.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="view_salary_calculation_wizard_form" />
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem id="hr_salary_calculation_test" name="Salary Calculation"
+            parent="hr_payroll.menu_hr_root_payroll" sequence="50"/>
+            
+        <menuitem id="hr_salary_calculation" name="Calculate Gross/Net Salary"
+            parent="hr_salary_calculation_test" sequence="50"
+            action="action_salary_calculation_wizard" />
+            
+        <record model="ir.actions.act_window" id="action_pit_detail">
+            <field name="name">Pit Details</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pit.details</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_pit_details_tree" />
+        </record>
+
+        <menuitem id="pit_details" name="PIT Level"
+            parent="hr_salary_calculation_test" sequence="60" 
+            action="action_pit_detail" />
+
+    </data>
+</openerp>

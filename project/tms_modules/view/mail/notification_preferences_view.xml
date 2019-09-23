@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_notification_preferences_form" model="ir.ui.view">
+			<field name="name">notification.preferences.form</field>
+			<field name="model">notification.preferences</field>
+			<field name="arch" type="xml">
+				<form string="Notification Preferences">
+					<group>
+						<group>
+							<field name="name" />
+							<field name="use_by_subscribe_me" />
+                            <field name="receive_notif_for_my_action" />
+						</group>
+					</group>
+					<group string="Forge Fields">
+						<field name="forge_field_ids" nolabel="1"
+							domain="[('ttype', 'not in', ['reference', 'function']),
+								('model', '=', 'tms.forge.ticket')]" />
+					</group>
+					<group string="Support Fields">
+						<field name="support_field_ids" nolabel="1"
+							domain="[('ttype', 'not in', ['reference', 'function']),
+								('model', '=', 'tms.support.ticket')]" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_notification_preferences_tree" model="ir.ui.view">
+			<field name="name">notification.preferences.tree</field>
+			<field name="model">notification.preferences</field>
+			<field name="arch" type="xml">
+				<tree string="Notification Preferences">
+					<field name="name" />
+					<field name="use_by_subscribe_me" />
+                    <field name="receive_notif_for_my_action" />
+					<field name="forge_field_ids" />
+					<field name="support_field_ids" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_notification_preferences_search" model="ir.ui.view">
+			<field name="name">notification.preferences.search</field>
+			<field name="model">notification.preferences</field>
+			<field name="arch" type="xml">
+				<search string="Search Notification Preferences">
+					<field name="name" />
+					<field name="use_by_subscribe_me" />
+                    <field name="receive_notif_for_my_action" />
+					<field name="forge_field_ids" />
+					<field name="support_field_ids" />
+				</search>
+			</field>
+		</record>
+
+		<record id="action_notification_preferences" model="ir.actions.act_window">
+			<field name="name">Notification Preferences</field>
+			<field name="res_model">notification.preferences</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data>
+  	    <function model="hr.working.activity" name="update_xml_id_hr_working_activity"/>
+  	    
+        <record model="hr.working.activity" id="working_activity_Working">
+			<field name="name">Working Days</field>
+			<field name="code">Working</field>
+			<field name="wage_coefficient">100</field>
+			<field name="type">work</field>
+			<field name="sequence">5</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_NightWorking">
+			<field name="name">Night Working Days</field>
+			<field name="code">NightWorking</field>
+			<field name="wage_coefficient">130</field>
+			<field name="type">work</field>
+			<field name="sequence">10</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_ReOT">
+			<field name="name">Overtime on Day Shift on Working Days</field>
+			<field name="code">ReOT</field>
+			<field name="wage_coefficient">150</field>
+			<field name="type">overtime</field>
+			<field name="sequence">15</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_NightReOT">
+			<field name="name">Overtime on Night Shift on Working Days</field>
+			<field name="code">NightReOT</field>
+			<field name="wage_coefficient">200</field>
+			<field name="type">overtime</field>
+			<field name="sequence">20</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_WkOT">
+			<field name="name">Overtime on Day Shift on Non Working Days</field>
+			<field name="code">WkOT</field>
+			<field name="wage_coefficient">200</field>
+			<field name="type">overtime</field>
+			<field name="sequence">25</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_NightWkOT">
+			<field name="name">Overtime on Night Shift on Non Working Days</field>
+			<field name="code">NightWkOT</field>
+			<field name="wage_coefficient">250</field>
+			<field name="type">overtime</field>
+			<field name="sequence">30</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_Hol">
+			<field name="name">Overtime on Day Shift on Public Holidays</field>
+			<field name="code">HolOT</field>
+			<field name="wage_coefficient">400</field>
+			<field name="type">overtime</field>
+			<field name="sequence">35</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_NightHol">
+			<field name="name">Overtime on Night Shift on Public Holidays</field>
+			<field name="code">NightHolOT</field>
+			<field name="wage_coefficient">450</field>
+			<field name="type">overtime</field>
+			<field name="sequence">40</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_SpecialL">
+			<field name="name">Special Leave</field>
+			<field name="code">SpecialL</field>
+			<field name="wage_coefficient">100</field>
+			<field name="type">daysoff</field>			
+			<field name="sequence">45</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_StoppageL">
+			<field name="name">Stoppage Leave</field>
+			<field name="code">StoppageL</field>
+			<field name="wage_coefficient">100</field>
+			<field name="type">daysoff</field>
+			<field name="sequence">50</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_AccidentL">
+            <field name="name">Accident Leave</field>
+            <field name="code">AccidentL</field>
+            <field name="wage_coefficient">100</field>
+            <field name="type">daysoff</field>
+            <field name="sequence">55</field>
+        </record>
+    
+        <record model="hr.working.activity" id="working_activity_CasL">
+            <field name="name">Casual Leave</field>
+            <field name="code">CasL</field>
+            <field name="wage_coefficient">100</field>
+            <field name="type">daysoff</field>
+            <field name="sequence">50</field>
+        </record>
+		
+		<record model="hr.working.activity" id="working_activity_Comp">
+			<field name="name">Compensation</field>
+			<field name="code">Comp</field>
+			<field name="wage_coefficient">100</field>
+			<field name="type">work</field>
+			<field name="sequence">65</field>
+		</record>
+		
+		<record model="hr.working.activity" id="working_activity_Exception">
+            <field name="name">Exceptional Day (no pay)</field>
+            <field name="code">Exception</field>
+            <field name="wage_coefficient">0</field>
+            <field name="type">exception</field>
+            <field name="sequence">70</field>
+        </record>
+        
+        <record model="hr.working.activity" id="working_activity_public_holiday">
+            <field name="name">Public Holiday</field>
+            <field name="code">PubHol</field>
+            <field name="wage_coefficient">100</field>
+            <field name="type">daysoff</field>
+            <field name="sequence">75</field>
+        </record>
+		
+	</data>
+</openerp>

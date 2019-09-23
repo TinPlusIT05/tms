@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_pit_details_form" model="ir.ui.view">
+			<field name="name">pit.details.form</field>
+			<field name="model">pit.details</field>
+			<field name="arch" type="xml">
+				<form string="Pit Details" version="7.0">
+					<group>
+						<field name="name" required="True" />
+						<field name="price" required="True" />
+						<field name="tax" required="True" />
+						<field name="sequence" required="True" />
+						<field name="income_before_tax" required="True" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_pit_details_tree" model="ir.ui.view">
+			<field name="name">pit.details.tree</field>
+			<field name="model">pit.details</field>
+			<field name="arch" type="xml">
+				<tree string="Pit Details" version="7.0">
+					<field name="name" />
+					<field name="price" />
+					<field name="tax" />
+					<field name="sequence" />
+					<field name="income_before_tax" />
+				</tree>
+			</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+ 		<record forcecreate="True" id="ir_cron_test_instance" model="ir.cron">
+            <field name="name">Test Instances</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tms.instance'" name="model"/>
+            <field eval="'run_test_instance_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="daily_check_lists_instance">
+            <field name="name">Daily Check List Instance Databases</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="True" name="active"/>
+            <field eval="'tms.instance'" name="model"/>
+            <field eval="'run_scheduler_compare_instance_in_tms_and_database'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="ir_cron_module_quality_check">
+            <field name="name">Daily Run Module Quality Check Result</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tms.instance'" name="model"/>
+            <field eval="'run_get_module_quality_check_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="daily_email_notification">
+            <field name="name">Daily Notifications from TMS</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="True" name="active"/>
+            <field eval="'email.template'" name="model"/>
+            <field eval="'send_daily_notifications_mail'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="hr_daily_notification">
+            <field name="name">HR Daily Notification</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="True" name="active"/>
+            <field eval="'email.template'" name="model"/>
+            <field name="nextcall" eval="(DateTime.now()+timedelta(days=1)).strftime('%Y-%m-%d 02:00:00')"/>
+            <field eval="'send_hr_daily_notification_mail'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="daily_remain_ticket_test">
+            <field name="name">Daily Remind Tickets Missing Workload Estimation</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tms.forge.ticket'" name="model"/>
+            <field eval="'scheduler_check_tickets_missing_workload_estimation'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="identify_support_tickets_missing_reactivity">
+            <field name="name">Daily Check Support Tickets Missing Reactivity</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tms.support.ticket'" name="model"/>
+            <field eval="'run_identify_support_tickets_missing_reactivity'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="calculate_ownership_duration">
+            <field name="name">Daily Calculate ownership duration for support ticket</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tms.support.ticket'" name="model"/>
+            <field eval="'run_calculate_ownership_date'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="calculate_trobz_ownership_total_time">
+            <field name="name">Daily Calculate trobz ownership total time for support ticket</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tms.support.ticket'" name="model"/>
+            <field eval="'run_calculate_trobz_ownership_total_time'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="weekly_send_customer_support_tickets_status">
+            <field name="name">Trobz Support Weekly Status</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tms.project'" name="model"/>
+            <field eval="'automatic_send_email_to_customers'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="daily_remain_wh_email">
+            <field name="name">Daily Remind Inputing Working Hour</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="True" name="active"/>
+            <field eval="'res.users'" name="model"/>
+            <field eval="'send_email_remain_working_hour'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="update_extra_allocation_request">
+            <field name="name">Re-calculate extra allocation requests</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">0</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="False" name="active"/>
+            <field eval="'hr.holidays'" name="model"/>
+            <field eval="'function_update_allocation_request_for_work_seniority'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="add_allocation_request_beginning_of_month_automatically">
+            <field name="name">Update missing allocation requests for new contract</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="nextcall" eval="(DateTime.now().replace(day=1) + relativedelta(months=1)).strftime('%Y-%m-01 00:00:01')"/>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="False"/>
+            <field name="doall" eval="True"/>
+            <field name="model" eval="'hr.holidays'"/>
+            <field name="function" eval="'update_missing_allocation_request_previous_month'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+        <record model="ir.cron" id="update_extra_allocation_request">
+            <field name="name">Daily Update Project Intensity</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="True" name="active"/>
+            <field eval="'tms.project'" name="model"/>
+            <field eval="'auto_update_project_intensity'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+		<record model="ir.cron" id="run_scheduler_clean_support_ticket">
+            <field name="name">Scheduler Clean Support Ticket</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'tms.project'"/>
+            <field name="function" eval="'run_scheduler_clean_support_ticket'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+    <!-- Add nextcall for send an email to DTM-->
+   	    <record model="ir.cron" id="run_scheduler_daily_support_consumption_status">
+           <field name="name">Daily Support Consumption Status</field>
+           <field name="user_id" ref="base.user_root"/>
+           <field name="interval_number">1</field>
+           <field name="interval_type">days</field>
+           <field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+           <field eval="True" name="active"/>
+           <field name="nextcall" eval="(DateTime.now()+timedelta(days=1)).strftime('%Y-%m-%d 00:00:00')"/>
+           <field eval="'email.template'" name="model"/>
+           <field eval="'send_daily_support_consumption_status_to_pm'" name="function"/>
+           <field eval="'()'" name="args"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_update_depreciation_amount" model="ir.cron">
+			<field name="name">Update Depreciation Amount for Assets</field>
+			<field name="user_id" ref="base.user_root" />
+			<field name="interval_number">1</field>
+			<field name="interval_type">months</field>
+			<field name="numbercall">-1</field>
+			<field eval="False" name="doall" />
+			<field eval="'depreciation.lines'" name="model" />
+            <field name="nextcall" eval="(DateTime.now()+timedelta(days=1)).strftime('%Y-%m-01 18:00:00')"/>
+			<field eval="'run_update_depreciation_amount'" name="function" />
+			<field eval="'()'" name="args" />
+		</record>
+    <!-- Update / Renew the support contracts -->
+        <record model="ir.cron" id="update_renew_support_contract">
+           <field name="name">Update / Renew the support contracts</field>
+           <field name="user_id" ref="base.user_root"/>
+           <field name="interval_number">1</field>
+           <field name="interval_type">days</field>
+           <field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+           <field eval="True" name="active"/>
+           <field name="nextcall" eval="(DateTime.now()+timedelta(days=1)).strftime('%Y-%m-%d 23:30:00')"/>
+           <field eval="'project.support.contracts'" name="model"/>
+           <field eval="'update_renew_support_contract'" name="function"/>
+           <field eval="'()'" name="args"/>
+        </record>
+        <!-- Compute  -->
+        <record model="ir.cron" id="compute_credit_benefit">
+           <field name="name">Compute credit benefit every day</field>
+           <field name="user_id" ref="base.user_root"/>
+           <field name="interval_number">1</field>
+           <field name="interval_type">days</field>
+           <field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+           <field eval="False" name="active"/>
+           <field name="nextcall" eval="(DateTime.now()).strftime('%Y-%m-%d 20:00:00')"/>
+           <field eval="'hr.employee'" name="model"/>
+           <field eval="'scheduler_compute_balance_benefit'" name="function"/>
+           <field eval="'()'" name="args"/>
+        </record>
+        <!-- Check and create tag for docker repository -->
+        <record model="ir.cron" id="check_and_create_tag_docker_repository">
+            <field name="name">Check and create tag for docker repository</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="True" name="active"/>
+            <field name="nextcall" eval="(DateTime.now()+timedelta(days=1)).strftime('%Y-%m-%d 00:00:00')"/>
+            <field eval="'tms.docker.repo'" name="model"/>
+            <field eval="'check_and_create_tag_docker_repository'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record model="ir.cron" id="add_sick_leave_allcoation_beginning_of_year_automatically">
+            <field name="name">Create Sick Leave (Paid) Allocation Yearly</field>
+            <field name="interval_number">365</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=365)).strftime('%Y-01-01 10:00:00')" />
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="True"/>
+            <field name="model" eval="'hr.holidays'"/>
+            <field name="function" eval="'create_allocation_request_for_sick_leave_paid'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+        <record model="ir.cron" id="weekly_developer_productivity">
+            <field name="name">Weekly Developer Productivity last Sprint from TMS</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="True" name="active"/>
+            <field eval="'email.template'" name="model"/>
+            <field eval="'send_weekly_developer_productivity'" name="function"/>
+            <!-- Can pass specific sprint date if user want. Exp: '2019-06-01' for sprint on satuday June 01 2019 -->
+            <field eval="'(False,)'" name="args"/>
+            <field name="nextcall" eval="(DateTime.now()+timedelta(days=7-DateTime.now().weekday())).strftime('%Y-%m-%d 03:00:00')"/>
+        </record>
+
+        <record model="ir.cron" id="weekly_update_employee_capacity">
+            <field name="name">Weekly Update Employee Capacity</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="True" name="active"/>
+            <field eval="'hr.employee.capacity.weekly'" name="model"/>
+            <field eval="'_cron_update_weekly_employee_capacity'" name="function"/>
+            <field name="nextcall" eval="(DateTime.now()-timedelta(days=DateTime.now().weekday())+timedelta(days=0)).strftime('%Y-%m-%d 12:30:00')"/>
+        </record>
+
+        <record model="ir.cron" id="set_hire_date_for_employee">
+            <field name="name">Set Hire Date for Employee</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="False" name="active"/>
+            <field eval="'hr.employee'" name="model"/>
+            <field eval="'_cron_set_hire_date_for_employee'" name="function"/>
+            <field eval="'(False,False)'" name="args"/>
+            <field name="nextcall" eval="(DateTime.now()-timedelta(days=DateTime.now().weekday())+timedelta(days=5)).strftime('%Y-%m-%d 12:30:00')"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_check_ongoing_awx_jobs" model="ir.cron">
+            <field name="name">Check ongoing AWX jobs</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tms.awx.job.history'" name="model"/>
+            <field eval="'_check_ongoing_awx_jobs'" name="function"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_delete_completed_failed_awx_jobs" model="ir.cron">
+            <field name="name">Delete completed/failed AWX jobs</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="nextcall" eval="(DateTime.now().replace(day=1) + relativedelta(months=1)).strftime('%Y-%m-01 00:00:01')"/>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="False" name="active"/>
+            <field eval="'tms.awx.job.history'" name="model"/>
+            <field eval="'_delete_completed_failed_awx_jobs'" name="function"/>
+        </record>
+    </data>
+
+</openerp>

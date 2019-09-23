@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="trobz_base.default_timezone" model="ir.config_parameter">
+        	<field name="key">Default Timezone</field>
+        	<field name="value">Europe/Paris</field>
+        </record>
+        
+        <record id="trobz_base.language_to_load" model="ir.config_parameter">
+        	<field name="key">language_to_load</field>
+        	<field name="value">fr_FR</field>
+        </record>
+
+        
+    </data>
+
+</openerp>
+

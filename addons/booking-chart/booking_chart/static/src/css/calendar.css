@@ -1,0 +1,143 @@
+.oe-booking-container {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.booking-chart {
+    min-width: 1010px;
+}
+
+.booking-chart a.oe_i.disabled {
+    color: #aaa;
+}
+
+
+
+/* controls view */
+
+.booking-chart-controls {
+    margin: 5px 10px;
+}
+
+.booking-chart-controls .booking-chart-zoom {
+    float: right;
+}
+
+.booking-chart-controls .booking-chart-zoom ul li.oe_i {
+    font-family: 'Lucida Grande', Helvetica, Verdana, Arial, sans-serif !important;
+    font-size: 14px;
+    height: 23px;
+}
+
+.booking-chart-controls .booking-chart-timezone {
+    float: left;
+}
+
+.booking-chart-controls .booking-chart-timezone span {
+    font-style: italic;
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* bootstrap tooltip overrides */
+
+.booking-chart .tooltip-container .tooltip-inner {
+    padding: 0;
+    background: #333;
+    overflow: hidden;
+}
+
+.booking-chart .tooltip-container .tip-duration {
+    padding: 3px 6px;
+    display: block;
+    text-align: right;
+    font-style: italic;
+    color: #ccc;
+}
+
+.booking-chart .tooltip-container .tip-title,
+.booking-chart .tooltip-container p {
+    padding: 0 5px;
+    width: 100%;
+    display: block;
+}
+
+.booking-chart .tooltip-container .tip-title {
+    background: #000;
+    border-bottom: 2px solid #999;
+    padding: 3px 0;
+}
+
+.booking-chart .tooltip-container .tip-label {
+    display: inline-block;
+    width: 35px;
+    font-style: italic;
+    color: #ccc;
+}
+
+.booking-chart .tooltip-container p {
+    text-align: left;
+    margin: 3px 5px 5px 5px;
+}
+
+.booking-chart .tooltip-container ul {
+    margin: 0 10px;
+    text-align: left;
+    padding: 0;
+    min-width: 150px;
+}
+
+.booking-chart .tooltip-container li {
+    list-style: none;
+}
+
+
+
+/* scrollbar overrides */
+
+.mCSB_horizontal.mCustomScrollBox > div.mCSB_scrollTools {
+    bottom: inherit;
+    top: 2px;
+}
+
+.mCSB_horizontal>.mCSB_container {
+    margin-bottom: 0px !important;
+}
+
+.mCSB_horizontal>.mCSB_container > div:nth-child(even) > .calendar-day-container {
+    background-color: rgba(0, 0, 0, 0.025);
+}
+
+.calendar-day-container .calendar-day-name {
+    background-color: #FFF;
+}
+
+
+.dhx_cal_navline_bar {
+    width: 100% !important;
+    height: 39px !important;
+    position: inherit ;
+    z-index:3;
+    background-color: #EBEBEB;
+}
+
+/* frozen scrollbar */
+
+.freeze .mCustomScrollBox {
+    -moz-box-shadow: inset -1px -2px 10px #80bfff;
+    -webkit-box-shadow: inset -1px -2px 10px #80bfff;
+    box-shadow: inset -1px -2px 10px #80bfff;
+}
+
+.freeze .mCS-dark-thick>.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background:rgba(67, 61, 213, 0.75);
+}
+.freeze .mCS-dark-thick>.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
+    background:rgba(67, 61, 213, 0.8);
+}
+.freeze .mCS-dark-thick>.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+.freeze .mCS-dark-thick>.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
+    background:rgba(67, 61, 213, 0.9);
+}
+
+

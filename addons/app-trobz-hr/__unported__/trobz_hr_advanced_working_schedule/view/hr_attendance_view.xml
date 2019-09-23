@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		
+		<!-- HR Attendance -->
+		<record id="view_hr_attendance_form_inherit" model="ir.ui.view">
+			<field name="name">view.hr.attendance.form.inherit</field>
+			<field name="model">hr.attendance</field>
+			<field name="inherit_id" ref="hr_attendance.view_attendance_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet" position="before">
+				 	<header>
+                        <button string="Re-check" name="recheck_attendance" type="object" class="oe_highlight"/>
+                    </header>
+               	</xpath>
+				<field name="action_desc" position="after">
+					<field name="inconsistence_reason"/>
+				</field>
+			</field>
+		</record>
+
+	</data>
+</openerp>

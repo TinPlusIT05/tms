@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Leaves Summary Tree View -->
+		<record id="hr_holidays_summary_line_tree" model="ir.ui.view">
+			<field name="name">hr.holidays.summary.line.tree</field>
+			<field name="model">hr.holidays.summary.line</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Detail Leaves Request For Employees Line" >
+					<field name="employee_id"/>
+					<field name="allocation_day"/>
+					<field name="casual_leave_paid_day"/>
+					<field name="sick_leave_paid_day"/>
+					<field name="upaid_leave_day"/>
+					<field name="other_paid_leave_day"/>
+					<field name="remaining_total"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Leaves Summary Line Form view -->
+		<record id="hr_holidays_summary_line_form" model="ir.ui.view">
+			<field name="name">hr.holidays.summary.line.form</field>
+			<field name="model">hr.holidays.summary.line</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Detail Leaves Request For Employees Line" version="7.0">
+					<sheet>
+						<group>
+							<group>
+								<field name="employee_id"/>
+								<field name="casual_leave_paid_day"/>
+								<field name="upaid_leave_day"/>
+								<field name="remaining_total"/>
+							</group>
+							<group>
+								<field name="allocation_day"/>
+								<field name="sick_leave_paid_day"/>
+								<field name="other_paid_leave_day"/>
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Leaves Summary Search View -->
+		<record id="hr_holidays_summary_line_search" model="ir.ui.view">
+			<field name="name">hr.holidays.summary.line.search</field>
+			<field name="model">hr.holidays.summary.line</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Detail Leaves Request For Employees Line">
+					<field name="employee_id"/>
+					<field name="allocation_day"/>
+					<field name="casual_leave_paid_day"/>
+					<field name="sick_leave_paid_day"/>
+					<field name="upaid_leave_day"/>
+					<field name="other_paid_leave_day"/>
+					<field name="remaining_total"/>
+				</search>
+			</field>
+		</record>
+    </data>
+</openerp>

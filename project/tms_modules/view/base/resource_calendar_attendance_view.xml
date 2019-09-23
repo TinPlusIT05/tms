@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record id="view_resource_calendar_attendance_tree_inherit" model="ir.ui.view">
+			<field name="name">resource.calendar.attendance.tree.inherit</field>
+			<field name="model">resource.calendar.attendance</field>
+			<field name="inherit_id" ref="resource.view_resource_calendar_attendance_tree"/>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<field name="hour_to" position="after">
+					<field name="number_hours" invisible="1"/>
+				</field>
+			</field>
+		</record>
+
+		<record id="view_resource_calendar_attendance_form_inherit" model="ir.ui.view">
+			<field name="name">resource.calendar.attendance.form.inherit</field>
+			<field name="model">resource.calendar.attendance</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="resource.view_resource_calendar_attendance_form"/>
+			<field name="arch" type="xml">
+				<field name="hour_from" widget="float_time" position="replace">
+					<field name="hour_from" widget="float_time" />
+				</field>
+				<field name="hour_to" widget="float_time" position="replace">
+					<field name="hour_to" widget="float_time" />
+					<field name="number_hours" widget="float_time" invisible="1"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

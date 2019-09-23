@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record id="max_salary_social_insurance" model="ir.config_parameter">
+			<field name="key">max_salary_social_insurance</field>
+			<field name="value">23000000</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <!-- Action -->
+		<record id="action_all_partner" model="ir.actions.act_window">
+			<field name="name">All Partners</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+			<field name="auto_search">True</field>
+			<field name="filter">True</field>
+		</record>
+
+		<!-- Menu for Maintenance -->
+        <menuitem name="Maintenance" id="trobz_maintenance"
+            parent="base.menu_custom"/>
+        
+        <!-- Menu for hidden modules -->
+        <menuitem 
+            name="Hidden"
+            id="settings_hidden"
+            parent="base.menu_administration"/>
+        
+        <menuitem 
+            name="Hidden"
+            id="settings_hidden_hidden"
+            parent="settings_hidden"/>
+            
+        <!-- Menu to manage Users -->
+        <menuitem 
+            name="Admin"
+            id="admin_menu"
+            groups="group_configure_user"
+            sequence="500"/>
+        <menuitem 
+            name="User"
+            id="admin_user_root_menu"
+            parent="admin_menu"/>
+        <menuitem 
+            name="Users"
+            id="admin_user_menu"
+            parent="admin_user_root_menu"
+            action="base.action_res_users"/>
+		<menuitem
+			name="Partners"
+			id="admin_partners_root_menu"
+			parent="trobz_base.admin_menu"
+			sequence="11"/>
+        <menuitem
+			name="All Partners"
+			id="admin_partners_menu"
+			parent="admin_partners_root_menu"
+			sequence="1"
+			action="action_all_partner"/>
+            
+        <menuitem
+            name="Email"
+            id="admin_email_menu"
+            parent="trobz_base.admin_menu"
+            sequence="20" />
+
+        <!-- Menu trobz maintenance connection -->
+		<menuitem name="Maintenance Connection" id="menu_trobz_maintenance_connection"
+			parent="trobz_maintenance" action="action_trobz_maintenance_connection_form"
+			sequence="110" />
+
+    </data>
+</openerp>

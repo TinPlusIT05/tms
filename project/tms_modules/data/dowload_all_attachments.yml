@@ -1,0 +1,18 @@
+-
+  I create Dowload all attachments for TMS Forge Ticket, TMS Support Ticket
+-
+  !python {model: dowload.all.attachments}: |
+    dowload_tms_forge_ticket_id = self.search(cr, uid, [('model_id', '=', ref('tms_modules.model_tms_forge_ticket'))])
+    dowload_tms_forge_ticket = self.browse(cr, uid, dowload_tms_forge_ticket_id[0])
+    dowload_tms_support_ticket_id = self.search(cr, uid, [('model_id', '=', ref('tms_modules.model_tms_support_ticket'))])
+    dowload_tms_support_ticket = self.browse(cr, uid, dowload_tms_support_ticket_id[0])
+
+    if not dowload_tms_forge_ticket.model_ids:
+      dowload_tms_forge_ticket.model_ids = [(6, 0, [dowload_tms_forge_ticket.model_id.id])]
+    if dowload_tms_forge_ticket and not dowload_tms_forge_ticket.ref_ir_act_window:
+      dowload_tms_forge_ticket.create_action()
+
+    if not dowload_tms_support_ticket.model_ids:
+      dowload_tms_support_ticket.model_ids = [(6, 0, [dowload_tms_support_ticket.model_id.id])]
+    if dowload_tms_support_ticket and not dowload_tms_support_ticket.ref_ir_act_window:
+      dowload_tms_support_ticket.create_action()

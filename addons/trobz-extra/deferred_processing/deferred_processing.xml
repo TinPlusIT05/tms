@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+	<data>
+		<!--deferred_processing.task form -->
+		<!--Trobz: add button "Done" to change state "done" manually -->
+		<record model='ir.ui.view' id='view_deferred_processing_task_form'>
+			<field name='name'>deferred_processing.task.form</field>
+			<field name='model'>deferred_processing.task</field>
+			<field name='priority'>16</field>
+			<field type='xml' name='arch'>
+				<form string='deferred_processing.task'>
+				    <header>
+                        <button name="done_manual" string="Done"  
+                            type="object" 
+                            class="oe_highlight"
+                            states="process"/>
+                    </header>
+                    <sheet>
+                        <group col="4">
+        					<field readonly='1' name='name' />
+        					<field readonly='1' name='state' />
+        					<field widget='float_time' name='time_left' />
+        					<field widget='float_time' name='time_elapsed' />
+        					<field name='speed' />
+        					<field name='total' />
+        					<field name='processed' />
+        					<field invisible='1' name='filename' />
+        					<field readonly='1' name='result' filename="filename" />
+        					<field readonly='1' name='user_id' />
+        					<field colspan='2' widget='progressbar' name='progress' />
+        					<button name='refresh_status' colspan='2'
+        						attrs="{'invisible':[('state','=','done')]}" type='object' string='Refresh'
+        						icon='gtk-refresh' />
+        					<field name="ref" />
+        					<field name="note" />
+        					<field name="send_email" />
+        					<field name="recipient" />
+					   </group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!--deferred_processing.task tree -->
+		<record model='ir.ui.view' id='view_deferred_processing_task_tree'>
+			<field name='name'>deferred_processing.task.tree</field>
+			<field name='model'>deferred_processing.task</field>
+			<field name='priority'>16</field>
+			<field type='xml' name='arch'>
+				<tree string='deferred_processing.task'>
+					<field name='name' />
+					<field name='state' />
+					<field widget='float_time' name='time_left' />
+					<field widget='float_time' name='time_elapsed' />
+					<field name='speed' />
+					<field name='processed' />
+					<field name='total' />
+					<button attrs="{'invisible':[('state','=','done')]}" icon='gtk-refresh'
+						type='object' name='refresh_status' string='Refresh' />
+					<field widget='progressbar' name='progress' />
+					<field name="ref_char" />
+					<field name="note" invisible="True" />
+					<field name="user_id" invisible="True" />
+					<field name="send_email" />
+					<field name="recipient" />
+				</tree>
+			</field>
+		</record>
+
+
+		<!-- deferred_processing.task Search -->
+		<record id="view_deferred_processing_task_search" model="ir.ui.view">
+			<field name="name">deferred_processing.task.search</field>
+			<field name="model">deferred_processing.task</field>
+			<field eval="1" name="priority" />
+			<field name="arch" type="xml">
+				<search string="Search Deferred Processing">
+					<field name="name" />
+					<field name="ref_char" />
+					<field name="note" />
+					<separator />
+					<filter string="In progress" name="type_process"
+						domain="[('state','=','process')]" />
+					<filter string="My Task" name="type_my_task" domain="[('user_id','=',uid)]"
+						context="{'filter': 'my_task'}" />
+
+					<group expand="0" string="Group By...">
+						<filter string="State" context="{'group_by': 'state'}" />
+						<filter string="Reference" context="{'group_by': 'ref_char'}" />
+						<filter string="User" context="{'group_by': 'user_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data>
+        <record id="webhook_slack_access" model="ir.config_parameter">
+        	<field name="key">webhook_slack_access</field>
+        	<field name="value">https://trobz.slack.com/services/hooks/incoming-webhook?token=</field>
+        </record>
+        <record id="gitlab_ci_url" model="ir.config_parameter">
+        	<field name="key">gitlab_ci_url</field>
+        	<field name="value">https://gitlab-ci.trobz.com</field>
+        </record>
+    </data>
+
+</openerp>
+

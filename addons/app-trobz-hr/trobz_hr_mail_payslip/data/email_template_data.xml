@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<openerp>
+
+    <!-- Mail template is done in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="0">
+        <!--Email template -->
+        <record id="email_template_hr_payslip" model="email.template">
+            <field name="name">Payslip Email</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="subject">${object.name}</field>
+            <field name="email_to">${object.employee_id.work_email}</field>
+            <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="hr_payroll.action_report_payslip"/>
+            <field name="report_name">${object.name}</field>
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Dear ${object.employee_id.name},</p>
+    
+    <p>Please find your payslip of ${object.date_from[5:7]}/${object.date_from[:4]}.
+    Any question, please contact the HR department.</p>
+
+    <p>Best regards,</p>
+    <p>HR department</p>
+</div>
+            ]]></field>
+        </record>
+    </data>
+</openerp>

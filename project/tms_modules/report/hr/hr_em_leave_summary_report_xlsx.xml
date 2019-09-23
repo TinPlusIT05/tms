@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <report
+            id="hr_em_leave_sumary_report_xlsx"
+            model="hr.em.leave.summary.wizard"
+            string="Print to XLSX"
+            report_type="xlsx"
+            name="report.em.leave.summary.xlsx"
+            file="report.em.leave.summary.xlsx"
+            attachment_use="False"
+        />  
+	</data>
+</openerp>

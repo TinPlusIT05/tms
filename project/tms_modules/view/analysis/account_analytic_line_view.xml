@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Account Analytic Line Tree View -->
+        <record id="view_account_analytic_line_tree" model="ir.ui.view">
+            <field name="name">account.analytic.line.tree</field>
+            <field name="model">account.analytic.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Analytic Lines" editable="top">
+                    <field name="date"/>
+                    <field name="user_id"/>
+                    <field name="amount"/>
+                    <field name="name"/>
+                    <field name="account_id"/>
+                    <field name="analytic_secondaxis_id"/>
+                </tree>
+            </field>
+        </record>
+
+		<!-- Account Analytic Line Search View -->
+        <record id="view_account_analytic_line_filter" model="ir.ui.view">
+            <field name="name">account.analytic.line.filter</field>
+            <field name="model">account.analytic.line</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Analytic Lines">
+                	<group string="Field">
+	                    <field name="date" />
+	                    <field name="user_id" />
+	                    <field name="account_id" />
+	                    <field name="analytic_secondaxis_id" />
+                    </group>
+                    <group string="Group By">
+                        <filter name="group_account" string="Account"
+                        	domain="[]" context="{'group_by':'account_id'}" />
+                        <separator />
+                        <filter name="group_user" string="User"
+                        	domain="[]" context="{'group_by':'user_id'}" />
+                        <separator />
+                        <filter name="group_second_axis" string="Second Axis"
+                        	domain="[]" context="{'group_by':'analytic_secondaxis_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<!-- Account Analytic Line Form View -->
+        <record id="view_account_analytic_line_form" model="ir.ui.view">
+            <field name="name">account.analytic.line.form</field>
+            <field name="model">account.analytic.line</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Analytic Line" version="7.0">
+                	<group>
+                		<group>
+                			<field name="date"/>
+                			<field name="name"/>
+                			<field name="account_id"/>
+                		</group>
+                		<group>
+                			<field name="user_id"/>
+                			<field name="amount"/>
+                			<field name="analytic_secondaxis_id"/>
+                		</group>
+                	</group>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

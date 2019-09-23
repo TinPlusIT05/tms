@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="dp_module_assets_backend" name="dp_module_assets_backend" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <!-- stylesheet -->
+                <link rel="stylesheet" type="text/css" href="/deferred_processing/static/src/css/deferred_processing.css" />
+                <!-- javascript -->
+                <script type="text/javascript" src="/deferred_processing/static/src/js/deferred_processing.js"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_compute_working_hour_wizard_form" model="ir.ui.view">
+			<field name="name">Compute Payroll Working Hours</field>
+			<field name="model">compute.working.hour.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Compute Payroll Working Hours" version="7.0">
+					<group>
+    					<group string="Period">
+                            <field name="from_date"/> 
+                            <field name="to_date"/>
+    					</group>
+    					<group string="Compute Payroll Working Hours">
+                            <li class="oe_grey" colspan="2">
+                                Make sure the advanced working schedule is corrected.
+                                We CANNOT update the computed PWH if the advanced working schedule is changed
+                            </li>
+                            <li class="oe_grey" colspan="2">
+                                Approve public holidays and generate PWH on those dates. 
+                                We CANNOT update the computed PWH if the public holiday is changed
+                            </li>
+                            <li class="oe_grey" colspan="2">
+                                For all PWH of flexible days, please update them with correct working activity.
+                            </li>
+                            <li class="oe_grey" colspan="2">
+                                Correct all inconsistent attendances. 
+                                If an employee has an inconsistent attendance within the period of computation, 
+                                PWH of this employee will be ignored.
+                            </li>
+                            <li class="oe_grey" colspan="2">
+                               Approve leave requests.
+                            </li> 
+                            <li class="oe_grey" colspan="2">
+                               Confirm overtime/compensation.
+                            </li>
+                        </group>
+                    </group>
+					<separator string="Employees"/>
+					<field name="employee_ids"/>
+					<footer>
+						<button name="compute" type="object" string="Compute" class="oe_highlight" />
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+	</data>
+</openerp>
+

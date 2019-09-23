@@ -1,0 +1,55 @@
+/*
+    remove extra margin from the progress bar
+    that cause unexpected space at bottom of element
+*/
+.oe_form_field_audit_progressbar .progress,
+.tms-audit-board-list-view .progress {
+    margin-bottom: 0px;
+}
+
+/* the list view should be displayed full width */
+.tms-audit-board-list-view {
+    width: 100%;
+}
+/* instead of using margin, use padding to add space between audit view and container  */
+.tms-audit-board-list-view .audit-board-list-contents {
+    padding: 5px;
+}
+/* all table in audit list should have no margin */
+.tms-audit-board-list-view .audit-board-list-contents table {
+    margin: 0px;
+}
+
+.tms-audit-board-list-view .audit-board-list-contents table th.center,
+.tms-audit-board-list-view .audit-board-list-contents table td.center {
+    text-align: center !important;
+}
+.tms-audit-board-list-view .audit-board-list-contents table td {
+    background: #FFF !important;
+}
+
+.tms-audit-board-list-view .audit-board-list-contents .audit-board-row {
+    cursor: pointer;
+}
+
+/* reset style for native button */
+.tms-audit-board-list-view .audit-board-list-contents .reset-button {
+    background: none !important;
+    border: 1px solid #EEE !important; font-size: 1em !important;
+    padding: 2.5px 5px !important; margin: 0px 2px !important;
+}
+
+.tms-audit-board-list-view .audit-board-list-contents .audit-test-results > td {
+    padding: 0px !important;
+}
+
+.tms-audit-board-list-view .audit-board-list-contents .audit-test-results .empty-col-result {
+    background: #EEE !important;
+}
+
+.tms-audit-board-list-view .test-pass {
+    color: #007C11; font-weight: bold;
+}
+.tms-audit-board-list-view .test-failed {
+    color: #f00000; font-weight: bold;
+}

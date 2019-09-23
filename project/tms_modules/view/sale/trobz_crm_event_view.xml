@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="trobz_crm_event_tree_view_inherit" model="ir.ui.view">
+            <field name="name">trobz.crm.event.tree.view.inherit</field>
+            <field name="model">trobz.crm.event</field>
+            <field name="inherit_id" ref="trobz_crm.trobz_crm_event_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="CRM Events" colors="grey:state in ('cancel','done');blue:state=='pending';red:priority=='4';rgb(233, 87, 4):priority=='3';SteelBlue:priority=='1';" default_order="date">
+                        <field name="date"/>
+                        <field name="partner_id"/>
+                        <field name="partner_address_id" />
+                        <field name="type_id"/>
+                        <field name="name" string="Subject"/>
+                        <field name="attachment_ids" widget="attachments"/>
+                        <field name="location" />
+                        <field name="user_id"/>
+                        <field name="state"/>
+                        <field name="priority" invisible="1"/>
+                        <button name="case_close" string="Done" states="open" type="object" icon="terp-camera_test" />
+                        <button name="case_cancel" string="Cancel" states="open,done" type="object" icon="gtk-cancel" />
+                        <button string="Add feedback event" icon="gtk-redo" name="action_get_feedback_event" type="object"/>
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+	</data>
+</openerp>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <!-- view template for tms audit board list -->
+    <t t-name="tms_audit_board_list_view">
+        <div>
+            <table class="tms-audit-board-list-view">
+
+                <tr class="audit-board-list-view-row">
+                    <!--
+                        main panel managed by audit view, this is place
+                        where we display sale orders list view
+                    -->
+                    <td class="audit-board-list-contents" />
+                </tr>
+            </table>
+        </div>
+    </t>
+
+    <!-- view templates for available buttons on audit board list view -->
+    <t t-name="audit.board.list.view.buttons">
+        <div class="agent-buttons">
+            <button type="button" class="btn_create oe_highlight">Create</button>
+            <button type="button" class="btn_full_screen">Fullscreen</button>
+        </div>
+    </t>
+
+    <!-- view template for audit board collection (CompositeView) -->
+    <t t-name="audit.boards.comp.view">
+        <table class="rows-container table table-striped table-bordered">
+            <thead class="global-project-health">
+                <th colspan="4" class="center">Global Project Health</th>
+                <th colspan="2" class="center">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-success percentage-bar-success"
+                            t-attf-style="width:#{global_project_health_success};">
+                            <span class="percentage-text-success">
+                                <t t-esc="global_project_health_success" />
+                            </span>
+                        </div>
+                        <div class="progress-bar progress-bar-danger percentage-bar-failed"
+                            t-attf-style="width:#{global_project_health_failed};">
+                            <span class="percentage-text-failed">
+                                <t t-esc="global_project_health_failed" />
+                            </span>
+                        </div>
+                    </div>
+                </th>
+            </thead>
+            <thead>
+                <th width="3%"></th>
+                <th width="17%">Project</th>
+                <th width="7.5%" class="center">Pass</th>
+                <th width="7.5%" class="center">Failed</th>
+                <th width="50%" class="center">Health</th>
+                <th width="15%" class="center">Last Update</th>
+            </thead>
+            <!-- your row contents will be injected here as tbody -->
+        </table>
+    </t>
+
+    <!-- view template for audit board item (LayoutView) -->
+    <t t-name="audit.board.layout.view">
+        <!-- where to display project health information -->
+        <tr class="audit-board-row" t-attf-title="view test results from #{project_id[1]}">
+            <td class="center">
+                <div class="action-buttons">
+                    <!-- only show the button when the test is completed -->
+                    <button title="View Test Details" t-if="audit_test_result_ids.length !== 0"
+                        class="reset-button btn-view-test-details fa fa-chevron-up" />
+                </div>
+            </td>
+            <td><t t-esc="project_id[1]" /></td>
+            <td t-attf-class="center #{pass_tests != 0 ? 'test-pass' : ''}"><t t-esc="pass_tests" /></td>
+            <td t-attf-class="center #{failed_tests != 0 ? 'test-failed' : ''}"><t t-esc="failed_tests" /></td>
+            <td class="center">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success percentage-bar-success" t-att-style="'width:' + progress_bar.success.text + ';'">
+                        <span class="percentage-text-success">
+                            <t t-esc="progress_bar.success.text" />
+                        </span>
+                    </div>
+                    <div class="progress-bar progress-bar-danger percentage-bar-failed" t-att-style="'width:' + progress_bar.failed.text + ';'">
+                        <span class="percentage-text-failed">
+                            <t t-esc="progress_bar.failed.text" />
+                        </span>
+                    </div>
+                </div>
+            </td>
+            <td class="center"><t t-esc="last_update || ''" /></td>
+        </tr>
+        <!-- where to display all the test result for each project -->
+        <tr class="audit-test-results">
+            <td class="empty-col-result"/>
+            <td class="results" colspan="5" />
+        </tr>
+    </t>
+
+    <!-- view template for audit results (CompositeView)-->
+    <t t-name="audit.results.comp.view">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th width="50%">Test</th>
+                    <th width="10%" class="center">Target</th>
+                    <th width="10%" class="center">Result</th>
+                    <th width="10%" class="center">Score</th>
+                </tr>
+            </thead>
+            <!-- all the test results go here  -->
+            <tbody></tbody>
+        </table>
+    </t>
+    
+    <!-- view template for audit results error (ItemView)-->
+    <t t-name="audit.result.error.item.view">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th width="100%">Audit Result Error</th>
+                </tr>
+            </thead>
+            <!-- all the test results go here  -->
+            <tbody>
+            	<tr>
+            		<td style="background-color: #D9534F !important;"
+            			><t t-esc="error_message"/></td>
+            	</tr>
+            </tbody>
+        </table>
+    </t>    
+
+    <!-- view template for audit result (ItemView) -->
+    <t t-name="audit.result.item.view">
+        <td><t t-esc="audit_test_id[1]" /></td>
+        <td class="center"><t t-esc="target" /></td>
+        <td t-attf-class="center #{result == '1' ? 'test-pass' : 'test-failed'}">
+            <t t-esc="result == '1' ? 'Pass' : 'Failed'" />
+        </td>
+        <td class="center"><t t-esc="score" /></td>
+    </t>
+</template>

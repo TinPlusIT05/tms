@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Free Instance Tree View -->
+		<record id="view_tms_free_instance_tree" model="ir.ui.view">
+			<field name="name">tms.free.instance.tree</field>
+			<field name="model">tms.free.instance</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Free Instance">
+					<field name="name" />
+					<field name="project_type" />
+					<field name="version" />
+					<field name="host" />
+					<field name="project" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Free Instance Search View -->
+        <record id="view_tms_free_instance_filter" model="ir.ui.view">
+            <field name="name">tms.free.instance.filter</field>
+            <field name="model">tms.free.instance</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Free Instance">
+					<group string="Field">
+                        <field name="name" string="Name" />
+					    <field name="project_type" />
+                        <field name="host"/>
+					</group>
+                    <group string="Group By">
+                    	<separator />
+                        <filter name="group_by_project_type" string="Project Type"
+                            domain="[]" context="{'group_by':'project_type'}" />
+                        <separator />
+                        <filter name="group_by_version" string="Version"
+                            domain="[]" context="{'group_by':'version'}" />
+                        <separator />
+                        <filter name="group_by_host" string="Host"
+                            domain="[]" context="{'group_by':'host'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<!-- Free Instance Form View -->
+		<record id="view_tms_free_instance_form" model="ir.ui.view">
+			<field name="name">tms.free.instance.form</field>
+			<field name="model">tms.free.instance</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Free Instances" version="7.0">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" />
+								<field name="version" />
+								<field name="host" />
+							</group>
+							<group>
+								<field name="project" />
+								<field name="project_type" />
+							</group>
+						</group>
+						<group string="Configuration">
+							<field name="configuration" nolabel="1" />
+						</group>
+						<group string="Description">
+							<field name="description" nolabel="1" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<!-- Actions Open Free Instance Tree View -->
+		<record id="action_view_tms_free_instance_tree" model="ir.actions.act_window">
+			<field name="name">Instance (Free)</field>
+			<field name="res_model">tms.free.instance</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+		</record>
+	</data>
+</openerp>
+

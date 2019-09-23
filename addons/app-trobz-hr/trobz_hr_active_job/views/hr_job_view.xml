@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_job_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.job.form.inherit</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="trobz_hr_holiday.view_hr_job_vn_form_inherit"/>
+            <field name="arch" type="xml">
+                <field name="extra_annual_leaves_for_work_seniority" position="after">
+                    <field name="active"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

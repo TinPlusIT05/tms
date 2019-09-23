@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+		<!-- Form View -->
+		<record id="view_hr_equipment_category_form" model="ir.ui.view">
+			<field name="name">view.hr.equipment.category.form</field>
+			<field name="model">hr.equipment.category</field>
+			<field name="arch" type="xml">
+				<form string="HR Equipment Category">
+					<sheet>
+						<group>
+							<field name="name" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<!-- Tree View -->
+		<record id="view_hr_equipment_category_tree" model="ir.ui.view">
+			<field name="name">view.hr.equipment.category.tree</field>
+			<field name="model">hr.equipment.category</field>
+			<field name="arch" type="xml">
+				<tree string="HR Equipment Category">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+
+		<!-- Search View -->
+		<record id="view_hr_equipment_category_search" model="ir.ui.view">
+			<field name="name">view.hr.equipment.category.search</field>
+			<field name="model">hr.equipment.category</field>
+			<field name="arch" type="xml">
+				<search string="HR Equipment Category">
+					<field name="name" />
+				</search>
+			</field>
+		</record>
+
+		<!-- Action View -->
+		<record id="action_hr_equipment_category" model="ir.actions.act_window">
+			<field name="name">Equipment Category</field>
+			<field name="res_model">hr.equipment.category</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</openerp>

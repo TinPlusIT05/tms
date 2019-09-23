@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		<record id="send_email_refund_payslip" model="ir.config_parameter">
+            <field name="key">send_email_refund_payslip</field>
+            <field name="value">False</field>
+        </record>
+	</data>
+</openerp>

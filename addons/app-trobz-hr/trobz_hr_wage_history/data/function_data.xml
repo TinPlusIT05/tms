@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('hr.contract')" />
+            <value eval="list(['update_wage_history_for_existed_contracts'])"/>
+        </function>
+
+	</data>
+</openerp>

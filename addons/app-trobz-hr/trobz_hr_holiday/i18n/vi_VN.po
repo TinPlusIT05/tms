@@ -1,0 +1,2465 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* hr
+#	* hr_holidays
+#	* trobz_hr_holiday
+#	* hr_contract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-04 03:24+0000\n"
+"PO-Revision-Date: 2014-03-04 03:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "$('.oe_employee_picture').load(function() { if($(this).width() > $(this).height()) { $(this).addClass('oe_employee_picture_wide') } });"
+msgstr "$('.oe_employee_picture').load(function() { if($(this).width() > $(this).height()) { $(this).addClass('oe_employee_picture_wide') } });"
+
+#. module: trobz_hr_holiday
+#: view:termination.employment.wizard:0
+msgid "- Cancel all annual leaves and leave requests, including approved leave requests, of selected employees"
+msgstr "- Cancel all annual leaves and leave requests, including approved leave requests, of selected employees"
+
+#. module: trobz_hr_holiday
+#: view:termination.employment.wizard:0
+msgid "- End all active contracts of selected employees"
+msgstr "- End all active contracts of selected employees"
+
+#. module: trobz_hr_holiday
+#: view:termination.employment.wizard:0
+msgid "- Inactivate the selected employees"
+msgstr "- Inactivate the selected employees"
+
+#. module: trobz_hr_holiday
+#: view:termination.employment.wizard:0
+msgid "- Remove the hired date on selected employees"
+msgstr "- Remove the hired date on selected employees"
+
+#. module: hr
+#: model:ir.actions.act_window,help:hr.open_board_hr
+msgid "<div class=\"oe_empty_custom_dashboard\">\n"
+"                  <p>\n"
+"                    <b>Human Resources dashboard is empty.</b>\n"
+"                  </p><p>\n"
+"                    To add your first report into this dashboard, go to any\n"
+"                    menu, switch to list or graph view, and click <i>'Add to\n"
+"                    Dashboard'</i> in the extended search options.\n"
+"                  </p><p>\n"
+"                    You can filter and group data before inserting into the\n"
+"                    dashboard using the search options.\n"
+"                  </p>\n"
+"              </div>\n"
+"            "
+msgstr "<div class=\"oe_empty_custom_dashboard\">\n"
+"                  <p>\n"
+"                    <b>Human Resources dashboard is empty.</b>\n"
+"                  </p><p>\n"
+"                    To add your first report into this dashboard, go to any\n"
+"                    menu, switch to list or graph view, and click <i>'Add to\n"
+"                    Dashboard'</i> in the extended search options.\n"
+"                  </p><p>\n"
+"                    You can filter and group data before inserting into the\n"
+"                    dashboard using the search options.\n"
+"                  </p>\n"
+"              </div>\n"
+"            "
+
+#. module: hr
+#: model:ir.actions.act_window,help:hr.open_view_employee_list_my
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a new employee.\n"
+"              </p><p>\n"
+"                With just a quick glance on the OpenERP employee screen, you\n"
+"                can easily find all the information you need for each person;\n"
+"                contact data, job position, availability, etc.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a new employee.\n"
+"              </p><p>\n"
+"                With just a quick glance on the OpenERP employee screen, you\n"
+"                can easily find all the information you need for each person;\n"
+"                contact data, job position, availability, etc.\n"
+"              </p>\n"
+"            "
+
+#. module: hr
+#: model:ir.actions.act_window,help:hr.open_module_tree_department
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a department.\n"
+"              </p><p>\n"
+"                OpenERP's department structure is used to manage all documents\n"
+"                related to employees by departments: expenses, timesheets,\n"
+"                leaves and holidays, recruitments, etc.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a department.\n"
+"              </p><p>\n"
+"                OpenERP's department structure is used to manage all documents\n"
+"                related to employees by departments: expenses, timesheets,\n"
+"                leaves and holidays, recruitments, etc.\n"
+"              </p>\n"
+"            "
+
+#. module: hr
+#: model:ir.actions.act_window,help:hr.view_department_form_installer
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define a new department.\n"
+"              </p><p>\n"
+"                Your departments structure is used to manage all documents\n"
+"                related to employees by departments: expenses and timesheets,\n"
+"                leaves and holidays, recruitments, etc.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define a new department.\n"
+"              </p><p>\n"
+"                Your departments structure is used to manage all documents\n"
+"                related to employees by departments: expenses and timesheets,\n"
+"                leaves and holidays, recruitments, etc.\n"
+"              </p>\n"
+"            "
+
+#. module: hr
+#: model:ir.actions.act_window,help:hr.action_hr_job
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define a new job position.\n"
+"              </p><p>\n"
+"                Job Positions are used to define jobs and their requirements.\n"
+"                You can keep track of the number of employees you have per job\n"
+"                position and follow the evolution according to what you planned\n"
+"                for the future.\n"
+"              </p><p>\n"
+"                You can attach a survey to a job position. It will be used in\n"
+"                the recruitment process to evaluate the applicants for this job\n"
+"                position.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define a new job position.\n"
+"              </p><p>\n"
+"                Job Positions are used to define jobs and their requirements.\n"
+"                You can keep track of the number of employees you have per job\n"
+"                position and follow the evolution according to what you planned\n"
+"                for the future.\n"
+"              </p><p>\n"
+"                You can attach a survey to a job position. It will be used in\n"
+"                the recruitment process to evaluate the applicants for this job\n"
+"                position.\n"
+"              </p>\n"
+"            "
+
+#. module: hr_holidays
+#: model:ir.actions.act_window,help:hr_holidays.hr_holidays_leaves_assign_legal
+msgid "<p>\n"
+"               You can assign remaining Legal Leaves for each employee, OpenERP\n"
+"               will automatically create and validate allocation requests.\n"
+"             </p>\n"
+"           "
+msgstr "<p>\n"
+"               You can assign remaining Legal Leaves for each employee, OpenERP\n"
+"               will automatically create and validate allocation requests.\n"
+"             </p>\n"
+"           "
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Accept the Cancellation Request"
+msgstr "Accept the Cancellation Request"
+
+#. modules: hr, hr_holidays
+#: view:hr.employee:0
+#: field:hr.holidays.status,active:0
+msgid "Active"
+msgstr "Hiệu lực"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Add a reason..."
+msgstr "Add a reason..."
+
+#. module: hr
+#: view:hr.config.settings:0
+msgid "Additional Features"
+msgstr "Additional Features"
+
+#. module: hr_contract
+#: field:hr.contract,advantages:0
+msgid "Advantages"
+msgstr "Advantages"
+
+#. module: hr_contract
+#: view:hr.contract:0
+msgid "Advantages..."
+msgstr "Advantages..."
+
+#. module: trobz_hr_holiday
+#: selection:hr.holidays.line,first_date_type:0
+#: selection:hr.holidays.line,last_date_type:0
+msgid "Afternoon"
+msgstr "Afternoon"
+
+#. module: hr_holidays
+#: model:ir.actions.act_window,name:hr_holidays.hr_holidays_leaves_assign_legal
+msgid "Allocate Leaves for Employees"
+msgstr "Allocate Leaves for Employees"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Allocated Days"
+msgstr "Allocated Days"
+
+#. module: hr_holidays
+#: field:hr.holidays,number_of_days_temp:0
+msgid "Allocation"
+msgstr "Allocation"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,allo_date:0
+msgid "Allocation Create Date"
+msgstr "Allocation Create Date"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+#: selection:hr.holidays,type:0
+msgid "Allocation Request"
+msgstr "Allocation Request"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays.py:376
+#, python-format
+msgid "Allocation Request for every month"
+msgstr "Allocation Request for every month"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Allocation Requests"
+msgstr "Allocation Requests"
+
+#. module: hr_holidays
+#: field:hr.holidays,holiday_type:0
+msgid "Allocation Type"
+msgstr "Allocation Type"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: code:addons/hr_holidays/hr_holidays.py:487
+#: code:addons/trobz_hr_holiday/model/hr_employee.py:27
+#, python-format
+msgid "Allocation for %s"
+msgstr "Allocation for %s"
+
+#. module: hr
+#: field:hr.config.settings,module_account_analytic_analysis:0
+msgid "Allow invoicing based on timesheets (the sale application will be installed)"
+msgstr "Allow invoicing based on timesheets (the sale application will be installed)"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_timesheet_sheet:0
+msgid "Allow timesheets validation by managers"
+msgstr "Allow timesheets validation by managers"
+
+#. module: hr_holidays
+#: field:hr.holidays.status,limit:0
+msgid "Allow to Override Limit"
+msgstr "Allow to Override Limit"
+
+#. module: hr_holidays
+#: xsl:holidays.summary:0
+msgid "Analyze from"
+msgstr "Analyze from"
+
+#. module: hr_holidays
+#: model:ir.actions.act_window,name:hr_holidays.open_allocation_holidays
+#: model:ir.ui.menu,name:hr_holidays.menu_open_allocation_holidays
+msgid "Annual Leaves"
+msgstr "Annual Leaves"
+
+#. module: hr_holidays
+#: model:ir.actions.act_window,name:hr_holidays.request_approve_allocation
+#: model:ir.ui.menu,name:hr_holidays.menu_request_approve_allocation
+msgid "Annual Leaves to Approve"
+msgstr "Annual Leaves to Approve"
+
+#. modules: hr, trobz_hr_holiday
+#: view:hr.config.settings:0
+#: view:termination.employment.wizard:0
+msgid "Apply"
+msgstr "Apply"
+
+#. module: hr_holidays
+#: field:hr.holidays,double_validation:0
+#: field:hr.holidays.status,double_validation:0
+msgid "Apply Double Validation"
+msgstr "Thực hiện Xét duyệt Hai lần"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: view:hr.holidays:0
+#: view:hr.holidays:0
+msgid "Approve"
+msgstr "Chấp thuận"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: selection:hr.employee,current_leave_state:0
+#: selection:hr.holidays,state:0
+#: selection:hr.holidays.summary.dept,holiday_type:0
+#: selection:hr.holidays.summary.employee,holiday_type:0
+#: model:mail.message.subtype,name:hr_holidays.mt_holidays_approved
+#: view:hr.holidays:0
+#: selection:hr.holidays.line,state:0
+msgid "Approved"
+msgstr "Được chấp thuận"
+
+#. module: hr_holidays
+#: view:hr.employee:0
+msgid "Assign Leaves"
+msgstr "Assign Leaves"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_open_view_attendance_reason_new_config
+msgid "Attendance"
+msgstr "Attendance"
+
+#. module: hr
+#: field:hr.employee,bank_account_id:0
+msgid "Bank Account Number"
+msgstr "Số Tài khoản Ngân hàng"
+
+#. module: hr_contract
+#: help:hr.contract,wage:0
+msgid "Basic Salary of the employee"
+msgstr "Basic Salary of the employee"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Birth"
+msgstr "Birth"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Black"
+msgstr "Đen"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Blue"
+msgstr "Xanh dương"
+
+#. module: hr_holidays
+#: selection:hr.holidays.summary.dept,holiday_type:0
+#: selection:hr.holidays.summary.employee,holiday_type:0
+msgid "Both Approved and Confirmed"
+msgstr "Both Approved and Confirmed"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Brown"
+msgstr "Nâu"
+
+#. module: hr_holidays
+#: selection:hr.holidays,holiday_type:0
+msgid "By Employee"
+msgstr "Theo Người lao động"
+
+#. module: hr_holidays
+#: selection:hr.holidays,holiday_type:0
+msgid "By Employee Category"
+msgstr "By Employee Category"
+
+#. module: hr_holidays
+#: help:hr.holidays,holiday_type:0
+msgid "By Employee: Allocation/Request for individual Employee, By Employee Category: Allocation/Request for group of employees in category"
+msgstr "By Employee: Allocation/Request for individual Employee, By Employee Category: Allocation/Request for group of employees in category"
+
+#. module: hr_holidays
+#: selection:hr.holidays,holiday_type:0
+msgid "By Employees"
+msgstr "By Employees"
+
+#. module: hr
+#: help:hr.job,state:0
+msgid "By default 'In position', set it to 'In Recruitment' if recruitment process is going on for this job position."
+msgstr "By default 'In position', set it to 'In Recruitment' if recruitment process is going on for this job position."
+
+#. modules: hr, hr_holidays, trobz_hr_holiday
+#: view:hr.config.settings:0
+#: view:hr.holidays.summary.dept:0
+#: view:hr.holidays.summary.employee:0
+#: view:termination.employment.wizard:0
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Cancel Leave Request"
+msgstr "Cancel Leave Request"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: selection:hr.employee,current_leave_state:0
+#: selection:hr.holidays,state:0
+#: selection:hr.holidays.line,state:0
+msgid "Cancelled"
+msgstr "Bị hủy bỏ"
+
+#. module: hr_holidays
+#: model:hr.holidays.status,name:hr_holidays.holiday_status_cl
+msgid "Casual leave (paid)"
+msgstr "Casual leave (paid)"
+
+#. modules: hr, hr_holidays
+#: field:hr.employee.category,name:0
+#: view:hr.holidays:0
+msgid "Category"
+msgstr "Loại"
+
+#. module: hr_holidays
+#: help:hr.holidays,category_id:0
+msgid "Category of Employee"
+msgstr "Nhóm Người lao động"
+
+#. module: hr
+#: field:hr.employee.category,child_ids:0
+msgid "Child Categories"
+msgstr "Hạng mục con"
+
+#. module: hr
+#: field:hr.department,child_ids:0
+msgid "Child Departments"
+msgstr "phòng/ ban cấp dưới"
+
+#. module: hr_holidays
+#: help:hr.holidays,type:0
+msgid "Choose 'Leave Request' if someone wants to take an off-day. \n"
+"Choose 'Allocation Request' if you want to increase the number of leaves available for someone"
+msgstr "Choose 'Leave Request' if someone wants to take an off-day. \n"
+"Choose 'Allocation Request' if you want to increase the number of leaves available for someone"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Citizenship & Other Info"
+msgstr "Citizenship & Other Info"
+
+#. module: hr
+#: field:hr.employee,city:0
+msgid "City"
+msgstr "City"
+
+#. module: hr
+#: view:hr.employee:0
+#: field:hr.employee,coach_id:0
+msgid "Coach"
+msgstr "huấn luyện viên"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.status,code:0
+msgid "Code"
+msgstr "Code"
+
+#. module: hr_holidays
+#: xsl:holidays.summary:0
+msgid "Color"
+msgstr "Color"
+
+#. module: hr
+#: field:hr.employee,color:0
+msgid "Color Index"
+msgstr "Color Index"
+
+#. module: hr_holidays
+#: field:hr.holidays.status,color_name:0
+msgid "Color in Report"
+msgstr "Màu trong Báo cáo"
+
+#. module: hr
+#: view:hr.department:0
+msgid "Companies"
+msgstr "Các công ty"
+
+#. module: hr
+#: field:hr.department,company_id:0
+#: view:hr.employee:0
+#: view:hr.job:0
+#: field:hr.job,company_id:0
+msgid "Company"
+msgstr "Công ty"
+
+#. module: hr_contract
+#: field:hr.employee,vehicle:0
+msgid "Company Vehicle"
+msgstr "Xe công ty"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_hr_configuration
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: hr
+#: view:hr.config.settings:0
+#: model:ir.actions.act_window,name:hr.action_human_resources_configuration
+msgid "Configure Human Resources"
+msgstr "Configure Human Resources"
+
+#. module: hr_holidays
+#: selection:hr.holidays.summary.dept,holiday_type:0
+#: selection:hr.holidays.summary.employee,holiday_type:0
+msgid "Confirmed"
+msgstr "Đã xác nhận"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Contact Information"
+msgstr "Thông tin liên hệ"
+
+#. modules: trobz_hr_holiday, hr_contract
+#: view:hr.contract:0
+#: view:hr.employee:0
+#: field:hr.employee,contract_id:0
+#: model:ir.model,name:hr_contract.model_hr_contract
+#: model:ir.ui.menu,name:hr_contract.next_id_56
+#: model:ir.model,name:trobz_hr_holiday.model_hr_contract
+msgid "Contract"
+msgstr "Hợp đồng"
+
+#. module: hr_contract
+#: view:hr.contract:0
+#: field:hr.contract,name:0
+msgid "Contract Reference"
+msgstr "Tham chiếu HĐ"
+
+#. module: hr_contract
+#: view:hr.contract:0
+#: field:hr.contract,type_id:0
+#: view:hr.contract.type:0
+#: field:hr.contract.type,name:0
+#: model:ir.model,name:hr_contract.model_hr_contract_type
+msgid "Contract Type"
+msgstr "Loại HĐ"
+
+#. module: hr_contract
+#: model:ir.actions.act_window,name:hr_contract.action_hr_contract_type
+#: model:ir.ui.menu,name:hr_contract.hr_menu_contract_type
+msgid "Contract Types"
+msgstr "Các loại HĐ"
+
+#. modules: hr, hr_contract
+#: view:hr.config.settings:0
+#: view:hr.contract:0
+#: view:hr.employee:0
+#: field:hr.employee,contract_ids:0
+#: model:ir.actions.act_window,name:hr_contract.act_hr_employee_2_hr_contract
+#: model:ir.actions.act_window,name:hr_contract.action_hr_contract
+#: model:ir.ui.menu,name:hr_contract.hr_menu_contract
+msgid "Contracts"
+msgstr "Các hợp đồng"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,country:0
+msgid "Country"
+msgstr "Country"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.view_department_form_installer
+msgid "Create Your Departments"
+msgstr "Create Your Departments"
+
+#. module: hr
+#: model:process.node,note:hr.process_node_openerpuser0
+msgid "Creation of a OpenERP user"
+msgstr "Tạo một Tài khoản vào trong OpenERP"
+
+#. module: hr_holidays
+#: field:hr.employee,current_leave_state:0
+msgid "Current Leave Status"
+msgstr "Current Leave Status"
+
+#. module: hr_holidays
+#: field:hr.employee,current_leave_id:0
+msgid "Current Leave Type"
+msgstr "Current Leave Type"
+
+#. module: hr
+#: field:hr.job,no_of_employee:0
+msgid "Current Number of Employees"
+msgstr "Current Number of Employees"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: trobz_hr_holiday
+#: field:termination.employment.wizard,date_end:0
+msgid "Date End"
+msgstr "Date End"
+
+#. module: hr
+#: field:hr.employee,birthday:0
+msgid "Date of Birth"
+msgstr "Ngày sinh"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,weekday:0
+msgid "Day of the Week"
+msgstr "Day of the Week"
+
+#. modules: hr, hr_holidays, hr_contract
+#: view:hr.department:0
+#: view:hr.employee:0
+#: field:hr.employee,department_id:0
+#: view:hr.job:0
+#: field:hr.job,department_id:0
+#: model:ir.model,name:hr.model_hr_department
+#: field:hr.contract,department_id:0
+#: view:hr.holidays:0
+#: field:hr.holidays,department_id:0
+msgid "Department"
+msgstr "Phòng/Ban"
+
+#. module: hr
+#: field:hr.department,name:0
+msgid "Department Name"
+msgstr "Tên phòng/ban"
+
+#. module: hr_holidays
+#: field:hr.holidays.summary.dept,depts:0
+msgid "Department(s)"
+msgstr "Phòng ban"
+
+#. module: hr
+#: view:hr.department:0
+#: model:ir.actions.act_window,name:hr.open_module_tree_department
+#: model:ir.ui.menu,name:hr.menu_hr_department_tree
+msgid "Departments"
+msgstr "Phòng/Ban"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: view:hr.holidays:0
+#: field:hr.holidays,name:0
+#: view:hr.holidays.line:0
+msgid "Description"
+msgstr "Mô tả"
+
+#. module: hr_holidays
+#: view:hr.holidays.status:0
+msgid "Details"
+msgstr "Các chi tiết"
+
+#. module: hr
+#: selection:hr.employee,marital:0
+msgid "Divorced"
+msgstr "Ly hôn"
+
+#. modules: hr_holidays, hr_contract
+#: view:hr.contract:0
+#: view:hr.holidays:0
+msgid "Duration"
+msgstr "Thời gian"
+
+#. modules: hr, hr_holidays, trobz_hr_holiday, hr_contract
+#: view:hr.employee:0
+#: model:ir.model,name:hr.model_hr_employee
+#: model:process.node,name:hr.process_node_employee0
+#: view:hr.contract:0
+#: field:hr.contract,employee_id:0
+#: model:ir.model,name:hr_contract.model_hr_employee
+#: view:hr.employee:0
+#: view:hr.holidays:0
+#: field:hr.holidays,employee_id:0
+#: field:hr.holidays.remaining.leaves.user,name:0
+#: model:ir.model,name:hr_holidays.model_hr_employee
+#: view:hr.holidays.line:0
+#: field:hr.holidays.line,employee_id:0
+#: model:ir.model,name:trobz_hr_holiday.model_hr_employee
+msgid "Employee"
+msgstr "Người lao động"
+
+#. module: hr
+#: view:hr.employee.category:0
+#: model:ir.model,name:hr.model_hr_employee_category
+msgid "Employee Category"
+msgstr "Loại nhân viên"
+
+#. module: hr
+#: model:process.node,name:hr.process_node_employeecontact0
+msgid "Employee Contact"
+msgstr "Thông tin liên hệ của nhân viên"
+
+#. module: hr
+#: model:process.process,name:hr.process_process_employeecontractprocess0
+msgid "Employee Contract"
+msgstr "Hợp đồng Lao động"
+
+#. module: hr_holidays
+#: field:hr.holidays,category_id:0
+msgid "Employee Tag"
+msgstr "Employee Tag"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_view_categ_form
+#: model:ir.ui.menu,name:hr.menu_view_employee_category_form
+msgid "Employee Tags"
+msgstr "Employee Tags"
+
+#. module: hr
+#: help:hr.employee,bank_account_id:0
+msgid "Employee bank salary account"
+msgstr "Tài khoản của lương của nhân viên ở ngân hàng"
+
+#. module: hr
+#: model:process.node,note:hr.process_node_employee0
+msgid "Employee form and structure"
+msgstr "hình thức và cấu trúc của nhân viên"
+
+#. module: hr_holidays
+#: field:hr.holidays.summary.employee,emp:0
+msgid "Employee(s)"
+msgstr "Người lao động"
+
+#. modules: hr, trobz_hr_holiday
+#: view:hr.employee:0
+#: field:hr.employee.category,employee_ids:0
+#: field:hr.job,employee_ids:0
+#: model:ir.actions.act_window,name:hr.hr_employee_normal_action_tree
+#: model:ir.actions.act_window,name:hr.open_view_employee_list
+#: model:ir.actions.act_window,name:hr.open_view_employee_list_my
+#: model:ir.ui.menu,name:hr.menu_open_view_employee_list_my
+#: view:hr.holidays:0
+#: field:hr.holidays,employee_ids:0
+#: view:termination.employment.wizard:0
+#: field:termination.employment.wizard,employee_ids:0
+msgid "Employees"
+msgstr "Nhân viên"
+
+#. module: hr
+#: view:hr.employee.category:0
+msgid "Employees Categories"
+msgstr "Loại nhân viên"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_view_employee_tree
+msgid "Employees Structure"
+msgstr "Cơ cấu nhân viên"
+
+#. modules: hr_holidays, hr_contract
+#: field:hr.contract,date_end:0
+#: field:hr.holidays,date_to:0
+msgid "End Date"
+msgstr "Ngày kết thúc"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays.py:350
+#, python-format
+msgid "Error !"
+msgstr "Error !"
+
+#. module: hr_holidays
+#: code:addons/hr_holidays/wizard/hr_holidays_summary_department.py:44
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: hr_contract
+#: constraint:hr.contract:0
+msgid "Error! Contract start-date must be less than contract end-date."
+msgstr "Error! Contract start-date must be less than contract end-date."
+
+#. module: hr
+#: constraint:hr.employee.category:0
+msgid "Error! You cannot create recursive Categories."
+msgstr "Error! You cannot create recursive Categories."
+
+#. module: hr
+#: constraint:hr.department:0
+msgid "Error! You cannot create recursive departments."
+msgstr "Error! You cannot create recursive departments."
+
+#. module: hr
+#: constraint:hr.employee:0
+msgid "Error! You cannot create recursive hierarchy of Employee(s)."
+msgstr "Error! You cannot create recursive hierarchy of Employee(s)."
+
+#. module: hr
+#: field:hr.job,no_of_recruitment:0
+msgid "Expected in Recruitment"
+msgstr "Dự kiến ​​trong tuyển dụng"
+
+#. module: hr
+#: help:hr.job,expected_employees:0
+msgid "Expected number of employees for this job position after new recruitment."
+msgstr "Expected number of employees for this job position after new recruitment."
+
+#. module: hr
+#: selection:hr.employee,gender:0
+msgid "Female"
+msgstr "Nữ"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Filters only on allocations and requests that belong to an holiday type that is 'active' (active field is True)"
+msgstr "Filters only on allocations and requests that belong to an holiday type that is 'active' (active field is True)"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Filters the leaves that have the balance of allowed holidays is negative"
+msgstr "Filters the leaves that have the balance of allowed holidays is negative"
+
+#. module: hr_holidays
+#: field:hr.holidays,manager_id:0
+msgid "First Approval"
+msgstr "First Approval"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,first_date:0
+msgid "First Day"
+msgstr "First Day"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,first_date_type:0
+msgid "First Day Type"
+msgstr "First Day Type"
+
+#. modules: hr, hr_holidays
+#: field:hr.job,message_follower_ids:0
+#: field:hr.holidays,message_follower_ids:0
+msgid "Followers"
+msgstr "Followers"
+
+#. module: hr_holidays
+#: field:hr.holidays.summary.dept,date_from:0
+#: field:hr.holidays.summary.employee,date_from:0
+msgid "From"
+msgstr "Từ"
+
+#. module: hr_holidays
+#: field:hr.employee,leave_date_from:0
+msgid "From Date"
+msgstr "From Date"
+
+#. module: trobz_hr_holiday
+#: selection:hr.holidays.line,first_date_type:0
+#: selection:hr.holidays.line,last_date_type:0
+msgid "Full Day"
+msgstr "Full Day"
+
+#. module: hr
+#: field:hr.employee,gender:0
+msgid "Gender"
+msgstr "Giới tính"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+msgid "Group By"
+msgstr "Group By"
+
+#. modules: hr, hr_holidays, hr_contract
+#: view:hr.employee:0
+#: view:hr.job:0
+#: view:hr.contract:0
+#: view:hr.holidays:0
+msgid "Group By..."
+msgstr "Nhóm theo"
+
+#. module: trobz_hr_holiday
+#: constraint:hr.holidays.line:0
+msgid "HOLIDAY LINE You can not have 2 leaves that overlaps on same day!"
+msgstr "HOLIDAY LINE You can not have 2 leaves that overlaps on same day!"
+
+#. module: hr_holidays
+#: model:ir.model,name:hr_holidays.model_hr_holidays_summary_dept
+msgid "HR Leaves Summary Report By Department"
+msgstr "HR Leaves Summary Report By Department"
+
+#. module: hr_holidays
+#: model:ir.model,name:hr_holidays.model_hr_holidays_summary_employee
+msgid "HR Leaves Summary Report By Employee"
+msgstr "HR Leaves Summary Report By Employee"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "HR Settings"
+msgstr "HR Settings"
+
+#. modules: hr, hr_holidays
+#: help:hr.job,message_summary:0
+#: help:hr.holidays,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,holiday_id:0
+msgid "Holiday"
+msgstr "Holiday"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Holiday Line"
+msgstr "Holiday Line"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,holiday_line:0
+msgid "Holidays Line"
+msgstr "Holidays Line"
+
+#. module: hr
+#: field:hr.employee,address_home_id:0
+msgid "Home Address"
+msgstr "Địa chỉ nhà"
+
+#. module: hr_contract
+#: field:hr.employee,vehicle_distance:0
+msgid "Home-Work Dist."
+msgstr "Home-Work Dist."
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_board_hr
+#: model:ir.ui.menu,name:hr.menu_hr_dashboard
+#: model:ir.ui.menu,name:hr.menu_hr_main
+#: model:ir.ui.menu,name:hr.menu_hr_reporting
+#: model:ir.ui.menu,name:hr.menu_hr_root
+#: model:ir.ui.menu,name:hr.menu_human_resources_configuration
+msgid "Human Resources"
+msgstr "Quản trị nhân lực"
+
+#. module: hr
+#: view:board.board:0
+msgid "Human Resources Dashboard"
+msgstr "Bảng điều khiển Nguồn nhân lực"
+
+#. module: hr
+#: view:hr.config.settings:0
+msgid "Human Resources Management"
+msgstr "Human Resources Management"
+
+#. module: hr
+#: field:hr.employee,identification_id:0
+msgid "Identification No"
+msgstr "Số CMND"
+
+#. modules: hr, hr_holidays
+#: help:hr.job,message_unread:0
+#: help:hr.holidays,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "If checked new messages require your attention."
+
+#. module: hr_holidays
+#: help:hr.holidays.status,active:0
+msgid "If the active field is set to false, it will allow you to hide the leave type without removing it."
+msgstr "If the active field is set to false, it will allow you to hide the leave type without removing it."
+
+#. module: hr_holidays
+#: help:hr.holidays.status,limit:0
+msgid "If you select this check box, the system allows the employees to take more leaves than the available ones for this type and take them into account for the \"Remaining Legal Leaves\" defined on the employee form."
+msgstr "If you select this check box, the system allows the employees to take more leaves than the available ones for this type and take them into account for the \"Remaining Legal Leaves\" defined on the employee form."
+
+#. module: hr
+#: view:hr.job:0
+msgid "In Position"
+msgstr "đang ở vị trí"
+
+#. module: hr
+#: view:hr.job:0
+msgid "In Recruitment"
+msgstr "Đang tuyển dụng"
+
+#. module: hr_contract
+#: help:hr.employee,vehicle_distance:0
+msgid "In kilometers"
+msgstr "In kilometers"
+
+#. module: hr
+#: model:process.transition,note:hr.process_transition_contactofemployee0
+msgid "In the Employee form, there are different kind of information like Contact information."
+msgstr "Trong các hình thức lao động, có những loại thông tin khác nhau như Liên hệ thông tin"
+
+#. module: hr_contract
+#: view:hr.contract:0
+msgid "Information"
+msgstr "Information"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_attendance:0
+msgid "Install attendances feature"
+msgstr "Install attendances feature"
+
+#. module: hr
+#: view:hr.config.settings:0
+msgid "Install your country's payroll"
+msgstr "Install your country's payroll"
+
+#. modules: hr, hr_holidays
+#: field:hr.job,message_is_follower:0
+#: field:hr.holidays,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: hr_contract
+#: field:hr.employee,manager:0
+msgid "Is a Manager"
+msgstr "Có phải CBQL"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Ivory"
+msgstr "Ivory"
+
+#. modules: hr, hr_contract
+#: view:hr.employee:0
+#: field:hr.employee,job_id:0
+#: view:hr.job:0
+#: view:hr.contract:0
+msgid "Job"
+msgstr "Công việc"
+
+#. module: hr
+#: field:hr.job,description:0
+#: model:ir.model,name:hr.model_hr_job
+msgid "Job Description"
+msgstr "Mô tả công việc"
+
+#. module: hr
+#: field:hr.job,name:0
+msgid "Job Name"
+msgstr "Tên công việc"
+
+#. modules: hr, hr_contract
+#: model:ir.actions.act_window,name:hr.action_hr_job
+#: model:ir.ui.menu,name:hr.menu_hr_job
+#: field:hr.contract,job_id:0
+msgid "Job Title"
+msgstr "Chức danh Công việc"
+
+#. module: hr
+#: view:hr.job:0
+msgid "Jobs"
+msgstr "Công việc"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,last_date:0
+msgid "Last Day"
+msgstr "Last Day"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,last_date_type:0
+msgid "Last Day Type"
+msgstr "Last Day Type"
+
+#. module: hr
+#: field:hr.employee,last_login:0
+msgid "Latest Connection"
+msgstr "Latest Connection"
+
+#. module: hr_contract
+#: help:hr.employee,contract_id:0
+msgid "Latest contract of the employee"
+msgstr "Latest contract of the employee"
+
+#. module: hr
+#: view:hr.job:0
+msgid "Launch Recruitement"
+msgstr "Launch Recruitement"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Lavender"
+msgstr "Lavender"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: model:ir.model,name:hr_holidays.model_hr_holidays
+#: model:ir.model,name:trobz_hr_holiday.model_hr_holidays
+msgid "Leave"
+msgstr "Leave"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: selection:hr.holidays,state:0
+#: selection:hr.holidays.line,state:0
+msgid "Leave Cancellation Request"
+msgstr "Leave Cancellation Request"
+
+#. module: hr_holidays
+#: model:ir.model,name:hr_holidays.model_resource_calendar_leaves
+msgid "Leave Detail"
+msgstr "Leave Detail"
+
+#. module: hr_holidays
+#: model:ir.actions.act_window,name:hr_holidays.act_hr_leave_request_to_meeting
+msgid "Leave Meetings"
+msgstr "Leave Meetings"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: code:addons/hr_holidays/hr_holidays.py:354
+#: view:hr.holidays:0
+#: selection:hr.holidays,type:0
+#: field:resource.calendar.leaves,holiday_id:0
+#: code:addons/trobz_hr_holiday/model/hr_holidays.py:260
+#, python-format
+msgid "Leave Request"
+msgstr "Yêu cầu Nghỉ"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+#: model:ir.actions.act_window,name:trobz_hr_holiday.action_open_hr_holidays_line
+#: model:ir.ui.menu,name:trobz_hr_holiday.menu_leave_request_lines
+msgid "Leave Request Lines"
+msgstr "Leave Request Lines"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:106
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:114
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:122
+#, python-format
+msgid "Leave Request Lines is readonly !"
+msgstr "Leave Request Lines is readonly !"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: code:addons/hr_holidays/hr_holidays.py:489
+#: code:addons/trobz_hr_holiday/model/hr_employee.py:29
+#, python-format
+msgid "Leave Request for %s"
+msgstr "Leave Request for %s"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: view:hr.holidays:0
+#: model:ir.actions.act_window,name:hr_holidays.open_ask_holidays
+#: model:ir.ui.menu,name:hr_holidays.menu_open_ask_holidays_new
+#: view:hr.holidays:0
+msgid "Leave Requests"
+msgstr "Các yêu cầu Nghỉ"
+
+#. module: hr_holidays
+#: model:ir.ui.menu,name:hr_holidays.menu_request_approve_holidays
+msgid "Leave Requests to Approve"
+msgstr "Leave Requests to Approve"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: xsl:holidays.summary:0
+#: field:hr.holidays,holiday_status_id:0
+#: field:hr.holidays.remaining.leaves.user,leave_type:0
+#: view:hr.holidays.status:0
+#: field:hr.holidays.status,name:0
+#: field:hr.holidays.summary.dept,holiday_type:0
+#: model:ir.model,name:hr_holidays.model_hr_holidays_status
+#: view:hr.holidays.line:0
+#: field:hr.holidays.line,holiday_status_id:0
+#: view:hr.holidays.status:0
+#: model:ir.model,name:trobz_hr_holiday.model_hr_holidays_status
+msgid "Leave Type"
+msgstr "Loại nghỉ"
+
+#. module: hr_holidays
+#: view:hr.holidays.status:0
+#: model:ir.actions.act_window,name:hr_holidays.open_view_holiday_status
+msgid "Leave Types"
+msgstr "Leave Types"
+
+#. module: hr_holidays
+#: model:ir.actions.act_window,help:hr_holidays.open_ask_holidays
+msgid "Leave requests can be recorded by employees and validated by their managers. Once a leave request is validated, it appears automatically in the agenda of the employee. You can define several allowance types (paid holidays, sickness, etc.) and manage allowances per type."
+msgstr "Leave requests can be recorded by employees and validated by their managers. Once a leave request is validated, it appears automatically in the agenda of the employee. You can define several allowance types (paid holidays, sickness, etc.) and manage allowances per type."
+
+#. modules: hr, hr_holidays
+#: model:ir.ui.menu,name:hr.menu_open_view_attendance_reason_config
+#: view:hr.employee:0
+#: model:ir.actions.act_window,name:hr_holidays.act_hr_employee_holiday_request
+#: model:ir.ui.menu,name:hr_holidays.menu_open_ask_holidays
+msgid "Leaves"
+msgstr "Ngày nghỉ"
+
+#. module: hr_holidays
+#: field:hr.holidays.status,leaves_taken:0
+msgid "Leaves Already Taken"
+msgstr "Leaves Already Taken"
+
+#. module: hr_holidays
+#: model:ir.actions.act_window,name:hr_holidays.action_hr_available_holidays_report
+#: model:ir.ui.menu,name:hr_holidays.menu_hr_available_holidays_report_tree
+msgid "Leaves Analysis"
+msgstr "Leaves Analysis"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Leaves Management"
+msgstr "Quản lý Ngày nghỉ"
+
+#. module: hr_holidays
+#: xsl:holidays.summary:0
+#: view:hr.holidays:0
+#: view:hr.holidays.summary.employee:0
+#: model:ir.actions.act_window,name:hr_holidays.action_hr_holidays_summary_employee
+#: model:ir.actions.act_window,name:hr_holidays.open_company_allocation
+#: model:ir.actions.report.xml,name:hr_holidays.report_holidays_summary
+#: model:ir.ui.menu,name:hr_holidays.menu_open_company_allocation
+msgid "Leaves Summary"
+msgstr "Leaves Summary"
+
+#. module: hr_holidays
+#: model:ir.ui.menu,name:hr_holidays.menu_open_view_holiday_status
+msgid "Leaves Types"
+msgstr "Leaves Types"
+
+#. module: hr_holidays
+#: view:hr.holidays.summary.dept:0
+#: model:ir.actions.act_window,name:hr_holidays.action_hr_holidays_summary_dept
+#: model:ir.ui.menu,name:hr_holidays.menu_account_central_journal
+msgid "Leaves by Department"
+msgstr "Ngày nghỉ theo Phòng ban"
+
+#. module: hr_holidays
+#: view:hr.holidays.remaining.leaves.user:0
+msgid "Leaves by Type"
+msgstr "Leaves by Type"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Light Blue"
+msgstr "Light Blue"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Light Coral"
+msgstr "Light Coral"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Light Cyan"
+msgstr "Light Cyan"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Light Green"
+msgstr "Xanh lá nhạt"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Light Pink"
+msgstr "Light Pink"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Light Salmon"
+msgstr "Light Salmon"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Light Yellow"
+msgstr "Light Yellow"
+
+#. module: hr
+#: model:process.transition,name:hr.process_transition_employeeuser0
+msgid "Link a user to an employee"
+msgstr "Kết nối người sử dụng đến nhân viên"
+
+#. module: hr
+#: model:process.transition,name:hr.process_transition_contactofemployee0
+msgid "Link the employee to information"
+msgstr "Kết nối nhân viên tới thông tin"
+
+#. module: hr_holidays
+#: field:hr.holidays,linked_request_ids:0
+msgid "Linked Requests"
+msgstr "Linked Requests"
+
+#. module: trobz_hr_holiday
+#: view:trobz.hr.public.holidays:0
+msgid "List Public Holiday"
+msgstr "List Public Holiday"
+
+#. module: trobz_hr_holiday
+#: view:trobz.hr.public.holidays:0
+msgid "List Public Holiday Template"
+msgstr "List Public Holiday Template"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+msgid "List unpaid leave request lines"
+msgstr "List unpaid leave request lines"
+
+#. module: hr
+#: field:hr.employee,login:0
+msgid "Login"
+msgstr "Login"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Magenta"
+msgstr "Đỏ tía"
+
+#. module: hr
+#: selection:hr.employee,gender:0
+msgid "Male"
+msgstr "Nam"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_expense:0
+msgid "Manage employees expenses"
+msgstr "Manage employees expenses"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_holidays:0
+msgid "Manage holidays, leaves and allocation requests"
+msgstr "Manage holidays, leaves and allocation requests"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_payroll:0
+msgid "Manage payroll"
+msgstr "Manage payroll"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_recruitment:0
+msgid "Manage the recruitment process"
+msgstr "Manage the recruitment process"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_timesheet:0
+msgid "Manage timesheets"
+msgstr "Manage timesheets"
+
+#. modules: hr, hr_holidays
+#: field:hr.department,manager_id:0
+#: view:hr.employee:0
+#: field:hr.employee,parent_id:0
+#: view:hr.holidays:0
+msgid "Manager"
+msgstr "Quản lý"
+
+#. module: hr
+#: field:hr.employee,marital:0
+msgid "Marital Status"
+msgstr "Tình trạng hôn nhân"
+
+#. module: hr
+#: selection:hr.employee,marital:0
+msgid "Married"
+msgstr "Đã kết hôn"
+
+#. module: hr_holidays
+#: field:hr.holidays.status,max_leaves:0
+msgid "Maximum Allowed"
+msgstr "Maximum Allowed"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.status,max_days_allowed:0
+msgid "Maximum Days Allowed"
+msgstr "Maximum Days Allowed"
+
+#. module: trobz_hr_holiday
+#: help:hr.holidays.status,max_days_allowed:0
+msgid "Maximum Days Allowed for this type of Leave."
+msgstr "Maximum Days Allowed for this type of Leave."
+
+#. module: hr_holidays
+#: help:hr.holidays.status,remaining_leaves:0
+msgid "Maximum Leaves Allowed - Leaves Already Taken"
+msgstr "Maximum Leaves Allowed - Leaves Already Taken"
+
+#. module: hr_contract
+#: view:hr.employee:0
+msgid "Medical Exam"
+msgstr "Medical Exam"
+
+#. module: hr_contract
+#: field:hr.employee,medic_exam:0
+msgid "Medical Examination Date"
+msgstr "Ngày Kiểm tra Sức khỏe"
+
+#. module: hr
+#: field:hr.employee,image_medium:0
+msgid "Medium-sized photo"
+msgstr "Medium-sized photo"
+
+#. module: hr
+#: help:hr.employee,image_medium:0
+msgid "Medium-sized photo of the employee. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
+msgstr "Medium-sized photo of the employee. It is automatically resized as a 128x128px image, with aspect ratio preserved. Use this field in form views or some kanban views."
+
+#. module: hr_holidays
+#: field:hr.holidays,meeting_id:0
+msgid "Meeting"
+msgstr "Cuộc họp"
+
+#. module: hr_holidays
+#: field:hr.holidays.status,categ_id:0
+msgid "Meeting Type"
+msgstr "Meeting Type"
+
+#. module: hr
+#: field:hr.department,member_ids:0
+msgid "Members"
+msgstr "Thành viên"
+
+#. modules: hr, hr_holidays
+#: field:hr.job,message_ids:0
+#: field:hr.holidays,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. modules: hr, hr_holidays
+#: help:hr.job,message_ids:0
+#: help:hr.holidays,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: hr_holidays
+#: view:hr.holidays.status:0
+msgid "Misc"
+msgstr "Các thứ khác"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Mobile:"
+msgstr "Mobile:"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Mode"
+msgstr "Mode"
+
+#. module: hr_holidays
+#: xsl:holidays.summary:0
+msgid "Month"
+msgstr "Month"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,month_year:0
+msgid "Month-Year"
+msgstr "Month-Year"
+
+#. module: trobz_hr_holiday
+#: field:hr.contract,monthly_paid_leaves:0
+msgid "Monthly Paid leaves"
+msgstr "Monthly Paid leaves"
+
+#. module: trobz_hr_holiday
+#: selection:hr.holidays.line,first_date_type:0
+#: selection:hr.holidays.line,last_date_type:0
+msgid "Morning"
+msgstr "Morning"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "My Department Leaves"
+msgstr "My Department Leaves"
+
+#. module: hr_holidays
+#: view:board.board:0
+#: view:hr.holidays:0
+#: model:ir.actions.act_window,name:hr_holidays.action_hr_holidays_leaves_by_month
+msgid "My Leaves"
+msgstr "My Leaves"
+
+#. module: trobz_hr_holiday
+#: view:termination.employment.wizard:0
+msgid "NOTE: you must compute and approve payslips in the last month of selected employees before running this wizard."
+msgstr "NOTE: you must compute and approve payslips in the last month of selected employees before running this wizard."
+
+#. modules: hr, trobz_hr_holiday
+#: field:hr.department,complete_name:0
+#: field:hr.employee,name_related:0
+#: field:hr.employee.category,complete_name:0
+#: field:trobz.hr.public.holidays,name:0
+msgid "Name"
+msgstr "Tên"
+
+#. module: hr
+#: field:hr.employee,country_id:0
+msgid "Nationality"
+msgstr "Quốc tịch"
+
+#. module: hr_holidays
+#: selection:hr.employee,current_leave_state:0
+msgid "New"
+msgstr "New"
+
+#. module: trobz_hr_holiday
+#: view:trobz.hr.public.holidays:0
+msgid "Next Year"
+msgstr "Next Year"
+
+#. module: hr
+#: selection:hr.job,state:0
+msgid "No Recruitment"
+msgstr "No Recruitment"
+
+#. module: hr
+#: field:hr.department,note:0
+msgid "Note"
+msgstr "Ghi chú"
+
+#. modules: hr, hr_contract
+#: field:hr.employee,notes:0
+#: view:hr.contract:0
+#: field:hr.contract,notes:0
+msgid "Notes"
+msgstr "Ghi chú"
+
+#. module: hr_contract
+#: field:hr.employee,children:0
+msgid "Number of Children"
+msgstr "Số lượng con"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: view:hr.holidays:0
+#: field:hr.holidays,number_of_days:0
+#: view:hr.holidays:0
+#: field:hr.holidays.line,number_of_days:0
+msgid "Number of Days"
+msgstr "Số ngày"
+
+#. module: hr
+#: help:hr.job,no_of_employee:0
+msgid "Number of employees currently occupying this job position."
+msgstr "Number of employees currently occupying this job position."
+
+#. module: hr
+#: help:hr.job,no_of_recruitment:0
+msgid "Number of new employees you expect to recruit."
+msgstr "Number of new employees you expect to recruit."
+
+#. module: hr_holidays
+#: model:hr.holidays.status,name:hr_holidays.holiday_status_comp
+msgid "Off With Compensation"
+msgstr "Off With Compensation"
+
+#. module: hr
+#: field:hr.employee,work_location:0
+msgid "Office Location"
+msgstr "Địa điểm văn phòng"
+
+#. module: hr_holidays
+#: help:hr.holidays.status,categ_id:0
+msgid "Once a leave is validated, OpenERP will create a corresponding meeting of this type in the calendar."
+msgstr "Once a leave is validated, OpenERP will create a corresponding meeting of this type in the calendar."
+
+#. module: hr
+#: model:ir.actions.client,name:hr.action_client_hr_menu
+msgid "Open HR Menu"
+msgstr "Open HR Menu"
+
+#. module: hr
+#: model:process.node,name:hr.process_node_openerpuser0
+msgid "Openerp user"
+msgstr "Người dùng OpenERP"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_evaluation:0
+msgid "Organize employees periodic evaluation"
+msgstr "Organize employees periodic evaluation"
+
+#. module: hr
+#: field:hr.employee,otherid:0
+msgid "Other Id"
+msgstr "Other Id"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Other Information ..."
+msgstr "Other Information ..."
+
+#. module: hr
+#: model:process.node,note:hr.process_node_employeecontact0
+msgid "Other information"
+msgstr "Thông tin khác"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,is_over_allocation_days:0
+msgid "Over Allocation Day"
+msgstr "Over Allocation Day"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Over Allocation Days"
+msgstr "Over Allocation Days"
+
+#. module: trobz_hr_holiday
+#: selection:hr.holidays.line,payment_type:0
+#: selection:hr.holidays.status,payment_type:0
+msgid "Paid"
+msgstr "Paid"
+
+#. module: trobz_hr_holiday
+#: view:hr.contract:0
+msgid "Paid Leaves"
+msgstr "Paid Leaves"
+
+#. module: hr_holidays
+#: field:hr.holidays,parent_id:0
+msgid "Parent"
+msgstr "Cha"
+
+#. module: hr
+#: field:hr.employee.category,parent_id:0
+msgid "Parent Category"
+msgstr "Hạng mục mẹ"
+
+#. module: hr
+#: field:hr.department,parent_id:0
+msgid "Parent Department"
+msgstr "Phòng/Ban cấp trên"
+
+#. module: hr
+#: field:hr.employee,passport_id:0
+msgid "Passport No"
+msgstr "Số Hộ chiếu"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,payment_type:0
+#: field:hr.holidays.status,payment_type:0
+msgid "Payment Type"
+msgstr "Payment Type"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_payroll_modules
+msgid "Payroll"
+msgstr "trả lương"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,period:0
+#: field:hr.holidays.line,period:0
+msgid "Period"
+msgstr "Period"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Personal Information"
+msgstr "Thông tin cá nhân"
+
+#. module: hr
+#: field:hr.employee,image:0
+msgid "Photo"
+msgstr "Ảnh"
+
+#. module: hr_contract
+#: field:hr.employee,place_of_birth:0
+msgid "Place of Birth"
+msgstr "Nơi sinh"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Position"
+msgstr "Chức vụ"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_position_assignment_from
+msgid "Position Assignment"
+msgstr "Position Assignment"
+
+#. module: trobz_hr_holiday
+#: model:ir.model,name:trobz_hr_holiday.model_post_hr_holiday
+msgid "Post Deployment "
+msgstr "Post Deployment "
+
+#. module: hr_holidays
+#: view:hr.holidays.summary.dept:0
+#: view:hr.holidays.summary.employee:0
+msgid "Print"
+msgstr "In"
+
+#. module: trobz_hr_holiday
+#: model:ir.ui.menu,name:trobz_hr_holiday.menu_open_public_holidays
+msgid "Public Holidays"
+msgstr "Public Holidays"
+
+#. module: trobz_hr_holiday
+#: model:ir.actions.act_window,name:trobz_hr_holiday.action_open_public_holidays_templates
+#: model:ir.ui.menu,name:trobz_hr_holiday.menu_open_public_holidays_templates
+msgid "Public Holidays Templates"
+msgstr "Public Holidays Templates"
+
+#. module: trobz_hr_holiday
+#: model:ir.actions.act_window,name:trobz_hr_holiday.action_open_public_holidays_this_year
+msgid "Public Holidays This Year"
+msgstr "Public Holidays This Year"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Public Information"
+msgstr "Public Information"
+
+#. module: hr_holidays
+#: field:hr.holidays,notes:0
+msgid "Reasons"
+msgstr "Reasons"
+
+#. module: hr
+#: field:hr.config.settings,module_hr_contract:0
+msgid "Record contracts per employee"
+msgstr "Record contracts per employee"
+
+#. module: hr
+#: selection:hr.job,state:0
+msgid "Recruitement in Progress"
+msgstr "Recruitement in Progress"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Red"
+msgstr "Đỏ"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Refuse"
+msgstr "Từ chối"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Refuse the Cancellation Request"
+msgstr "Refuse the Cancellation Request"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: selection:hr.employee,current_leave_state:0
+#: selection:hr.holidays,state:0
+#: model:mail.message.subtype,name:hr_holidays.mt_holidays_refused
+#: selection:hr.holidays.line,state:0
+msgid "Refused"
+msgstr "Đã từ chối"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Related User"
+msgstr "Người dùng liên quan"
+
+#. module: hr
+#: field:res.users,employee_ids:0
+msgid "Related employees"
+msgstr "Related employees"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: view:hr.holidays:0
+#: view:hr.holidays:0
+msgid "Remaining Days"
+msgstr "Số ngày còn lại"
+
+#. module: hr_holidays
+#: field:hr.holidays.status,remaining_leaves:0
+msgid "Remaining Leaves"
+msgstr "Số ngày nghỉ còn lại"
+
+#. module: hr_holidays
+#: view:hr.employee:0
+#: field:hr.employee,remaining_leaves:0
+msgid "Remaining Legal Leaves"
+msgstr "Remaining Legal Leaves"
+
+#. module: hr_holidays
+#: field:hr.holidays.remaining.leaves.user,no_of_leaves:0
+msgid "Remaining leaves"
+msgstr "Số ngày nghỉ còn lại"
+
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_hr_reporting_timesheet
+msgid "Reports"
+msgstr "Reports"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays.py:356
+#, python-format
+msgid "Request Cancelled, waiting approve."
+msgstr "Request Cancelled, waiting approve."
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Request Leave Cancellation"
+msgstr "Request Leave Cancellation"
+
+#. module: hr_holidays
+#: field:hr.holidays,type:0
+msgid "Request Type"
+msgstr "Loại Yêu cầu"
+
+#. module: hr_holidays
+#: model:mail.message.subtype,description:hr_holidays.mt_holidays_approved
+msgid "Request approved"
+msgstr "Request approved"
+
+#. module: hr_holidays
+#: code:addons/hr_holidays/hr_holidays.py:451
+#, python-format
+msgid "Request approved, waiting second validation."
+msgstr "Request approved, waiting second validation."
+
+#. module: hr_holidays
+#: model:mail.message.subtype,description:hr_holidays.mt_holidays_confirmed
+msgid "Request created and waiting confirmation"
+msgstr "Request created and waiting confirmation"
+
+#. module: hr_holidays
+#: model:mail.message.subtype,description:hr_holidays.mt_holidays_refused
+msgid "Request refused"
+msgstr "Request refused"
+
+#. module: hr_holidays
+#: model:ir.actions.act_window,name:hr_holidays.request_approve_holidays
+msgid "Requests to Approve"
+msgstr "Requests to Approve"
+
+#. module: hr
+#: field:hr.job,requirements:0
+msgid "Requirements"
+msgstr "Yêu cầu"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: view:hr.holidays:0
+#: view:hr.holidays:0
+msgid "Reset to New"
+msgstr "Reset to New"
+
+#. module: hr
+#: field:hr.employee,resource_id:0
+msgid "Resource"
+msgstr "Nguồn lực"
+
+#. module: hr
+#: field:hr.employee,sinid:0
+msgid "SIN No"
+msgstr "Số bảo hiểm xã hội"
+
+#. module: hr
+#: field:hr.employee,ssnid:0
+msgid "SSN No"
+msgstr "Số an ninh xã hội"
+
+#. module: hr_contract
+#: view:hr.contract:0
+msgid "Salary and Advantages"
+msgstr "Salary and Advantages"
+
+#. module: hr_contract
+#: view:hr.contract:0
+msgid "Search Contract"
+msgstr "Tìm kiếm hợp đồng"
+
+#. module: hr_contract
+#: view:hr.contract.type:0
+msgid "Search Contract Type"
+msgstr "Search Contract Type"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Search Leave"
+msgstr "Tìm kiếm Ngày nghỉ"
+
+#. module: hr_holidays
+#: view:hr.holidays.status:0
+msgid "Search Leave Type"
+msgstr "Search Leave Type"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: field:hr.holidays,manager_id2:0
+#: selection:hr.holidays,state:0
+#: selection:hr.holidays.line,state:0
+msgid "Second Approval"
+msgstr "Chấp thuận Lần 2"
+
+#. module: hr_holidays
+#: field:hr.holidays.summary.employee,holiday_type:0
+msgid "Select Leave Type"
+msgstr "Select Leave Type"
+
+#. module: hr_holidays
+#: model:hr.holidays.status,name:hr_holidays.holiday_status_sl
+msgid "Sick leave (unpaid)"
+msgstr "Sick leave (unpaid)"
+
+#. module: hr
+#: selection:hr.employee,marital:0
+msgid "Single"
+msgstr "Chưa kết hôn"
+
+#. module: hr
+#: field:hr.employee,image_small:0
+msgid "Smal-sized photo"
+msgstr "Smal-sized photo"
+
+#. module: hr
+#: help:hr.employee,image_small:0
+msgid "Small-sized photo of the employee. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr "Small-sized photo of the employee. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+
+#. module: hr
+#: help:hr.employee,sinid:0
+msgid "Social Insurance Number"
+msgstr "Số BHXH"
+
+#. module: hr
+#: help:hr.employee,ssnid:0
+msgid "Social Security Number"
+msgstr "Số An sinh Xã hội"
+
+#. modules: hr_holidays, trobz_hr_holiday, hr_contract
+#: field:hr.contract,date_start:0
+#: view:hr.holidays:0
+#: field:hr.holidays,date_from:0
+#: view:hr.holidays.line:0
+msgid "Start Date"
+msgstr "Ngày bắt đầu"
+
+#. modules: hr, hr_holidays, trobz_hr_holiday
+#: view:hr.employee:0
+#: view:hr.job:0
+#: field:hr.job,state:0
+#: view:hr.holidays:0
+#: field:hr.holidays,state:0
+#: field:hr.holidays.line,state:0
+msgid "Status"
+msgstr "Trạng thái"
+
+#. module: hr
+#: view:hr.job:0
+msgid "Stop Recruitment"
+msgstr "Stop Recruitment"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Submit to Manager"
+msgstr "Submit to Manager"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.action2
+msgid "Subordinate Hierarchy"
+msgstr "Subordinate Hierarchy"
+
+#. module: hr
+#: field:hr.employee,child_ids:0
+msgid "Subordinates"
+msgstr "Người cấp dưới"
+
+#. module: hr_holidays
+#: xsl:holidays.summary:0
+msgid "Sum"
+msgstr "Sum"
+
+#. modules: hr, hr_holidays
+#: field:hr.job,message_summary:0
+#: field:hr.holidays,message_summary:0
+msgid "Summary"
+msgstr "Summary"
+
+#. module: hr
+#: field:hr.employee,category_ids:0
+msgid "Tags"
+msgstr "Tags"
+
+#. module: hr
+#: view:hr.config.settings:0
+msgid "Talent Management"
+msgstr "Talent Management"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "Tel:"
+msgstr "Tel:"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,template_holidays:0
+msgid "Template Holidays"
+msgstr "Template Holidays"
+
+#. module: trobz_hr_holiday
+#: model:ir.actions.act_window,name:trobz_hr_holiday.action_hr_hr_termination_of_employment_wizard
+#: model:ir.model,name:trobz_hr_holiday.model_termination_employment_wizard
+#: model:ir.ui.menu,name:trobz_hr_holiday.menu_hr_hr_termination_of_employment
+#: view:termination.employment.wizard:0
+msgid "Termination of Employment"
+msgstr "Termination of Employment"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:172
+#, python-format
+msgid "The First Date must be before the Last Date !"
+msgstr "The First Date must be before the Last Date !"
+
+#. module: hr
+#: model:process.transition,note:hr.process_transition_employeeuser0
+msgid "The Related user field on the Employee form allows to link the OpenERP user (and her rights) to the employee."
+msgstr "Các lĩnh vực sử dụng liên quan về hình thức lao động cho phép liên kết người sử dụng OpenERP (và các quyền của mình) để người lao động"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "The balance of allowed holidays is negative, it is a request for advance leaves!"
+msgstr "The balance of allowed holidays is negative, it is a request for advance leaves!"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays.py:350
+#, python-format
+msgid "The current day must be before the first day  !"
+msgstr "The current day must be before the first day  !"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "The default duration interval between the start date and the end date is 8 hours.  Feel free to adapt it to your needs."
+msgstr "The default duration interval between the start date and the end date is 8 hours.  Feel free to adapt it to your needs."
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: sql_constraint:hr.holidays:0
+#: sql_constraint:hr.holidays:0
+msgid "The employee or employee category of this request is missing. Please make sure that your user login is linked to an employee."
+msgstr "The employee or employee category of this request is missing. Please make sure that your user login is linked to an employee."
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: code:addons/hr_holidays/hr_holidays.py:482
+#: code:addons/trobz_hr_holiday/model/hr_employee.py:22
+#, python-format
+msgid "The feature behind the field 'Remaining Legal Leaves' can only be used when there is only one leave type with the option 'Allow to Override Limit' unchecked. (%s Found). Otherwise, the update is ambiguous as we cannot decide on which leave type the update has to be done. \n"
+"You may prefer to use the classic menus 'Leave Requests' and 'Allocation Requests' located in 'Human Resources \\ Leaves' to manage the leave days of the employees if the configuration does not allow to use this field."
+msgstr "The feature behind the field 'Remaining Legal Leaves' can only be used when there is only one leave type with the option 'Allow to Override Limit' unchecked. (%s Found). Otherwise, the update is ambiguous as we cannot decide on which leave type the update has to be done. \n"
+"You may prefer to use the classic menus 'Leave Requests' and 'Allocation Requests' located in 'Human Resources \\ Leaves' to manage the leave days of the employees if the configuration does not allow to use this field."
+
+#. module: hr
+#: sql_constraint:hr.job:0
+msgid "The name of the job position must be unique per company!"
+msgstr "The name of the job position must be unique per company!"
+
+#. module: hr_holidays
+#: sql_constraint:hr.holidays:0
+msgid "The number of days must be greater than 0."
+msgstr "The number of days must be greater than 0."
+
+#. module: hr_holidays
+#: code:addons/hr_holidays/hr_holidays.py:260
+#: code:addons/hr_holidays/hr_holidays.py:285
+#: sql_constraint:hr.holidays:0
+#, python-format
+msgid "The start date must be anterior to the end date."
+msgstr "The start date must be anterior to the end date."
+
+#. module: hr_holidays
+#: help:hr.holidays,state:0
+msgid "The status is set to 'To Submit', when a holiday request is created.            \n"
+"The status is 'To Approve', when holiday request is confirmed by user.            \n"
+"The status is 'Refused', when holiday request is refused by manager.            \n"
+"The status is 'Approved', when holiday request is approved by manager.            \n"
+"The status is 'Leave Cancellation Request', when holiday request is cancelled by user."
+msgstr "The status is set to 'To Submit', when a holiday request is created.            \n"
+"The status is 'To Approve', when holiday request is confirmed by user.            \n"
+"The status is 'Refused', when holiday request is refused by manager.            \n"
+"The status is 'Approved', when holiday request is approved by manager.            \n"
+"The status is 'Leave Cancellation Request', when holiday request is cancelled by user."
+
+#. module: hr_holidays
+#: code:addons/hr_holidays/hr_holidays.py:432
+#, python-format
+msgid "There are not enough %s allocated for employee %s; please create an allocation request for this leave type."
+msgstr "There are not enough %s allocated for employee %s; please create an allocation request for this leave type."
+
+#. module: trobz_hr_holiday
+#: view:trobz.hr.public.holidays:0
+msgid "This Year"
+msgstr "This Year"
+
+#. module: trobz_hr_holiday
+#: view:termination.employment.wizard:0
+msgid "This action can NOT be undone. This action will:"
+msgstr "This action can NOT be undone. This action will:"
+
+#. module: hr_holidays
+#: help:hr.holidays,manager_id:0
+msgid "This area is automatically filled by the user who validate the leave"
+msgstr "This area is automatically filled by the user who validate the leave"
+
+#. module: hr_holidays
+#: help:hr.holidays,manager_id2:0
+msgid "This area is automaticly filled by the user who validate the leave with second level (If Leave type need second validation)"
+msgstr "This area is automaticly filled by the user who validate the leave with second level (If Leave type need second validation)"
+
+#. module: hr_holidays
+#: help:hr.holidays.status,color_name:0
+msgid "This color will be used in the leaves summary located in Reporting\\Leaves by Department."
+msgstr "This color will be used in the leaves summary located in Reporting\\Leaves by Department."
+
+#. module: hr
+#: help:hr.employee,image:0
+msgid "This field holds the image used as photo for the employee, limited to 1024x1024px."
+msgstr "This field holds the image used as photo for the employee, limited to 1024x1024px."
+
+#. module: hr
+#: help:hr.config.settings,module_account_analytic_analysis:0
+msgid "This installs the module account_analytic_analysis, which will install sales management too."
+msgstr "This installs the module account_analytic_analysis, which will install sales management too."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_attendance:0
+msgid "This installs the module hr_attendance."
+msgstr "This installs the module hr_attendance."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_contract:0
+msgid "This installs the module hr_contract."
+msgstr "This installs the module hr_contract."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_evaluation:0
+msgid "This installs the module hr_evaluation."
+msgstr "This installs the module hr_evaluation."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_expense:0
+msgid "This installs the module hr_expense."
+msgstr "This installs the module hr_expense."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_holidays:0
+msgid "This installs the module hr_holidays."
+msgstr "This installs the module hr_holidays."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_payroll:0
+msgid "This installs the module hr_payroll."
+msgstr "This installs the module hr_payroll."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_recruitment:0
+msgid "This installs the module hr_recruitment."
+msgstr "This installs the module hr_recruitment."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_timesheet:0
+msgid "This installs the module hr_timesheet."
+msgstr "This installs the module hr_timesheet."
+
+#. module: hr
+#: help:hr.config.settings,module_hr_timesheet_sheet:0
+msgid "This installs the module hr_timesheet_sheet."
+msgstr "This installs the module hr_timesheet_sheet."
+
+#. module: hr_holidays
+#: help:hr.holidays.status,leaves_taken:0
+msgid "This value is given by the sum of all holidays requests with a negative value."
+msgstr "This value is given by the sum of all holidays requests with a negative value."
+
+#. module: hr_holidays
+#: help:hr.holidays.status,max_leaves:0
+msgid "This value is given by the sum of all holidays requests with a positive value."
+msgstr "This value is given by the sum of all holidays requests with a positive value."
+
+#. module: hr
+#: view:hr.config.settings:0
+msgid "Time Tracking"
+msgstr "Time Tracking"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: view:hr.holidays:0
+#: selection:hr.holidays,state:0
+#: model:mail.message.subtype,name:hr_holidays.mt_holidays_confirmed
+#: selection:hr.holidays.line,state:0
+msgid "To Approve"
+msgstr "To Approve"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "To Confirm"
+msgstr "To Confirm"
+
+#. module: hr_holidays
+#: field:hr.employee,leave_date_to:0
+msgid "To Date"
+msgstr "To Date"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: selection:hr.holidays,state:0
+#: selection:hr.holidays.line,state:0
+msgid "To Submit"
+msgstr "To Submit"
+
+#. module: hr
+#: field:hr.job,expected_employees:0
+msgid "Total Forecasted Employees"
+msgstr "Total Forecasted Employees"
+
+#. module: hr_holidays
+#: model:ir.model,name:hr_holidays.model_hr_holidays_remaining_leaves_user
+msgid "Total holidays by type"
+msgstr "Tổng số ngày nghỉ theo loại"
+
+#. module: hr_holidays
+#: help:hr.employee,remaining_leaves:0
+msgid "Total number of legal leaves allocated to this employee, change this value to create allocation/leave request. Total based on all the leave types without overriding limit."
+msgstr "Total number of legal leaves allocated to this employee, change this value to create allocation/leave request. Total based on all the leave types without overriding limit."
+
+#. module: hr_contract
+#: field:hr.contract,trial_date_end:0
+msgid "Trial End Date"
+msgstr "Ngày Kết thúc Thử việc"
+
+#. module: hr_contract
+#: view:hr.contract:0
+msgid "Trial Period Duration"
+msgstr "Trial Period Duration"
+
+#. module: hr_contract
+#: field:hr.contract,trial_date_start:0
+msgid "Trial Start Date"
+msgstr "Ngày bắt đầu thử việc"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Type"
+msgstr "Loại"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: model:hr.holidays.status,name:hr_holidays.holiday_status_unpaid
+#: view:hr.holidays.line:0
+#: selection:hr.holidays.line,payment_type:0
+#: selection:hr.holidays.status,payment_type:0
+msgid "Unpaid"
+msgstr "Unpaid"
+
+#. modules: hr, hr_holidays
+#: field:hr.job,message_unread:0
+#: field:hr.holidays,message_unread:0
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: hr_holidays
+#: field:hr.holidays,user_id:0
+#: field:hr.holidays.remaining.leaves.user,user_id:0
+msgid "User"
+msgstr "Người sử dụng"
+
+#. module: hr
+#: model:ir.model,name:hr.model_res_users
+msgid "Users"
+msgstr "Người dùng"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Validate"
+msgstr "Validate"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Validated"
+msgstr "Validated"
+
+#. module: hr_holidays
+#: view:hr.holidays.status:0
+msgid "Validation"
+msgstr "Xác nhận"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Violet"
+msgstr "Tím sẫm"
+
+#. module: hr_contract
+#: field:hr.contract,visa_expire:0
+msgid "Visa Expire Date"
+msgstr "Visa Expire Date"
+
+#. module: hr_contract
+#: field:hr.contract,visa_no:0
+msgid "Visa No"
+msgstr "Visa No"
+
+#. module: hr_contract
+#: field:hr.contract,wage:0
+msgid "Wage"
+msgstr "Tiền công/tiền lương"
+
+#. module: hr_holidays
+#: selection:hr.employee,current_leave_state:0
+msgid "Waiting Approval"
+msgstr "Đang chờ Chấp thuận"
+
+#. module: hr_holidays
+#: selection:hr.employee,current_leave_state:0
+msgid "Waiting Second Approval"
+msgstr "Đang chờ Chấp thuận Thứ hai"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:106
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:114
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:122
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:172
+#, python-format
+msgid "Warning !"
+msgstr "Warning !"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: code:addons/hr_holidays/hr_holidays.py:249
+#: code:addons/hr_holidays/hr_holidays.py:260
+#: code:addons/hr_holidays/hr_holidays.py:285
+#: code:addons/hr_holidays/hr_holidays.py:309
+#: code:addons/hr_holidays/hr_holidays.py:432
+#: code:addons/hr_holidays/hr_holidays.py:482
+#: code:addons/trobz_hr_holiday/model/hr_employee.py:22
+#, python-format
+msgid "Warning!"
+msgstr "Cảnh báo!"
+
+#. module: hr
+#: code:addons/hr/hr.py:221
+#, python-format
+msgid "Welcome to %s! Please help him/her take the first steps with OpenERP!"
+msgstr "Welcome to %s! Please help him/her take the first steps with OpenERP!"
+
+#. module: hr_holidays
+#: selection:hr.holidays.status,color_name:0
+msgid "Wheat"
+msgstr "Wheat"
+
+#. module: hr_holidays
+#: help:hr.holidays.status,double_validation:0
+msgid "When selected, the Allocation/Leave Requests for this type require a second validation to be approved."
+msgstr "When selected, the Allocation/Leave Requests for this type require a second validation to be approved."
+
+#. module: hr
+#: selection:hr.employee,marital:0
+msgid "Widower"
+msgstr "Đã Qua"
+
+#. module: hr
+#: field:hr.employee,work_email:0
+msgid "Work Email"
+msgstr "Email công việc"
+
+#. module: hr
+#: field:hr.employee,mobile_phone:0
+msgid "Work Mobile"
+msgstr "Work Mobile"
+
+#. module: hr_contract
+#: view:hr.contract:0
+msgid "Work Permit"
+msgstr "Giấy phép LĐ"
+
+#. module: hr_contract
+#: field:hr.contract,permit_no:0
+msgid "Work Permit No"
+msgstr "Work Permit No"
+
+#. module: hr
+#: field:hr.employee,work_phone:0
+msgid "Work Phone"
+msgstr "Điện thoại công ty"
+
+#. module: hr
+#: field:hr.employee,address_id:0
+msgid "Working Address"
+msgstr "Địa chỉ làm việc"
+
+#. module: hr_contract
+#: view:hr.contract:0
+#: field:hr.contract,working_hours:0
+msgid "Working Schedule"
+msgstr "Thời gian làm việc"
+
+#. module: hr_holidays
+#: view:hr.holidays:0
+msgid "Year"
+msgstr "Year"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,year:0
+msgid "Year of Holiday"
+msgstr "Year of Holiday"
+
+#. modules: hr_holidays, trobz_hr_holiday
+#: constraint:hr.holidays:0
+#: constraint:hr.holidays:0
+msgid "You can not have 2 leaves that overlaps on same day!"
+msgstr "You can not have 2 leaves that overlaps on same day!"
+
+#. module: hr_holidays
+#: code:addons/hr_holidays/hr_holidays.py:249
+#, python-format
+msgid "You cannot delete a leave which is in %s state."
+msgstr "You cannot delete a leave which is in %s state."
+
+#. module: hr_holidays
+#: code:addons/hr_holidays/hr_holidays.py:309
+#, python-format
+msgid "You cannot modify a leave request that has been approved. Contact a human resource manager."
+msgstr "You cannot modify a leave request that has been approved. Contact a human resource manager."
+
+#. module: hr_holidays
+#: code:addons/hr_holidays/wizard/hr_holidays_summary_department.py:44
+#, python-format
+msgid "You have to select at least one Department. And try again."
+msgstr "You have to select at least one Department. And try again."
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "base.group_hr_manager"
+msgstr "base.group_hr_manager"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "base.group_hr_user"
+msgstr "base.group_hr_user"
+
+#. module: hr_holidays
+#: view:hr.employee:0
+#: view:hr.holidays:0
+msgid "days"
+msgstr "days"
+
+#. module: hr
+#: view:hr.department:0
+msgid "department"
+msgstr "phòng/ban"
+
+#. module: hr
+#: view:hr.employee:0
+msgid "e.g. Part Time"
+msgstr "e.g. Part Time"
+
+#. module: hr
+#: model:ir.model,name:hr.model_hr_config_settings
+msgid "hr.config.settings"
+msgstr "hr.config.settings"
+
+#. module: trobz_hr_holiday
+#: model:ir.model,name:trobz_hr_holiday.model_hr_holidays_line
+msgid "hr.holidays.line"
+msgstr "hr.holidays.line"
+
+#. module: hr
+#: model:ir.model,name:hr.model_ir_actions_act_window
+msgid "ir.actions.act_window"
+msgstr "ir.actions.act_window"
+
+#. module: hr_holidays
+#: xsl:holidays.summary:0
+msgid "leaves."
+msgstr "leaves."
+
+#. module: hr_holidays
+#: xsl:holidays.summary:0
+msgid "of the"
+msgstr "of the"
+
+#. modules: hr, hr_holidays, trobz_hr_holiday
+#: view:hr.config.settings:0
+#: view:hr.holidays.summary.dept:0
+#: view:hr.holidays.summary.employee:0
+#: view:termination.employment.wizard:0
+msgid "or"
+msgstr "or"
+
+#. module: hr_holidays
+#: xsl:holidays.summary:0
+msgid "to"
+msgstr "to"
+
+#. module: trobz_hr_holiday
+#: model:ir.model,name:trobz_hr_holiday.model_trobz_hr_public_holidays
+msgid "trobz.hr.public.holidays"
+msgstr "trobz.hr.public.holidays"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "{'invisible':[('holiday_type','=','employees')],'required':[('holiday_type','=','employee')]}"
+msgstr "{'invisible':[('holiday_type','=','employees')],'required':[('holiday_type','=','employee')]}"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "{'readonly':[('holiday_type','=','category')], 'invisible':[('holiday_type','=','employees')]}"
+msgstr "{'readonly':[('holiday_type','=','category')], 'invisible':[('holiday_type','=','employees')]}"
+

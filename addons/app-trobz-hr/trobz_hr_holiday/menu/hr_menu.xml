@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <menuitem name="Leaves Types" action="hr_holidays.open_view_holiday_status"
+            id="hr_holidays.menu_open_view_holiday_status" parent="hr.menu_open_view_attendance_reason_config"
+            groups="base.group_hr_manager" />
+        
+         <!-- Action Open Leave Request Tree View (remove calendar view) -->
+        <record model="ir.actions.act_window" id="hr_holidays.open_ask_holidays">
+            <field name="name">Leave Requests</field>
+            <field name="res_model">hr.holidays</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_type': 'remove', 'search_default_my_leaves':1, 'search_default_open': 1}</field>
+            <field name="domain">[('type','=','remove')]</field>
+            <field name="view_id" ref="hr_holidays.edit_holiday_new"/>
+            <field name="search_view_id" ref="view_hr_holidays_search_inherit"/>
+        </record>
+        
+        <!-- Action of menu Allocation Requests -->
+        <record model="ir.actions.act_window.view"
+            id="hr_holidays.action_open_allocation_holidays_form">
+            <field name="sequence" eval="2" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hr_holidays_form_allocation" />
+            <field name="act_window_id" ref="hr_holidays.open_allocation_holidays" />
+        </record>
+        
+        <record model="ir.actions.act_window" id="hr_holidays.open_allocation_holidays">
+            <field name="name">Allocation Requests</field>
+            <field name="res_model">hr.holidays</field>
+            <field name="view_type">form</field>
+            <field name="context">{'default_type':'add', 'search_default_my_leaves':1}</field>
+            <field name="domain">[('type','=','add')]</field>
+            <field name="view_id" ref="view_hr_holidays_form_allocation"/>
+            <field name="search_view_id" ref="view_hr_holidays_allocation_request_filter"/>
+        </record>
+
+        <!-- Action of menu Allocation requests to Approve -->
+        <record model="ir.actions.act_window.view" id="hr_holidays.action_request_approve_allocation_form">
+            <field name="sequence" eval="2" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hr_holidays_form_allocation" />
+            <field name="act_window_id" ref="hr_holidays.request_approve_allocation" />
+        </record>
+        <record model="ir.actions.act_window" id="hr_holidays.request_approve_allocation">
+            <field name="name">Allocation Requests to Approve</field>
+            <field name="res_model">hr.holidays</field>
+            <field name="view_type">form</field>
+            <field name="context">{'default_type': 'add', 'search_default_approve':1}</field>
+            <field name="domain">[('type','=','add')]</field>
+            <field name="view_id" ref="view_hr_holidays_form_allocation" />
+            <field name="search_view_id" ref="view_hr_holidays_allocation_request_filter" />
+        </record>
+        
+        <menuitem name="Allocation Requests" parent="hr_holidays.menu_open_ask_holidays"
+            id="hr_holidays.menu_open_allocation_holidays" action="hr_holidays.open_allocation_holidays"
+            groups="base.group_user" />
+
+        <!-- Leave Request Lines action and menu -->
+        <record model="ir.actions.act_window" id="action_open_hr_holidays_line">
+            <field name="name">Leave Request Calendar</field>
+            <field name="res_model">hr.holidays.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('holiday_id.type', '=', 'remove'), ('holiday_id.holiday_type', '=', 'employee'), ('state', 'not in', ('refuse', 'cancel'))]</field>
+            <field name="view_id" ref="view_hr_holidays_line_tree" />
+            <field name="search_view_id" ref="view_hr_holidays_line_search" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_open_hr_holidays_line_tree_view">
+            <field name="sequence" eval="2" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_hr_holidays_line_tree" />
+            <field name="act_window_id" ref="action_open_hr_holidays_line" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_open_hr_holidays_line_form_view">
+            <field name="sequence" eval="3" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hr_holidays_line_form" />
+            <field name="act_window_id" ref="action_open_hr_holidays_line" />
+        </record>
+
+        <record model="ir.actions.act_window.view"
+            id="action_open_hr_holidays_line_calendar_view">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">calendar</field>
+            <field name="view_id" ref="view_hr_holidays_line_calendar" />
+            <field name="act_window_id" ref="action_open_hr_holidays_line" />
+        </record>
+
+        <menuitem parent="hr_holidays.menu_open_ask_holidays"
+            name="Leaves Calendar" id="menu_leave_request_lines"
+            sequence="0" action="action_open_hr_holidays_line" />
+
+        <!-- Remove Calendar From Leave Request -->
+        <record model="ir.actions.act_window.view"
+            id="hr_holidays.action_open_ask_holidays_calendar">
+            <field name="sequence" eval="3" />
+            <field name="view_mode">calendar</field>
+            <field name="view_id" />
+            <field name="act_window_id" />
+        </record>
+
+    </data>
+</openerp>

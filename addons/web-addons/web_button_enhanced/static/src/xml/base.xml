@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <button t-name="ListView.row.button" type="button"
+            t-att-title="widget.string" t-att-disabled="disabled || undefined"
+            t-att-class="(disabled ? 'oe_list_button_disabled' : undefined) + ' ' + (widget.class || '')"
+            ><t t-if="widget.icon"><img t-attf-src="#{prefix}/web/static/src/img/icons/#{widget.icon}.png"
+             t-att-alt="widget.string" /></t>
+    </button>
+
+    <button t-name="ListView.row.text_button" type="button"
+        t-att-title="widget.string" t-att-disabled="disabled || undefined"
+        t-att-class="(disabled ? 'oe_list_button_disabled' : undefined) + ' ' + (widget.class || '')"
+        ><t t-if="widget.icon"><t t-esc="widget.string"/></t></button>
+</templates>

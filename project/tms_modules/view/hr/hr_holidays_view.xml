@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        ===================================================
+        LEAVE REQUESTS
+        ===================================================
+        -->
+
+        <!-- Leave Request Tree View (inherit) -->
+        <record id="view_hr_holidays_tree_inherit" model="ir.ui.view">
+            <field name="name">view.tms.hr.holidays.tree.inherit</field>
+            <field name="model">hr.holidays</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="trobz_hr_holiday.view_hr_holidays_tree_inherit" />
+            <field name="arch" type="xml">
+                <field name="department_id" position="after">
+                    <field name="leave_type" />
+                </field>
+            </field>
+        </record>
+
+        <!-- Leave Request Form View (inherit) -->
+        <record id="view_hr_holidays_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.holidays.form.inherit</field>
+            <field name="model">hr.holidays</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_new" />
+            <field name="arch" type="xml">
+                <!-- Show button Change to Sick leave (paid) -->
+                <field name="number_of_days_temp" position="after">
+                    <field name="sick_leave_flag" invisible="True" />
+                    <field name="sick_leave_unpaid_flag" invisible="True" />
+                    <field name="sick_leave_social_ins_flag" invisible="True" />
+                    <field name="remider_add_attachment" invisible="True" />
+                </field>
+                <button name="refuse" position="after">
+                    <button string="Change Sick Unpaid to Sick Paid" name="button_sick_unpaid_to_sick_paid"
+                            type="object" groups="base.group_hr_manager"
+                            attrs="{'invisible': ['|',('sick_leave_unpaid_flag', '=', False),('state', 'not in', ['confirm', 'draft'])]}"/>
+                    <button string="Change Sick Unpaid to Sick Insu" name="button_sick_unpaid_to_sick_social_ins"
+                            type="object" groups="base.group_hr_manager"
+                            attrs="{'invisible': ['|',('sick_leave_unpaid_flag', '=', False),('state', 'not in', ['confirm', 'draft'])]}"/>
+                    <button string="Change Sick Paid to Sick Insu" name="button_sick_paid_to_sick_social_ins"
+                            type="object" groups="base.group_hr_manager"
+                            attrs="{'invisible': ['|',('sick_leave_flag', '=', False),('state', 'not in', ['confirm', 'draft'])]}" />
+                    <button string="Change Sick Paid to Sick Unpaid" name="button_sick_paid_to_sick_unpaid"
+                            type="object" groups="base.group_hr_manager"
+                            attrs="{'invisible': ['|',('sick_leave_flag', '=', False),('state', 'not in', ['confirm', 'draft'])]}" />
+                    <button string="Change Sick Insu to Sick Paid" name="button_sick_social_ins_to_sick_paid"
+                            type="object" groups="base.group_hr_manager"
+                            attrs="{'invisible': ['|',('sick_leave_social_ins_flag', '=', False),('state', 'not in', ['confirm', 'draft'])]}" />
+                    <button string="Change Sick Insu to Sick Unpaid" name="button_sick_social_ins_to_sick_unpaid"
+                            type="object" groups="base.group_hr_manager"
+                            attrs="{'invisible': ['|',('sick_leave_social_ins_flag', '=', False),('state', 'not in', ['confirm', 'draft'])]}" />
+                </button>
+                <field name="name" position="after">
+                    <field name="full_description"/>
+                </field>
+                <xpath expr="//sheet/group" position="before">
+                    <div class="alert alert-danger" attrs="{'invisible': [('remider_add_attachment', '=', False)]}">
+                        <strong>Reminder!</strong> You should attach the associated document for this leave request.
+                    </div>
+                    <div class="alert alert-warning" groups="base.group_hr_manager,tms_modules.group_profile_tms_delivery_team_manager" attrs="{'invisible': [('notify_message', 'in', [False, ''])]}">
+                        <field name="notify_message" readonly="1"/>
+                    </div>
+                </xpath>
+                <button name="second_validate" position="attributes">
+                    <attribute name="groups">base.group_hr_manager</attribute>
+                </button>
+            </field>
+        </record>
+
+        <!-- Leave Request Search View (inherit) -->
+        <record id="view_hr_holidays_search_inherit" model="ir.ui.view">
+            <field name="name">view.tms.hr.holidays.search.inherit</field>
+            <field name="model">hr.holidays</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="hr_holidays.view_hr_holidays_filter" />
+            <field name="arch" type="xml">
+                <filter name="group_type" position="replace">
+                    <filter name="leave_type" string="Leave Type" context="{'group_by':'leave_type'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdn=3: -->
+<openerp>
+	<data>
+		<template id="release_note_assets_backend" name="release_note_assets_backend"
+			inherit_id="web.assets_backend">
+			<xpath expr="." positon="inside">
+			    <link rel="stylesheet" href="/release_note/static/src/lib/popup/magnific-popup.css"/>
+			    <link rel="stylesheet" href="/release_note/static/src/css/release_note.css"/>
+
+				<script type="text/javascript" src="/release_note/static/src/lib/marked/marked.js" />
+				<script type="text/javascript" src="/release_note/static/src/lib/popup/jquery.magnific-popup.js" />
+				<script type="text/javascript" src="/release_note/static/src/js/release_note.js" />
+			</xpath>
+		</template>
+	</data>
+</openerp>

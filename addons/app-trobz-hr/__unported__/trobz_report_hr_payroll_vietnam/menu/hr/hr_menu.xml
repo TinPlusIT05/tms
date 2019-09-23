@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- assets report -->
+		<record model="ir.actions.act_window" id="action_print_pit_report_wizard">
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">print.pit.report.wizard</field>
+			<field name="name">PIT</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_print_pit_report_wizard_form"/>
+			<field name="target">new</field>
+		</record>
+		
+		<menuitem name="PIT" 
+        	id="menu_print_pit_report_wizard"
+        	action="action_print_pit_report_wizard"
+        	sequence="10"
+            parent="hr.menu_hr_reporting"/>
+            
+    </data>
+</openerp>

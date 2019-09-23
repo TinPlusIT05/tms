@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_salary_calculation_wizard_form" model="ir.ui.view">
+			<field name="name">salary.calculation.wizard.form</field>
+			<field name="model">salary.calculation.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Salary Calculation" version="7.0">
+					<group>
+						<group string="Income">
+						    <h3><label for="salary" class="oe_inline"/></h3>
+							
+							<div name="salary">
+								<h3><field name="salary" class="oe_inline" required="True"/>
+								VND
+								</h3>
+							</div>
+						</group>
+						<newline></newline>
+						<group string="Insurance">
+							<field name="max_salary_social_insurance" readonly="True"/>
+							<field name="is_on_official_salaries"
+								on_change="on_change_is_on_official_salaries(is_on_official_salaries)" />
+							<field name="is_other" on_change="on_change_is_other(is_other)" />
+							<field name="other_salary" attrs="{'readonly':[('is_other','=',False)]}" />
+						
+							<label for="social_per" />
+							<div name="social_per">
+								<field name="social_per" class="oe_inline" required="True"/>
+								%%
+							</div>
+						
+							<label for="health_per" />
+							<div name="health_per">
+								<field name="health_per" class="oe_inline" required="True"/>
+								%%
+							</div>
+							<label for="unemployment_per" />
+							<div name="unemployment_per">
+								<field name="unemployment_per" class="oe_inline" required="True"/>
+								%%
+							</div>
+						</group>
+						<group string="Deduction on taxable Income">
+							<group>
+								<label for="individuals" />
+								<div name="individuals">
+									<field name="individuals" class="oe_inline" required="True"/>
+									VND
+								</div>
+								<label for="depend" />
+								<div name="depend">
+									<field name="depend" class="oe_inline" required="True"/>
+									VND
+								</div>
+								<field name="nb_of_dependents" />
+							</group>
+						</group>
+					</group>
+					<footer>
+						<button name="gross_2_net" type="object" string="Gross->Net"
+							class="oe_highlight" />
+
+						<button name="net_2_gross" type="object" string="Net->Gross"
+							class="oe_highlight" />
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_salary_calculation_result_form" model="ir.ui.view">
+			<field name="name">salary.calculation.result.form</field>
+			<field name="model">salary.calculation.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Salary Calculation Result" version="7.0"
+					readonly="True">
+					<group>
+						<group string="Income">
+							<h3><label for="salary" /></h3>
+							<div name="salary">
+							    <h3>
+								<field name="salary" class="oe_inline" />
+								VND
+								</h3>
+							</div>
+						</group>
+						<newline></newline>
+						<group string="Insurance">
+							<field name="max_salary_social_insurance" />
+							<field name="is_on_official_salaries"
+								on_change="on_change_is_on_official_salaries(is_on_official_salaries)" />
+							<field name="is_other" on_change="on_change_is_other(is_other)" />
+							<field name="other_salary" attrs="{'readonly':[('is_other','=',False)]}" />
+							<label for="social_per" />
+							<div name="social_per">
+								<field name="social_per" class="oe_inline" />
+								%%
+							</div>
+							<label for="health_per" />
+							<div name="health_per">
+								<field name="health_per" class="oe_inline" />
+								%%
+							</div>
+							<label for="unemployment_per" />
+							<div name="unemployment_per">
+								<field name="unemployment_per" class="oe_inline" />
+								%%
+							</div>
+						</group>
+						<group string="Deduction on taxable Income">
+							<group>
+								<label for="individuals" />
+								<div name="individuals">
+									<field name="individuals" class="oe_inline" />
+									VND
+								</div>
+								<label for="depend" />
+								<div name="depend">
+									<field name="depend" class="oe_inline" />
+									VND
+								</div>
+								<field name="nb_of_dependents" />
+							</group>
+						</group>
+                        <newline></newline>
+						<group string="Result">
+							<h3><label for="gross" /></h3>
+							<div name="gross">
+								<h3>
+								<field name="gross" class="oe_inline" />
+								VND
+								</h3>
+							</div>							
+							<h3><label for="net" /></h3>
+							<div name="net">
+							    <h3>
+								<field name="net" class="oe_inline" />
+								VND
+								</h3>
+							</div>
+						</group>
+                        <newline></newline>
+						<group string="Detailed Interpretation">
+							<field name="social_insurance" />
+							<field name="health_insurance" />
+							<field name="unemployment_insurance" />
+							<field name="income_before_tax" />
+							<field name="reductions_for_individuals" />
+							<field name="reductions_for_dependents" />
+							<field name="taxable_income" />
+							<field name="personal_income_tax" />
+						</group>
+						<group string="(*) Details Of Personal Income Tax">
+							<field name="details_pit" nolabel="1" />
+						</group>
+					</group>
+
+					<footer>
+						<button string="OK" class="oe_highlight" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

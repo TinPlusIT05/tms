@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_information_popup_form" model="ir.ui.view">
+			<field name="name">view.information.popup.form</field>
+			<field name="model">information.popup</field>
+			<field eval="20" name="priority"/>
+			<field name="arch" type="xml">
+				<form string="Warning">
+					<field name="message_details" nolabel="1"/>
+					<footer>
+						<button string="OK"
+								class="oe_highlight" special="cancel"/>
+					</footer>
+				</form>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="action_information_popup">
+			<field name="name">Information Popup</field>
+			<field name="res_model">information.popup</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_information_popup_form" />
+			<field name="target">new</field>
+		</record>
+	</data>
+</openerp>

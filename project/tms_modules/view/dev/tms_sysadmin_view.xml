@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- ============================== -->
+		<!--  tms Operating Systems     	-->
+		<!-- ============================== -->
+        <record id="view_tree_tms_operating_system" model="ir.ui.view">
+            <field name="name">tms.operating.system</field>
+            <field name="model">tms.operating.system</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Operating Systems">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="view_search_tms_operating_system" model="ir.ui.view">
+            <field name="name">tms.operating.system</field>
+            <field name="model">tms.operating.system</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Operating System">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+    
+        <record id="view_form_tms_operating_system" model="ir.ui.view">
+            <field name="name">tms.operating.system</field>
+            <field name="model">tms.operating.system</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Operating System">
+                    <field name="name"/>
+                </form>
+            </field>
+        </record>
+		
+		<!-- ============================== -->
+		<!--  tms Host Sysadmin Info   	-->
+		<!-- ============================== -->
+		<record id="view_tree_tms_host_sysadmin_info" model="ir.ui.view">
+            <field name="name">tms.host.sysadmin.info.tree</field>
+            <field name="model">tms.host</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Hosts Sysadmin Info" colors="darkred:action_required==True;red:state=='exception';blue:state=='asleep';grey:state=='deleted'">
+                    <field name="name"/>
+                    <field name="host_address"/>
+                    <field name="port"/>
+                    <field name="physical_host" />
+                    <field name="operating_system_id" widget="selection"/>
+                    <field name="num_VM"/>
+                    <field name="group_ids" />
+                    <field name="type" />
+                    <field name="action_required" invisible="1"/>
+                    <field name="backup_checking" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                    <field name="is_managed_by_trobz" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        
+        
+        <record id="view_form_tms_host" model="ir.ui.view">
+            <field name="name">tms.host.form</field>
+            <field name="model">tms.host</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Hosts Sysadmin Info">
+                       <header>
+	                        <center>
+	                            <label attrs = "{'invisible': [('is_managed_by_trobz', '=', True)]}" string = "This host is not managed by Trobz" style="font-size:15px"/>
+	                        </center>
+                       </header>
+                    <sheet>
+	                    <group col="4" colspan="4">
+	                       <group col="2" colspan="2">
+	                           <group>
+	                            <field name="name"/>
+	                            <field name="group_ids" widget="many2many_tags" />
+	                            <field name="state"/>
+	                           </group>
+	                           <group>
+	                                <field name="type" />
+                                    <field name="allow_edit_users" invisible="1"/>
+	                                <field name="user_ids" widget="many2many_tags" attrs="{'readonly':[('allow_edit_users','=',False)]}"/>
+	                                <field name="is_managed_by_trobz"/>
+	                                <field name="update" invisible="1"/>
+	                           </group>
+	                       </group> 
+	                    </group>
+	                    
+	                     <group string="Virtualization" colspan="4">
+	                       <group>
+	                           <field name="virtual_machine"/>
+                               <field name="virtualization_id"/>
+	                       </group>
+	                       <group>
+                               <field name="physical_host_id" 
+                               		domain="[('virtual_machine','=', False)]"
+                               		attrs="{'invisible':[('virtual_machine','==',False)]}"/>
+                               <field name="container_id" 
+                               		attrs="{'invisible':[('virtual_machine','==',False)]}"/>
+                           </group>
+	                      </group>
+	                      
+                        <group string="Address" colspan="4">
+	                        <group>
+	                            <field name="host_address"/>
+                                <field name="ip"/>
+                                <field name="internal_ip"/>
+	                        </group>
+                            <group>
+                                <field name="port"/>
+                                <field name="using_pgbouncer" type="checkbox"/>
+                                <field name="pgbouncer_port"
+                                    attrs="{'required':[('using_pgbouncer','==',True)],
+                                            'invisible':[('using_pgbouncer','==',False)]}"/>
+                           </group>
+                        </group>
+	                    <newline/>
+	                    <notebook colspan="4">
+	                    	
+	                    	<!--  F#13023 - Duynd -->
+	                        <page string="Specifications">
+	                            <group col="4" colspan="4">
+	                                <group col="2" colspan="2" string="Resources">
+	                                   <field name="processors" required="1"/>
+	                                   <field name="ram" required="1"/>
+	                                   <field name="disk_size" required="1"/>
+	                                   <field name="swap" required="1"/>
+	                                </group>
+	                                <group col="2" colspan="2" string="OS"> 
+	                                    <field name="operating_system_id" required="1"/>
+	                                </group>
+	                            </group>
+	                        </page>
+	                    
+	                        <page string="Virtual Machines" attrs="{'invisible':[('virtual_machine','!=',False)]}">
+	                            <field name="virtual_host_ids" nolabel="1"/>
+	                        </page>
+	                        
+	                        <page string="Instances">
+	                            <field name="instance_ids" nolabel="1">
+	                                <tree delete="false" string="Instance" colors="grey:state=='inactive';lightgrey:state=='deleted';red:state=='exception';blue:state=='sleep'">
+	                                    <field name="name" />
+	                                    <field name="state"/>
+	                                    <field name="xmlrpc_url"/>
+	                                    <field name="server_type"/>
+	                                </tree>
+	                             </field>
+	                        </page>
+	                                            
+	                        <page string="Maintenance">
+	                            <a href="https://sites.google.com/a/trobz.com/sysadmin/procedures/host-auditing" class="oe_button">
+	                                View host audit documentation
+	                            </a>
+	                            <group>
+	                                <field name="action_required"/>
+	                                <field name="backup_checking"/>
+	                            </group>
+                                <button type="action" class="oe_highlight"
+                                    name="%(choose_internal_users_to_notify_wizard_action)d"
+                                    string="Update SSH authorized keys"
+                                    context="{
+                                        'extra_vars_name': name, 'active_id': active_id,
+										'default_notify_type': active_model}"
+                                    groups="tms_modules.group_add_user_to_host,tms_modules.group_tms_dev_configuration_user">
+                                </button>
+                                <group string="AWX Job History">
+                                    <field name="awx_job_history_ids" context="{'group_by':'job_id'}" nolabel="1">
+                                        <tree string="AWX Job History" create="false" delete="false" edit="false" >
+                                            <field name="name"/>
+                                            <field name="job_id"/>
+                                            <field name="host_id"/>
+                                            <field name="create_uid"/>
+                                            <field name="instance_user_ids" widget="many2many_tags"/>
+                                            <field name="status"/>
+                                        </tree>
+                                    </field>
+                                </group>
+	                        </page>
+	                        
+	                        <page string="Configuration">
+	                            <field name="config" widget="serialized" />
+	                            
+	                        </page>
+	                    </notebook>
+	                    <div class="oe_chatter">
+	                        <field name="message_follower_ids" widget="mail_followers" />
+	                        <field name="message_ids" widget="mail_thread"  />
+	                    </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_search_tms_host_sysadmin_info" model="ir.ui.view">
+            <field name="name">tms.host.sysadmin.info.search</field>
+            <field name="model">tms.host</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Host Sysadmin Info">
+                	<filter name ="open" string="Open" domain="['|',('state','=','active'),('state','=','exception')]" icon="tms_open"/>
+                    <separator orientation="vertical" />
+                    <filter string="Virtual Machine" domain="[('virtual_machine','=',True)]" icon="STOCK_YES"/>
+                    <filter string="Not Virtual Machine" domain="[('virtual_machine','=',False)]" icon="STOCK_NO"/>
+                    <separator orientation="vertical"/>
+                    <filter string="Action Required" domain="[('action_required','=',True)]" />
+                    <separator orientation="vertical"/>
+                    
+                    <field name="name"/>
+                    <field name="group_ids"/>
+                    <field name="host_address"/>
+                    <field name="port"/>
+                    <field name="operating_system_id"/>
+                    <field name="physical_host_id"/>
+                    <newline/>
+                    
+                    <group expand="1" string="Group By">
+						<filter string="Operating System" domain="[]" context="{'group_by':'operating_system_id'}" icon="STOCK_SELECT_COLOR"/>
+						<separator />
+						<filter string="Virtual machine" domain="[]" context="{'group_by':'virtual_machine'}" icon="STOCK_YES"/>
+						<separator />
+						<filter string="Physical Host" domain="[]" context="{'group_by':'physical_host'}" icon="gtk-home"/>
+						<separator />
+						<filter string="Audit Date" domain="[]" context="{'group_by':'backup_checking'}"/>
+						<separator />
+						<filter string="Host Type" domain="[]" context="{'group_by':'type'}"/>
+					</group>
+                </search>
+            </field>
+        </record>
+        
+        <!-- ============================== -->
+		<!--  tms Host Group            	-->
+		<!-- ============================== -->
+		<record id="view_tree_tms_host_group" model="ir.ui.view">
+            <field name="name">tms.host.group.tree</field>
+            <field name="model">tms.host.group</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Host Group">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_form_tms_host_group" model="ir.ui.view">
+            <field name="name">tms.host.group.form</field>
+            <field name="model">tms.host.group</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Host Group">
+                    <field name="name"/>
+                    <field name="config" widget="serialized"/>
+                </form>
+            </field>
+        </record>
+        
+        <!-- ============================== -->
+		<!--  tms Host Virtualization   	-->
+		<!-- ============================== -->
+		<record id="view_tree_tms_host_virtualization" model="ir.ui.view">
+            <field name="name">tms.host.virtualization.tree</field>
+            <field name="model">tms.host.virtualization</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Host Virtualization">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_form_tms_host_virtualization" model="ir.ui.view">
+            <field name="name">tms.host.virtualization.form</field>
+            <field name="model">tms.host.virtualization</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Host Virtualization">
+                    <field name="name"/>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>

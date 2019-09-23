@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="trobz_crm_view_partner_form" model="ir.ui.view">
+			<field name="name">trobz.crm.res.partner.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="crm.view_partners_form_crm1" />
+			<field name="arch" type="xml">
+				<field name='email' position="after">
+					<field name="skype_contact" attrs="{'invisible': [('is_company','=', True)]}" />
+					<field name="linkedin_profile" widget="url" />
+				</field>
+
+				<!-- Add field business_sector after website -->
+				<field name='website' position="after">
+					<field name="business_sector_id" />
+					<field name="title_domain" invisible="1" />
+				</field>
+				<field name='title' position='attributes'>
+					<attribute name='domain'>[('domain', '=', title_domain)]
+					</attribute>
+				</field>
+
+				<field name="parent_id" position="replace">
+					<field name="parent_id" placeholder="Company"
+						domain="[('is_company', '=', True)]" context="{'default_is_company': True}"
+						attrs="{'invisible': [('is_company','=', True)], 'required': [('is_company','=',False)]}" />
+				</field>
+
+				<!-- Add field prospect after customer -->
+				<xpath
+					expr="//form/sheet/notebook/page/group/group/field[@name='customer']"
+					position="after">
+					<field name="prospect" />
+				</xpath>
+
+				<xpath expr="//page[@name='sales_purchases']" position="after">
+					<page string="Opportunity">
+						<field name="lead_ids" nolabel="1" colspan="4" />
+					</page>
+					<page string="Events" attrs="{'invisible': [('is_company','=', False)]}">
+						<field name="event_ids" nolabel="1" colspan="4"
+							context="{'partner_id':active_id}" />
+					</page>
+				</xpath>
+
+				<!-- Hide 2 button Meeting, Calls -->
+				<button name="schedule_meeting" position="replace" />
+			</field>
+		</record>
+
+		<record id="trobz_crm_view_partner_filter" model="ir.ui.view">
+			<field name="name">trobz.crm.res.partner.search.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter" />
+			<field name="arch" type="xml">
+				<field name="parent_id" position="after">
+					<field name="create_uid" />
+					<field name="email" />
+					<field name="business_sector_id" string="Business Sector" />
+				</field>
+				<filter string="Country" position="after">
+					<filter icon="terp-personal" string="Creator" help="By Creators"
+						context="{'group_by':'create_uid'}" />
+					<separator orientation="vertical" />
+					<filter icon="terp-personal" string="Creation Date" help="By Creation Date"
+						context="{'group_by':'create_date'}" />
+					<separator orientation="vertical" />
+					<filter icon="terp-personal" string="Business Sector" help="By Business Sector"
+						context="{'group_by':'business_sector_id'}" />
+					<separator orientation="vertical" />
+				</filter>
+				<filter string="Customers" position="after">
+					<filter string="Prospects" name="prospect" domain="[('prospect','=',1)]"
+						help="Prospect Partners" />
+				</filter>
+			</field>
+		</record>
+
+		<record id="trobz_crm_view_partner_tree" model="ir.ui.view">
+			<field name="name">trobz.crm.res.partner.tree.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_tree" />
+			<field name="arch" type="xml">
+				<field name="phone" position="replace">
+            		<field name="phone_mobile"/>
+            	</field>
+				<field name="email" position="after">
+					<field name="create_uid" invisible="1" />
+					<field name="create_date" invisible="1" />
+					<field name="business_sector_id" />
+					<field name="function" />
+					<field name="is_company" />
+					<field name="title" />
+				</field>
+			</field>
+		</record>
+
+	</data>
+</openerp>

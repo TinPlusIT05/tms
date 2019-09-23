@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record model="ir.cron" id="automatic_send_email_contract_end_next_30_days">
+            <field name="name">Expired Employment Contracts in 30 Next Days</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="True"/>
+            <field name="model" eval="'hr.contract'"/>
+            <field name="function" eval="'send_email_contract_end_next_30_days'"/>
+            <field name="args" eval="'()'" />
+            <field name="nextcall" eval="(DateTime.now()+timedelta(days=7-DateTime.now().weekday())).strftime('%Y-%m-%d 00:00:00')"/>
+        </record>
+        
+        <record model="ir.cron" id="automatic_send_email_contract_end">
+            <field name="name">Expired Employment Contracts</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="True"/>
+            <field name="model" eval="'hr.contract'"/>
+            <field name="function" eval="'send_email_contract_end'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+	</data>
+</openerp>
+

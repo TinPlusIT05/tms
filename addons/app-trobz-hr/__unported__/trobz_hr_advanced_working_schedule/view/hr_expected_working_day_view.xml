@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+         <record model="ir.ui.view" id="view_hr_expected_working_day_tree">
+            <field name="name">view.hr.expected.working.day.tree</field>
+            <field name="model">hr.expected.working.day</field>
+            <field name="arch" type="xml">
+                <tree string="Expected Working Days">
+                    <field name="month_year"/>
+                    <field name="employee_id"/>
+                    <field name="contract_id"/>
+                    <field name="days"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_expected_working_day_form">
+            <field name="name">view.hr.expected.working.day.form</field>
+            <field name="model">hr.expected.working.day</field>
+            <field name="arch" type="xml">
+                <form string="Expected Working Days" version="7.0">
+                    <group col="4">
+                        <field name="month_year"/>
+                        <field name="employee_id"/>
+                        <field name="contract_id"/>
+                        <field name="days"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_expected_working_day_search">
+            <field name="name">view.hr.expected.working.day.search</field>
+            <field name="model">hr.expected.working.day</field>
+            <field name="arch" type="xml">
+                <search string="Expected Working Days">
+                    <field name="month_year"/>
+                    <field name="employee_id"/>
+                    <field name="contract_id"/>
+                    <filter name="current_month" string="Current Month" domain="[('month_year','=',time.strftime('%%m/%%Y'))]"/> 
+                    <group expand="0" string="Group By...">
+                        <filter string="Month/Year" domain="[]" context="{'group_by':'month_year'}"/>  
+                        <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}"/>        
+                        <filter string="Contract" domain="[]" context="{'group_by':'contract_id'}"/>     
+                    </group>
+                </search>
+            </field>
+        </record>
+    </data>
+</openerp>

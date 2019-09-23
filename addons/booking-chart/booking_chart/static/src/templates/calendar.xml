@@ -1,0 +1,28 @@
+<template>
+
+<!-- Calendar View templates -->
+<t t-name="Booking.Calendar">
+    <div class="booking-chart-items" />
+    <div class="booking-chart-timelapses" />
+    <div class="booking-chart-controls" />
+
+    <div class="tooltip-container bootstrap_scope" />
+</t>
+
+<!-- Controls View templates -->
+<t t-name="Booking.Calendar.controls">
+    <div class="booking-chart-timezone">
+        <span>timezone: <t t-esc="timezone" /></span>
+    </div>
+    <div class="booking-chart-zoom">
+        <ul class="oe_pager_group">
+            <li class="oe_i"><a class="zoom-xs" level="xs" type="button">XS</a></li>
+            <li class="oe_i"><a class="zoom-s" level="s" type="button">S</a></li>
+            <li class="oe_i active"><a class="zoom-m" level="m" type="button">M</a></li>
+            <li class="oe_i"><a class="zoom-l" level="l" type="button">L</a></li>
+            <li class="oe_i"><a class="zoom-xl" level="xl" type="button">XL</a></li>
+        </ul>
+    </div>
+</t>
+
+</template>

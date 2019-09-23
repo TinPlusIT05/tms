@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data noupdate="1">
+  	    <!-- Public Holiday Template-->
+        <!-- New Year -->
+        <record model="hr.public.holiday" id="thr_public_holiday_new_year">
+            <field name="name">New Year</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-01-01')"/>
+            <field name="is_template">True</field>
+        </record>
+        <!-- Vietnamese New Year -->
+        <record model="hr.public.holiday" id="thr_public_holiday_new_year_vn_1">
+            <field name="name">Vietnamese New Year</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-02-01')"/>
+            <field name="is_template">True</field>
+        </record>
+        <record model="hr.public.holiday" id="thr_public_holiday_new_year_vn_2">
+            <field name="name">Vietnamese New Year</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-02-02')"/>
+            <field name="is_template">True</field>
+        </record>
+        <record model="hr.public.holiday" id="thr_public_holiday_new_year_vn_3">
+            <field name="name">Vietnamese New Year</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-02-03')"/>
+            <field name="is_template">True</field>
+        </record>
+        <record model="hr.public.holiday" id="thr_public_holiday_new_year_vn_4">
+            <field name="name">Vietnamese New Year</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-02-04')"/>
+            <field name="is_template">True</field>
+        </record>
+        <record model="hr.public.holiday" id="thr_public_holiday_new_year_vn_5">
+            <field name="name">Vietnamese New Year</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-02-05')"/>
+            <field name="is_template">True</field>
+        </record>
+        <!--Hung Kings Commemorations  -->
+        <record model="hr.public.holiday" id="thr_public_holiday_hung_king">
+            <field name="name">Hung Kings Commemorations</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-03-28')"/>
+            <field name="is_template">True</field>
+        </record>
+        <!--Liberation Day/Reunification Day -->
+        <record model="hr.public.holiday" id="thr_public_holiday_liberation_day">
+            <field name="name">Liberation Day/Reunification Day</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-04-30')"/>
+            <field name="is_template">True</field>
+        </record>
+        <!--International Workers' Day  -->
+        <record model="hr.public.holiday" id="thr_public_holiday_international_worker_day">
+            <field name="name">International Workers' Day</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-05-01')"/>
+            <field name="is_template">True</field>
+        </record>
+        <!--National Day  -->
+        <record model="hr.public.holiday" id="thr_public_holiday_national_day">
+            <field name="name">National Day</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="date" eval="time.strftime('%Y-09-02')"/>
+            <field name="is_template">True</field>
+        </record>
+	</data>
+</openerp>

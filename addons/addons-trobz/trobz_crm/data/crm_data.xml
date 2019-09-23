@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+
+	    <record model="trobz.crm.event.type" id="trobz_crm_event_type_phone_follow_up">
+	        <field name="name">Phone Call (Follow-up)</field>
+	    </record>
+
+	    <record model="trobz.crm.event.type" id="trobz_crm_event_type_phone_meeting">
+	        <field name="name">Phone Call (Meeting)</field>
+	        <field name="display_meeting_fields" eval="True"/>
+	    </record>
+	    
+	    <record model="trobz.crm.event.type" id="trobz_crm_event_type_meeting">
+	        <field name="name">Meeting</field>
+	        <field name="display_meeting_fields" eval="True"/>
+	    </record>
+
+	    <record model="trobz.crm.event.type" id="trobz_crm_event_type_email">
+	        <field name="name">Email</field>
+	        <field name="display_email_fields" eval="True"/>
+	    </record>
+
+	    <record model="trobz.crm.event.type" id="trobz_crm_event_type_task">
+	        <field name="name">Task</field>
+	    </record>
+	    
+	    <record model="trobz.crm.event.type" id="trobz_crm_event_type_other">
+	        <field name="name">Other</field>
+	    </record>
+	    
+	    <record model="trobz.crm.event.type" id="trobz_crm_event_type_phone_cold_call">
+	        <field name="name">Phone Call (Cold call)</field>
+	        <field name="display_meeting_fields" eval="True"/>
+	    </record>  
+
+        <record id="request_link_meeting" model="res.request.link">
+            <field name="name">CRM Event</field>
+            <field name="object">trobz.crm.event</field>
+        </record>
+        
+        <!-- F#12609 probability Data-->
+        <record id="lead_probability_burning" model="crm.lead.probability">
+        	<field name="name">Burning</field>
+        	<field name="probability_percentage">90</field>
+        </record>
+        <record id="lead_probability_hot" model="crm.lead.probability">
+        	<field name="name">Hot</field>
+        	<field name="probability_percentage">70</field>
+        </record>
+        <record id="lead_probability_medium" model="crm.lead.probability">
+        	<field name="name">Medium</field>
+        	<field name="probability_percentage">50</field>
+        </record>
+        <record id="lead_probability_cold" model="crm.lead.probability">
+        	<field name="name">Cold</field>
+        	<field name="probability_percentage">30</field>
+        </record>
+        <record id="lead_probability_icy" model="crm.lead.probability">
+        	<field name="name">Icy</field>
+        	<field name="probability_percentage">10</field>
+        </record>
+
+        <!-- F#12676 -->
+        <record id="default_crm_event_type_get_feedback" model="ir.config_parameter">
+            <field name="key">default_crm_event_type_get_feedback</field>
+            <field name="value">Get feedback</field>
+        </record>
+        <record id="default_start_date" model="ir.config_parameter">
+            <field name="key">default_start_date</field>
+            <field name="value">7</field>
+        </record>
+        <record id="default_alarm" model="ir.config_parameter">
+            <field name="key">default_alarm</field>
+            <field name="value">15 min notif</field>
+        </record>
+
+    </data>
+</openerp>
+

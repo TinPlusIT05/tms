@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record  model="ir.ui.view" id="view_activity_link_tree">
+            <field name="name">activity.link.tree</field>
+            <field name="model">activity.link</field>
+            <field name="arch" type="xml">
+            	<tree string="Links">
+            	    <field name="name"/>
+                    <field name="url"/>
+            	</tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_activity_link_form">
+            <field name="name">activity.link.form</field>
+            <field name="model">activity.link</field>
+            <field name="arch" type="xml">
+                <form string="Link">
+                <sheet>
+                    
+                     <group>
+                         <group>
+                             <field name="name" />
+                         </group>
+                         <group>
+                             <field name="activity_id" />
+                         </group>
+                     </group>
+                    <group>
+                    	<field name='url' widget="url"/>
+                    </group>
+        
+                </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_activity_link_form_from_activity">
+            <field name="name">activity.link.form.from.activity</field>
+            <field name="model">activity.link</field>
+            <field name="arch" type="xml">
+                <form string="Link">
+                <sheet>
+                    
+                    <group>
+                    	<field name="name" />
+                    </group>
+                    <group>
+                    	<field name='url' widget="url"/>
+                    </group>
+        
+                </sheet>
+                </form>
+            </field>
+        </record>        
+        
+        <record model="ir.ui.view" id="view_activity_link_search">
+            <field name="name">activity.link.search</field>
+            <field name="model">activity.link</field>
+            <field name="arch" type="xml">
+                <search string="Links">
+                	<field name="name"
+                		domain_filter="[('name', 'ilike', self)]"/>
+                </search>
+            </field>
+        </record>
+        
+		
+		<record id="action_activity_link" model="ir.actions.act_window">
+			<field name="name">Links</field>
+			<field name="res_model">activity.link</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>        
+
+    </data>
+</openerp>

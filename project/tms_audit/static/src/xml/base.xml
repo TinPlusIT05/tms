@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <!-- view template for audit progress bar -->
+    <t t-name="tms_audit_progress_bar">
+        <span class="oe_form_field oe_form_field_audit_progressbar" t-att-style="widget.node.attrs.style">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-success percentage-bar-success">
+                    <span class="percentage-text-success"></span>
+                </div>
+                <div class="progress-bar progress-bar-danger percentage-bar-danger">
+                    <span class="percentage-text-danger"></span>
+                </div>
+            </div>
+        </span>
+    </t>
+</template>

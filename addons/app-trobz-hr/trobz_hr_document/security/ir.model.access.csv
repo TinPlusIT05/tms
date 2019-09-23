@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"crud_hr_document_type","crud_hr_document_type","model_hr_document_type","base.group_hr_manager",1,1,1,1
+"r_hr_document_type","r_hr_document_type","model_hr_document_type","base.group_user",1,0,0,0
+"crud_hr_document","crud_hr_document","model_hr_document","base.group_hr_manager",1,1,1,1
+"r_hr_document","r_hr_document","model_hr_document","base.group_user",1,0,0,0

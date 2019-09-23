@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="view_hr_overtime_form_inherit" model="ir.ui.view">
+            <field name="name">"view_hr_overtime_form_inherit"</field>
+            <field name="model">hr.overtime</field>
+            <field name="inherit_id" ref="trobz_hr_overtime.view_hr_overtime_form"/>
+            <field name="arch" type="xml">
+                <field name="datetime_start" position="before">
+                    <field name="advanced_schedule_id" on_change="onchange_advanced_schedule_id(name, advanced_schedule_id)"/>
+                </field>
+                <field name="datetime_start" position="attributes">
+                    <attribute name="on_change">onchange_start_stop(name, advanced_schedule_id, datetime_start, datetime_stop)</attribute>
+                </field>
+                <field name="datetime_stop" position="attributes">
+                    <attribute name="on_change">onchange_start_stop(name, advanced_schedule_id, datetime_start, datetime_stop)</attribute>
+                </field>
+                <field name="break_start" position="attributes">
+                    <attribute name="on_change">onchange_start_stop(name, advanced_schedule_id, datetime_start, datetime_stop)</attribute>
+                </field>
+                <field name="break_stop" position="attributes">
+                    <attribute name="on_change">onchange_start_stop(name, advanced_schedule_id, datetime_start, datetime_stop)</attribute>
+                </field>
+                <field name="name" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+            </field>
+		</record>
+		
+    </data>
+</openerp>

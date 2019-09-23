@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="module_automatic_test_menu"
+        	name="Module Automatic Test"
+            parent="base.menu_management"
+            action="module_automatic_test_action" />
+    </data>
+</openerp>

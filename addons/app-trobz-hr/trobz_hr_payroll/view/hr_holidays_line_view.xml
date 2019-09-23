@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+		<!-- tree view -->
+		<record model="ir.ui.view" id="view_hr_holidays_line_tree_inherit">
+			<field name="name">view.hr.holidays.line.tree.inherit</field>
+			<field name="model">hr.holidays.line</field>
+			<field name="inherit_id" ref="trobz_hr_holiday.view_hr_holidays_line_tree"/>
+			<field name="arch" type="xml">
+			    <field name="number_of_days_temp" position="after">
+			        <field name="computed_on_payslip_days" />
+			    </field>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

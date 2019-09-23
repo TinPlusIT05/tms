@@ -1,0 +1,54 @@
+diff --git a/addons/email_template/email_template.py b/addons/email_template/email_template.py
+index aa4c888cc0c26..b8d45540b5359 100644
+--- a/addons/email_template/email_template.py
++++ b/addons/email_template/email_template.py
+@@ -325,7 +325,7 @@ def create_action(self, cr, uid, ids, context=None):
+             model_data_id = data_obj._get_id(cr, uid, 'mail', 'email_compose_message_wizard_form')
+             res_id = data_obj.browse(cr, uid, model_data_id, context=context).res_id
+             button_name = _('Send Mail (%s)') % template.name
+-            act_id = action_obj.create(cr, SUPERUSER_ID, {
++            act_id = action_obj.create(cr, uid, {
+                  'name': button_name,
+                  'type': 'ir.actions.act_window',
+                  'res_model': 'mail.compose.message',
+@@ -337,7 +337,7 @@ def create_action(self, cr, uid, ids, context=None):
+                  'target': 'new',
+                  'auto_refresh':1
+             }, context)
+-            ir_values_id = self.pool.get('ir.values').create(cr, SUPERUSER_ID, {
++            ir_values_id = self.pool.get('ir.values').create(cr, uid, {
+                  'name': button_name,
+                  'model': src_obj,
+                  'key2': 'client_action_multi',
+@@ -356,10 +356,10 @@ def unlink_action(self, cr, uid, ids, context=None):
+         for template in self.browse(cr, uid, ids, context=context):
+             try:
+                 if template.ref_ir_act_window:
+-                    self.pool.get('ir.actions.act_window').unlink(cr, SUPERUSER_ID, template.ref_ir_act_window.id, context)
++                    self.pool.get('ir.actions.act_window').unlink(cr, uid, template.ref_ir_act_window.id, context)
+                 if template.ref_ir_value:
+                     ir_values_obj = self.pool.get('ir.values')
+-                    ir_values_obj.unlink(cr, SUPERUSER_ID, template.ref_ir_value.id, context)
++                    ir_values_obj.unlink(cr, uid, template.ref_ir_value.id, context)
+             except Exception:
+                 raise osv.except_osv(_("Warning"), _("Deletion of the action record failed."))
+         return True
+diff --git a/addons/email_template/email_template_view.xml b/addons/email_template/email_template_view.xml
+index 47424e7e251ca..d20a237c116d2 100644
+--- a/addons/email_template/email_template_view.xml
++++ b/addons/email_template/email_template_view.xml
+@@ -17,12 +17,14 @@
+                         <div class="oe_right oe_button_box" name="buttons">
+                             <field name="ref_ir_act_window" invisible="1"/>
+                             <button class="oe_inline oe_stat_button" name="create_action" type="object"
++                                    groups="base.group_system"
+                                     attrs="{'invisible':[('ref_ir_act_window','!=',False)]}" icon="fa-plus"
+                                     help="Display an option on related documents to open a composition wizard with this template">
+                                 <div>Add<br/>Context Action</div>
+                             </button>
+                             <button name="unlink_action" type="object" 
+                                     class="oe_stat_button" icon="fa-minus"
++                                    groups="base.group_system"
+                                     attrs="{'invisible':[('ref_ir_act_window','=',False)]}"
+                                     help="Remove the contextual action to use this template on related documents" widget="statinfo">
+                                 <div>Remove<br/>Context Action</div>

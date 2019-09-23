@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <!-- Trobz CRM Event Tree View  -->
+        <record model="ir.ui.view" id="trobz_crm_event_tree_view">
+            <field name="name">CRM Event Tree</field>
+            <field name="model">trobz.crm.event</field>
+            <field name="arch" type="xml">
+                <tree string="CRM Events" colors="grey:state in ('cancel','done');blue:state=='pending';red:priority=='4';rgb(233, 87, 4):priority=='3';SteelBlue:priority=='1';">
+                	<field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="partner_address_id" />
+                    <field name="type_id"/>
+                    <field name="name" string="Subject"/>
+                    <field name="attachment_ids" widget="attachments"/>
+                    <field name="location" />
+                    <field name="user_id"/>
+                    <field name="state"/>
+                    <field name="priority" invisible="1"/>
+                    <button name="case_close" string="Done" states="open" type="object" icon="terp-camera_test" />
+                    <button name="case_cancel" string="Cancel" states="open,done" type="object" icon="gtk-cancel" />
+                    <button string="Add feedback event" icon="gtk-redo" name="action_get_feedback_event" type="object"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- CRM Event Search View  -->
+        <record model="ir.ui.view" id="trobz_crm_event_filter_view">
+            <field name="name">CRM Event Search</field>
+            <field name="model">trobz.crm.event</field>
+            <field name="arch" type="xml">
+                <search string="Search Events">
+                    <filter name="open" icon="terp-check" string="Open" domain="[('state','=','open')]" />
+                    <separator orientation="vertical" />
+                    <filter name="my_event" icon="terp-personal" string="My Events" domain="[('user_id','=',uid)]" />
+                    <separator orientation="vertical" />
+                    <filter icon="terp-go-today" string="Today"
+                        domain="[('stop_datetime','&gt;=', time.strftime('%Y-%m-%d 00:00:00')),
+                        ('start_datetime','&lt;=',time.strftime('%Y-%m-%d 23:59:59'))]"
+                        name="today"
+                        help="Todays's Events"
+                    />
+                    <separator orientation="vertical" />
+                    <filter icon="terp-go-week"
+                        string="+7 Days"
+                        help="Events in the coming 7 days"
+                        domain="[('start_datetime','&gt;=',time.strftime('%Y-%m-%d 00:00:00')),
+                        ('start_datetime','&lt;=', (context_today() + datetime.timedelta(days=7)).strftime('%Y-%m-%d 23:59:59'))]"
+                    />
+                    <filter icon="terp-go-week"
+                       string="-7 Days"
+                       help="Events in the past 7 days"
+                       domain="[('start_datetime','&gt;=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d 00:00:00')),
+                            ('start_datetime','&lt;=',time.strftime('%Y-%m-%d 23:59:59'))]"
+                    />
+                    <separator orientation="vertical" />
+                    <field name="state" />
+                    <field name="user_id"/>
+                    <field name="name" string="Summary" filter_domain="[('name','ilike',self)]"/>
+                    <field name="partner_id" string="Partner" filter_domain="[('partner_id','ilike', self)]"/>
+                    <field name="user_id" groups="base.group_no_one">
+                        <filter icon="terp-personal" groups="base.group_no_one" domain="[('user_id','=',uid)]" help="My Meetings" />
+                    </field>
+                    <field name="type_id"/>
+
+                    <newline/>
+                    <group expand="1" string="Group By...">
+                    	<filter string="Date" domain="[]" context="{'group_by':'date'}"/>
+                    	<separator orientation="vertical" />
+                        <filter string="Customer" icon="terp-partner" domain="[]" context="{'group_by':'partner_id'}" />
+                        <separator orientation="vertical" />
+                        <filter string="Status" icon="STOCK_CONVERT" domain="[]" context="{'group_by':'state'}" />
+                        <separator orientation="vertical" />
+                        <filter string="Responsible" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
+                        <separator orientation="vertical" />
+                        <filter name="group_by_type" string="Event Type" icon="terp-stock_symbol-selection" domain="[]" context="{'group_by':'type_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="trobz_crm_event_form_view">
+            <field name="name">CRM - CRM Event Form</field>
+            <field name="model">trobz.crm.event</field>
+            <field name="arch" type="xml">
+                <form string="Meetings">
+                    <header>
+	               		<button name="case_cancel" string="Cancel" states="open,done" type="object" icon="gtk-cancel" />
+	                    <button name="case_close" string="Done" states="open" type="object" icon="terp-camera_test" />
+	                    <button name="case_open" string="Set to Open" states="cancel" type="object" icon="terp-stock_effects-object-colorize" />
+	                    <button string="Add feedback event" icon="gtk-redo" name="action_get_feedback_event" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="open,done"/>
+                    </header>
+                    <sheet>
+                        <field name="is_attendee" invisible="1"/>
+                        <field name="attendee_status" invisible="1"/>
+                        <field name="display_email_fields"  invisible="1"/>
+                        <field name="display_meeting_fields"  invisible="1"/>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name" string="Subject"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+
+                        </div>
+                        <group col="4">
+			                <field name="type_id" />
+			                <field name="priority"/>
+			                <field name="user_id" required="1" domain="[('groups_id', '=', %(base.group_user)d)]"/>
+			                <field name="calendar_event_id" readonly="1" required="0"/>
+			                <field name="partner_id" string="Partner" onchange="onchange_partner_id(partner_id)"/>
+			                <field name="partner_address_id" />
+			                <field name="lead_id" colspan="4" context="{'partner_id': partner_id,'hide_partner':True}"/>
+                        </group>
+                        <group col="4">
+                            <group>
+                                <field name="start" attrs="{'invisible': True}"/>
+                                <field name="stop" attrs="{'invisible': True}"/>
+								<field name="display_ending_at" attrs = "{'invisible': True}"/>
+                                <field name="start_date" string="Starting at" on_change="onchange_dates('start', start_date, stop_date, allday, True)" 
+                                       attrs="{'invisible': [('allday','=',False)], 'required': [('allday', '=', True)]}"
+                                       context="{'display_ending_at': display_ending_at}"/>
+                                <field name="stop_date" string="Ending at" on_change="onchange_dates('stop', start_date, stop_date, allday, True)" 
+                                       attrs="{'invisible': ['|',('allday','=',False), ('display_ending_at', '=', False)], 'required': [('allday', '=', True)]}"
+                                       context="{'display_ending_at': display_ending_at}"/>
+                                <field name="start_datetime" string="Starting at" on_change="onchange_dates('start', start_datetime, stop_datetime, allday, False)" 
+                                       attrs="{'invisible': [('allday','=',True)], 'required': [('allday', '!=', True)]}"
+                                       context="{'display_ending_at': display_ending_at}"/>
+                                <field name="stop_datetime" string="Ending at" on_change="onchange_dates('stop', start_datetime, stop_datetime, allday, False)" 
+                                       attrs="{'invisible': ['|',('allday','=',True), ('display_ending_at', '=', False)], 'required': [('allday', '!=', True)]}"
+                                       context="{'display_ending_at': display_ending_at}"/> 
+                                <label for="allday"/>
+                                <div>
+                                    <field name="allday"  class="oe_inline" on_change="onchange_allday(start, stop, start_date, stop_date, start_datetime, stop_datetime, allday)"/>
+                                </div>
+                                <field name="duration" widget="float_time" class="oe_inline" attrs="{ 'invisible': True }"/>
+                            </group>
+                            <group>
+                                <field name="categ_ids" widget="many2many_tags" />
+                                <field name="alarm_ids" widget="many2many_tags" />
+                                <field name="location" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <group col="8" colspan="4" string="Email information" attrs="{'invisible': [('display_email_fields', '=', False)]}">
+				    				<field name="email_from" />
+			                    	<field name="email_to"/>
+			                    	<field name="email_cc" />
+				    			</group>
+                                <field name="description" nolabel="1" colspan="4"/>
+                                <!-- TODO:
+                                If we want this field appear on CRM Event form, we need to build this form
+                                using the same technique as product_product form.
+                                -->
+                                <!-- <group col="8" colspan="4" string="Attendees">
+                                    <h2>
+                                        <field name="partner_ids" widget="many2manyattendee"
+                                            context="{'force_email':True}"
+                                            on_change="onchange_partner_ids(partner_ids)"/>
+                                    </h2>
+                                </group> -->
+                            </page>
+                            <page string="Attachments">
+                                <field name="attachment_ids" nolabel="1" widget="one2many_list">
+                                    <form string="Attachment" version="7.0">
+				                        <field name="name" invisible="1" />
+				                        <field name="type" invisible="1"/>
+				                        <field name="datas" filename="name"/>
+				                        <field name="datas_fname" invisible="1"/>
+				                        <field name="create_uid" invisible="1"/>
+				                        <field name="create_date" invisible="1"/>
+				                        <field name="description" nolabel="1" colspan="4"/>
+			                        </form>
+	                                <tree string="Attachments">
+	                                	<field name="id" invisible="1"/>
+	                                    <field name="name"/>
+	                                    <field name="create_uid"/>
+	                                    <field name="create_date"/>
+	                                    <field name="write_date"/>
+	                                    <field name="description"/>
+	                                </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread" />
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="trobz_crm_event_calendar_view">
+            <field name="name">CRM Event Calendar</field>
+            <field name="model">trobz.crm.event</field>
+            <field name="arch" type="xml">
+                <calendar string="CRM Event Calendar" 
+                date_start="start" date_stop="stop" color="partner_id">
+                    <field name="partner_id"/>
+                    <field name="type_id"/>
+                </calendar>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

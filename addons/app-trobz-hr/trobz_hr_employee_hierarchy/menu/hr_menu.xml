@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		
+		<!-- Human Resources > Human Resources > Employee Hierarchy -->
+		
+		<record id="action_hr_employee_hierarchy" model="ir.actions.act_window">
+            <field name="name">Employee Hierarchy</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="hr.view_partner_tree2"/>
+            <field name="domain">[('parent_id','=',False)]</field>
+        </record>
+        
+		<menuitem
+			name="Employee Hierarchy"
+			id="menu_hr_employee_hierarchy"
+			parent="hr.menu_hr_main"
+			action="action_hr_employee_hierarchy"/>		
+	</data>
+</openerp>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- contract list report -->
+		<record model="ir.actions.act_window" id="action_print_contract_list_wizard">
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">print.contract.list.wizard</field>
+			<field name="name">Contract Status</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_print_contract_list_wizard_form"/>
+			<field name="target">new</field>
+		</record>
+		
+		<menuitem 
+        	id="menu_print_contract_list_wizard"
+        	action="action_print_contract_list_wizard"
+        	sequence="10"
+            parent="hr.menu_hr_reporting"/>
+            
+    </data>
+</openerp>

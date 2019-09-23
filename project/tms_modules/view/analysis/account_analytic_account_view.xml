@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Analytic Account Tree View -->
+		<record id="view_account_analytic_account_tree" model="ir.ui.view">
+			<field name="name">account.analytic.account.tree</field>
+			<field name="model">account.analytic.account</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Analytic Accounts">
+					<field name="name" />
+					<field name="parent_id" />
+					<field name="type" />
+					<field name="partner_id" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Analytic Account Search View -->
+		<record id="view_account_analytic_account_filter" model="ir.ui.view">
+			<field name="name">account.analytic.account.filter</field>
+			<field name="model">account.analytic.account</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Analytic Accounts">
+					<group string="Field">
+						<field name="name" />
+						<field name="parent_id" />
+						<field name="type" />
+						<field name="partner_id" />
+					</group>
+					<group string="Group By">
+						<filter name="filter_parent" string="Parent" domain="[]"
+							context="{'group_by':'parent_id'}" />
+						<separator />
+						<filter name="filter_state" string="Status" domain="[]"
+							context="{'group_by':'state'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Analytic Account Form View -->
+		<record id="view_account_analytic_account_form" model="ir.ui.view">
+			<field name="name">account.analytic.account.form</field>
+			<field name="model">account.analytic.account</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Analytic Account" version="7.0">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" />
+								<field name="parent_id" />
+							</group>
+							<group>
+								<field name="type" />
+								<field name="partner_id" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_view_account_analytic_account" model="ir.actions.act_window">
+			<field name="name">Analytic Accounts</field>
+			<field name="res_model">account.analytic.account</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</openerp>

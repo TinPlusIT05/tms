@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    <record id="view_workload_estimation_tree" model="ir.ui.view">
+        <field name="name">workload.estimation.tree</field>
+        <field name="model">workload.estimation</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Workload Estimation">
+                <field name="code"/>
+                <field name="std_est" />
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_workload_estimation_filter" model="ir.ui.view">
+        <field name="name">workload.estimation.filter</field>
+        <field name="model">workload.estimation</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Search Workload Estimation">
+                <field name="code"/>
+                <field name="description"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_workload_estimation_form" model="ir.ui.view">
+        <field name="name">workload.estimation.form</field>
+        <field name="model">workload.estimation</field>
+        <field name="type">form</field>
+        <field name="priority" eval="15"/>
+        <field name="arch" type="xml">
+            <form string="Workload Estimation">
+                <group>
+                    <div class="oe_title">
+                        <label for="code" class="oe_edit_only" string="Workload Estimation"/>
+                        <h1><field name="code" /></h1>
+                    </div>
+                </group>
+                <group>
+                    <group>
+                        <field name="std_est" />
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- action used on menu -->
+    <record id="action_view_workload_estimation" model="ir.actions.act_window">
+        <field name="name">Workload Estimations</field>
+        <field name="res_model">workload.estimation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_workload_estimation_tree"/>
+    </record>
+	</data>
+</openerp>

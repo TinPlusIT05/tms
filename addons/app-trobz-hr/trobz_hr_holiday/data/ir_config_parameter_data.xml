@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data>
+        <!-- config parameter -->        
+		<record id="default_casual_leave_paid" model="ir.config_parameter">
+            <field name="key">default_leave_type_to_add_allocation_each_month</field>
+            <field name="value">Annual leave</field>
+        </record>
+	</data>
+</openerp>

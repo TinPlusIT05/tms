@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Tree -->
+		<record id="view_trobz_crm_business_sector_tree" model="ir.ui.view">
+			<field name="name">view.trobz.crm.business.sector.tree</field>
+			<field name="model">trobz.crm.business.sector</field>
+			<field name="arch" type="xml">
+				<tree string="Name" editable="bottom">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+	</data>
+</openerp>

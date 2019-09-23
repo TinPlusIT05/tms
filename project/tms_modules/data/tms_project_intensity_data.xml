@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+    	<record model="tms.project.intensity"
+            id="tms_project_intensity_no_activity">
+            <field name="name">No activity in the past 2 months</field>
+            <field name="min_tk">0</field>
+            <field name="max_tk">0</field>
+        </record>
+    	
+        <record model="tms.project.intensity"
+            id="tms_project_intensity_low">
+            <field name="name">Low</field>
+            <field name="min_tk">1</field>
+            <field name="max_tk">10</field>
+        </record>
+        
+        <record model="tms.project.intensity"
+            id="tms_project_intensity_medium">
+            <field name="name">Medium</field>
+            <field name="min_tk">11</field>
+            <field name="max_tk">25</field>
+        </record>
+        
+        <record model="tms.project.intensity"
+            id="tms_project_intensity_high">
+            <field name="name">High</field>
+            <field name="min_tk">26</field>
+            <field name="max_tk">10000</field>
+        </record>
+        
+    </data>
+</openerp>

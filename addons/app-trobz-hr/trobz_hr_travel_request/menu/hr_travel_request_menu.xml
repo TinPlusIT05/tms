@@ -1,0 +1,10 @@
+<openerp>
+	<data>
+		<menuitem action="action_travel_request" 
+					id="menu_travel_request" 
+					name="Travel Requests" 
+					parent="hr_holidays.menu_open_ask_holidays" 
+					groups="base.group_user"
+					sequence="100"/>
+	</data>
+</openerp>

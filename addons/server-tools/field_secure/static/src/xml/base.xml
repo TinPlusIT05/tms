@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- template for field secure on the form view -->
+    <t t-name="FieldSecure">
+        <span t-attf-class="oe_form_field #{widget.get_widget_class()} field-secure-value" t-att-style="widget.node.attrs.style">
+
+            <!--
+                Password authentication is on, form view should always show
+                asterisk ** and a button to check for user authorization
+                before working on the field
+            -->
+            <t t-if="widget.get('is_pwd_auth_required')">
+
+                <!--
+                    VIEW or EDIT mode
+                    only show this when current record is exists (form view record or list view record)
+                -->
+                <t t-if="widget.view.dataset.index !== null &amp;&amp; !_.isEmpty(widget.field_manager.datarecord)">
+
+	                <span class="oe_form_secure_content"></span>
+
+	                <!-- request button -->
+	                <span class="access-wrapper">
+	                    <t t-call="FieldSecure.Request.Button" />
+	                </span>
+                </t>
+
+                <!--
+                    CREATE mode (form view or list view editable)
+                    with list view (editable), the check is done by `widget.field_manager.datarecord`
+                    with form view, the check is done by `widget.view.dataset.index`
+                -->
+                <t t-if="_.isEmpty(widget.field_manager.datarecord) || widget.view.dataset.index === null">
+                    <span>Unable to set value in create mode with password enabled</span>
+                </t>
+            </t>
+
+            <!--
+                Password authentication is off && current user has valid access
+
+                + Form view should show value directly:
+	                - [Readonly] mode: show value as normal text
+	                - [Editable] mode: show value in textarea or input tag
+	                    - check based on flag "is_multiline_required" stored
+	                    in the widget
+
+                + No button should be show to check for user authorization
+            -->
+            <t t-if="!widget.get('is_pwd_auth_required')">
+
+                <!-- VIEW mode -->
+                <t t-if="widget.get('effective_readonly')">
+	                <span class="oe_form_secure_content"></span>
+	            </t>
+
+	            <!-- EDIT mode -->
+	            <t t-if="!widget.get('effective_readonly')">
+
+	                <!-- Multiple line mode is on -->
+	                <t t-if="widget.get('is_multiline_required')">
+	                    <textarea rows="6"
+			                t-att-name="widget.name"
+			                class="field_text"
+			                t-att-tabindex="widget.node.attrs.tabindex"
+			                t-att-autofocus="widget.node.attrs.autofocus"
+			                t-att-placeholder="! widget.get('effective_readonly') ? widget.node.attrs.placeholder : ''"
+			                t-att-maxlength="widget.field.size"
+			            ></textarea>
+	                </t>
+
+	                <!-- Multiple line mode is off -->
+	                <t t-if="!widget.get('is_multiline_required')">
+	                    <input t-att-type="widget.password ? 'password' : 'text'"
+			                t-att-id="widget.id_for_label"
+			                t-att-tabindex="widget.node.attrs.tabindex"
+			                t-att-autofocus="widget.node.attrs.autofocus"
+			                t-att-placeholder="widget.node.attrs.placeholder"
+			                t-att-maxlength="widget.field.size"
+			            />
+	                </t>
+	            </t>
+            </t>
+
+            <t t-if="!widget.get('is_pwd_auth_required')">
+                <i class="fa fa-key field-secure-icon-indicator" title="Secure field content"></i>
+            </t>
+        </span>
+    </t>
+
+    <!-- template for field secure button for requesting decrypted value -->
+    <t t-name="FieldSecure.Request.Button"><button class="fa fa-key request-secure" title="Show dialog"
+        t-att-data-field="name" t-att-data-record-id="record_id" /></t>
+
+    <!-- template for wizard contents -->
+    <t t-name="FieldSecure.Dialog">
+
+        <div>
+            <div class="row wizard-step-names">
+
+                <!-- step 1 : authentication -->
+                <div class="wizard-step col-md-12 active" step="authentication">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label for="password-input">Enter your password: </label>
+                            <input type="password" class="form-control password-input"
+                                placeholder="password confirmation" required="required" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- step 2 : decryption -->
+                <div class="wizard-step col-md-12" step="decryption">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label for="decrypted-input">Value for this field:</label>
+                            <t t-if="widget.multiline">
+                            	<textarea class="form-control decrypted-input secure-textarea-input" />
+                            </t>
+                            <t t-if="!widget.multiline">
+                            	<input type="text" class="form-control decrypted-input" />
+                            </t>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end wizard-steps-->
+        </div>
+    </t>
+
+    <t t-name="FieldSecure.Dialog.Footer">
+        <span class="oe_dialog_custom_buttons">
+            <span class="secure-buttons-wrapper">
+                <!-- action buttons -->
+                <span class="button-wrapper active">
+                    <button class='next-button oe_highlight active'>Next</button>
+                    <button class='submit-button oe_highlight'>Submit</button>
+                    <button class='close-button active'>Close</button>
+                </span>
+
+                <!-- loading -->
+                <span class="loading-wrapper">
+                    <i class="fa fa-asterisk fa-spin inform-icon" />
+                    <i>processing...</i>
+                </span>
+
+                <!-- messages -->
+                <span class="message-wrapper active">
+                    <label class="message" />
+                </span>
+            </span>
+        </span>
+    </t>
+</templates>

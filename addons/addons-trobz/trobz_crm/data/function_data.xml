@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object')" />
+            <value eval="list(['create_crm_event_tags'])" />
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object')" />
+            <value eval="list(['update_open_status_for_stage'])" />
+        </function>
+        
+        <function model="trobz.base" name="run_post_object_one_time">
+        	<value eval="str('post.object')" />
+        	<value eval="list(['update_reminder_cron_interval'])" />
+        </function>
+      
+        <!-- F#12555 -->  
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object')" />
+            <value eval="list(['update_date_trobz_crm_event'])"/>
+        </function>
+        
+        <!-- F#12555 -->  
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object')" />
+            <value eval="list(['update_date_trobz_crm_event'])"/>
+        </function>
+        
+        <!-- F#11277 - Rename Leads into Opportunity -->
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object')" />
+            <value eval="list(['update_lead_mass_update'])" />
+        </function>
+
+        <!-- F#13348 - Update probability_id field -->
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object')" />
+            <value eval="list(['update_probability_id'])"/>
+        </function>
+        
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object')" />
+            <value eval="list(['update_priority'])"/>
+        </function>
+        
+	</data>
+</openerp>

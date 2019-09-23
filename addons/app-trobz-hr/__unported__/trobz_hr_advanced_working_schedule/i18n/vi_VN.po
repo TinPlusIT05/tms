@@ -1,0 +1,674 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* trobz_hr_advanced_working_schedule
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-04 04:11+0000\n"
+"PO-Revision-Date: 2014-03-04 04:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_payslip.py:90
+#, python-format
+msgid " (Flexible days)"
+msgstr " (Flexible days)"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.employee:0
+msgid "Active"
+msgstr "Hiệu lực"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.advanced.working.schedule,activity_id:0
+msgid "Activity"
+msgstr "Activity"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.ui.menu,name:trobz_hr_advanced_working_schedule.resource_calendar_menu
+msgid "Advanced Working Plan Template"
+msgstr "Advanced Working Plan Template"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,plan_line_id:0
+msgid "Advanced Working Plan Template Line"
+msgstr "Advanced Working Plan Template Line"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.advanced.working.schedule:0
+#: view:hr.employee:0
+#: field:hr.employee,advance_working_schedule_id:0
+#: view:hr.payroll.working.hour:0
+#: field:hr.payroll.working.hour,advanced_schedule_id:0
+#: model:ir.actions.act_window,name:trobz_hr_advanced_working_schedule.action_hr_advanced_working_schedule
+#: model:ir.ui.menu,name:trobz_hr_advanced_working_schedule.hr_advanced_working_schedule_menu
+#: field:resource.calendar.attendance,advanced_schedule_id:0
+msgid "Advanced Working Schedule"
+msgstr "Advanced Working Schedule"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.advanced.working.time:0
+#: model:ir.actions.act_window,name:trobz_hr_advanced_working_schedule.action_hr_advanced_working_time
+#: model:ir.ui.menu,name:trobz_hr_advanced_working_schedule.hr_advanced_working_time_menu
+msgid "Advanced Working Time"
+msgstr "Advanced Working Time"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_advanced_working_schedule
+msgid "Advanced working schedule"
+msgstr "Advanced working schedule"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_advanced_working_time
+msgid "Advanced working time"
+msgstr "Advanced working time"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:approve.public.holiday.wizard:0
+#: view:trobz.hr.public.holidays:0
+msgid "Approve"
+msgstr "Approve"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_approve_public_holiday_wizard
+msgid "Approve Public Holiday"
+msgstr "Approve Public Holiday"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:approve.public.holiday.wizard:0
+#: model:ir.actions.act_window,name:trobz_hr_advanced_working_schedule.action_approve_public_holidays_wizard
+msgid "Approve Public Holidays"
+msgstr "Approve Public Holidays"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+msgid "Approve leave requests."
+msgstr "Approve leave requests."
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+msgid "Approve public holidays and generate PWH on those dates. \n"
+"                                We CANNOT update the computed PWH if the public holiday is changed"
+msgstr "Approve public holidays and generate PWH on those dates. \n"
+"                                We CANNOT update the computed PWH if the public holiday is changed"
+
+#. module: trobz_hr_advanced_working_schedule
+#: selection:trobz.hr.public.holidays,state:0
+msgid "Approved"
+msgstr "Approved"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_attendance
+msgid "Attendance"
+msgstr "Điểm danh"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.advanced.working.schedule,break_from:0
+msgid "Break From"
+msgstr "Break From"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.advanced.working.schedule:0
+msgid "Break Time"
+msgstr "Break Time"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.advanced.working.schedule,break_to:0
+msgid "Break To"
+msgstr "Break To"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:generate.working.hour.wizard:0
+msgid "By default, The force is checked. \n"
+"                                If checked, all draft working hours of matching employees within that period will be overridden. \n"
+"                                If not checked, working hour lines existed will not be overridden."
+msgstr "By default, The force is checked. \n"
+"                                If checked, all draft working hours of matching employees within that period will be overridden. \n"
+"                                If not checked, working hour lines existed will not be overridden."
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:approve.public.holiday.wizard:0
+#: view:compute.working.hour.wizard:0
+#: view:generate.working.hour.wizard:0
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.employee:0
+msgid "Company"
+msgstr "Công ty"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+msgid "Compute"
+msgstr "Compute"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+#: model:ir.actions.act_window,name:trobz_hr_advanced_working_schedule.action_compute_working_hour_wizard
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_compute_working_hour_wizard
+#: model:ir.ui.menu,name:trobz_hr_advanced_working_schedule.hr_payroll_compute_working_hour_menu
+msgid "Compute Payroll Working Hours"
+msgstr "Compute Payroll Working Hours"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/wizard/compute_working_hour_wizard.py:78
+#: code:addons/trobz_hr_advanced_working_schedule/wizard/generate_working_hour_wizard.py:52
+#, python-format
+msgid "Computed Payroll Working Hours"
+msgstr "Computed Payroll Working Hours"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+msgid "Confirm overtime/compensation."
+msgstr "Confirm overtime/compensation."
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.expected.working.day:0
+#: field:hr.expected.working.day,contract_id:0
+#: view:hr.payroll.working.hour:0
+#: field:hr.payroll.working.hour,contract_id:0
+msgid "Contract"
+msgstr "Contract"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+msgid "Correct all inconsistent attendances. \n"
+"                                If an employee has an inconsistent attendance within the period of computation, \n"
+"                                PWH of this employee will be ignored."
+msgstr "Correct all inconsistent attendances. \n"
+"                                If an employee has an inconsistent attendance within the period of computation, \n"
+"                                PWH of this employee will be ignored."
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.expected.working.day:0
+msgid "Current Month"
+msgstr "Current Month"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:resource.calendar,cycle:0
+msgid "Cycle"
+msgstr "Cycle"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_overtime.py:165
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_overtime.py:174
+#, python-format
+msgid "DateTime Start and DateTime End does not match the Advanced Working Schedule!"
+msgstr "DateTime Start and DateTime End does not match the Advanced Working Schedule!"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.advanced.working.time,day:0
+#: field:resource.calendar.attendance,day:0
+msgid "Day"
+msgstr "Day"
+
+#. module: trobz_hr_advanced_working_schedule
+#: selection:trobz.hr.public.holidays,state:0
+msgid "Draft"
+msgstr "Draft"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.expected.working.day:0
+#: field:hr.expected.working.day,employee_id:0
+#: view:hr.payroll.working.hour:0
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_employee
+msgid "Employee"
+msgstr "Người lao động"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+#: field:compute.working.hour.wizard,employee_ids:0
+#: view:generate.working.hour.wizard:0
+#: field:generate.working.hour.wizard,employee_ids:0
+msgid "Employees"
+msgstr "Employees"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/wizard/approve_public_holiday_wizard.py:31
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: trobz_hr_advanced_working_schedule
+#: constraint:generate.working.hour.wizard:0
+msgid "Error! From-date must be less than to-date."
+msgstr "Error! From-date must be less than to-date."
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.expected.working.day:0
+#: field:hr.expected.working.day,days:0
+#: model:ir.actions.act_window,name:trobz_hr_advanced_working_schedule.action_hr_expected_working_day
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_expected_working_day
+#: model:ir.ui.menu,name:trobz_hr_advanced_working_schedule.hr_expected_working_day_menu
+#: field:resource.calendar,expected_working_days:0
+msgid "Expected Working Days"
+msgstr "Expected Working Days"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_payslip.py:39
+#, python-format
+msgid "Expected Working Days In Month %s"
+msgstr "Expected Working Days In Month %s"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_payslip.py:50
+#, python-format
+msgid "Expected Working Days In Month (Contract)"
+msgstr "Expected Working Days In Month (Contract)"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,is_flexible:0
+#: field:resource.calendar.attendance,is_flexible:0
+msgid "Flexible Day"
+msgstr "Flexible Day"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.payroll.working.hour:0
+msgid "Flexible Days"
+msgstr "Flexible Days"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+msgid "For all PWH of flexible days, please update them with correct working activity."
+msgstr "For all PWH of flexible days, please update them with correct working activity."
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:generate.working.hour.wizard,force:0
+msgid "Force"
+msgstr "Force"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:generate.working.hour.wizard:0
+msgid "Force Update Payroll Working Hours"
+msgstr "Force Update Payroll Working Hours"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:compute.working.hour.wizard,from_date:0
+#: field:generate.working.hour.wizard,from_date:0
+#: field:hr.expected.working.day,from_date:0
+msgid "From Date"
+msgstr "From Date"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/wizard/compute_working_hour_wizard.py:50
+#: constraint:compute.working.hour.wizard:0
+#, python-format
+msgid "From date must be less than to date."
+msgstr "From date must be less than to date."
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:generate.working.hour.wizard:0
+msgid "Generate"
+msgstr "Generate"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:generate.working.hour.wizard:0
+#: model:ir.actions.act_window,name:trobz_hr_advanced_working_schedule.action_generate_working_hour_wizard
+#: model:ir.ui.menu,name:trobz_hr_advanced_working_schedule.hr_payroll_generate_working_hour_menu
+msgid "Generate Payroll Working Hours"
+msgstr "Generate Payroll Working Hours"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.expected.working.day:0
+msgid "Group By..."
+msgstr "Group By..."
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.advanced.working.time,hour:0
+msgid "Hour"
+msgstr "Hour"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.attendance,inconsistence_reason:0
+msgid "Inconsistence Reason"
+msgstr "Inconsistence Reason"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,leave_line_id:0
+msgid "Leave Line"
+msgstr "Leave Line"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+msgid "Make sure the advanced working schedule is corrected.\n"
+"                                We CANNOT update the computed PWH if the advanced working schedule is changed"
+msgstr "Make sure the advanced working schedule is corrected.\n"
+"                                We CANNOT update the computed PWH if the advanced working schedule is changed"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_payslip.py:58
+#: field:resource.calendar,min_flexible_days:0
+#, python-format
+msgid "Minimal Flexible Days"
+msgstr "Minimal Flexible Days"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.expected.working.day:0
+#: field:hr.expected.working.day,month_year:0
+msgid "Month/Year"
+msgstr "Month/Year"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.advanced.working.schedule,name:0
+#: field:hr.advanced.working.time,name:0
+#: field:hr.expected.working.day,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: trobz_hr_advanced_working_schedule
+#: selection:hr.advanced.working.time,day:0
+msgid "Next day"
+msgstr "Next day"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.payroll.working.hour:0
+msgid "None Flexible Days"
+msgstr "None Flexible Days"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,old_break_end:0
+msgid "Old Break End"
+msgstr "Old Break End"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,old_break_start:0
+msgid "Old Break Start"
+msgstr "Old Break Start"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,old_break_time:0
+msgid "Old Break Time"
+msgstr "Old Break Time"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,old_expected_end:0
+msgid "Old Expected End"
+msgstr "Old Expected End"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,old_expected_start:0
+msgid "Old Expected Start"
+msgstr "Old Expected Start"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,old_expected_working_hour:0
+msgid "Old Expected Working Hour"
+msgstr "Old Expected Working Hour"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,old_activity_id:0
+msgid "Old Working Activity"
+msgstr "Old Working Activity"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,overtime_id:0
+msgid "Overtime"
+msgstr "Overtime"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Pay Slip"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.attendance,pwh_id:0
+msgid "Payroll Working Hour"
+msgstr "Payroll Working Hour"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_payroll_working_hour
+msgid "Payroll Working hour"
+msgstr "Payroll Working hour"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:compute.working.hour.wizard:0
+#: view:generate.working.hour.wizard:0
+msgid "Period"
+msgstr "Period"
+
+#. module: trobz_hr_advanced_working_schedule
+#: sql_constraint:resource.calendar:0
+msgid "Please input the cycle!"
+msgstr "Please input the cycle!"
+
+#. module: trobz_hr_advanced_working_schedule
+#: sql_constraint:resource.calendar:0
+msgid "Please input the expected working days!"
+msgstr "Please input the expected working days!"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/resource_calendar.py:48
+#, python-format
+msgid "Please set up the advanced working schedule for this date (%s)."
+msgstr "Please set up the advanced working schedule for this date (%s)."
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_payroll_working_hour.py:537
+#, python-format
+msgid "Please setup a working activity for Public Holidays"
+msgstr "Please setup a working activity for Public Holidays"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_payroll_working_hour.py:85
+#, python-format
+msgid "Please setup the labor contract of this employee"
+msgstr "Please setup the labor contract of this employee"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.payroll.working.hour,public_holiday_id:0
+msgid "Public Holiday"
+msgstr "Public Holiday"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:approve.public.holiday.wizard:0
+#: field:approve.public.holiday.wizard,public_holiday_ids:0
+msgid "Public Holidays"
+msgstr "Public Holidays"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_resource_calendar
+msgid "Resource Calendar"
+msgstr "Resource Calendar"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:trobz.hr.public.holidays:0
+msgid "Set to Draft"
+msgstr "Set to Draft"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:trobz.hr.public.holidays,state:0
+msgid "Status"
+msgstr "Status"
+
+#. module: trobz_hr_advanced_working_schedule
+#: sql_constraint:resource.calendar:0
+msgid "The Name of the advance working plan template must be unique !"
+msgstr "The Name of the advance working plan template must be unique !"
+
+#. module: trobz_hr_advanced_working_schedule
+#: sql_constraint:hr.advanced.working.schedule:0
+msgid "The Name of the advance working schedule must be unique !"
+msgstr "The Name of the advance working schedule must be unique !"
+
+#. module: trobz_hr_advanced_working_schedule
+#: sql_constraint:hr.advanced.working.time:0
+msgid "The advanced working time must be unique !"
+msgstr "The advanced working time must be unique !"
+
+#. module: trobz_hr_advanced_working_schedule
+#: constraint:hr.advanced.working.schedule:0
+msgid "The break to must be greater than the break from"
+msgstr "The break to must be greater than the break from"
+
+#. module: trobz_hr_advanced_working_schedule
+#: sql_constraint:resource.calendar.attendance:0
+msgid "The day of the schedule must be greater than 0!"
+msgstr "The day of the schedule must be greater than 0!"
+
+#. module: trobz_hr_advanced_working_schedule
+#: sql_constraint:resource.calendar.attendance:0
+msgid "The day of the schedule must be unique !"
+msgstr "The day of the schedule must be unique !"
+
+#. module: trobz_hr_advanced_working_schedule
+#: sql_constraint:hr.expected.working.day:0
+msgid "The expected working days must be unique !"
+msgstr "The expected working days must be unique !"
+
+#. module: trobz_hr_advanced_working_schedule
+#: constraint:hr.advanced.working.schedule:0
+msgid "The work to must be greater than the work from"
+msgstr "The work to must be greater than the work from"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/resource_calendar.py:66
+#: code:addons/trobz_hr_advanced_working_schedule/model/resource_calendar.py:83
+#: code:addons/trobz_hr_advanced_working_schedule/model/resource_calendar.py:92
+#, python-format
+msgid "There is no flexible day defined for this schedule"
+msgstr "There is no flexible day defined for this schedule"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:compute.working.hour.wizard,to_date:0
+#: field:generate.working.hour.wizard,to_date:0
+#: field:hr.expected.working.day,to_date:0
+msgid "To Date"
+msgstr "To Date"
+
+#. module: trobz_hr_advanced_working_schedule
+#: selection:hr.advanced.working.time,day:0
+msgid "Today"
+msgstr "Today"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_overtime
+msgid "Trobz HR Overtime"
+msgstr "Trobz HR Overtime"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.payroll.working.hour:0
+#: view:resource.calendar.attendance:0
+msgid "True"
+msgstr "True"
+
+#. module: trobz_hr_advanced_working_schedule
+#: help:hr.payroll.working.hour,old_activity_id:0
+msgid "Use to revert the working activity. Update new one when compute PWH and revert old one when re-compute PWH"
+msgstr "Use to revert the working activity. Update new one when compute PWH and revert old one when re-compute PWH"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_overtime.py:165
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_overtime.py:174
+#, python-format
+msgid "Warning"
+msgstr "Warning"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_attendance.py:31
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_attendance.py:153
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_attendance.py:219
+#, python-format
+msgid "Warning !"
+msgstr "Warning !"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_payroll_working_hour.py:85
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_payroll_working_hour.py:537
+#: code:addons/trobz_hr_advanced_working_schedule/model/resource_calendar.py:47
+#: code:addons/trobz_hr_advanced_working_schedule/model/resource_calendar.py:66
+#: code:addons/trobz_hr_advanced_working_schedule/model/resource_calendar.py:83
+#: code:addons/trobz_hr_advanced_working_schedule/model/resource_calendar.py:92
+#, python-format
+msgid "Warning!"
+msgstr "Warning!"
+
+#. module: trobz_hr_advanced_working_schedule
+#: help:hr.attendance,computed_attendance:0
+msgid "When compute PWH, update this field current attendance that use to check recompute PWH or Not"
+msgstr "When compute PWH, update this field current attendance that use to check recompute PWH or Not"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_generate_working_hour_wizard
+msgid "Wizard allow to generate the payroll working hours"
+msgstr "Wizard allow to generate the payroll working hours"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_resource_calendar_attendance
+msgid "Work Detail"
+msgstr "Work Detail"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.advanced.working.schedule,work_from:0
+#: field:hr.attendance,computed_attendance:0
+msgid "Work From"
+msgstr "Work From"
+
+#. module: trobz_hr_advanced_working_schedule
+#: field:hr.advanced.working.schedule,work_to:0
+msgid "Work To"
+msgstr "Work To"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.advanced.working.schedule:0
+msgid "Working Time"
+msgstr "Working Time"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/wizard/approve_public_holiday_wizard.py:31
+#, python-format
+msgid "You cannot approve a public holiday template!"
+msgstr "You cannot approve a public holiday template!"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:resource.calendar.attendance:0
+msgid "bottom"
+msgstr "bottom"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_hr_holidays_line
+msgid "hr.holidays.line"
+msgstr "hr.holidays.line"
+
+#. module: trobz_hr_advanced_working_schedule
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_attendance.py:31
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_attendance.py:153
+#: code:addons/trobz_hr_advanced_working_schedule/model/hr_attendance.py:219
+#, python-format
+msgid "maximum_early_minutes or maximum_late_minutes in config parameter is incorrect"
+msgstr "maximum_early_minutes or maximum_late_minutes in config parameter is incorrect"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.payroll.working.hour:0
+msgid "onchange_advanced_schedule_id(employee_id, date, advanced_schedule_id)"
+msgstr "onchange_advanced_schedule_id(employee_id, date, advanced_schedule_id)"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:hr.overtime:0
+msgid "onchange_start_stop(name, advanced_schedule_id, datetime_start, datetime_stop)"
+msgstr "onchange_start_stop(name, advanced_schedule_id, datetime_start, datetime_stop)"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:approve.public.holiday.wizard:0
+#: view:compute.working.hour.wizard:0
+#: view:generate.working.hour.wizard:0
+msgid "or"
+msgstr "or"
+
+#. module: trobz_hr_advanced_working_schedule
+#: model:ir.model,name:trobz_hr_advanced_working_schedule.model_trobz_hr_public_holidays
+msgid "trobz.hr.public.holidays"
+msgstr "trobz.hr.public.holidays"
+
+#. module: trobz_hr_advanced_working_schedule
+#: view:trobz.hr.public.holidays:0
+msgid "{'readonly':[('state','=','approved')]}"
+msgstr "{'readonly':[('state','=','approved')]}"
+

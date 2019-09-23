@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record forcecreate="True" id="ir_cron_bad_project_audit" model="ir.cron">
+			<field name="name">Daily Email of bad projects audit</field>
+			<field name="user_id" ref="base.user_root"/>
+			<field name="interval_number">1</field>
+			<field name="interval_type">work_days</field>
+			<field name="numbercall">-1</field>
+			<field name="doall" eval="False" />
+			<field eval="True" name="active"/>
+			<field name="model" eval="'tms.audit.board'" />
+			<field name="function" eval="'bad_project_audit_email'" />
+			<field eval="'()'" name="args"/>
+		</record>
+	</data>
+</openerp>

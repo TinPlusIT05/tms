@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<openerp>
+    
+  	<data noupdate="1">
+  		<!--TODO: to remove when 2.5_8.0_no_new_feature status is 'done'
+  			The leave type below is already in TMS but with the incorrect xml_id
+  			this function use to update xml_id to make sure they will not be duplicated
+  		 -->
+  		 <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object.hr.holiday.vn')" />
+            <value eval="list(['update_leave_type_xml_id'])" />
+        </function>
+  		 
+        <!-- Holiday status in Vietnam -->
+        <!-- Update payment type: paid/unpaid for all leave types -->
+        
+        <!-- Compensatory Days -->
+        <record model="hr.holidays.status" id="hr_holidays.holiday_status_comp">  
+            <field name="name">Off with compensation</field>  
+            <field name="code">Comp</field>
+            <field name="payment_type">paid</field>
+        </record>
+
+        <!--Unpaid Leave -->
+        <record model="hr.holidays.status" id="hr_holidays.holiday_status_unpaid">        
+            <field name="name">Unpaid</field>
+            <field name="code">Unpaid</field>
+            <field name="payment_type">unpaid</field>
+        </record>
+        
+        <!-- Accident -->
+        <record model="hr.holidays.status" id="hr_holiday_status_accident">
+            <field name="name">Accident</field>
+            <field name="code">Acc</field>
+            <field name="payment_type">paid</field>
+        </record>
+		
+		<!-- Wedding -->
+		<record model="hr.holidays.status" id="hr_holiday_status_wedding">
+			<field name="name">Wedding</field>
+			<field name="code">Wedd</field>
+		   	<field name="max_days_allowed">3.00</field>
+		   	<field name="payment_type">paid</field>
+		</record>
+		
+		<!-- Sibling's Wedding -->
+        <record model="hr.holidays.status" id="hr_holiday_status_sibling_wedding">
+            <field name="name">Sibling's wedding</field>
+            <field name="code">SibWedd</field>
+            <field name="max_days_allowed">1.00</field>
+            <field name="payment_type">unpaid</field>
+        </record>
+		
+		<!-- Children's Wedding -->
+		<record model="hr.holidays.status" id="hr_holiday_status_children_wedding">
+			<field name="name">Children's wedding</field>
+		   	<field name="code">ChildWedd</field>
+		   	<field name="max_days_allowed">1.00</field>	
+		   	<field name="payment_type">unpaid</field>	
+		</record>
+		
+		<!-- Funeral of parents/parents-in-law/spouse/children -->
+		<record model="hr.holidays.status" id="hr_holiday_status_funeral_special">
+			<field name="name">Funeral of parents/parents-in-law/spouse/children</field>
+		   	<field name="code">FuneralP</field>
+		   	<field name="max_days_allowed">3.00</field>	
+		   	<field name="payment_type">unpaid</field>
+		</record> 
+		
+		<!-- Funeral of spouse's sister/brother -->
+		<record model="hr.holidays.status" id="hr_holiday_status_funeral_normal">
+			<field name="name">Funeral of spouse's sister/brother</field>
+		   	<field name="code">FuneralS</field>
+		   	<field name="max_days_allowed">1.00</field>		
+		   	<field name="payment_type">unpaid</field>
+		</record>
+		
+		<!-- Child's birth (father) -->
+		<record model="hr.holidays.status" id="hr_holiday_status_child_birth_father">
+			<field name="name">Child's birth (father)</field>
+		   	<field name="code">ChildBirthF</field>
+		   	<field name="max_days_allowed">1.00</field>		
+		   	<field name="payment_type">unpaid</field>	
+		</record>
+		
+		<!-- Child's birth (mother) -->
+		<record model="hr.holidays.status" id="hr_holiday_status_child_birth_mother">
+			<field name="name">Child's birth (mother)</field>
+		   	<field name="code">ChildBirthM</field>
+		   	<field name="max_days_allowed">1.00</field>	
+		   	<field name="payment_type">unpaid</field>	
+		</record>
+        
+    	<!-- Sick leave (paid) -->
+		<record model="hr.holidays.status" id="hr_holiday_status_sick_paid">
+			<field name="name">Sick leave (paid)</field>
+		   	<field name="code">SickLP</field>
+		   	<field name="max_days_allowed">5</field>
+		   	<field name="payment_type">paid</field>
+		</record>
+		
+		<record model="hr.holidays.status" id="hr_holidays.holiday_status_sl">
+      		<field name="name">Sick leave (unpaid)</field>
+      		<field name="code">SickLU</field>
+      		<field name="limit">True</field>
+      		<field name="payment_type">unpaid</field>  
+    	</record>		
+		
+		<!-- Sick leave expat (paid) -->
+		<record model="hr.holidays.status" id="hr_holiday_status_sick_expat_paid">
+			<field name="name">Sick leave expat (paid)</field>
+			<field name="code">SickLExpatP</field>
+		   	<field name="max_days_allowed">5</field>	
+		   	<field name="payment_type">paid</field>		
+		</record>
+		
+		<!-- Sick leave expat (unpaid) -->
+		<record model="hr.holidays.status" id="hr_holiday_status_sick_expat_unpaid">
+			<field name="name">Sick leave expat(unpaid)</field>		   	
+			<field name="code">SickLExpatU</field>
+            <field name="limit">True</field>
+			<field name="payment_type">unpaid</field>			
+		</record>
+		
+		
+		<!-- Casual leave (paid) -->
+		<record model="hr.holidays.status" id="hr_holidays.holiday_status_cl">
+      		<field name="name">Casual leave (paid)</field>
+      		<field name="code">CasLP</field>
+      		<field name="payment_type">paid</field>      		
+    	</record>
+		
+		<!-- Casual leave (unpaid) -->
+		<record model="hr.holidays.status" id="hr_holiday_status_casual_unpaid">
+			<field name="name">Casual leave (unpaid)</field>		   	
+			<field name="code">CasLU</field>
+            <field name="limit">True</field>
+			<field name="payment_type">unpaid</field>			
+		</record>
+		  
+        <!-- Stoppage leave-->
+        <record model="hr.holidays.status" id="hr_holiday_status_stoppage">
+            <field name="name">Stoppage leave</field>            
+            <field name="code">StoppageL</field>
+            <field name="limit">True</field>
+            <field name="payment_type">paid</field>           
+        </record>
+        
+        <!-- Unemployment declaration  -->
+        <record model="hr.holidays.status" id="hr_holiday_status_unemployment_declare">
+            <field name="name">Unemployment declaration</field>            
+            <field name="code">Unemp</field>
+            <field name="limit">True</field>
+            <field name="payment_type">paid</field>           
+        </record>
+        
+        <!-- Maternity leave -->
+        <record model="hr.holidays.status" id="hr_holiday_status_maternity">
+            <field name="name">Maternity leave</field>            
+            <field name="code">MaternityL</field>
+            <field name="limit">True</field>
+            <field name="payment_type">paid</field>           
+        </record>
+        
+        <!-- Pregnancy leave -->
+        <record model="hr.holidays.status" id="hr_holiday_status_pregnancy">
+            <field name="name">Pregnancy leave</field>            
+            <field name="code">PregnancyL</field>
+            <field name="limit">True</field>
+            <field name="payment_type">paid</field>           
+        </record>
+        
+        <!-- Disease in the family -->
+        <record model="hr.holidays.status" id="hr_holiday_status_family_disease">
+            <field name="name">Disease in the family</field>            
+            <field name="code">MaternityL</field>
+            <field name="limit">True</field>
+            <field name="payment_type">paid</field>           
+        </record>
+	</data>
+</openerp>

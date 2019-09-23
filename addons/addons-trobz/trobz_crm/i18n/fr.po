@@ -1,0 +1,1059 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* trobz_crm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-07 06:57+0000\n"
+"PO-Revision-Date: 2012-11-07 06:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_crm_lead2opportunity_partner
+msgid "Lead To Opportunity Partner"
+msgstr "Conversion d'une piste en partenaire d'opportunité"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,exdate:0
+msgid "This property defines the list of date/time exceptions for a recurring calendar component."
+msgstr "This property defines the list of date/time exceptions for a recurring calendar component."
+
+#. module: trobz_crm
+#: field:mail.message,lead_id:0
+#: field:trobz.unclassified_mail_with_lead,lead_id:0
+msgid "Lead"
+msgstr "Piste"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,we:0
+msgid "Wed"
+msgstr "Merc."
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,rrule_type:0
+msgid "Monthly"
+msgstr "Mensuel"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,email_to:0
+msgid "Message recipients"
+msgstr "Destinataire du message"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,recurrency:0
+msgid "Recurrent Meeting"
+msgstr "Réunion récurrente"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Group By..."
+msgstr "Grouper par..."
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,week_list:0
+msgid "Sunday"
+msgstr "Dimanche"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Invitation details"
+msgstr "Détail de l'invitation"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,byday:0
+msgid "Fourth"
+msgstr "Quatrième"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,priority:0
+msgid "Very High"
+msgstr "Très haute"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,show_as:0
+msgid "Show as"
+msgstr "Show as"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_post_object_trobz_crm
+msgid "trobz_crm > Post Object "
+msgstr "trobz_crm > Post Object "
+
+#. module: trobz_crm
+#: field:trobz.crm.event,day:0
+#: selection:trobz.crm.event,select1:0
+msgid "Date of month"
+msgstr "Date du mois"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,class:0
+msgid "Public"
+msgstr "Publique"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid " "
+msgstr " "
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "March"
+msgstr "Mars"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_fetchmail_server
+msgid "POP/IMAP Server"
+msgstr "Serveur POP/IMAP"
+
+#. module: trobz_crm
+#: model:ir.ui.menu,name:trobz_crm.menu_trobz_crm_my_lead_opportunity_open
+msgid "My Leads & Opp. Open"
+msgstr "Mes pistes & Opp. Ouvertes"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,week_list:0
+msgid "Friday"
+msgstr "Vendredi"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,allday:0
+msgid "All Day"
+msgstr "Journée"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,show_as:0
+msgid "Free"
+msgstr "Libre"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,mo:0
+msgid "Mon"
+msgstr "Lun"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,tu:0
+msgid "Tue"
+msgstr "Mar"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,fr:0
+msgid "Fri"
+msgstr "Ven"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,byday:0
+msgid "Last"
+msgstr "Dernier"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "September"
+msgstr "Septembre"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "+7 Days"
+msgstr "+7 Jours"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,select1:0
+msgid "Option"
+msgstr "Option"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "My Meetings"
+msgstr "Mes réunions"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,recurrent_uid:0
+msgid "Recurrent ID"
+msgstr "Recurrent ID"
+
+#. module: trobz_crm
+#: model:ir.actions.act_window,name:trobz_crm.action_view_unclassified_emails_with_user
+#: model:ir.actions.act_window,name:trobz_crm.unclassified_mail_with_user
+msgid "Associate with User"
+msgstr "Associer avec un utilisateur"
+
+#. module: trobz_crm
+#: field:trobz.crm.event.person,position:0
+msgid "Position"
+msgstr "Poste"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,rrule_type:0
+msgid "Yearly"
+msgstr "Annuel"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Email information"
+msgstr "Information Mail"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Recurrency Option"
+msgstr "Option récurrente"
+
+#. module: trobz_crm
+#: field:trobz.unclassified_mail_with_opportunity,opportunity_id:0
+msgid "Opportunity"
+msgstr "Opportunité"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Meeting Information"
+msgstr "Information de réunion"
+
+#. module: trobz_crm
+#: view:trobz.unclassified_mail_with_partner:0
+msgid "Associate Unclassified Emails with Partner"
+msgstr "Associer le mail à un partenaire"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,end_date:0
+msgid "Repeat Until"
+msgstr "Répété jusqu'au"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,date_deadline:0
+msgid "Deadline"
+msgstr "Deadline"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,active:0
+msgid "If the active field is set to          true, it will allow you to hide the event alarm information without removing it."
+msgstr "If the active field is set to          true, it will allow you to hide the event alarm information without removing it."
+
+#. module: trobz_crm
+#: view:crm.lead:0
+#: model:ir.model,name:trobz_crm.model_res_partner
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event.person,partner_id:0
+#: field:trobz.unclassified_mail_with_partner,partner_id:0
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,organizer:0
+#: field:trobz.crm.event,organizer_id:0
+msgid "Organizer"
+msgstr "Organisateur"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,user_id:0
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: trobz_crm
+#: field:mail.message,event_id:0
+msgid "Event"
+msgstr "Événement"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,priority:0
+msgid "Low"
+msgstr "Bas"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,email_from:0
+msgid "From"
+msgstr "De"
+
+#. module: trobz_crm
+#: view:mail.message:0
+msgid "Create Lead"
+msgstr "Créer la piste"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,su:0
+msgid "Sun"
+msgstr "Dim"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,end_type:0
+msgid "Recurrence termination"
+msgstr "Fin récurrente"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,priority:0
+msgid "Priority"
+msgstr "Priorité"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,state:0
+msgid "State"
+msgstr "État"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Customer Participants"
+msgstr "Participants chez le client"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,location:0
+msgid "Location"
+msgstr "Location"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,class:0
+msgid "Public for Employees"
+msgstr "Publique pour les employés"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Events in the coming 7 days"
+msgstr "Événement dans les 7 jours"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,lead_id:0
+msgid "Lead / Opportunity"
+msgstr "Piste / Opportunité"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_trobz_unclassified_mail_with_partner
+msgid "Associate Unclassified email with Partner"
+msgstr "Associer le mail à un partenaire"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,base_calendar_url:0
+msgid "Caldav URL"
+msgstr "Caldav URL"
+
+#. module: trobz_crm
+#: model:ir.actions.act_window,name:trobz_crm.trobz_crm_action_view_lead_opportunity
+msgid "My Leads & Opportunities Open"
+msgstr "Mes pistes & opportunités ouvertes"
+
+#. module: trobz_crm
+#: model:ir.ui.menu,name:trobz_crm.trobz_crm_menu_event
+#: model:res.request.link,name:trobz_crm.request_link_meeting
+#: view:trobz.crm.event:0
+msgid "CRM Event"
+msgstr "Événement CRM"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_trobz_unclassified_mail_with_lead
+msgid "Associate Unclassified email with CRM Lead"
+msgstr "Associer le mail à une piste"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_trobz_unclassified_mail_with_opportunity
+msgid "Associate Unclassified email with CRM Opportunity"
+msgstr "Associer le mail à une opportunité"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "July"
+msgstr "Juillet"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Mail To"
+msgstr "Mail à"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,th:0
+msgid "Thu"
+msgstr "Jeu"
+
+#. module: trobz_crm
+#: model:ir.actions.act_window,name:trobz_crm.action_view_my_message_emails
+#: model:ir.ui.menu,name:trobz_crm.menu_crm_my_sale_emails
+msgid "My Emails"
+msgstr "Mes Emails"
+
+#. module: trobz_crm
+#: field:crm.lead,skype_contact:0
+#: field:res.partner,skype_contact:0
+msgid "Skype Contact"
+msgstr "Skype ID"
+
+#. module: trobz_crm
+#: view:trobz.unclassified_mail_with_lead:0
+#: view:trobz.unclassified_mail_with_opportunity:0
+#: view:trobz.unclassified_mail_with_partner:0
+#: view:trobz.unclassified_mail_with_user:0
+msgid "_Cancel"
+msgstr "Annuler"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,create_date:0
+msgid "Created"
+msgstr "Créé"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,rrule_type:0
+msgid "Daily"
+msgstr "Quotidien"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,class:0
+msgid "Mark as"
+msgstr "Marquer comme"
+
+#. module: trobz_crm
+#: field:crm.lead,related_partner_address_ids:0
+#: field:trobz.crm.event,partner_address_id:0
+#: field:trobz.crm.event.person,partner_address_id:0
+msgid "Contact"
+msgstr "Contact"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,rrule_type:0
+msgid "Let the event automatically repeat at that interval"
+msgstr "Laisser l'événement se répéter automatiquement à cet interval"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Delegate"
+msgstr "Déléguer"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,week_list:0
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,display_meeting_fields:0
+#: field:trobz.crm.event.type,display_meeting_fields:0
+msgid "Display Meeting Fields"
+msgstr "Afficher les champs de réunion"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,byday:0
+msgid "First"
+msgstr "Premier"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,name:0
+msgid "Subject"
+msgstr "Sujet"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Other info"
+msgstr "Autre info"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "December"
+msgstr "Décembre"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,week_list:0
+msgid "Tuesday"
+msgstr "Mardi"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,month_list:0
+msgid "Month"
+msgstr "Mois"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,state:0
+msgid "Canceled"
+msgstr "Annulé"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,person_ids:0
+msgid "Customer participants"
+msgstr "Participants chez le client"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,count:0
+msgid "Repeat x times"
+msgstr "Répéter x fois"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,vtimezone:0
+msgid "Timezone"
+msgstr "Timezone"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_res_partner_address
+msgid "Partner Addresses"
+msgstr "Carnet d'adresses"
+
+#. module: trobz_crm
+#: field:trobz.crm.event.person,email:0
+msgid "EMail"
+msgstr "EMail"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "My Events"
+msgstr "Mes Événements"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Decline"
+msgstr "Refuser"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_res_alarm
+msgid "Basic Alarm Information"
+msgstr "Information de rappel simple"
+
+#. module: trobz_crm
+#: view:trobz.unclassified_mail_with_opportunity:0
+msgid "Associate Unclassified Emails with Opportunity"
+msgstr "Associer le mail avec une Opportunité"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_crm_lead
+msgid "crm.lead"
+msgstr "crm.lead"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,location:0
+msgid "Location of Event"
+msgstr "Location"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,rrule:0
+msgid "Recurrent Rule"
+msgstr "Règle Récurrente"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,has_attachment:0
+msgid "Attachment"
+msgstr "Fichiers joints"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,date_closed:0
+msgid "Closed"
+msgstr "Fermé"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "End of recurrency"
+msgstr "Fin des répétitions"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Reminder"
+msgstr "Rappel"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_trobz_crm_event
+msgid "Meeting"
+msgstr "Rendez-vous"
+
+#. module: trobz_crm
+#: field:crm.lead,event_ids:0
+#: field:res.partner,event_ids:0
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event.person,event_id:0
+msgid "Events"
+msgstr "Événements"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,alarm_id:0
+msgid "Set an alarm at this time, before the event occurs"
+msgstr "Définir une alarme à cette heure, avant l'événement"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Status"
+msgstr "Statut"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_trobz_unclassified_mail_with_user
+msgid "Associate Unclassified email with User"
+msgstr "Associer le mail à un utilisateur"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,count:0
+msgid "Repeat"
+msgstr "Répéter"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Events in the past 7 days"
+msgstr "Événement des 7 derniers jours"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "August"
+msgstr "Août"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,week_list:0
+msgid "Monday"
+msgstr "Lundi"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,priority:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,byday:0
+msgid "Third"
+msgstr "Troisième"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "June"
+msgstr "Juin"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,end_type:0
+msgid "Number of repetitions"
+msgstr "Nombre de répétitions"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "The"
+msgstr "Le"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,write_date:0
+msgid "Write Date"
+msgstr "Date de modification"
+
+#. module: trobz_crm
+#: field:trobz.unclassified_mail_with_user,user_id:0
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_trobz_crm_event_person
+msgid "Person which has no user in the system"
+msgstr "Person qui n'a pas d'utilisateur dans le système"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "November"
+msgstr "Novembre"
+
+#. module: trobz_crm
+#: view:trobz.unclassified_mail_with_lead:0
+msgid "Associate Unclassified Emails with Lead"
+msgstr "Associé le mail à une piste"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "October"
+msgstr "Octobre"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Uncertain"
+msgstr "Incertain"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "January"
+msgstr "Janvier"
+
+#. module: trobz_crm
+#: view:trobz.crm.event.person:0
+msgid "CRM Event Persons"
+msgstr "Personnes associées à l'événement"
+
+#. module: trobz_crm
+#: model:ir.actions.act_window,name:trobz_crm.trobz_crm_action_view_event
+#: view:trobz.crm.event:0
+msgid "CRM Events"
+msgstr "Événement CRM"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Summary"
+msgstr "Sujet"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,active:0
+msgid "Active"
+msgstr "Actif"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Choose day in the month where repeat the meeting"
+msgstr "Choisir le jour du mois de répétition"
+
+#. module: trobz_crm
+#: view:crm.lead:0
+msgid "My Lead Opp"
+msgstr "Mes pistes-opportunités"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,end_type:0
+msgid "End date"
+msgstr "Date de fin"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Search Events"
+msgstr "Recherche d'événement"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,attachment_ids:0
+msgid "Attachments"
+msgstr "Fichiers joints"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,rrule_type:0
+msgid "Weekly"
+msgstr "Hebdomadaire"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,email_to:0
+msgid "To"
+msgstr "À"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,email_cc:0
+msgid "Cc"
+msgstr "Cc"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,recurrent_id:0
+msgid "Recurrent ID date"
+msgstr "Recurrent ID date"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,sequence:0
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Add Participants"
+msgstr "Ajouter des Participants"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,select1:0
+msgid "Day of month"
+msgstr "Jour du mois"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: selection:trobz.crm.event,state:0
+msgid "Done"
+msgstr "Terminé"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,interval:0
+msgid "Repeat every (Days/Week/Month/Year)"
+msgstr "Répéter chaque (Jour/Semaine/Mois/Année)"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Set to Open"
+msgstr "Ouvrir"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: selection:trobz.crm.event,state:0
+msgid "Open"
+msgstr "Ouvert"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "-7 Days"
+msgstr "-7 jours"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,show_as:0
+msgid "Busy"
+msgstr "Occupé"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,interval:0
+msgid "Repeat every"
+msgstr "Répéter chaque"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,recurrency:0
+msgid "Recurrent"
+msgstr "Récurrent"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,rrule_type:0
+msgid "Recurrency"
+msgstr "Récurrence"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,week_list:0
+msgid "Thursday"
+msgstr "Jeudi"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,exrule:0
+msgid "Exception Rule"
+msgstr "Exception"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,class:0
+msgid "Private"
+msgstr "Privé"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,display_meeting_fields:0
+#: help:trobz.crm.event.type,display_meeting_fields:0
+msgid "Your participants, Customer Participants..."
+msgstr "Participants internes, Participants chez le client..."
+
+#. module: trobz_crm
+#: help:trobz.crm.event,exrule:0
+msgid "Defines a rule or repeating pattern of time to exclude from the recurring rule."
+msgstr "Defines a rule or repeating pattern of time to exclude from the recurring rule."
+
+#. module: trobz_crm
+#: help:trobz.crm.event,email_from:0
+msgid "Message sender, taken from user preferences. If empty, this is not a mail but a message."
+msgstr "Message sender, taken from user preferences. If empty, this is not a mail but a message."
+
+#. module: trobz_crm
+#: model:ir.actions.act_window,name:trobz_crm.action_view_unclassified_emails_with_partner
+#: model:ir.actions.act_window,name:trobz_crm.unclassified_mail_with_partner
+msgid "Associate with Partner"
+msgstr "Associer à un partenaire"
+
+#. module: trobz_crm
+#: field:ir.attachment,file_extension:0
+msgid "File Extension"
+msgstr "Extension du fichier"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Todays's Events"
+msgstr "Événements du jour"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,description:0
+msgid "Description"
+msgstr "Description"
+
+#. module: trobz_crm
+#: view:trobz.unclassified_mail_with_lead:0
+#: view:trobz.unclassified_mail_with_opportunity:0
+#: view:trobz.unclassified_mail_with_partner:0
+#: view:trobz.unclassified_mail_with_user:0
+msgid "Associate"
+msgstr "Associer"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_mail_message
+msgid "Email Message"
+msgstr "Message"
+
+#. module: trobz_crm
+#: model:ir.actions.act_window,name:trobz_crm.trobz_act_crm_lead_crm_events
+msgid "Events by Type"
+msgstr "Événements par type"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_ir_attachment
+msgid "ir.attachment"
+msgstr "ir.attachment"
+
+#. module: trobz_crm
+#: model:ir.actions.act_window,name:trobz_crm.action_view_unclassified_message_emails
+#: model:ir.ui.menu,name:trobz_crm.menu_crm_unclassified_sale_emails
+msgid "Unclassified Emails"
+msgstr "Emails non-classés"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,sa:0
+msgid "Sat"
+msgstr "Sam"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Choose day where repeat the meeting"
+msgstr "Choisir jour de répétition de la réunion"
+
+#. module: trobz_crm
+#: model:ir.ui.menu,name:trobz_crm.menu_crm_sale_emails
+msgid "Emails"
+msgstr "Emails"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,partner_id:0
+msgid "Customer"
+msgstr "Client"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "February"
+msgstr "Février"
+
+#. module: trobz_crm
+#: field:mail.thread,name:0
+#: field:trobz.crm.event.person,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,exdate:0
+msgid "Exception Date/Times"
+msgstr "Exception Date/Times"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,display_email_fields:0
+#: help:trobz.crm.event.type,display_email_fields:0
+msgid "from, to, cc, attachment..."
+msgstr "de, à, cc, fichier joint..."
+
+#. module: trobz_crm
+#: field:crm.lead,linkedin_profile:0
+#: field:res.partner,linkedin_profile:0
+msgid "Linkedin Profile"
+msgstr "Profile Linkedin"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,alarm_id:0
+#: field:trobz.crm.event,base_calendar_alarm_id:0
+msgid "Alarm"
+msgstr "Alarme"
+
+#. module: trobz_crm
+#: model:ir.actions.act_window,name:trobz_crm.action_view_unclassified_emails_with_opportunity
+msgid "Associate with Opportunity"
+msgstr "Associer à une Opportunité"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "April"
+msgstr "Avril"
+
+#. module: trobz_crm
+#: model:ir.ui.menu,name:trobz_crm.menu_crm_all_sale_emails
+msgid "All Emails"
+msgstr "Tous les Emails"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Recurrency period"
+msgstr "Période de récurrence"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,week_list:0
+msgid "Weekday"
+msgstr "Jour de la semaine"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,byday:0
+msgid "By day"
+msgstr "Par jour"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,attendee_ids:0
+msgid "Your Participants"
+msgstr "Vos Participants"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_trobz_crm_event_type
+#: view:trobz.crm.event:0
+#: field:trobz.crm.event,type_id:0
+#: field:trobz.crm.event.type,name:0
+msgid "Event Type"
+msgstr "Type d'Événement"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: trobz_crm
+#: view:trobz.unclassified_mail_with_user:0
+msgid "Associate Unclassified Emails with User"
+msgstr "Associer le mail à un utilisateur"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,display_email_fields:0
+#: field:trobz.crm.event.type,display_email_fields:0
+msgid "Display Email Fields"
+msgstr "Afficher les champs de mail"
+
+#. module: trobz_crm
+#: help:trobz.crm.event,email_cc:0
+msgid "Carbon copy message recipients"
+msgstr "cc"
+
+#. module: trobz_crm
+#: view:trobz.crm.event:0
+msgid "Accept"
+msgstr "Accepter"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,priority:0
+msgid "High"
+msgstr "Haut"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,month_list:0
+msgid "May"
+msgstr "Mai"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,byday:0
+msgid "Second"
+msgstr "Deuxième"
+
+#. module: trobz_crm
+#: model:ir.model,name:trobz_crm.model_mail_thread
+msgid "Email Thread"
+msgstr "Discussion Email"
+
+#. module: trobz_crm
+#: field:trobz.crm.event,duration:0
+msgid "Duration"
+msgstr "Durée"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,week_list:0
+msgid "Saturday"
+msgstr "Samedi"
+
+#. module: trobz_crm
+#: selection:trobz.crm.event,byday:0
+msgid "Fifth"
+msgstr "cinquième"
+
+#. module: crm
+#: view:crm.lead:0
+msgid "Lead Partner Name"
+msgstr "Nom du Prospect"
+

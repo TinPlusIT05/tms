@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+import hr_holidays_summary
+import hr_holidays_summary_line
+import hr_holidays_detail
+import working_hours_export_wizard
+import hr_resource_allocation_wizard
+import staff_working_attendance_wizard
+import hr_monthly_timesheet_wizard
+import hr_em_leave_summary_wizard
+import hr_dedicated_team_leave_wizard
+import hr_config_settings_wizard

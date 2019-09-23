@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_monthly_timesheet_wizard_form" model="ir.ui.view">
+            <field name="name">view.hr.monthly.timesheet.wizard.form</field>
+            <field name="model">hr.monthly.timesheet.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Working Hours Export Wizard" version="7.0">
+                    <group>
+                        <group>
+                            <field name="month" />
+                        </group>
+                        <group>
+                            <field name="year" />
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="button_export_monthly_timesheet_report" string="Export Timesheet"
+                            type="object" class="oe_highlight" context="{'xls_export': True}"/>
+                        <button name="button_export_monthly_ot_report" string="Export OT Summary"
+                            type="object" class="oe_highlight" context="{'xls_export': True}"/>
+                        <label string="or " />
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_hr_monthly_timesheet_wizard_form" model="ir.actions.act_window">
+            <field name="name">Monthly Timesheet Export</field>
+            <field name="res_model">hr.monthly.timesheet.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_hr_monthly_timesheet_wizard_form" />
+        </record>
+
+    </data>
+</openerp>

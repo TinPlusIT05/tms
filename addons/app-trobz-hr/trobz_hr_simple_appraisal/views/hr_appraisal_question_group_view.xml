@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_hr_appraisal_question_group_tree" model="ir.ui.view">
+			<field name="name">view.hr.appraisal.question.group.tree</field>
+			<field name="model">hr.appraisal.question.group</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_hr_appraisal_question_group_search" model="ir.ui.view">
+			<field name="name">view.hr.appraisal.question.group.search</field>
+			<field name="model">hr.appraisal.question.group</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+				</search>
+			</field>
+		</record>
+		
+		<record id="view_hr_appraisal_question_group_form" model="ir.ui.view">
+			<field name="name">view.hr.appraisal.question.group.form</field>
+			<field name="model">hr.appraisal.question.group</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="name"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_hr_appraisal_question_group" model="ir.actions.act_window">
+			<field name="name">Question Group</field>
+			<field name="res_model">hr.appraisal.question.group</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{}</field>
+		</record>
+	</data>
+</openerp>

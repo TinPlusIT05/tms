@@ -1,0 +1,9 @@
+<openerp>
+	<data>
+		<menuitem name="Wage History" 
+			parent="hr.menu_hr_reporting"
+			sequence="10"
+			action="action_open_hr_wage_history"
+		/>
+	</data>
+</openerp>

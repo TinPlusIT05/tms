@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+	    <record model="analytic.secondaxis" id="tms_modules.analytic_second_axis_project">
+	        <field name="code">project</field>
+            <field name="name">Initial Project Iterations</field>
+	    </record>
+
+        <record model="analytic.secondaxis" id="tms_modules.analytic_second_axis_evolution">
+            <field name="code">evolution</field>
+            <field name="name">Evolution</field>
+        </record>
+
+        <record model="analytic.secondaxis" id="tms_modules.analytic_second_axis_support">
+            <field name="code">support</field>
+            <field name="name">Support</field>
+        </record>
+
+        <record model="analytic.secondaxis" id="tms_modules.analytic_second_axis_guranty">
+            <field name="code">guaranty</field>
+            <field name="name">Guaranty</field>
+        </record>
+
+        <record model="analytic.secondaxis" id="tms_modules.analytic_second_axis_other">
+            <field name="code">other</field>
+            <field name="name">Other</field>
+        </record>
+	</data>
+</openerp>

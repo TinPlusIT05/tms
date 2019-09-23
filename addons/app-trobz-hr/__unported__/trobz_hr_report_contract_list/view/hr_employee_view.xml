@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+         
+        <record id="view_hr_employee_tree_inherit" model="ir.ui.view">
+            <field name="name">view.hr.employee.tree.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree" />
+            <field name="arch" type="xml">
+                <field name="coach_id" position="after">
+                    <field name ='root_department_id' invisible='1'/>
+                    <field name ='team_id' invisible='1'/>
+                    <field name ='sub_team_id' invisible='1'/>
+                </field>
+            </field>
+        </record>
+ 
+		<record id="view_hr_employee_search_inherit" model="ir.ui.view">
+			<field name="name">view.hr.employee.search.inherit</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_filter"/>
+			<field eval="1" name="priority" />
+			<field name="arch" type="xml">
+				<filter string="Company" position="after">
+					<filter string="Root Department" domain="" context="{'group_by':'root_department_id'}"/>
+					<filter string="Team" domain="" context="{'group_by':'team_id'}"/>
+				</filter>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_hr_employee_form_inherit">
+			<field name="name">view.hr.employee.form.inherit</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//group[@string='Position']" position="inside">
+					<group string="Department Hierarchy">
+						<field name ='root_department_id'/>
+						<field name ='team_id'/>
+						<field name ='sub_team_id'/>
+					</group>
+				</xpath>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

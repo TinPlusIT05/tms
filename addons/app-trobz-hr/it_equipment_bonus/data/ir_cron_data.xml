@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+ 		<record forcecreate="True" id="ir_cron_monthly_generate_it_eq_bonus" model="ir.cron">
+            <field name="name">Monthly IT Equipment Bonus</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'hr.contract'" name="model"/>
+            <field eval="'cron_monthly_generate_it_eq_bonus'" name="function"/>
+            <field name="nextcall" eval="(DateTime.now().replace(day=1) + relativedelta(months=1)).strftime('%Y-%m-01 17:00:00')"/>
+            <field eval="'(False,)'" name="args"/>
+        </record>
+    </data>
+</openerp>

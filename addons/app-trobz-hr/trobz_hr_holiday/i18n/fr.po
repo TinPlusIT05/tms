@@ -1,0 +1,389 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* trobz_hr_holiday
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-05 10:52+0000\n"
+"PO-Revision-Date: 2013-11-05 10:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "base.group_hr_manager"
+msgstr "base.group_hr_manager"
+
+#. module: trobz_hr_holiday
+#: help:hr.holidays.status,max_days_allowed:0
+msgid "Maximum Days Allowed for this type of Leave."
+msgstr "Nombre de jours maximum pour ce type de congés."
+
+#. module: trobz_hr_holiday
+#: view:hr.contract:0
+msgid "Paid Leaves"
+msgstr "Congés payés"
+
+#. module: trobz_hr_holiday
+#: model:ir.ui.menu,name:trobz_hr_holiday.menu_open_public_holidays
+msgid "Public Holidays"
+msgstr "Jours fériés"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:154
+#, python-format
+msgid "The First Date must be before the Last Date !"
+msgstr "La date de début doit être antérieure à la date de fin !"
+
+#. module: trobz_hr_holiday
+#: model:ir.actions.act_window,name:trobz_hr_holiday.action_open_public_holidays_this_year
+#: model:ir.ui.menu,name:trobz_hr_holiday.menu_open_public_holidays_this_year
+msgid "Public Holidays This Year"
+msgstr "Jours fériés de l'année en cours"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_employee.py:28
+#, python-format
+msgid "Leave Request for %s"
+msgstr "Demande de congés pour %s"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Reset to New"
+msgstr "Remettre à l'état nouveau"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_employee.py:21
+#, python-format
+msgid "The feature behind the field 'Remaining Legal Leaves' can only be used when there is only one leave type with the option 'Allow to Override Limit' unchecked. (%s Found). Otherwise, the update is ambiguous as we cannot decide on which leave type the update has to be done. \n"
+"You may prefer to use the classic menus 'Leave Requests' and 'Allocation Requests' located in 'Human Resources \\ Leaves' to manage the leave days of the employees if the configuration does not allow to use this field."
+msgstr "La fonctionalité associée au champ 'Jours de congés restants' peut seulement être utilisé quand il y a uniquement un type de congé avec l'option 'Dépassement de limite autorisé'. (trouvé %s). Autrement, la mise à jour serait ambigue car il n'est pas possible de décider  quel type de congé doit être utilisé. \n"
+"Vous pouvez utiliser les menus classiques 'Demande de congé' et 'Demandes d'attribution' dans le module 'Resources humaines > Congés' pour administrer les Demandes de congés des employés si la configuration ne permet pas d'utiliser ce champ."
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,payment_type:0
+#: field:hr.holidays.status,payment_type:0
+msgid "Payment Type"
+msgstr "Type de paiement"
+
+#. module: trobz_hr_holiday
+#: model:ir.model,name:trobz_hr_holiday.model_trobz_hr_public_holidays
+msgid "trobz.hr.public.holidays"
+msgstr "trobz.hr.public.holidays"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:52
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:58
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:64
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:154
+#, python-format
+msgid "Warning !"
+msgstr "Attention !"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,first_date:0
+msgid "First Day"
+msgstr "Premier jour"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,holiday_line:0
+msgid "Holidays Line"
+msgstr "Ligne de congés"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "base.group_hr_user"
+msgstr "base.group_hr_user"
+
+#. module: trobz_hr_holiday
+#: selection:hr.holidays.line,payment_type:0
+#: selection:hr.holidays.status,payment_type:0
+msgid "Paid"
+msgstr "Payé"
+
+#. module: trobz_hr_holiday
+#: field:hr.contract,monthly_paid_leaves:0
+msgid "Monthly Paid leaves"
+msgstr "Congés payés mensuels"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "The balance of allowed holidays is negative, it is a request for advance leaves!"
+msgstr "La balance des jours de congés autorisés est négative, ceci est une demande de congés anticipés !"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+#: field:hr.holidays.line,holiday_employee_id:0
+#: model:ir.model,name:trobz_hr_holiday.model_hr_employee
+msgid "Employee"
+msgstr "Employé"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,holiday_id:0
+msgid "Holiday"
+msgstr "Congé"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Filters the leaves that have the balance of allowed holidays is negative"
+msgstr "Filtre les congés dont la balance de jours de congés autorisés est négative"
+
+#. module: trobz_hr_holiday
+#: model:ir.model,name:trobz_hr_holiday.model_post_hr_holiday
+msgid "Post Deployment "
+msgstr "Post Deployment "
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Remaining Days"
+msgstr "Jours restants"
+
+#. module: trobz_hr_holiday
+#: model:ir.actions.act_window,name:trobz_hr_holiday.action_open_public_holidays_templates
+#: model:ir.ui.menu,name:trobz_hr_holiday.menu_open_public_holidays_templates
+msgid "Public Holidays Templates"
+msgstr "Templates de jour férié"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_employee.py:26
+#, python-format
+msgid "Allocation for %s"
+msgstr "Attribution pour %s"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Approve"
+msgstr "Approuver"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Cancel Leave Request"
+msgstr "Annuler la demande de congé"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+#: field:hr.holidays.line,number_of_days:0
+msgid "Number of Days"
+msgstr "Nombre de jours"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Change to Sick leave (paid)"
+msgstr "Changés en congé maladie (payé)"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,weekday:0
+msgid "Day of the Week"
+msgstr "Jour de la semaine"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Refuse the Cancellation Request"
+msgstr "Refuser la demande d'annulation"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+msgid "List unpaid leave request lines"
+msgstr "Lister les lignes de congés non-payés"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: trobz_hr_holiday
+#: model:ir.model,name:trobz_hr_holiday.model_hr_holidays_line
+msgid "Leave request lines"
+msgstr "Linges de congés"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Request Leave Cancellation"
+msgstr "Annulation de demande de congés"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Approved"
+msgstr "Approuvé"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,first_date_type:0
+msgid "First Day Type"
+msgstr "Type du premier jour"
+
+#. module: trobz_hr_holiday
+#: constraint:hr.holidays:0
+#: constraint:hr.holidays.line:0
+msgid "You can not have 2 leaves that overlaps on same day!"
+msgstr "Vous ne pouvez pas avoir 2 demandes de congés qui se chevauchent dans la même journée."
+
+#. module: trobz_hr_holiday
+#: selection:hr.holidays.line,first_date_type:0
+#: selection:hr.holidays.line,last_date_type:0
+msgid "Full Day"
+msgstr "Jour complet"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.status,max_days_allowed:0
+msgid "Maximum Days Allowed"
+msgstr "Nombre maximum de jours autorisés"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Holiday Line"
+msgstr "Ligne de congés"
+
+#. module: trobz_hr_holiday
+#: view:trobz.hr.public.holidays:0
+msgid "List Public Holiday Template"
+msgstr "Liste des templates de jour férié"
+
+#. module: trobz_hr_holiday
+#: view:trobz.hr.public.holidays:0
+msgid "List Public Holiday"
+msgstr "Liste des jours fériés"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,country:0
+msgid "Country"
+msgstr "Pays"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Leave Requests"
+msgstr "Demandes de congé"
+
+#. module: trobz_hr_holiday
+#: model:ir.model,name:trobz_hr_holiday.model_hr_contract
+msgid "Contract"
+msgstr "Contrat"
+
+#. module: trobz_hr_holiday
+#: selection:hr.holidays.line,first_date_type:0
+#: selection:hr.holidays.line,last_date_type:0
+msgid "Morning"
+msgstr "Matin"
+
+#. module: trobz_hr_holiday
+#: model:ir.model,name:trobz_hr_holiday.model_hr_holidays
+msgid "Leave"
+msgstr "Congé"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+#: selection:hr.holidays.line,payment_type:0
+#: selection:hr.holidays.status,payment_type:0
+msgid "Unpaid"
+msgstr "Non-payé"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Accept the Cancellation Request"
+msgstr "Accepter la demande d'annulation"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,last_date:0
+msgid "Last Day"
+msgstr "Dernier jour"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,allo_date:0
+msgid "Allocation Create Date"
+msgstr "Date de création de l'attribution"
+
+#. module: trobz_hr_holiday
+#: field:trobz.hr.public.holidays,template_holidays:0
+msgid "Template Holidays"
+msgstr "Modèle de congés"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays:0
+msgid "Over Allocation Days"
+msgstr "Surplus d'attribution"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:140
+#, python-format
+msgid "The date is invalid. \n"
+"You can not have 2 leave request lines that overlaps on same day!"
+msgstr "La date n'est pas valide. \n"
+"Vous ne pouvez pas avoir 2 lignes de congés qui se chevauchent !"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,is_over_allocation_days:0
+msgid "Over Allocation Day"
+msgstr "Surplus d'attribution"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+#: field:hr.holidays.line,holiday_status_id:0
+#: view:hr.holidays.status:0
+#: model:ir.model,name:trobz_hr_holiday.model_hr_holidays_status
+msgid "Leave Type"
+msgstr "Type de congé"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays,month_year:0
+msgid "Month-Year"
+msgstr "Mois-année"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+#: model:ir.actions.act_window,name:trobz_hr_holiday.action_open_hr_holidays_line
+#: model:ir.ui.menu,name:trobz_hr_holiday.menu_leave_request_lines
+msgid "Leave Request Lines"
+msgstr "Ligne de congés"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_employee.py:21
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:139
+#, python-format
+msgid "Warning!"
+msgstr "Attention !"
+
+#. module: trobz_hr_holiday
+#: field:hr.holidays.line,last_date_type:0
+msgid "Last Day Type"
+msgstr "Type du dernier jour"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:52
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:58
+#: code:addons/trobz_hr_holiday/model/hr_holidays_line.py:64
+#, python-format
+msgid "Leave Request Lines is readonly !"
+msgstr "La ligne de congés est en lecture seule !"
+
+#. module: trobz_hr_holiday
+#: view:hr.holidays.line:0
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: trobz_hr_holiday
+#: code:addons/trobz_hr_holiday/model/hr_holidays.py:106
+#, python-format
+msgid "Request Cancelled, waiting approve."
+msgstr "Demande annulée, en attente d'approbation."
+
+#. module: trobz_hr_holiday
+#: selection:hr.holidays.line,first_date_type:0
+#: selection:hr.holidays.line,last_date_type:0
+msgid "Afternoon"
+msgstr "Après-midi"
+

@@ -1,0 +1,188 @@
+<openerp>
+    <data noupdate="0">
+        <function model="post.object.security.tms.modules" name="start" />
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('hr.contract')" />
+            <value eval="list(['function_update_login_for_contract',
+                               'function_update_date_end_of_conflict_contract',
+                               'function_update_hire_date'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('hr.employee')" />
+            <value eval="list(['function_update_login_for_employee'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('tms.delivery')" />
+            <value eval="list(['function_update_sequence_for_delivery_code'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('tms.support.ticket')" />
+            <value eval="list(['function_remove_sequence_tms_support_ticket'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('tms.forge.ticket')" />
+            <value eval="list(['function_remove_sequence_tms_forge_ticket'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('account.analytic.account')" />
+            <value eval="list(['function_update_sequence_for_analytic_code'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('hr.holidays')" />
+            <value eval="list(['function_update_activity_for_leave_type',
+                               'function_update_holiday_lines_for_leave_summary',
+                               'function_update_booking_chart_for_leave_request'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('hr.holidays.status')" />
+            <value eval="list(['function_remove_duplicate_leave_type'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('hr.job')" />
+            <value eval="list(['function_update_extra_annual_leaves'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('tms.activity')" />
+            <value eval="list(['function_update_conflict_working_hour_related_to_activity'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('tms.instance')" />
+            <value eval="list(['migrate_database_instance'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('post.object.security.tms.modules')" />
+            <value eval="list(['rename_profile_dtm'])"/>
+        </function>
+
+        <function model="trobz.base" name="run_post_object_one_time">
+            <value eval="str('tms.modules.post.object')" />
+            <value eval="list(['update_milestone_number',
+                               'update_company_id',
+                               'update_is_trobz_member',
+                               'update_partner_computed_id',
+                               'update_employee_id',
+                               'monthly_remind_review_emp_email',
+                               'function_update_working_hours_require_ticket',
+                               'remove_subscriber_admin_on_support_tickets',
+                               'notification_preferences_inital_data',
+                               'set_notification_preferences_per_profiles',
+                               'migrate_project_notification_preferences',
+                               'migrate_forge_ticket_notification_preferences',
+                               'migrate_support_ticket_notification_preferences',
+                               'fix_action_id',
+                               'remove_invalid_subscribers_in_support_ticket',
+                               'fix_wrong_period_allocation_request',
+                               'update_forge_ticket_ids',
+                               'update_support_ticket_ids',
+                               'remove_wizard_merge_convert_oppotunity',
+                               'implied_mailman_unsubscribe_me_to_group_user',
+                               'update_sysadmin_access_users',
+                               'update_sysadmin_profile',
+                               'update_tms_activity',
+                               'update_functional_block_for_tickets_uma7_and_delete_functional_block',
+                               'update_is_forget_ticket_status',
+                               'install_translation_po_files',
+                               'update_resolution_for_missing_comment',
+                               'function_update_use_parent_address',
+                               'update_employer_for_existed_partners',
+                               'update_group_sale_salesman',
+                               'update_number_of_days_request_leaves',
+                               'update_allocation_request',
+                               'function_update_active_tms_activity',
+                               'function_update_custom_params_data',
+                               'update_support_ticket_type_on_forge_ticket',
+                               'update_htpasswd_file_on_instance',
+                               'migration_field_last_completer_id',
+                               'update_parameter_tickets_markdown_color_map',
+                               'update_employee_id_on_res_users',
+                               'update_milestone_id_on_tms_instance',
+                               'remove_unnessecery_home_action',
+                               'update_release_dates_on_tms_milestone',
+                               'update__main_dev_milestone_on_tms_milestone',
+                               'function_update_salary_fields_for_hr_applicant',
+                               '_update_start_date_of_tms_activities',
+                               '_update_data_columns_tms_activity',
+                               '_update_receiver_of_email_daily_notification',
+                               '_update_ticket_missing_last_assigned_date',
+                               '_update_reporter_inactive_for_support_ticket',
+                               '_update_team_id_for_employee',
+                               'update_calendar_event_global',
+                               'correct_priority_tms_forge_ticket',
+                               'update_sequence_tms_forge_ticket',
+                               'remove_value_of_language_to_load',
+                               '_update_project_id_for_delivery',
+                               'update_state_order_forge_tiket',
+                               '_update_subcriber_for_forge_ticket',
+                               '_update_std_estimate_for_forge_ticket',
+                               '_update_status_of_exist_support_contract',
+                               '_update_data_for_asset_adjustment',
+                               '_update_working_hour_for_support_ticket',
+                               '_update_data_for_appraisal',
+                               '_update_time_spent_support_ticket',
+                               '_update_leave_type_hr_holidays',
+                               '_update_mailing_list_project',
+                               '_update_balance_benefit',
+                               'update_wrong_workload_support_ticket',
+                               'function_update_leave_manager',
+                               '_update_default_docker_repository',
+                               '_update_data_for_equipment_request',
+                               '_update_wrong_Thai_it_equipment_request',
+                               '_update_balance_on_equipment_request',
+                               '_update_code_and_inactive_leave_type',
+                               '_inactive_leave_type',
+                               'function_update_trainee_contract_type',
+                               'update_nbr_support_dashboard',
+                               'update_field_sprint_forge_ticket',
+                               'update_field_sprint_resource_allocation',
+                               'update_field_sprint_working_hours',
+                               'update_state_of_field_renew_casual_leave',
+                               'update_tms_working_hour_emp',
+                               'update_res_users_emp',
+                               'update_casual_leave_type_tms',
+                               'update_unpaid_leave_type_tms',
+                               'update_sick_leave_type_tms',
+                               'update_maternity_leave_type_tms_adj',
+                               'update_accident_leave_type_tms_adj',
+                               'update_funeral_leave_type_tms_rollback',
+                               'update_parameter_default_sick_leave_paid',
+                               'update_parameter_default_sick_leave_paid_new',
+                               'update_parameter_emergency_medical_type',
+                               'update_wedding_leave_type_tms_renew',
+                               'update_unactive_leave_unpaid_type_tms',
+                               'update_merge_leaves_unpaid_type_tms',
+                               'update_paternity_leave_type_tms',
+                               'remove_funeral_spouse_children_leave_type_tms',
+                               'update_resource_allocation_date_from_date_to',
+                               'update_code_leave_type_tms',
+                               'update_default_project_activity',
+                               'update_ticket_project_tags',
+                               'add_group_tms_manager_for_chaudk',
+                               'create_config_leave_type_unpaid_ids',
+                               'update_color_on_leave_type',
+                               'update_value_default_assignee_id',
+                               'create_trobz_awx_job_param',
+                               'update_project_name_to_lowercase',
+                               'generate_it_equipment_bonus',
+                               'update_check_missing_workload',
+                               'update_trobz_awx_job_param',
+                               'update_trobz_awx_job_param_dockerize_db_instance',
+                               'update_trobz_awx_job_param_deploy',
+                               'update_tms_ticket_comment',
+                               'update_hr_employee_capacity',
+                               'update_location_type'
+                               ])"/>
+        </function>
+    </data>
+</openerp>

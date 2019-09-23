@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <!-- Mail template is done in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="0">
+        <!--Email template: Expired Employment Contracts Next 30 days-->
+        <record id="email_template_contract_end_next_x_days" model="email.template">
+            <field name="name">Expiring Employment Contracts Next ${object.get_contract_expiring_days()} Days</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_to">${object.get_email_to_send() | safe}</field>
+            <field name="subject">[Automatic Notification] Expiring Employment Contracts Next ${object.get_contract_expiring_days()} Days</field>   
+            <field name="model_id" ref="model_hr_contract"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>Hello Managers,</p>
+    <p>List of people having contracts requiring renewal or decision to not renew:</p>
+    <p>${object.get_email_information() | safe}</p>
+    <p>Regards,</p>
+</div>
+            ]]></field>
+        </record>
+
+        <!--Email template: Expired Employment Contracts-->
+        <record id="email_template_contract_end" model="email.template">
+            <field name="name">Expired Employment Contracts</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_to">${object.get_email_to_send() | safe}</field>
+            <field name="subject">[Automatic Notification] Expired Employment Contracts</field>   
+            <field name="model_id" ref="model_hr_contract"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>Hello Managers, </p>
+    <p>Below is the list of expired employment contracts:</p>
+    <p>${object.get_email_information() | safe}</p>
+    <p>Regards,</p>
+</div>
+            ]]></field>
+        </record>
+    </data>
+</openerp>

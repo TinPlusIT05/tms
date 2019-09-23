@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_sales_project_tree" model="ir.ui.view">
+			<field name="name">view_sales_project_tree</field>
+			<field name="model">tms.project</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Project">
+					<field name="name" />
+					<field name="trobz_partner_id" />
+					<field name="partner_id" />
+					<field name="customer_project_manager" />
+					<field name="owner_id" />
+					<field name="description" />
+					<field name="framework_version_id" />
+					<field name="state" />
+					
+					<field name="owner_id" invisible="1" />	
+					<field name="technical_project_manager_id" invisible="1" />
+					<field name="tester_id" invisible="1"/>
+					<field name="project_type_id" invisible="1" />
+					<field name="tms_project_intensity_id" invisible="1" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_sales_project_search" model="ir.ui.view">
+			<field name="name">view_sales_project_search</field>
+			<field name="model">tms.project</field>
+			<field name="inherit_id" ref="tms_modules.view_tms_project_filter" />
+			<field name="arch" type="xml">
+				<filter name="open" position="replace">
+                    <filter string="All" name="display_all"
+                        domain="['|', ('active','=',True), ('active', '=', False)]" />
+                    <filter string="Inactive" name="inactive"
+                        domain="[('active','=',False)]" />
+				</filter>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="tms_modules_sales_projects">
+			<field name="name">Projects</field>
+			<field name="res_model">tms.project</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_sales_project_tree" />
+			<field name="search_view_id" ref="view_sales_project_search" />
+		</record>
+
+	</data>
+</openerp>

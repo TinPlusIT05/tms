@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <record id="property_rule_view_appraisal" model="ir.rule">
+        <field name="name">Employee and evaluators can read their own appraisals </field>
+        <field name="model_id" ref="model_hr_appraisal"/>
+        <field name="domain_force">['|',('employee_id.user_id','=',user.id),('evaluators_user_ids','in',[user.id])]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <record id="property_rule_view_appraisal_for_dtm" model="ir.rule">
+        <field name="name">DTM can read their own employee</field>
+        <field name="model_id" ref="model_hr_appraisal"/>
+        <field name="domain_force">[('employee_id.parent_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4,ref('group_hr_appraisal_employee_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <record id="property_rule_view_appraisal_manager" model="ir.rule">
+        <field name="name">Users with group HR managers can read all appraisals</field>
+        <field name="model_id" ref="model_hr_appraisal"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('base.group_hr_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="property_rule_view_appraisal_input" model="ir.rule">
+        <field name="name">Author can read his appraisal inputs</field>
+        <field name="model_id" ref="model_hr_appraisal_input"/>
+        <field name="domain_force">[('author_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <record id="property_rule_view_appraisal_input_for_dtm" model="ir.rule">
+        <field name="name">DTM can read their own employee appraisal inputs</field>
+        <field name="model_id" ref="model_hr_appraisal_input"/>
+        <field name="domain_force">[('appraisal_id.employee_id.parent_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4,ref('group_hr_appraisal_employee_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+     <record id="property_rule_view_appraisal_input_manger" model="ir.rule">
+        <field name="name">Users with group HR Manager can read all appraisal inputs</field>
+        <field name="model_id" ref="model_hr_appraisal_input"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('base.group_hr_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+  </data>
+</openerp>

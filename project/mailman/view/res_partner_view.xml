@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_res_partner_form_mailman_inherit">
+			<field name="name">Partner Form</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+			    <xpath expr="//page[@name='sales_purchases']" position="after">
+                    <page string="Mailing Lists" name="page_mailing_list">
+                    	<button name="button_remove_all_mailing_list" class="oe_highlight"
+                       		type="object" string="Remove from all mailing lists"
+                       		confirm="Are you sure you want to do this?"/>
+                        <!-- 
+                            The field mailing_list_ids is set as reaonly 
+                            otherwise the whole logic to define when to add, 
+                            remove delete from the mailing_list would have to
+                            be handled as well on the res.partner object.
+                         -->
+                        <field name="mailing_list_ids"/>
+                    </page>
+                </xpath>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

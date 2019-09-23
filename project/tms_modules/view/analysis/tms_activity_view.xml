@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_tms_activity_tree" model="ir.ui.view">
+            <field name="name">tms.activity.tree</field>
+            <field name="model">tms.activity</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Activities">
+                    <field name="project_id" />
+                    <field name="name" />
+                    <field name="analytic_secondaxis_id"/>
+                    <field name="day_planned" sum="Total"/>
+                    <field name="day_spent" sum="Total"/>
+                    <field name="day_remaining" sum="Total"/>
+                    <field name="progress" widget='progressbar' />
+                    <field name="owner_id" />
+                    <field name="start_date" />
+                    <field name="planned_date" />
+                    <field name="state" />
+                    <field name="project_type_id" invisible="1" />
+                    <field name="framework_version_id" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_activity_filter" model="ir.ui.view">
+            <field name="name">tms.activity.filter</field>
+            <field name="model">tms.activity</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Activities">
+                    <group string="Filter">
+                        <filter name="in_progress" string="In Progress"
+                            domain="[('state','=','in_progress')]" />
+                        <separator />
+                        <filter name="payable" string="Payable"
+                            domain="[('state','in',('staging','invoiced'))]"
+                            help="Delivered but not paid yet." />
+                        <separator />
+                        <filter name="billable" string="Billable"
+                            domain="[('is_billable','=',True)]" />
+                        <separator />
+                        <filter name="filter_non_billable"
+                            string="Non Billable" domain="[('is_billable','=',False)]" />
+                        <separator />
+                        <filter name="filter_my" string="My"
+                            domain="[('owner_id','=',uid)]" />
+                        <filter name="review" string="Need Review"
+                            domain="[('need_review','=', True)]" />
+                        <filter name="no_review" string="No Review"
+                            domain="[('need_review','=', False)]" />
+                        <separator />
+                        <filter name="billable_production" string="Billable Production"
+                        	domain="[('analytic_secondaxis_id.type', '=', 'billable_production')]" />
+                        <filter name="all_billable" string="All Billable"
+                        	domain="[('analytic_secondaxis_id.type', 'in', ('billable_not_production', 'billable_production') )]" />
+                    </group>
+                    <group string="Fields">
+                        <field name="project_id" />
+                        <field name="owner_id" />
+                        <field name="state" />
+                        <field name="name" />
+                        <field name="team_id"/>
+                        <field name="planned_date" />
+                        <field name="project_type_id" />
+                        <field name="framework_version_id" />
+                        <field name="start_date"/>
+                    </group>
+                    <group string="Group By">
+                        <filter name="group_billable" string="Billable"
+                            domain="[]" context="{'group_by':'is_billable'}" />
+                        <separator />
+                        <filter name="group_activity_reporting_year"
+                            string="Activity Reporting Year" domain="[]"
+                            context="{'group_by':'activity_reporting_date:year'}" />
+                        <separator />
+                        <filter name="group_activity_reporting_month"
+                            string="Activity Reporting Month" domain="[]"
+                            context="{'group_by':'activity_reporting_date:month'}" />
+                        <separator />
+                        <filter name="group_start_date"
+                            string="Start Date Activity" domain="[]"
+                            context="{'group_by':'start_date'}" />
+                        <separator />
+                        <filter name="group_delivery_deadline"
+                            string="Delivery Deadline" domain="[]"
+                            context="{'group_by':'planned_date'}" />
+                        <separator />
+                        <filter name="group_owner" string="Owner"
+                            domain="[]" context="{'group_by':'owner_id'}" />
+                        <separator />
+                        <filter name="group_project" string="Project"
+                            domain="[]" context="{'group_by':'project_id'}" />
+                        <separator />
+                        <filter name="group_analytic_2nd_axis"
+                            string="Analytic 2nd Axis" domain="[]"
+                            context="{'group_by':'analytic_secondaxis_id'}" />
+                        <separator />
+                        <filter name="group_state" string="Status"
+                            domain="[]" context="{'group_by':'state'}" />
+                        <separator />
+                        <filter name="group_project_type" string="Project Type"
+                            domain="[]" context="{'group_by':'project_type_id'}" />
+                        <separator />
+                        <filter name="group_framework" string="Framework Version"
+                            domain="[]" context="{'group_by':'framework_version_id'}" />
+	                    <filter name="open" string="Open"
+	                        domain="[('state', 'in', ('planned', 'in_progress') )]" />
+	                    <filter name="group_team" string="Team"
+	                        domain="[]" context="{'group_by':'team_id'}" />
+	                    <filter name="group_invoiceable" string="Invoiceable by Trobz Vietnam"
+	                        domain="[]" context="{'group_by':'invoiceable'}" />
+	                    <filter name="group_activity_category" string="Activity Category"
+	                        domain="[]" context="{'group_by':'activity_category'}" />
+	                    <filter name="group_need_review" string="Need Review"
+	                        domain="[]" context="{'group_by':'need_review'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_tms_activity_form" model="ir.ui.view">
+            <field name="name">tms.activity.form</field>
+            <field name="model">tms.activity</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Activity" >
+                    <sheet>
+                    	<div class="oe_right oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                    icon="fa fa-star-o"
+                                    help="Support Tickets approved and not yet delivered"
+                                    type='action'
+                                    name='%(action_tms_support_ticket_from_activity)d'>
+                            	<field name='support_ticket_count' widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button"
+                                    icon="fa fa-star"
+                                    type='action'
+                                    name='%(action_tms_forge_ticket_from_activity)d'>
+                            	<field name='forge_ticket_count' widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button"
+                                    icon="fa fa-clock-o"
+                                    type='action'
+                                    name='%(action_view_working_hour_from_activity)d'>
+                            	<field name='working_duration_count' widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="project_id" />
+                                <field name="team_id" />
+                                <field name="owner_id" />
+                                <field name="priority" />
+                            </group>
+                            <group>
+                                <field name="analytic_secondaxis_id" />
+                                <field name="start_date" />
+                                <field name="planned_date" />
+                                <field name="state" />
+                                <field name="invoiceable" />
+                            </group>
+                            <field name="code" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Status">
+                            	<group>
+                            		<group>
+                            			<field name="next_real_deadline" />
+                            		</group>
+                            		<group>
+                            			<field name="need_review" />
+                            		</group>
+                            	</group>
+                            	<separator string="Rough Manual Estimate" />
+                            	<group>
+                            		<h3>DTM</h3>
+                            	</group>
+                            	<group>
+                            		<field name="dtm_workload"/>
+                            	</group>
+                            	<group>
+                            		<h3>Dev</h3>
+                            	</group>
+                            	<group>
+                            		<group>
+                            			<field name="recurring_workload"/>
+                            			<field name="extra_workload"/>
+                            		</group>
+                            		<group>
+                            			<field name="probability"/>
+                            			<field name="total_workload"/>
+                            		</group>
+                            	</group>
+                             	<group string='Status'>
+                             		<field name="status_ids" nolabel='1'
+                             			context="{'form_view_ref': 'tms_modules.view_activity_status_form_from_activity'}"/>
+                             	</group>
+                             	<group string='Tasks'>
+                             		<button
+                             			class="oe_right oe_stat_button"
+                             			icon="fa-tasks"
+                             			help="List of all tasks"
+                             			type='object'
+                             			name='get_activity_task'>
+                             			<field name='activity_task_count'
+                             				widget="statinfo"/>
+                             		</button>
+                             		<group colspan='4'>
+                             			<field name="tasks_ids" nolabel='1'
+                                               context="{'tree_view_ref': 'tms_modules.view_activity_task_tree_from_activity',
+                                               'form_view_ref': 'tms_modules.view_activity_task_form_from_activity'}"/>
+                             		</group>
+                             		<group colspan='4'>
+                             			<field name="next_expected_deadline" />
+                             		</group>
+                             	</group>
+                             	<group string='Links'>
+                             		<field name="links_ids" nolabel='1'
+                             			context="{'form_view_ref': 'tms_modules.view_activity_link_form_from_activity'}"/>
+                             	</group>
+                             </page>
+                            <page string="General Info">
+                                <separator string="Configuration" />
+                                <group>
+                                    <group>
+                                        <field name="working_hours_requires_ticket" />
+                                        <field name="job_type_ids" widget="many2many_tags"/>
+                                        <field name="account_id" required="1"/>
+                                        <field
+                                        	name="overide_project_customer_id"
+                                        	domain="[('is_company', '=', True),
+                                            ('customer', '=', True)]" options="{'no_create': True, 'create_edit': False, 'no_open': True}" />
+                                        <field name="date_start" />
+                                        <field name="date_end" />
+                                    </group>
+                                    <group>
+                                        <field name="is_billable" />
+                                        <field name="activity_reporting_date" />
+                                        <field name="active" />
+                                    </group>
+                                </group>
+                                <separator string="Description" />
+                                <group>
+	                                <field name="description" colspan="4"
+	                                    nolabel="1" />
+                                </group>
+                            </page>
+                            <page string="Resources">
+                                <field name="resource_allocation_ids"
+                                    nolabel="1"
+                                    context="{'default_activity_id': active_id}" />
+                            </page>
+                            <page string="Key Figures">
+                            	<separator string="Rough Manual Estimate" />
+                            	<group>
+                            		<h3>DTM</h3>
+                            	</group>
+                            	<group>
+                            		<field name="dtm_workload"/>
+                            	</group>
+                            	<group>
+                            		<h3>Dev</h3>
+                            	</group>
+                            	<group>
+                            		<group>
+                            			<field name="recurring_workload"/>
+                            			<field name="extra_workload"/>
+                            		</group>
+                            		<group>
+                            			<field name="probability"/>
+                            			<field name="total_workload"/>
+                            		</group>
+                            	</group>
+                            	<group string="Time Sold and Budget">
+                            		<group>
+                            			<field name="day_sold" string="Development Budget (d)"/>
+                            		</group>
+                            		<group>
+                            			<field name="day_sold_dev" string="Client Time Sold (d)" />
+                            		</group>
+                            	</group>
+
+                            	<group string="Estimates from Support Tickets">
+                            		<group>
+                            			<field name="day_remaining" />
+                            			<field name="day_planned" />
+                            		</group>
+                            		<group>
+                                        <field name="progress"
+                                            widget='progressbar' />
+                                        <field name="completion_forecast" />
+                            		</group>
+                            	</group>
+
+                            	<group string="Time spent">
+                            		<group>
+                                        <field name="day_spent" />
+
+                            		</group>
+                            		<group>
+                                        <field name="day_spent_working_hours" />
+                            		</group>
+                            	</group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tms_activity_support_ticket_tree" model="ir.ui.view">
+            <field name="name">tms.activity.support.ticket.tree</field>
+            <field name="model">tms.activity</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Project Activities">
+                    <field name="name" />
+                    <field name="project_id" />
+                    <field name="day_planned" sum="Total planned"/>
+                    <field name="workload_achieved" sum="Total"/>
+                    <field name="day_sold" sum="Total"/>
+                    <field name="day_spent_working_hours" sum="Total"/>
+                    <field name="progress" widget='progressbar' />
+                    <field name="start_date" />
+                    <field name="planned_date" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_activity_support_ticket_form" model="ir.ui.view">
+            <field name="name">tms.activity.support.ticket.form</field>
+            <field name="model">tms.activity</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Activity" >
+                    <sheet>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                    icon="fa fa-star-o"
+                                    help="Support Tickets approved and not yet delivered"
+                                    type='action'
+                                    name='%(action_tms_support_ticket_from_activity)d'>
+                                <field name='support_ticket_count' widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button"
+                                    icon="fa fa-clock-o"
+                                    type='action'
+                                    name='%(action_view_working_hour_support_ticket_from_activity)d'>
+                                <field name='working_duration_count' widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="project_id" />
+                                <field name="owner_id" />
+                                <field name="priority" />
+                            </group>
+                            <group>
+                                <field name="analytic_secondaxis_id" />
+                                <field name="start_date" />
+                                <field name="planned_date" />
+                                <field name="state" />
+                            </group>
+                            <field name="code" invisible="1"/>
+                        </group>
+                        <group string="Estimates from Support Tickets">
+                            <group>
+                                <field name="day_remaining" />
+                                <field name="workload_achieved" />
+                            </group>
+                            <group>
+                                <field name="day_planned" />
+                                <field name="progress" widget='progressbar' />
+                            </group>
+                        </group>
+                        <group string="Time spent">
+                            <group>
+                                <field name="day_spent" />
+                            </group>
+                            <group>
+                                <field name="day_spent_working_hours" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_tms_activity_support_ticket" model="ir.actions.act_window">
+            <field name="name">Project Activities</field>
+            <field name="res_model">tms.activity</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('project_id.show_project_analysis', '=', True)]</field>
+            <field name="context">{'search_default_open':1}</field>
+        </record>
+
+        <record model="ir.actions.act_window.view"
+            id="action_view_tms_activity_support_ticket_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_tms_activity_support_ticket_tree"/>
+            <field name="act_window_id" ref="action_view_tms_activity_support_ticket"/>
+        </record>
+
+        <record model="ir.actions.act_window.view"
+            id="action_view_tms_activity_support_ticket_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_tms_activity_support_ticket_form"/>
+            <field name="act_window_id" ref="action_view_tms_activity_support_ticket"/>
+        </record>
+
+        <!-- action used on dashboard -->
+        <record id="action_view_tms_activity_billable_in_progress"
+            model="ir.actions.act_window">
+            <field name="name">Activities billable in progress</field>
+            <field name="res_model">tms.activity</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_in_progress':1,
+                'search_default_billable':1}
+            </field>
+        </record>
+
+		<!-- Action for Analysis > Activities > Billable Production Activities -->
+        <record id="action_view_tms_billable_activity"
+            model="ir.actions.act_window">
+            <field name="name">Billable Production Activities</field>
+            <field name="res_model">tms.activity</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_open':1,
+            	'search_default_billable_production': 1}</field>
+        </record>
+
+		<!-- Action for Analysis > Activities > All Billable Activities -->
+        <record id="action_view_tms_customer_activity"
+            model="ir.actions.act_window">
+            <field name="name">All Billable Activities</field>
+            <field name="res_model">tms.activity</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_open':1,
+            	'search_default_all_billable': 1}</field>
+        </record>
+
+        <!-- Action for Analysis > Activities > All Activities -->
+        <record id="action_view_tms_activity" model="ir.actions.act_window">
+            <field name="name">Activities</field>
+            <field name="res_model">tms.activity</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_open':1}</field>
+        </record>
+    </data>
+</openerp>

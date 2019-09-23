@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+ 		<record forcecreate="True" id="ir_cron_reminder_email_emoloyee_and_evaluators" model="ir.cron">
+            <field name="name">Appraisal Send Reminder</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="True" name="doall"/>
+            <field name="model">hr.appraisal</field>
+            <field name="function">run_send_email_reminder</field>
+            <field name="nextcall" eval="time.strftime('%Y-%m-%d') + ' 22:00:00'"/>
+            <field name="args">()</field>
+        </record>        
+    </data>
+</openerp>

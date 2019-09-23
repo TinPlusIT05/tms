@@ -1,0 +1,7 @@
+import hr_appraisal
+import hr_appraisal_input
+import hr_appraisal_question_group
+import hr_appraisal_question
+import hr_appraisal_template
+import hr_appraisal_input_line
+import hr_employee

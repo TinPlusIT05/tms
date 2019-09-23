@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+        <!-- choose.internal.users.to.notify.wizard form view -->
+        <record id="choose_internal_users_to_notify_wizard_view_form" model="ir.ui.view">
+            <field name="name">choose.internal.users.to.notify.wizard.view.form</field>
+            <field name="model">choose.internal.users.to.notify.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="instance_user_ids" widget="many2many_tags" domain="[('employee_id', '!=', False)]"/>
+                            <field name="notify_type" invisible="1"/>
+                        </group>
+                        <group attrs="{'invisible': [('notify_type', '!=', 'tms.docker.repo')]}">
+                            <group>
+                                <field name="host_id"
+                                    attrs="{'required': [('notify_type', '=', 'tms.docker.repo')]}"
+                                    options="{'no_create_edit': True}"
+                                    domain="[('name', 'in', ['docker-build', 'docker-build-eu'])]"/>
+                                <field name="database_name"
+                                    attrs="{'required': [('notify_type', '=', 'tms.docker.repo')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                            <button name="regenerate_http_auth" type="object" string="OK" class="oe_highlight" />
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel" />
+                        </footer>
+                </form>
+            </field>
+        </record>
+        <!-- choose.internal.users.to.notify.wizard action window -->
+        <record id="choose_internal_users_to_notify_wizard_action" model="ir.actions.act_window">
+            <field name="name">Choose Other Internal Users to Notify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">choose.internal.users.to.notify.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

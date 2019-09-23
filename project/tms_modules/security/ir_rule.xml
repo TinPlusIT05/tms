@@ -1,0 +1,347 @@
+<?xml version="1.0"?>
+<openerp>
+	<data noupdate="0">
+
+		<record model="ir.rule" id="customer_activity_rule">
+			<field name="name">Activity</field>
+			<field name="model_id" ref="model_tms_activity" />
+			<field name="groups" eval="[(4, ref('group_tms_activity_customer'))]" />
+            <field name="domain_force">['|', (user.is_trobz_member, '=', True),
+                ('partner_id', 'in', [project.partner_id.id for project in user.supporter_of_project_ids])]</field>
+		</record>
+
+        <!-- Support Ticket (TMS Customer) -->
+        <!-- A customer should be able to see only the support tickets of the projects for which he/she is a supporter. -->
+	    <record model="ir.rule" id="customer_support_ticket_rule">
+	        <field name="name">Customer Support Ticket</field>
+	        <field name="model_id" ref="model_tms_support_ticket"/>
+	        <field name="groups" eval="[(4, ref('group_tms_customer'))]"/>
+	        <field name="domain_force">[('project_id', 'in', [project.id for project in user.supporter_of_project_ids])]</field>
+	    </record>
+
+	    <record model="ir.rule" id="working_hour_rule">
+	    	<field name="name">Working Hour</field>
+	    	<field name="model_id" ref="model_tms_working_hour"/>
+	    	<field name="groups" eval="[(4, ref('group_profile_tms_partner_admin'))]"/>
+	    	<field name="perm_read" eval="1"/>
+	    	<field name="domain_force">[('partner_computed_id', '=', user.employer_id.id),('partner_computed_id','!=',False)]</field>
+	    </record>
+
+        <!-- Project (TMS Customer) -->
+        <!-- A customer should be able to see only the projects for which he/she is a supporter. -->
+        <record model="ir.rule" id="customer_tms_project_rule">
+            <field name="name">Customer TMS Project</field>
+            <field name="model_id" ref="model_tms_project"/>
+            <field name="groups" eval="[(4, ref('group_tms_customer'))]"/>
+            <field name="domain_force">[('id', 'in', [project.id for project in user.supporter_of_project_ids])]</field>
+        </record>
+
+        <!-- Milestone (TMS Customer) -->
+        <!-- A customer should be able to see only the Milestones of the projects for which he/she is a supporter. -->
+        <record model="ir.rule" id="customer_tms_milestone_rule">
+            <field name="name">Customer TMS Milestone</field>
+            <field name="model_id" ref="model_tms_milestone"/>
+            <field name="groups" eval="[(4, ref('group_trobz_partner'))]"/>
+            <field name="domain_force">[('project_id', 'in', [project.id for project in user.supporter_of_project_ids])]</field>
+        </record>
+
+        <!-- Partner (TMS Customer) -->
+        <!-- Partner who is a supporter of `Default Supporter of Projects` on User form
+             Partner who is the Employer of a supporter -->
+	    <record model="ir.rule" id="res_partner_rule">
+	        <field name="name">Partners</field>
+	        <field name="model_id" ref="base.model_res_partner"/>
+	        <field name="groups" eval="[(4, ref('group_tms_customer'))]"/>
+	        <field name="domain_force">
+                ['|', ('id', 'in', [supporter.employer_id.id for supporter in user.customer_visible_user_ids]),
+                    ('id', 'in', [supporter.partner_id.id for supporter in user.customer_visible_user_ids])]
+	        </field>
+	    </record>
+
+        <!-- User (TMS Customer) -->
+        <!-- User who is a supporter of `Default Supporter of Projects` on User form-->
+        <record model="ir.rule" id="res_users_rule">
+            <field name="name">Subscribers</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="groups" eval="[(4, ref('group_tms_customer'))]"/>
+            <field name="domain_force">
+                [('id', 'in', [supporter.id for supporter in user.customer_visible_user_ids])]
+            </field>
+        </record>
+
+		<!-- User sign in can see all leave requests of subordinates (Show the
+			buttons Approve/Refuse/Cancel/Accept) and myself -->
+		<record model="ir.rule" id="holidays_management_rule">
+			<field name="name">Leave Request Management Rule</field>
+			<field name="model_id" ref="hr_holidays.model_hr_holidays" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="True" />
+			<field name="domain_force">['|',('employee_id', 'child_of', [user.employee_id.id]),('employee_id', 'in', [employee_id.id for employee_id in user.employee_id.approval_employee_ids])]
+			</field>
+			<field name="groups"
+				eval="[(4,ref('tms_modules.group_profile_tms_delivery_team_manager')),(4,ref('tms_modules.group_profile_tms_sysadmin_manager'))]" />
+		</record>
+
+		<record model="ir.rule" id="holidays_line_management_rule">
+			<field name="name">Leave Request Lines Management Rule</field>
+			<field name="model_id" ref="trobz_hr_holiday.model_hr_holidays_line" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="True" />
+			<field name="domain_force">['|',('employee_id', 'child_of', [user.employee_id.id]),('employee_id', 'in', [employee_id.id for employee_id in user.employee_id.approval_employee_ids])]
+			</field>
+			<field name="groups"
+				eval="[(4,ref('tms_modules.group_profile_tms_delivery_team_manager')),(4,ref('tms_modules.group_profile_tms_sysadmin_manager'))]" />
+		</record>
+
+        <!-- Normal Employee can see Job Applicants that he/she is follower -->
+        <record model="ir.rule" id="applicant_rule_for_hr_employee">
+            <field name="name">HR Employees can see his own Applicants</field>
+            <field name="model_id" ref="hr_recruitment.model_hr_applicant"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('message_follower_ids','in', [user.partner_id.id])]</field>
+            <field name="groups" eval="[(6, 0, [ref('base.group_user')])]"/>
+        </record>
+
+        <!--  User in group HR Manager and Officer can Create, Read and Update all HR Applicant -->
+        <record model="ir.rule" id="job_rule_for_hr_manager_officer">
+            <field name="name">HR Manager and Officer can Create, Read and Update all HR Applicant</field>
+            <field name="model_id" ref="hr_recruitment.model_hr_applicant"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(6, 0, [ ref('group_tms_hr_job_applicant')])]" />
+        </record>
+
+        <!-- Normal Employee can see Job Positions that he/she is follower -->
+        <record model="ir.rule" id="job_rule_for_tms_employee">
+            <field name="name">Employees can see Job Positions that he/she is follower</field>
+            <field name="model_id" ref="hr_recruitment.model_hr_job"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('message_follower_ids','in', [user.partner_id.id])]</field>
+            <field name="groups" eval="[(6, 0, [ref('base.group_user')])]" />
+        </record>
+
+        <!-- User in group HR Manager and Officer can Create, Read and Update all Jobs -->
+        <record model="ir.rule" id="applicant_rule_for_hr_manager_officer">
+            <field name="name">HR Managers and Officers can see all Applicants</field>
+            <field name="model_id" ref="hr_recruitment.model_hr_job"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(6, 0, [ ref('group_tms_hr_job_applicant')])]" />
+        </record>
+
+        <record model="ir.rule" id="erppeek_report_config_rule">
+            <field name="name">ERP Peeks Report Config</field>
+            <field name="model_id" ref="model_erppeek_report_config"/>
+            <field name="groups" eval="[(4, ref('base.group_user')), (4, ref('group_tms_customer'))]"/>
+            <field name="domain_force">[('profile_ids', 'in', [user.group_profile_id.id])]</field>
+        </record>
+
+        <!-- User in group HR Officer can Create, Read and Update the Capacity of employee they manage directly or indirectly -->
+        <record model="ir.rule" id="employee_capacity_rule_for_hr_officer">
+            <field name="name">HR Officer can CRUD all Capacity of their employee</field>
+            <field name="model_id" ref="model_hr_employee_capacity"/>
+            <field name="groups" eval="[(4, ref('base.group_hr_user'))]" />
+            <field name="domain_force">[('employee_id', 'child_of', [user.employee_id.id])]</field>
+
+        </record>
+
+        <record model="ir.rule" id="partner_tms_activity_rule">
+            <field name="name">Project Activity</field>
+            <field name="model_id" ref="model_tms_activity" />
+            <field name="groups" eval="[(4, ref('group_tms_customer'))]" />
+            <field name="domain_force">[
+                ('project_id', 'in', user.supporter_of_project_ids.ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="partner_tms_working_hour_rule">
+            <field name="name">Partner Working Hour</field>
+            <field name="model_id" ref="model_tms_working_hour" />
+            <field name="groups" eval="[(4, ref('group_tms_customer'))]" />
+            <field name="domain_force">[
+                ('tms_activity_id', 'in', [activity.id for project in user.supporter_of_project_ids for activity in project.activity_ids])]</field>
+        </record>
+
+        <!-- All non-trobz members can r, w, c, d only the filters which are created by himself -->
+        <record model="ir.rule" id="ir_filter_rule_for_tms_customer">
+            <field name="name">TMS Customer can have full access to his filters</field>
+            <field name="model_id" ref="base.model_ir_filters"/>
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="True" />
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('tms_modules.group_tms_customer'))]" />
+        </record>
+
+        <!-- External dev only see project he join -->
+        <record model="ir.rule" id="external_dev_see_project_he_join">
+            <field name="name">External Dev can see project he join</field>
+            <field name="model_id" ref="model_tms_project" />
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_external_developer'))]" />
+            <field name="domain_force">[('id','in', [p.id for p in user.external_project_ids])]</field>
+        </record>
+
+        <!-- External dev only see forge ticket of projects he join -->
+        <record model="ir.rule" id="external_dev_see_forge_ticket">
+            <field name="name">External Dev can see forge ticket of projects he join</field>
+            <field name="model_id" ref="model_tms_forge_ticket" />
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_external_developer'))]" />
+            <field name="domain_force">[('project_id','in', [p.id for p in user.external_project_ids])]</field>
+        </record>
+
+        <!-- External dev only see support ticket of projects he join -->
+        <record model="ir.rule" id="external_dev_see_support_ticket">
+            <field name="name">External Dev can see support ticket of projects he join</field>
+            <field name="model_id" ref="model_tms_support_ticket" />
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_external_developer'))]" />
+            <field name="domain_force">[('project_id','in', [p.id for p in user.external_project_ids])]</field>
+        </record>
+
+        <!-- External dev only see instances of projects he join -->
+        <record model="ir.rule" id="external_dev_see_instance">
+            <field name="name">External Dev can see instance of projects he join</field>
+            <field name="model_id" ref="model_tms_instance" />
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_external_developer'))]" />
+            <field name="domain_force">[('project_id','in', [p.id for p in user.external_project_ids])]</field>
+        </record>
+
+        <!-- External dev only see milestone of projects he join -->
+        <record model="ir.rule" id="external_dev_see_milestone">
+            <field name="name">External Dev can see milestone of projects he join</field>
+            <field name="model_id" ref="model_tms_milestone" />
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_external_developer'))]" />
+            <field name="domain_force">[('project_id','in', [p.id for p in user.external_project_ids])]</field>
+        </record>
+
+        <!-- External dev only see reopening of projects he join -->
+        <record model="ir.rule" id="external_dev_see_reopen">
+            <field name="name">External Dev can see reopening of projects he join</field>
+            <field name="model_id" ref="model_forge_ticket_reopening" />
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_external_developer'))]" />
+            <field name="domain_force">[('project_id','in', [p.id for p in user.external_project_ids])]</field>
+        </record>
+
+        <!-- External dev only see deliveris of projects he join -->
+        <record model="ir.rule" id="external_dev_see_delivery">
+            <field name="name">External Dev can see deliveries of projects he join</field>
+            <field name="model_id" ref="model_tms_delivery" />
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_external_developer'))]" />
+            <field name="domain_force">[('project_id','in', [p.id for p in user.external_project_ids])]</field>
+        </record>
+
+        <!-- External dev only see activities of projects he join -->
+        <record model="ir.rule" id="external_dev_see_activity">
+            <field name="name">External Dev can see activities of projects he join</field>
+            <field name="model_id" ref="model_tms_activity" />
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_external_developer'))]" />
+            <field name="domain_force">[('project_id','in', [p.id for p in user.external_project_ids])]</field>
+        </record>
+
+        <record id="property_rule_view_appraisal_input_for_user" model="ir.rule">
+            <field name="name">Author and evaluators can read the appraisal inputs of the appraisal they own when it done</field>
+            <field name="model_id" ref="model_hr_appraisal_input"/>
+            <field name="groups" eval="[(4, ref('tms_modules.group_appraisal_input_owner'))]" />
+            <field name="domain_force">['&amp;',('appraisal_id.state','=','done'),'|',('appraisal_id.evaluators_user_ids','in',[user.id]),('appraisal_id.employee_id.user_id','=',user.id)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_all_staff_can_create_trobz_asset" model="ir.rule">
+            <field name="name">All staffs can create new request to buy Trobz's asset</field>
+            <field name="model_id" ref="model_hr_equipment_request"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]" />
+            <field name="domain_force">[('create_uid','=',user.id),('type','=','trobz')]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="hr_holidays.property_rule_holidays_officer" model="ir.rule">
+            <field name="name">Holidays Officer</field>
+            <field name="model_id" ref="hr_holidays.model_hr_holidays"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(6, 0, [ref('base.group_hr_manager')])]"/>
+        </record>
+
+        <record id="trobz_hr_holiday.property_rule_holidays_line_officer" model="ir.rule">
+            <field name="name">Holiday Lines Officer</field>
+            <field name="model_id" ref="trobz_hr_holiday.model_hr_holidays_line"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(6, 0, [ref('base.group_hr_manager')])]"/>
+        </record>
+
+        <!-- HR Employee can see his own Business Travels and Business Travels which he belongs to Employees-->
+        <record id="tms_support_training_rule_for_hr_employee" model="ir.rule">
+            <field name="name">HR Employee can see his own Business Travels</field>
+            <field name="model_id" ref="model_tms_support_training"/>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+            <field name="domain_force">['|', ('employee_id','=',user.employee_id.id), ('employee_ids','in', [user.employee_id.id])]</field>
+        </record>
+
+        <!-- Team Manager can see all his member's Business Travels and Business Travels which he belongs to Employees-->
+        <record id="tms_support_training_rule_for_team_manager" model="ir.rule">
+            <field name="name">Team Manager can see all his member's Business Travels</field>
+            <field name="model_id" ref="model_tms_support_training"/>
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_tms_delivery_team_manager'))]"/>
+            <field name="domain_force">['|', ('employee_id', 'child_of', [user.employee_id.id]), ('employee_ids','child_of', [user.employee_id.id])]</field>
+        </record>
+
+        <!-- HR Manager can see all Business Travels -->
+        <record id="tms_support_training_rule_for_hr_manager" model="ir.rule">
+            <field name="name">HR Manager can see all Business Travels</field>
+            <field name="model_id" ref="model_tms_support_training"/>
+            <field name="groups" eval="[(4, ref('base.group_hr_manager'))]"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+        </record>
+
+        <!-- User sign in can see all OT requests of subordinates-->
+		<record model="ir.rule" id="ot_request_management_rule">
+			<field name="name">OT Request Management Rule</field>
+			<field name="model_id" ref="tms_modules.model_hr_input_overtime" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="True" />
+			<field name="domain_force">['|',('employee_id.user_id','=',user.id),'|',('employee_id', 'child_of', [user.employee_id.id]),('employee_id', 'in', [employee_id.id for employee_id in user.employee_id.approval_employee_ids])]
+            </field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]" />
+		</record>
+        <!-- HR management can see all OT requests-->
+		<record model="ir.rule" id="ot_request_hr_management_rule">
+			<field name="name">OT Request HR Management Rule</field>
+			<field name="model_id" ref="tms_modules.model_hr_input_overtime" />
+			<field name="domain_force">[(1, '=', 1)]</field>
+			<field name="groups" eval="[(4, ref('base.group_hr_manager'))]" />
+		</record>
+        <!-- TPM can see Docker Repositories of project which they are TPM -->
+        <record id="tms_docker_repo_for_tpm" model="ir.rule">
+            <field name="name">TPM can see Docker Repositories of project which they are TPM </field>
+            <field name="model_id" ref="model_tms_docker_repo"/>
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_tms_technical_project_manager'))]"/>
+            <field name="domain_force">[('project_id','in',user.tpm_project_ids.ids)]</field>
+        </record>
+        <!-- TC can see Docker Repositories of project which they are TPM -->
+        <record id="tms_docker_repo_for_tpm" model="ir.rule">
+            <field name="name">TC can see Docker Repositories of project which they are TPM </field>
+            <field name="model_id" ref="model_tms_docker_repo"/>
+            <field name="groups" eval="[(4, ref('tms_modules.group_profile_tms_technical_consultant'))]"/>
+            <field name="domain_force">[('instance_id','in',user.instance_user_ids.ids)]</field>
+        </record>
+	</data>
+</openerp>

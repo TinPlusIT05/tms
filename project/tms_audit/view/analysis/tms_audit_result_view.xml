@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="view_tms_audit_result_search" model="ir.ui.view">
+            <field name="name">view_tms_audit_result_search</field>
+            <field name="model">tms.audit.result</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Audit Results">
+                    <group string="Fields">
+                        <field name="project_id" />
+                        <field name="audit_test_id" />
+                    </group>
+                    <group string="Filters">
+
+                        <filter name="filter_failed_tests"
+                            string="Failed" domain="[('result', 'in', ('0', 0, False))]" />
+
+                        <filter name="filter_pass_tests"
+                            string="Pass" domain="[('result', '=', '1')]" />
+                    </group>
+                    <group string="Group By">
+
+                        <filter name="group_by_project" string="Project"
+                            domain="[]" context="{'group_by': 'project_id'}"/>
+
+                        <filter name="group_by_test" string="Test"
+                            domain="[]" context="{'group_by': 'audit_test_id'}"/>
+
+                        <filter name="group_by_result" string="Result"
+                            domain="[]" context="{'group_by': 'result'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_tms_audit_result_tree" model="ir.ui.view">
+            <field name="name">view_tms_audit_result_tree</field>
+            <field name="model">tms.audit.result</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Audit Results" colors="red: result=='0';">
+                    <field name="project_id" />
+                    <field name="audit_test_id" />
+                    <field name="target" />
+                    <field name="result" />
+                    <field name="score" />
+                    <field name="write_date" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_audit_result_form" model="ir.ui.view">
+            <field name="name">view_tms_audit_result_form</field>
+            <field name="model">tms.audit.result</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Audit Results">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="project_id" />
+                                <field name="result" />
+                                <field name="target" />
+                            </group>
+                            <group>
+                                <field name="audit_test_id" />
+                                <field name="score" />
+                                <field name="write_date" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_open_tms_audit_result" model="ir.actions.act_window">
+            <field name="name">Audit Results</field>
+            <field name="res_model">tms.audit.result</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_group_by_project': 1}</field>
+        </record>
+    </data>
+</openerp>

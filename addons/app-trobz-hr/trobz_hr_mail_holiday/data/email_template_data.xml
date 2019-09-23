@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!--Email template: Holiday approval -->
+        <record id="email_template_holiday_approval" model="email.template">
+            <field name="name">Holiday approval</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_cc">hr@lists.trobz.com,${object.employee_id.parent_id.work_email or ''}</field>
+            <field name="email_to">${object.employee_id.work_email or ''}</field>
+            <field name="subject">Leave request ${object.id} has been approved for: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_hr_holidays"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>A leave request has been approved (<a href="${object.get_request_link() | safe}">View Leave Request</a>).
+    <p>${object.get_email_content() | safe}</p>
+</div>
+            ]]>
+            </field>
+        </record>
+        
+        <!--Email template: Holiday denial -->
+        <record id="email_template_holiday_denial" model="email.template">
+            <field name="name">Holiday denial</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_to">${object.employee_id.work_email or ''},${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''}</field>
+            <field name="subject">Leave request ${object.id} has been refused: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_hr_holidays"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    A leave request has been refused (<a href="${object.get_request_link() | safe}">View Leave Request</a>).
+    <p>${object.get_email_content() | safe}</p>
+</div>
+            ]]></field>
+        </record>
+        <!--Email template: Email remind manager respect to leave request-->
+        <record id="email_template_remind_manager" model="email.template">
+            <field name="name">Holidays Reminder Email</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_to">${object.employee_id.parent_id.work_email or ''}</field>
+            <field name="subject">Leave request ${object.id} - To be approved reminder: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_hr_holidays"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>This email is to remind you to approve leave requests:</p>
+    <p>${object.get_reminding_email_content() | safe}</p>
+</div>
+            ]]></field>
+        </record>
+       
+		<!-- Email template: Holiday Confirm -->
+		<record id="email_template_holiday_confirm" model="email.template">
+            <field name="name">Holiday confirm</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_cc">hr@lists.trobz.com,${object.employee_id.work_email or ''}</field>
+            <field name="email_to">${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''}</field>
+            <field name="subject">Leave request ${object.id} is waiting for your approval: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_hr_holidays"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>A leave request is waiting for your approval (<a href="${object.get_request_link() | safe}">View Leave Request</a>).
+    <p>${object.get_email_content()}</p>
+</div>
+            ]]></field>
+        </record>
+        
+        <!-- Email template: Holiday Cancel -->
+        <record id="email_template_holiday_cancel" model="email.template">
+            <field name="name">Holiday cancel</field>
+            <field name="email_from">hrmanager@trobz.com</field>
+            <field name="email_to">${object.employee_id.parent_id and object.employee_id.parent_id.work_email or ''}</field>
+            <field name="subject">Leave request ${object.id} has been cancelled: ${object.employee_id.name}</field>
+            <field name="model_id" ref="model_hr_holidays"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+<div style="font-family: arial, sans-serif; font-size: 13px; color: rgb(34, 34, 34); background-color: rgb(255, 255, 255); ">
+    <p>A leave request has been canceled (<a href="${object.get_request_link() | safe}">View Leave Request</a>).
+    <p>${object.get_email_content() | safe}</p>
+</div>
+            ]]></field>
+        </record>
+    </data>
+</openerp>

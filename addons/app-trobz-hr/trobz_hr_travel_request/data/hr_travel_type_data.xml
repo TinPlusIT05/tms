@@ -1,0 +1,13 @@
+<openerp>
+	<data>
+		<record model="hr.travel.type" id="travel_type_business">
+			<field name="name">Business</field>
+		</record>
+		<record model="hr.travel.type" id="travel_type_personal">
+			<field name="name">Personal</field>
+		</record>
+		<record model="hr.travel.type" id="travel_type_visa_run">
+			<field name="name">Visa Run</field>
+		</record>
+	</data>
+</openerp>

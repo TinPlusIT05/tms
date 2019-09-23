@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+
+		<record id="view_termination_of_employment_wizard_form" model="ir.ui.view">
+			<field name="name">Termination of Employment</field>
+			<field name="model">termination.employment.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Termination of Employment" version="7.0">
+					<group>
+						<field name="date_end" />
+					</group>
+					<group string="Employees">
+						<field name="employee_ids" nolabel="1" />
+					</group>
+					<group colspan="4" col="4">
+						<label string="This action can NOT be undone. This action will:" colspan="4"/>
+						<label string="- Inactivate the selected employees" colspan="4"/>
+						<label string="- End all active contracts of selected employees" colspan="4"/>
+						<label string="- Cancel all allocation requests and leave requests, including approved leave requests, of selected employees" colspan="4"/>
+						<label string="NOTE: you must compute and approve payslips in the last month of selected employees before running this wizard." colspan="4"/>
+					</group>
+					<footer>
+						<button name="apply" type="object" string="Apply"
+							class="oe_highlight" />
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_hr_hr_termination_of_employment_wizard" model="ir.actions.act_window">
+			<field name="name">Termination of Employment</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">termination.employment.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="view_termination_of_employment_wizard_form" />
+			<field name="target">new</field>
+		</record>
+
+
+	</data>
+</openerp>
+

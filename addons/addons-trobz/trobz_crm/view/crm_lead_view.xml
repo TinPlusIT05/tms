@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+	    
+	    <!-- Customize the CRM Lead views -->
+	    <!-- Redefine the CRM Lead Form View  -->
+        <record model="ir.ui.view" id="crm.crm_case_form_view_leads">
+	        <field name="name">CRM - Opportunity Form</field>
+	        <field name="model">crm.lead</field>
+	        <field name="arch" type="xml">
+	            <form string="Opportunity Form">
+	            	<header>
+                        <!-- <button name="%(crm.action_crm_lead2opportunity_partner)d" string="Convert to Opportunity" type="action"
+                            help="Convert to Opportunity" class="oe_highlight" /> -->
+						<button name="case_mark_won" string="Mark Won" type="object" class="oe_highlight"/>
+                        <button name="case_mark_lost" string="Mark Lost" type="object" class="oe_highlight"/>
+						<field name="stage_id" widget="statusbar" clickable="True"
+	                            domain="['&amp;', '|', ('case_default', '=', True), ('section_ids', '=', section_id), '|', ('type', '=', type), ('type', '=', 'both')]"
+	                            options="{'fold_field': 'fold'}"
+	                            on_change="onchange_stage_id(stage_id)"/>
+	            	</header>
+					<sheet>
+                    <div class="oe_right oe_button_box">
+                            <button class="oe_inline oe_stat_button" type="action"
+                                name="%(crm.crm_case_categ_phone_incoming0)d" icon="fa-phone" invisible="1"
+                                context="{'default_opportunity_id': active_id, 'search_default_opportunity_id': active_id, 'default_partner_id': partner_id, 'default_duration': 1.0}">
+                                <div>Schedule/Log<br/>Calls</div>
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="object"
+                                context="{'partner_id': partner_id}"
+                                name="action_schedule_meeting" icon="fa-calendar" invisible="1">
+                                <field string="Meetings" name="meeting_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                    <div class="oe_title" style="width:100%;">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Describe the lead..."/></h1>
+                        <group col="6">
+                        	<div>
+                        		<label for="priority" class="oe_edit_only" string="Priority" style="font-weight:bold"/>
+				        		<h3 style="width:90%;"><field name="priority"/></h3>
+                        	</div>
+                        	<div>
+                        		<label for="probability_id" class="oe_edit_only" string="Probability" style="font-weight:bold"/>
+				        		<h3><field name="probability_id" 
+				        					options="{'no_create': True, 'create_edit': False, 'no_open': True}" /></h3>
+                        	</div>
+                        	<div>
+                        		<label for="planned_revenue" class="oe_edit_only" string="Expected Revenue" style="font-weight:bold"/>
+				        		<h3><field name="planned_revenue"/></h3>
+                        	</div>
+                        </group>
+                    </div>
+	                <group invisible="1">
+				        <field name="type"/>
+                        <field name="section_id" widget="selection" />
+                        <field name="company_id"
+                            groups="base.group_multi_company"
+                            widget="selection" colspan="2" />
+                        <field name="campaign_id" widget="selection"/>
+			        </group>
+		                <group col="4">
+		                    <field name="partner_id" string="Partner" context="{'default_prospect': True,'default_customer': False, 'default_is_company': True}"/>
+		                	<newline/>
+		                	<field name="main_contact" context="{'default_parent_id': partner_id,'crm_partner_id': partner_id}"/>
+                            <field name="title_action"/>
+                            <field name="user_id" domain="[('groups_id','=',%(base.group_user)d)]"/>
+                            <field name="date_action"/>
+		                	options="{'no_create': True, 'create_edit': False, 'no_open': True}"/>
+		                	<field name="date_deadline" invisible="1" />
+		                	<field name="full_name" invisible="1" />
+		                </group>
+		                
+		                <notebook colspan="4">
+		                	<page string="Events">
+			                 	<field name="event_ids" nolabel="1"  context="{'lead_id':active_id,'partner_id':partner_id,'main_contact':main_contact,'hide_lead_id':True, 'not_open_event_on_add_feedback': True}">
+			                 		<tree>
+			                 			<field name="date"/>
+			                 			<field name="partner_address_id"/>
+			                 			<field name="type_id"/>
+			                 			<field name="name"/>
+			                 			<field name="location"/>
+			                 			<field name="user_id"/>
+			                 			<field name="state"/>
+			                 			<button name="case_close" string="Done" states="open" type="object" icon="terp-camera_test" />
+                    					<button name="case_cancel" string="Cancel" states="open,done" type="object" icon="gtk-cancel" />
+                    					<button string="Add feedback event" icon="gtk-redo" name="action_get_feedback_event" type="object"/>
+			                 		</tree>
+			                 	</field>
+			                </page>
+			                <page string="Description">
+			                	<group>
+				                	<field name="categ_ids" invisible="1"
+	                                string="Categories" widget="many2many_tags"
+	                                context = "{'object_name': 'crm.lead'}"
+	                                domain="[('object_id.model', '=', 'crm.lead')]"/>
+                                	<field name="description" widget="html" nolabel="1" colspan="2"/>
+                                </group>
+			                 </page>
+      
+			                 <!-- CONTACT OF LEAD  -->
+			                 <page string="Contact">
+								<group>
+				                    <field name="related_partner_address_ids" nolabel="1"/>
+			                    </group>
+			                 </page>
+			                 
+			                 <page string="Extra Info" groups="base.group_no_one">
+			                    <group col="4">
+			                        <group name="categorization">
+				                        <separator string="Categorization" colspan="2" />
+                                            <field name="medium_id" widget="selection"/>
+				                        <field name="referred"/>
+			                        </group>
+				                    <group>
+				                        <separator string="Dates" colspan="2"/>
+				                        <field name="create_date"/>
+				                        <field name="write_date"/>
+				                        <field name="date_open"/>
+				                        <field name="date_closed"/>
+				                    </group>
+			                    </group>
+			                    <group>
+			                        <separator string="Statistics" colspan="2" col="2"/>
+			                        <field name="day_open"/>
+			                        <field name="day_close"/>
+			                    </group>
+			                 </page>
+			                 <page string="Others">
+			                 	<group col="4">
+			                 		<field name="source_id"/>
+			                 		<field name="referred_by"/>
+			                 		<field name="source_detail"/>
+			                 		<field name="lost_reason_id"/>
+			                 		<field name="active"/>
+			                 	</group>
+			                 </page>
+		                </notebook>
+					</sheet>
+		            <div class="oe_chatter">
+                    	<field name="message_follower_ids" widget="mail_followers"/>
+                    	<field name="message_ids" widget="mail_thread"/>
+                	</div>
+	            </form>
+	        </field>
+	    </record>
+	
+	    <!-- CRM Lead Tree View -->
+	
+	    <record model="ir.ui.view" id="trobz_crm_case_tree_view_leads">
+	        <field name="name">trobz.crm.lead.tree</field>
+	        <field name="model">crm.lead</field>
+	        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+	        <field name="arch" type="xml">
+	        	<tree position="attributes">
+        			<attribute name="colors">blue:priority=='1';grey:priority=='0';rgb(233, 87, 4):priority=='3';red:priority=='4'</attribute>
+        		</tree>
+	        	<field name="name" position="after">
+	        		<field name="subject_business_sector"/>
+					<field name="full_related_contact_name"/>
+	        		<field name="partner_name" string="Partner"/>
+	        	</field>
+	        	<field name="name" position="attributes">
+	        		<attribute name="invisible">1</attribute>
+	        	</field>
+				<field name="contact_name" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</field>
+	        	<field name="country_id" position="attributes">
+				 	<attribute name="invisible">1</attribute>
+				 </field>
+				 
+				 <field name="email_from" position="attributes">
+				 	<attribute name="invisible">1</attribute>
+				 </field>
+				 
+				 <field name="phone" position="attributes">
+				 	<attribute name="invisible">1</attribute>
+				 </field>
+	        	<field name="create_date" position="replace">
+	        		<field name="write_date" string="Modification date"/>
+	        	</field>
+	        	<field name="stage_id" position="after">
+	        		<field name="title_action"/>
+	        		<field name="date_action"/>
+	        	</field>
+	        	<field name="section_id" position="after">
+				 	<field name="priority"/>
+				 	<button name="button_higher_priority" type="object"
+				 	string="Set higher priority" class="icon-chevron-up"
+				 	attrs="{'invisible': [('priority','=', '4')]}"/>
+				 	<button name="button_lower_priority" type="object"
+				 	string="Set lower priority" class="icon-chevron-down"
+				 	attrs="{'invisible': [('priority','=', '0')]}"/>
+				 	<field name="probability_id" string="Probability"/>
+				 	<button name="button_higher_probability" type="object"
+				 	string="Set higher probability" class="icon-chevron-up"/>
+				 	<button name="button_lower_probability" type="object"
+				 	string="Set lower probability" class="icon-chevron-down"/>
+				 	<field name="planned_revenue" sum="Expected Revenue"/>
+			 	</field>
+	        </field>
+	    </record>
+
+		<record id="trobz_crm_lead_filter" model="ir.ui.view">
+	        <field name="name">CRM Opportunity Search</field>
+	        <field name="model">crm.lead</field>
+	        <field name="inherit_id" ref="crm.view_crm_case_leads_filter" />
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='name']" position="attributes">
+	               <attribute name="string">Opportunity / Customer</attribute>
+                </xpath>
+	       		<xpath expr="//filter[@string='My Leads']" position="attributes">
+	       			<attribute name="invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//filter[@string='Unassigned']" position="attributes">
+	       			<attribute name="invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//filter[@string='New Mail']" position="attributes">
+	       			<attribute name="invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//filter[@string='Available for mass mailing']" position="attributes">
+	       			<attribute name="invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//group[@string='Group By']/filter[@string='Campaign']" position="attributes">
+	       			<attribute name="invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//group[@string='Group By']/filter[@string='Channel']" position="attributes">
+	       			<attribute name="invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//group[@string='Group By']/filter[@string='Creation Month']" position="attributes">
+	       			<attribute name="invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//group[@string='Group By']/filter[@string='Last Message']" position="attributes">
+	       			<attribute name="invisible">1</attribute>
+            	</xpath>
+            	<xpath expr="//group[@string='Group By']/filter[@string='Source']" position="after">
+	       			<filter string="Priority" domain="[]" context="{'group_by':'priority'}"/>
+	       			<filter string="Referred by" domain="[]" context="{'group_by':'referred_by'}"/>
+            	</xpath>
+	            <field name="name" position="before">
+                    <filter string="Open" invisible="1" name="open" domain="[('stage_id.open_status','=',True)]" help="Open Leads"/>
+                    <filter string="To do" invisible="1" domain="[('filter_todo', '=', True)]" name="todo"
+                    help="On leads with a next action less than today"/> 
+	        	</field>
+	        	<field name="user_id" position="replace">
+                    <field name="user_id"/>
+                    <field name="referred_by"/>
+                    <newline/>
+                </field>
+                <field name="name" position="after">
+                	 <field name="business_sector_id"/>
+                	 <field name="probability_id"/>
+                </field>
+                <xpath expr="//group[@string='Group By']/filter[@string='Stage']" position="after">
+					<filter string="Business Sector" domain="" context="{'group_by':'business_sector_id'}"/>
+					<filter string="Probability" domain="[]" context="{'group_by':'probability_id'}"/>
+				</xpath>
+                <xpath expr="//filter[@string='My Leads']" position="replace">
+                    <filter string="My Opportunity" name = 'my_opportunity'
+                            domain="[('user_id','=',uid)]"
+                            help="Opportunities that are assigned to me"/>
+                </xpath>
+            </field>
+		</record>
+		
+		<record model="ir.actions.act_window" id="crm.crm_case_category_act_oppor11">
+          	<field name="view_mode">tree,form,graph,calendar,kanban</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="crm.action_crm_tag_kanban_view_oppor11">
+            <field name="sequence" eval="10"/>
+        </record>
+
+        <!-- F#11277 - Rename Leads into Opportunity -->
+        <record model="ir.actions.act_window" id="crm.crm_case_form_view_salesteams_lead">
+            <field name="name">Opportunity</field>
+            <field name="res_model">crm.lead</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">['|', ('type','=','lead'), ('type','=',False)]</field>
+            <field name="view_id" ref="crm.crm_case_tree_view_leads"/>
+            <field name="search_view_id" ref="crm.view_crm_case_leads_filter"/>
+            <field name="context">{
+                    'search_default_section_id': [active_id],
+                    'default_section_id': active_id,
+                    'default_type': 'lead',
+                    'stage_type': 'lead',
+                }
+            </field>
+            <field name="help" type="html">
+                <p>
+                    Use opportunity if you need a qualification step before creating an
+                    opportunity or a customer. It can be a business card you received,
+                    a contact form filled in your website, or a file of unqualified
+                    prospects you import, etc.
+                </p><p>
+                    Once qualified, the opportunity can be converted into a business
+                    opportunity and/or a new customer in your address book.
+                </p>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="crm_case_section_salesteams_view_kanban">
+            <field name="name">crm.case.section.kanban</field>
+            <field name="model">crm.case.section</field>
+            <field name="inherit_id" ref="crm.crm_case_section_salesteams_view_kanban"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//div[@class='oe_items_list']/div[@class='oe_salesteams_leads']/a[@name='%(crm.crm_case_form_view_salesteams_lead)d']" position="replace">
+                        <a name="%(crm.crm_case_form_view_salesteams_lead)d" type="action">Opportunity</a>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <act_window name="Opportunity Mass Mail"
+                res_model="mail.compose.message"
+                src_model="crm.lead"
+                view_mode="form"
+                multi="True"
+                target="new"
+                key2="client_action_multi"
+                id="crm.action_lead_mass_mail"
+                context="{
+                            'default_composition_mode': 'mass_mail',
+                            'default_email_to':'{($object.email or \'\')|safe}',
+                            'default_use_template': True,
+                            'default_template_id': ref('crm.email_template_opportunity_mail'),
+                        }"
+                groups="base.group_sale_salesman"
+                />
+
+        <record id="crm.filter_leads_revenue_per_lead" model="ir.filters">
+            <field name="name">Revenue Per Opportunity</field>
+            <field name="model_id">crm.lead.report</field>
+            <field name="user_id" eval="False"/>
+            <field name="context">{'group_by': ['partner_id'], 'col_group_by': ['date_deadline:month'], 'measures': ['planned_revenue']}</field>
+        </record>
+        <record id="view_report_crm_lead_filter" model="ir.ui.view">
+            <field name="name">crm.lead.report.select</field>
+            <field name="model">crm.lead.report</field>
+            <field name="inherit_id" ref="crm.view_report_crm_lead_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Lead']" position="replace"/>
+            </field>
+        </record>
+        <record id="view_report_crm_opportunity_filter" model="ir.ui.view">
+            <field name="name">crm.opportunity.report.select</field>
+            <field name="model">crm.opportunity.report</field>
+            <field name="inherit_id" ref="crm.view_report_crm_opportunity_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Lead']" position="replace"/>
+            </field>
+        </record>
+        <record id="trobz_crm_lead_stage_search_inherit" model="ir.ui.view">
+            <field name="name">Stage - Search</field>
+            <field name="model">crm.case.stage</field>
+            <field name="inherit_id" ref="crm.crm_lead_stage_search" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="replace"/>
+            </field>
+        </record>
+    </data>
+</openerp>

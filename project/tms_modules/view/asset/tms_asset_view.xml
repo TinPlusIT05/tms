@@ -1,0 +1,187 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <!-- Tree View -->
+        <record model="ir.ui.view" id="view_tms_asset_tree">
+            <field name="name">view.tms.asset.tree</field>
+            <field name="model">tms.asset</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Assets" default_order="purchased_date desc">
+                    <field name="internal_code" />
+                    <field name="category_id" />
+                    <field name="name" />
+                    <field name="purchased_date" />
+                    <field name="assignee_id" />
+                    <field name="assigning_date" />
+                    <field name="item_condition_id" />
+                    <field name="type" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_tms_asset_form" model="ir.ui.view">
+            <field name="name">view.tms.asset.form</field>
+            <field name="model">tms.asset</field>
+            <field name="type">form</field>
+            <field name="priority" eval="0"></field>
+            <field name="arch" type="xml">
+                <form string="Assets">
+                    <header>
+                        <button name="%(action_re_assign_asset)d" string="Re-Assign" type="action"
+                            groups="tms_modules.group_profile_tms_admin,tms_modules.group_profile_fc_admin,tms_modules.group_profile_hr_officer"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('type', '!=', 'trobz')]}"/>
+                        <button name="assigne_back_trobz" string="Assign To Trobz" type="object"
+                            groups="tms_modules.group_profile_tms_admin,tms_modules.group_profile_fc_admin,tms_modules.group_profile_hr_officer"
+                            class="oe_highlight"
+                            attrs="{'invisible': ['|', ('type', '!=', 'trobz'), ('assignee_id', '==', False)]}"/>
+                        <field name="state" widget="statusbar" clickable="1"/>
+                    </header>
+                    <sheet>
+                        <group name="group_header" colspan="4">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </group>
+                        <group name="group_info" colspan="4" col="4" string="Information">
+                            <group name="group_left" colspan="2" col="2">
+                                <field name="internal_code" />
+                                <field name="category_id" />
+                                <field name="type" required="True" />
+                                <field name="owner_id"
+                                    attrs="{'invisible': [('type', '!=', 'personal')]}" />
+                            </group>
+                            <group name="group_right" colspan="2" col="2">
+                                <field name="purchased_date" required="1"/>
+                                <field name="purchased_price" required="1"/>
+                                <field name="supplier_id" />
+                            </group>
+                            <field name="request_id" colspan="2" col="2"/>
+                        </group>
+                        <group name="group_partial" colspan="4" col="4" string="Partial Approval">
+                            <group name="group_left">
+                                <field name="partial_type" attrs="{'required': [('type', '==', 'personal')],'readonly': [('type', '==', 'trobz')]}"/>
+                                <field name="partial_per_month" attrs="{'invisible': [('partial_type', '!=', 'salary')]}"/>
+                                <field name="trobz_contribution"
+                                    attrs="{'required': [('partial_type', '!=', 'none')],'readonly': [('partial_type', '==', 'none')]}"/>
+                                <field name="financial_agreement"
+                                    attrs="{'invisible': [('partial_type', '==', 'none')]}"/>
+                            </group>
+                        </group>
+                        <group name="group_management" colspan="4" col="4" string="Management"
+                                attrs="{'invisible': [('type', '!=', 'trobz')]}">
+                            <group name="group_left" colspan="2" col="2">
+                                <field name="assignee_id" />
+                                <field name="assigning_date" attrs="{'required': [('type', '=', 'trobz')]}"/>
+                                <field name="residual_value"/>
+                                <field name="salvage_value"/>
+                            </group>
+                            <group name="group_right" colspan="2" col="2">
+                                <field name="is_depreciate_it_fund" />
+                                <field name="depreciation_period" />
+                                <field name="depreciation_amount" readonly="True"/>
+                            </group>
+                        </group>
+                        <group name="group_footer" colspan="4" attrs="{'invisible': [('type', '!=', 'trobz')]}">
+                            <notebook>
+                                <page string="Depreciations">
+                                    <button name="generate_depreciation_lines" type="object" string="Generate Depreciation Lines"/>
+                                    <group name="depreciation_lines" colspan="4" col="4"
+                                        string="Depreciation Details">
+                                        <field name="depreciation_line_ids" nolabel="1">
+                                            <tree create="false" delete="false">
+                                                <field name="employee_id" string="Employee pay for this Period"/>
+                                                <field name="amount" sum="Depreciation Amount"/>
+                                                <field name="is_depreciated" />
+                                                <field name="start_date" />
+                                                <field name="end_date" />
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </page>
+                                <page string="Asset Assigning History">
+                                    <field name="assign_history_ids">
+                                        <tree create="false" delete="false">
+                                            <field name="assignee_id" string="Assignee"/>
+                                            <field name="start_date" string="From"/>
+                                            <field name="end_date" string="To"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Current Equipment Status">
+                                    <group name="item_condition" colspan="2" string="Conditions">
+                                        <field name="item_condition_id" />
+                                    </group>
+                                    <field name="condition_details" nolabel="1" placeholder="The equipment status in details ..."/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers" />
+                            <field name="message_ids" widget="mail_thread" />
+                        </div>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_tms_asset_search" model="ir.ui.view">
+            <field name="name">view.tms.asset.search</field>
+            <field name="model">tms.asset</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="internal_code" />
+                    <field name="category_id" />
+                    <field name="name" />
+                    <field name="purchased_date" />
+                    <field name="owner_id" />
+                    <field name="assigning_date" />
+                    <field name="item_condition_id" />
+                    <field name="type" />
+
+                    <group expand="0" string="Group By">
+                        <filter string="Assets Type" domain="[]" context="{'group_by':'type'}" />
+                        <filter string="Category" domain="[]"
+                            context="{'group_by':'category_id'}" />
+                        <filter string="Owners" domain="[]" context="{'group_by':'owner_id'}" />
+                        <filter string="Conditions" domain="[]"
+                            context="{'group_by':'item_condition_id'}" />
+                    </group>
+
+                    <group expand="0" string="Filter By">
+                        <filter string="Trobz's Assets Non-Assigning"
+                            domain="[('type', '=', 'trobz'), ('assignee_id', '=', False)]"
+                            name="trobz_asset_non_assign"/>
+                        <filter string="Trobz's Assets Assigning"
+                            domain="[('type', '=', 'trobz'), ('assignee_id', '!=', False)]"
+                            name="trobz_asset_assign"/>
+                        <filter string="Personal Assets" domain="[('type', '=', 'personal')]" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Menu Action -->
+        <record model="ir.actions.act_window" id="action_tms_asset">
+            <field name="name">Assets</field>
+            <field name="res_model">tms.asset</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{
+                'search_default_trobz_asset_non_assign':True,
+            }
+            </field>
+        </record>
+
+        <menuitem id="menu_hr_benefit_tms_assets" name="Assets"
+            sequence="25" parent="it_equipment_bonus.menu_hr_benefit_equipment"
+            action="tms_modules.action_tms_asset"
+            groups="base.group_hr_manager"/>
+    </data>
+</openerp>

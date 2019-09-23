@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="trobz_base_wizard_lang_export" model="ir.ui.view">
+            <field name="name">trobz_base_wizard_lang_export</field>
+            <field name="model">base.language.export</field>
+            <field name="inherit_id" ref="base.wizard_lang_export"/>
+            <field name="arch" type="xml">
+            	<field name="format" position="after">
+            		<field name="export_type"/>
+            	</field>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="web_markdown_assets_backend" name="web_markdown_assets_backend" inherit_id="web_unleashed.assets_backend">
+            <xpath expr="." position="inside">
+
+                <!-- for css libraries -->
+                <link rel="stylesheet" type="text/css" href="/web_markdown_widget/static/src/css/base.css" />
+
+                <link rel="stylesheet" type="text/css" href="/web_markdown_widget/static/lib/highlight/default.css" />
+
+                <!-- Highlight library - use in-combination with Markdown -->
+                <script type="text/javascript" src="/web_markdown_widget/static/lib/highlight/highlight.pack.js"></script>
+
+                <!-- Markdown Library -->
+                <script type="text/javascript" src="/web_markdown_widget/static/lib/marked.min.js"></script>
+
+                <!-- Tabby library -->
+                <script type="text/javascript" src="/web_markdown_widget/static/lib/tabby/jquery.textarea.min.js"></script>
+
+                <!-- Plugin file -->
+                <script type="text/javascript" src="/web_markdown_widget/static/src/js/web_markdown_widget.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

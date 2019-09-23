@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record id="view_import_attendance_wizard_form" model="ir.ui.view">
+            <field name="name">view.import.attendance.wizard.form</field>
+            <field name="model">import.attendance.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Import Attendance" version="7.0">
+                	<group>
+						<field name="csv_file" />
+					</group>
+					<group colspan="4" col="4" string="HEADER">
+						<label string="1. The name of the columns must be written as expected and in the correct order." colspan="4"/>
+						<label string="2. There must be no missing or extra column." colspan="4"/>
+						<label string='3. Here is the possible header: "Employee";"Date";"Action";"Action Reason"' colspan="4"/>
+					</group>
+					<group colspan="4" col="4" string="FORMAT">
+							<label string="1. The file must have UTF-8 or ISO-8859-15 encoding." colspan="4"/>
+							<label string="2. The delimiter must be , or ; (If which one is chosen then it must be used in the whole file) and the quote char must be " colspan="4"/>
+							<label string="3. In order to see the real content of your csv file, you should open it with Notepad in Windows or gedit in Ubuntu." colspan="4"/>
+							<label string="4. Make sure that there are no empty fields." colspan="4"/>
+							<label string="5. Make sure that there is only one customer for each sales order." colspan="4"/>
+					</group>
+					<group colspan="4" col="4" string="CREATING">
+							<label string="1. To create a csv file with Microsoft Office, see here: http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx" colspan="4"/>
+							<label string='2. To create a csv file with Libre Office, see here: http://help.libreoffice.org/Calc/Importing_and_Exporting_CSV_Files' colspan="4"/>
+							<label string="3. To create a csv file with Open Office, see here: http://sheepdogguides.com/fdb/opof8csv.htm" colspan="4"/>
+							<label string="---" colspan="4"/>
+							<label string='We recommend you to use Open Office or Libre Office, then Save As > yourfilename.csv > A window will appear where you have to select: character set UTF8, delimiter , and quote char ¨.' colspan="4"/>
+					</group>
+					<footer>
+                    	<button name="import_attendance" string="Import" type="object" class="oe_highlight" />
+                        	or
+                    	<button string="Cancel" class="oe_link" special="cancel" />
+                	</footer>
+                </form>
+            </field>
+        </record>
+	</data>
+</openerp>

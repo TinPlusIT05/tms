@@ -1,0 +1,23 @@
+[tms-production]
+scheme = https
+host = {http_login}:{http_password}@tms.trobz.com
+port = 443
+database = tms80
+username = {tms_login}
+password = {tms_password}
+
+[tms-integration]
+scheme = https
+host = {http_login}:{http_password}@tms80-integration.trobz.com
+port = 443
+database = tms80_integration
+username = {tms_login}
+password = {tms_password}
+
+[localhost]
+scheme = http
+host = localhost
+port = 8069
+database = {dbname}
+username = {tms_login}
+password = {tms_password}

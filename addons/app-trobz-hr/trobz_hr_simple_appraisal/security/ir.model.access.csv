@@ -1,0 +1,15 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+"access_hr_appraisal_user","hr_appraisal_user","model_hr_appraisal","base.group_user",1,0,0,0
+"access_hr_appraisal_manager","hr_appraisal_manager","model_hr_appraisal","base.group_hr_manager",1,1,1,1
+"access_hr_appraisal_employee_manager","hr_appraisal_manager","model_hr_appraisal","group_hr_appraisal_employee_manager",1,1,0,0
+"access_hr_appraisal_input_user","hr_appraisal_input_user","model_hr_appraisal_input","base.group_user",1,1,0,0
+"access_hr_appraisal_input_manager","hr_appraisal_input_manager","model_hr_appraisal_input","base.group_hr_manager",1,1,1,1
+"access_hr_appraisal_question_group_user","question_group_user","model_hr_appraisal_question_group","base.group_user",1,0,0,0
+"access_hr_appraisal_question_group_manager","question_group_manager","model_hr_appraisal_question_group","base.group_hr_manager",1,1,1,1
+"access_hr_appraisal_question_user","question_user","model_hr_appraisal_question","base.group_user",1,0,0,0
+"access_hr_appraisal_question_manager","question_manager","model_hr_appraisal_question","base.group_hr_manager",1,1,1,1
+"access_hr_appraisal_template_user","template_group_user","model_hr_appraisal_template","base.group_user",1,0,0,0
+"access_hr_appraisal_template_manager","template_group_manager","model_hr_appraisal_template","base.group_hr_manager",1,1,1,1
+"access_hr_appraisal_input_line_user","hr_appraisal_input_line_user","model_hr_appraisal_input_line","base.group_user",1,1,0,0
+"access_hr_appraisal_input_line_manager","hr_appraisal_input_line_manager","model_hr_appraisal_input_line","base.group_hr_manager",1,1,1,1

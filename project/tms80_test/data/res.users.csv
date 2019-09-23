@@ -1,0 +1,9 @@
+id,name,login,new_password,group_profile_id,must_input_working_hour,is_trobz_member,has_full_sysadmin_access,employer_id/id,partner_id
+demo_user_tc,Technical Consultant,tc,trobz,Technical Consultant Profile,1,1,0,base.main_partner,Technical Consultant
+demo_user_tpm,Technical Project Manager,tpm,trobz,Technical Project Manager Profile,1,1,0,base.main_partner,Technical Project Manager
+demo_user_qc,Quality Control,qc,trobz,QC Profile,1,1,0,base.main_partner,Quality Control
+demo_user_fc,Functional Consultant,fc,trobz,Functional Consultant Profile,1,1,0,base.main_partner,Functional Consultant
+demo_user_manager,Admin,manager user,trobz,Admin Profile,0,1,1,base.main_partner,Admin
+demo_user_hr,HR Manager,hr,trobz,FC and Admin Profile,0,1,0,base.main_partner,HR Manager
+demo_user_sysadmin,Sysadmin,sysadmin,trobz,Sysadmin Profile,1,1,0,base.main_partner,Sysadmin
+demo_user_sales,Sales,sales,trobz,FC+CRM Profile,1,1,0,base.main_partner,Sales

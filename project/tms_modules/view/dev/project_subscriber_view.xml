@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_project_subscriber_form" model="ir.ui.view">
+			<field name="name">project.subscriber.form</field>
+			<field name="model">project.subscriber</field>
+			<field name="arch" type="xml">
+				<form string="Project Subscriber">
+					<group>
+						<group>
+							<field name="name" />
+							<field name="notif_pref_id" />
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_project_subscriber_tree" model="ir.ui.view">
+			<field name="name">project.subscriber.tree</field>
+			<field name="model">project.subscriber</field>
+			<field name="arch" type="xml">
+				<tree string="Project Subscriber">
+					<field name="name" />
+					<field name="notif_pref_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_project_subscriber_search" model="ir.ui.view">
+			<field name="name">project.subscriber.search</field>
+			<field name="model">project.subscriber</field>
+			<field name="arch" type="xml">
+				<search string="Search Project Subscriber">
+					<field name="name" />
+					<field name="notif_pref_id" />
+				</search>
+			</field>
+		</record>
+
+		<record id="action_project_subscriber" model="ir.actions.act_window">
+			<field name="name">Project Subscriber</field>
+			<field name="res_model">project.subscriber</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!--In the application form, hide the 4 fields of the section "Contract": 
+				Expected Salary
+				Expected Salary Advantages
+				Proposed Salary
+				Proposed Salary Advantages 
+			Hide the fields "Contact" and "Phone" Add the markdown widget 
+			for the field "Application Summary" -->
+
+		<record model="ir.actions.act_window" id="hr_applicant_document.hr_applicant_resumes">
+            <field name="context">{'model_hr_applicant': 1}</field>
+		</record>
+
+        <record model="ir.ui.view" id="view_hr_applicant_inherit">
+            <field name="name">view.hr.applicant.inherit</field>
+			<field name="model">hr.applicant</field>
+			<field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+			<field name="arch" type="xml">
+			    <field name="name" position="attributes">
+                     <attribute name="readonly">1</attribute>
+                     <attribute name="required">0</attribute>
+                </field>
+                <field name="priority" position="after">
+                    <field name="color" widget="color_picker" />
+                </field>
+                <field name="partner_name" position="attributes">
+                     <attribute name="required">1</attribute>
+                </field>
+                <field name="partner_id" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </field>
+                <field name="partner_phone" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </field>
+                <label for="salary_expected" position="replace">
+                    <label for="salary_expected_secure"/>
+                </label>
+                <field name="salary_expected" position="replace">
+                     <field name="salary_expected_secure"/>
+                </field>
+                <label for="salary_proposed" position="replace">
+                    <label for="salary_proposed_secure"/>
+                </label>
+                <field name="salary_proposed" position="replace">
+                     <field name="salary_proposed_secure"/>
+                </field>
+                <field name="salary_expected_extra" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </field>
+                <field name="salary_proposed_extra" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </field>
+			    <field name="description" position="attributes">
+			         <attribute name="widget">bootstrap_markdown</attribute>
+			         <attribute name="placeholder">Application Summary...</attribute>
+			    </field>
+                <field name="message_ids"  position="attributes">
+                    <attribute name="context">{'default_unchecked': True}</attribute>
+                </field>
+                <button name="create_employee_from_applicant" position="attributes">
+                    <attribute name="context">{'create_from_application': True}</attribute>
+                </button>
+			</field>
+		</record>
+   		
+   		<record id="view_crm_case_jobs_filter_inherit" model="ir.ui.view">
+            <field name="name">view.crm.case.jobs.filter.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.view_crm_case_jobs_filter" />
+            <field name="arch" type="xml">
+                <filter string="New Mail" position="after">
+	        		 <filter string="To Do" domain="['|', ('date_action','&lt;=',context_today().strftime('%%Y-%%m-%%d')), ('date_action','=',False)]"/>
+	        	</filter>
+            </field>
+        </record>
+	</data>
+</openerp>

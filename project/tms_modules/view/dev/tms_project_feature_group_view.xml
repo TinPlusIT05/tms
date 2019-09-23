@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record model="ir.ui.view" id="view_tms_project_feature_group_search">
+			<field name="name">view.tms.project.feature.group.search</field>
+			<field name="model">tms.project.feature.group</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Project Feature Groups">
+					<field name="name" />
+					<field name="project_id" />
+					<field name="progress" />
+					<field name="remaining_workload" />
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tms_project_feature_group_tree">
+			<field name="name">view.tms.project.feature.group.tree</field>
+			<field name="model">tms.project.feature.group</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Project Feature Groups">
+					<field name="name" />
+					<field name="project_id" />
+					<field name="progress" />
+					<field name="remaining_workload" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tms_project_feature_group_form">
+			<field name="name">view.tms.project.feature.group.form</field>
+			<field name="model">tms.project.feature.group</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Project Feature Groups">
+					<field name="name" />
+					<field name="project_id" />
+					<field name="progress" />
+					<field name="remaining_workload" />
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_open_view_tms_project_feature_group_tree">
+			<field name="name">Feature Groups</field>
+			<field name="res_model">tms.project.feature.group</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+    </data>
+</openerp>

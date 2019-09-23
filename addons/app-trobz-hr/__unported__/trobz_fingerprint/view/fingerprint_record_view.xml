@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- List view -->
+		<record id="fingerprint_record_tree" model="ir.ui.view">
+			<field name="name">fingerprint.record.tree</field>
+			<field name="model">fingerprint.record</field>
+			<field name="arch" type="xml">
+				<tree string="Fingerprint Records">
+					<field name="model"/>
+					<field name="id_src"/>
+					<field name="id_remote"/>
+					<field name="state"/>
+					<field name="date"/>
+					<field name="is_deleted" />
+					<field name="active" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form view -->
+		<record id="fingerprint_record_form" model="ir.ui.view">
+			<field name="name">fingerprint.record.form</field>
+			<field name="model">fingerprint.record</field>
+			<field name="arch" type="xml">
+				<form string="Fingerprint Records" version="7.0">
+					<header>
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,running,success" statusbar_colors='{"fail":"red"}'/>
+	                </header>
+					<sheet>
+						<div class="oe_title">
+	                        <label for="name" class="oe_edit_only"/>
+	                        <h1>
+	                        	<field name="name"/>
+	                        </h1>           
+	                    </div>
+						<group col="4" colspan="4">
+							<field name="model"/>
+							<field name="id_src"/>
+							<field name="id_remote"/>
+							<field name="date"/>
+							<field name="is_deleted" />
+							<field name="active" />
+						</group>
+					</sheet>
+					
+				</form>
+			</field>
+		</record>
+
+		<!-- Search view -->
+		<record id="fingerprint_record_search" model="ir.ui.view">
+			<field name="name">fingerprint.record.search</field>
+			<field name="model">fingerprint.record</field>
+			<field name="arch" type="xml">
+				<search string="Fingerprint Records">
+					<field name="model"/>
+					<field name="id_src"/>
+					<field name="id_remote"/>
+					<field name="state"/>
+					<field name="date"/>
+					<field name="active"/>
+					<filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                    <filter name="running" string="Running" domain="[('state', '=', 'running')]"/>
+                    <filter name="success" string="Success" domain="[('state', '=', 'success')]"/>
+                    <filter name="fail" string="Failed" domain="[('state', '=', 'fail')]"/>
+                    <filter name="deleted" string="Deleted Record" domain="[('is_deleted', '=', True)]"/>
+					<group expand="1" string="Group By...">
+                        <filter name="group_by_model" string="Model" context="{'group_by': 'model'}"/>
+                        <separator orientation="vertical"/>
+                        <filter name="group_by_state" string="Last Synchronization Status" context="{'group_by': 'state'}"/>
+                        <separator orientation="vertical"/>
+                        <filter name="group_by_date" string="Last Synchronization Date" context="{'group_by': 'date'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

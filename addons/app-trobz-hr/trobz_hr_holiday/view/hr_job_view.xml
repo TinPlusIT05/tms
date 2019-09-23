@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_job_vn_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.job.vn.form.inherit</field>
+            <field name="model">hr.job</field>
+            <field name="inherit_id" ref="hr.view_hr_job_form" />
+            <field name="arch" type="xml">
+                <group name="employee_data" position="after">
+                    <group>
+                        <field name="work_seniority_interval"
+                            string="Work Seniority Interval (years)" />
+                        <field name="extra_annual_leaves_for_work_seniority"
+                            string="Extra Leaves for Work Seniority (days)" />
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>

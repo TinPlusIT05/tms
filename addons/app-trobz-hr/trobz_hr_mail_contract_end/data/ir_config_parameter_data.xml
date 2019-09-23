@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data>
+        <!-- config parameter -->        
+		<record id="default_casual_leave_paid" model="ir.config_parameter">
+            <field name="key">contract_expiring_days</field>
+            <field name="value">30</field>
+        </record>
+	</data>
+</openerp>

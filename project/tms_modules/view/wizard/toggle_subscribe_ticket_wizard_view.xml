@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+    	<!-- action:: Subscribe -->
+		<record id="view_subscribe_ticket_wizard_form" model="ir.ui.view">
+			<field name="name">view.subscribe.ticket.wizard.form</field>
+			<field name="model">toggle.subscribe.ticket.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Subscribe Support Ticket" version="7.0">
+					<h3>This wizard will subscribe you from the selected tickets.</h3>
+					<footer>
+						<button type="object" string="Subscribe"
+                            name="button_subscribe" class="oe_highlight" />
+						<label string="or " />
+						<button string="Cancel" special="cancel" class="oe_link" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<!-- form view:: Unsubscribe -->
+		<record id="view_unsubscribe_ticket_wizard_form" model="ir.ui.view">
+			<field name="name">view.unsubscribe.ticket.wizard.form</field>
+			<field name="model">toggle.subscribe.ticket.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Unsubscribe Support Ticket" version="7.0">
+					<h3>This wizard will unsubscribe you from the selected tickets.</h3>
+					<footer>
+						<button type="object" string="Unsubscribe"
+                            name="button_unsubscribe" class="oe_highlight" />
+						<label string="or " />
+						<button string="Cancel" special="cancel" class="oe_link" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+    	
+	</data>
+</openerp>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="hr_payslip_parameter_basic_salary" model="hr.payslip.parameter">
+            <field name="name">Basic Salary</field>
+            <field name="code">BasicSal</field>
+        </record>
+    </data>
+</openerp>

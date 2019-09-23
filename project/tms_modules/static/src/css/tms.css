@@ -1,0 +1,232 @@
+/*  change default style for action buttons on tickets form view */
+.ticket_button {
+	font-family: FontAwesome !important;
+	box-shadow: none !important; border: 0px !important; margin: 5px !important;
+	background-color: transparent !important; background: transparent !important;
+}
+.ticket_button:active, .ticket_button:target {
+	background-color: transparent !important;
+}
+
+/* RIGHT PANEL - include action buttons */
+.tms_form_group_info {
+	background: #F5F5F5;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	position: relative; right: -16px;
+	box-shadow: -2px 2px 1px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+}
+
+/* RIGHT PANEL - style for ticket number area */
+.tms_ticket_number_container h2.ticket_id_number {
+	background: #FFF; padding: 5px;
+	margin: -3px 0px 0px 5px !important; text-align: center;
+}
+.tms_ticket_number_container h2.ticket_id_number span.ticket_id_text_label {
+	display: block; font-size: 11px; color: #AAA;
+}
+.ticket-id-label {
+    font-size: 1em !important;
+    line-height: 26px;
+}
+.ticket-id-number {
+    width: auto !important;
+}
+
+/* LEFT PANEL - style for left information panel - project - owner - milestone */
+.tms_left_info_container {
+	background: rgb(255, 255, 232); margin: 0px !important; padding: 0px 10px; border: 1px solid rgb(255, 235, 197);
+}
+.tms_left_info_container > table {
+	margin: 0px !important;
+}
+.tms_left_info_container .oe_form_group_cell_label {
+	border-right-color: rgb(255, 235, 197) !important;
+}
+
+/* LEFT PANEL - field button - milestone - sprint (move next previous) */
+.address_format {
+	position: relative;
+}
+.address_format .tms_field_button_container {
+	position: absolute; left: -85px; top: 0px; width: 70px; text-align: right;
+}
+.tms_field_button {
+	padding: 3px 5px !important; margin: 0px 0px 0px 2px !important;
+}
+.tms_field_button:hover {
+	border-color: rgb(255, 235, 197) !important;
+	background-color: rgb(255, 235, 197) !important;
+}
+
+/* CUSTOM STYLE FOR FONTAWESOME ICONS */
+
+/*
+    form view:: icon for Forge Ticket - Accept button should be in green color
+    list view:: icon for Forge Ticket - Accept button should be in green color
+ */
+button[class*='icon-'].oe_form_button.custom-green-button:before,
+.oe_list .custom-green-button {
+    color: rgb(25, 163, 25) !important;
+}
+
+button[class*='icon-'].oe_form_button.custom-red-button:before,
+.oe_list .custom-red-button {
+    color: rgb(255, 0, 0) !important;
+}
+
+/* remove all box shadow from button */
+button[class*='icon-'] {
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+.tms_hidden {
+	display: none !important;
+}
+
+button.button_highlight {
+	background: #7c7bad !important;
+  	color: white !important;
+}
+
+button.button_highlight .fa {
+	color: white !important;
+}
+
+/*
+=========================================================
+	Markdown custom style
+=========================================================
+ */
+.markdown-body,
+.markdown-body *:not(h1),
+.markdown-body *:not(h2),
+.markdown-body *:not(h3),
+.markdown-body *:not(h4),
+.markdown-body *:not(h5),
+.markdown-body *:not(h6) {
+	font-size: 13px;
+}
+.markdown-body table th {
+    background: #EEE;
+}
+.markdown-body pre > code {
+    white-space: pre-wrap !important;
+    word-break: break-word;
+}
+.markdown-body pre > code.lang-no-highlight * {
+    color: #333; font-weight: normal; font-style: inherit;
+}
+.markdown-body pre code .hljs-deletion {
+    background-color: transparent !important;
+}
+.markdown-body [class*="glyphicon"]:before {
+    font-family: inherit !important;
+}
+
+.oe_list_field_bootstrap_markdown table th,
+.oe_list_field_bootstrap_markdown table td {
+    border: 1px solid #ddd !important;
+    padding: 6px 13px !important;
+}
+.oe_list_field_bootstrap_markdown p {
+    margin: 0;
+}
+
+.markdown-body pre, .oe_list_field_bootstrap_markdown pre {
+    border: 1px solid #ddd; padding: 10px;
+}
+
+/* un-recognized language block should not be highlighted */
+.markdown-body pre code:not([class*='lang-']) *,
+.oe_list_field_bootstrap_markdown pre code:not([class*='lang-']) *{
+    color: #444 !important;
+}
+/*
+=========================================================
+
+=========================================================
+ */
+.text-core .text-wrap {
+	position: static !important;
+}
+/* F#12613
+Admin > mailman list > Quick subscription > Wizard rs */
+ul.list_type > li {
+	list-style-type: circle;
+}
+ul.list_type > li > ul > li {
+	list-style-type: square;
+}
+
+/*
+Ticket comment Change DiffView
+*/
+.diffview-text-add {
+    background-color: #81F981;
+    text-decoration: none;
+}
+
+.diffview-text-del {
+    background-color: #F58D8D;
+}
+
+.diffview-container {
+	background-color: #eee;
+    padding: 0 6px 0 19px;
+    border-left: 4px solid #ddd;
+    margin-bottom: 26px;
+}
+
+/*
+=========================================================
+    COLOR PICKER WIDGET IN FORM VIEW
+=========================================================
+ */
+
+.form-field-color-picker div.color {
+    display: inline-block;
+    border: 2px solid #EEE;
+}
+.form-field-color-picker div.color.selected {
+    border-color: #F00;
+}
+.form-field-color-picker div.color a {
+    display: block; width: 16px; height: 16px;
+}
+.form-field-color-picker div.color .oe-form-picker-color-0 {
+    background-color: #FFFFFF; color: #5a5a5a;
+}
+.form-field-color-picker div.color .oe-form-picker-color-1 {
+    background-color: #CCCCCC; color: #424242;
+}
+.form-field-color-picker div.color .oe-form-picker-color-2 {
+    background-color: #FFC7C7; color: #7a3737;
+}
+.form-field-color-picker div.color .oe-form-picker-color-3 {
+    background-color: #FFF1C7; color: #756832;
+}
+.form-field-color-picker div.color .oe-form-picker-color-4 {
+    background-color: #E3FFC7; color: #5d6937;
+}
+.form-field-color-picker div.color .oe-form-picker-color-5 {
+    background-color: #C7FFD5; color: #1a7759;
+}
+.form-field-color-picker div.color .oe-form-picker-color-6 {
+    background-color: #C7FFFF; color: #1a5d83;
+}
+.form-field-color-picker div.color .oe-form-picker-color-7 {
+    background-color: #C7D5FF; color: #3b3e75;
+}
+.form-field-color-picker div.color .oe-form-picker-color-8 {
+    background-color: #E3C7FF; color: #4c3668;
+}
+.form-field-color-picker div.color .oe-form-picker-color-9 {
+    background-color: #FFC7F1; color: #6d2c70;
+}
+.markdown-body code {
+    white-space: pre-wrap !important;
+}
+

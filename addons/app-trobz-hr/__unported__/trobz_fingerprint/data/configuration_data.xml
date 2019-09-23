@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		<record id="default_delay_fingerprint" model="ir.config_parameter">
+            <field name="key">default_delay_fingerprint</field>
+            <field name="value">3</field>
+        </record> 
+	</data>
+</openerp>

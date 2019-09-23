@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+    
+        <record id="base.VND" model="res.currency">
+            <field name="base" eval="True"/>
+        </record>
+        
+    </data>
+</openerp>
+

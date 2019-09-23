@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="view_working_hour_tree" model="ir.ui.view">
+            <field name="name">tms.working.hour.tree</field>
+            <field name="model">tms.working.hour</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Working hours" editable="top">
+                    <field name="date"/>
+                    <field name="tms_activity_id" domain="[('state','not in',('closed','canceled'))]" />
+                    <field name="tms_job_type_id" required="1"/>
+                    <field name="user_id" />
+                    <field name="name"/>
+                    <field name="duration_hour" sum="Sum of durations (in hours)."/>
+                    <field name="tms_forge_ticket_id" context="{'quick_create_no_name': 'summary'}" />
+                    <field name="tms_support_ticket_id" context="{'quick_create_no_name': 'summary'}" />
+
+                    <field name="project_id" invisible="1"/>
+                    <field name="account_id" invisible="1"/>
+                    <field name="sprint" invisible="1"/>
+                    <field name="day" invisible="1"/>
+                    <field name="weekday" invisible="1"/>
+                    <field name="is_billable" invisible="1"/>
+                    <field name="analytic_secondaxis_id" invisible="1"/>
+                    <field name="department_id" invisible="1"/>
+                    <field name="partner_resource_id" invisible="1"/>
+                    <field name="partner_project_id" invisible="1"/>
+                    <field name="support_type" invisible="1"/>
+                    <field name="dev_type" invisible="1"/>
+                    <field name="manager_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_working_hour_filter" model="ir.ui.view">
+            <field name="name">tms.working.hour.filter</field>
+            <field name="model">tms.working.hour</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Working hours">
+                    <group string="Field">
+                        <!-- SEARCH BY FIELDS -->
+	                    <field name="project_id" />
+                        <field name="sprint" />
+	                    <field name="date" />
+	                    <field name="user_id" />
+	                    <field name="tms_activity_id"/>
+	                    <field name="department_id"/>
+	                    <field name="partner_resource_id"/>
+	                    <field name="partner_project_id"/>
+	                    <field name="support_type"/>
+	                    <field name="dev_type"/>
+	                    <field name="partner_computed_id"/>
+	                    <field name="name"/>
+	                    <field name="activity_owner_id"/>
+	                    <field name="proj_owner_id"/>
+	                    <field name="team_id"/>
+	                    <field name="team_manager_id"/>
+	                    <field name="job_id"/>
+	                    <field name="job_type_id"/>
+	                    <field name="manager_id" />
+                    </group>
+                	<group string="Filter">
+	                	<!-- SEARCH BY CUSTOM FILTERS -->
+	                    <filter string="Today" name="filter_today"
+	                    	domain="[('date','=',context_today().strftime('%%Y-%%m-%%d'))]"/>
+						<separator />
+	                    <filter string="Yesterday" name="filter_yesterday"
+	                    	domain="[('date','=',(context_today()-datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d'))]"/>
+						<separator />
+	                    <filter string="7 days" name="filter_week"
+	                    	domain="[
+	                    		'|',('date','=',context_today().strftime('%%Y-%%m-%%d')), 
+	                    		('date','&gt;',(context_today()-datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]"/>
+                        <separator />
+                        <filter string="1 months" name="filter_1_months"
+                            domain="[
+                                '|',('date','=',context_today().strftime('%%Y-%%m-%%d')),
+                                ('date','&gt;',(context_today()-datetime.timedelta(days=31)).strftime('%%Y-%%m-%%d'))]"/>
+						<separator />
+	                    <filter string="2 months" name="filter_2_months"
+	                    	domain="[
+	                    		'|',('date','=',context_today().strftime('%%Y-%%m-%%d')),
+	                    		('date','&gt;',(context_today()-datetime.timedelta(days=62)).strftime('%%Y-%%m-%%d'))]"/>
+						<separator />
+						<filter string="Current User" name="filter_current_user"
+							domain="[('user_id', '=', uid)]" />
+						<separator />
+					</group>
+                    <group expand="1" string="Group By">
+                        <filter string="Project" domain="[]" context="{'group_by':'project_id'}" />
+                        <separator />
+                        <filter string="Forge Ticket" domain="[]" context="{'group_by':'tms_forge_ticket_id'}" />
+                        <separator />
+                        <filter string="Support Ticket" domain="[]" context="{'group_by':'tms_support_ticket_id'}" />
+                        <separator />
+                        <filter string="Activity" domain="[]" context="{'group_by':'tms_activity_id'}" />
+                        <separator />
+                        <filter string="Account" domain="[]" context="{'group_by':'account_id'}" />
+                        <separator />
+                        <filter string="Second Axis" icon="tms_type" domain="[]" context="{'group_by':'analytic_secondaxis_id'}" />
+                        <separator />
+                        <filter string="Billable" domain="[]" context="{'group_by':'is_billable'}" />
+                        <separator />
+                        <filter string="User" domain="[]" context="{'group_by':'user_id'}" />
+                        <separator />
+                        <filter string="Sprint" domain="[]" context="{'group_by':'sprint:day'}" />
+                        <separator />
+                        <filter string="Month-year" domain="[]" context="{'group_by':'date'}" />
+                        <separator />
+                        <filter string="Date" domain="[]" context="{'group_by':'date:day'}" />
+                        <separator />
+                        <filter string="Week Day" domain="[]" context="{'group_by':'weekday'}" />
+                        <separator />
+                        <filter string="Department" domain="[]" context="{'group_by':'department_id'}" />
+                        <separator />
+                        <filter string="Partner Resource" domain="[]" context="{'group_by':'partner_resource_id'}" />
+                        <separator />
+                        <filter string="Partner Project" domain="[]" context="{'group_by':'partner_project_id'}" />
+                        <separator />
+                        <filter string="Support Type" domain="[]" context="{'group_by':'support_type'}" />
+						<separator />
+                        <filter string="Dev Type" domain="[]" context="{'group_by':'dev_type'}" />
+                        <separator/>
+                        <filter string="Partner Computed" domain="[]" context="{'group_by':'partner_computed_id'}"/>
+						<separator />
+                        <filter string="Activity's Owner" domain="[]" context="{'group_by':'activity_owner_id'}" />
+                        <separator />
+                        <filter string="Project's Owner" domain="[]" context="{'group_by':'proj_owner_id'}" />
+                        <separator />
+                        <filter string="Team" domain="[]" context="{'group_by':'team_id'}" />
+                        <separator />
+                        <filter string="Team Manager" domain="[]" context="{'group_by':'team_manager_id'}" />
+                        <separator />
+                        <filter string="Job Title" domain="[]" context="{'group_by':'job_id'}" />
+                        <separator />
+                        <filter string="User Job Type" domain="[]" context="{'group_by':'job_type_id'}" />
+                        <separator />
+                        <filter string="Job Type" domain="[]" context="{'group_by':'tms_job_type_id'}" />
+                        <separator />
+                        <filter string="Manager" domain="[]" context="{'group_by':'manager_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_tms_working_hour_form" model="ir.ui.view">
+            <field name="name">tms.working.hour.form</field>
+            <field name="model">tms.working.hour</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Working Hour" version="7.0">
+                	<sheet>
+                		<group>
+                			<group>
+			                    <field name="user_id"/>
+			                    <field name="name"/>
+			                    <field name="date" />
+			                    <field name="wip_start"/>
+			                    <field name="duration_hour" />
+		                    </group>
+		                    <group>
+		                    	<field name="tms_activity_id"/>
+                                <field name="tms_job_type_id" options="{'no_create': True}" required="1"/>
+	                            <field name="tms_forge_ticket_id" />
+	                            <field name="tms_support_ticket_id" />
+		                    </group>
+                		</group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tms_working_hour_support_ticket_form" model="ir.ui.view">
+            <field name="name">tms.working.hour.support.ticket.form</field>
+            <field name="model">tms.working.hour</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Working Hour" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="user_id" groups="base.group_user"/>
+                                <field name="name" groups="base.group_user"/>
+                                <field name="date" />
+                                <field name="wip_start" groups="base.group_user"/>
+                                <field name="duration_hour" />
+                            </group>
+                            <group>
+                                <field name="tms_activity_id"/>
+                                <field name="tms_forge_ticket_id" groups="base.group_user"/>
+                                <field name="tms_support_ticket_id" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_working_hour_support_ticket_tree" model="ir.ui.view">
+            <field name="name">tms.working.hour.support.ticket.tree</field>
+            <field name="model">tms.working.hour</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Working hours" editable="top">
+                    <field name="date"/>
+                    <field name="tms_activity_id"
+                        domain="[('state','not in',('closed','canceled'))]" />
+                    <field name="tms_job_type_id" options="{'no_create': True}" required="1"/>
+                    <field name="user_id" groups="base.group_user"/>
+                    <field name="name" groups="base.group_user"/>
+                    <field name="duration_hour" sum="Sum of durations (in hours)."/>
+                    <field name="tms_forge_ticket_id"
+                        context="{'quick_create_no_name': 'summary'}" groups="base.group_user"/>
+                    <field name="tms_support_ticket_id"
+                        context="{'quick_create_no_name': 'summary'}" />
+                    <field name="project_id" invisible="1"/>
+                    <field name="account_id" invisible="1"/>
+                    <field name="sprint" invisible="1"/>
+                    <field name="day" invisible="1"/>
+                    <field name="weekday" invisible="1"/>
+                    <field name="is_billable" invisible="1"/>
+                    <field name="analytic_secondaxis_id" invisible="1"/>
+                    <field name="department_id" invisible="1"/>
+                    <field name="partner_resource_id" invisible="1"/>
+                    <field name="partner_project_id" invisible="1"/>
+                    <field name="support_type" invisible="1"/>
+                    <field name="dev_type" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_working_hour_support_ticket_filter" model="ir.ui.view">
+            <field name="name">tms.working.hour.support.ticket.filter</field>
+            <field name="model">tms.working.hour</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Working hours">
+                    <group string="Field">
+                        <!-- SEARCH BY FIELDS -->
+                        <field name="project_id" />
+                        <field name="date" />
+                        <field name="tms_activity_id"/>
+                        <field name="partner_resource_id"/>
+                        <field name="partner_project_id"/>
+                        <field name="partner_computed_id"/>
+                        <field name="proj_owner_id"/>
+                    </group>
+                    <group string="Filter">
+                        <!-- SEARCH BY CUSTOM FILTERS -->
+                        <filter string="Today" name="filter_today"
+                            domain="[('date','=',context_today().strftime('%%Y-%%m-%%d'))]"/>
+                        <separator />
+                        <filter string="Yesterday" name="filter_yesterday"
+                            domain="[('date','=',(context_today()-datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d'))]"/>
+                        <separator />
+                        <filter string="7 days" name="filter_week"
+                            domain="[
+                                '|',('date','=',context_today().strftime('%%Y-%%m-%%d')),
+                                ('date','&gt;',(context_today()-datetime.timedelta(days=7)).strftime('%%Y-%%m-%%d'))]"/>
+                        <separator />
+                        <filter string="1 months" name="filter_1_months"
+                            domain="[
+                                '|',('date','=',context_today().strftime('%%Y-%%m-%%d')),
+                                ('date','&gt;',(context_today()-datetime.timedelta(days=31)).strftime('%%Y-%%m-%%d'))]"/>
+                        <separator />
+                        <filter string="2 months" name="filter_2_months"
+                            domain="[
+                                '|',('date','=',context_today().strftime('%%Y-%%m-%%d')),
+                                ('date','&gt;',(context_today()-datetime.timedelta(days=62)).strftime('%%Y-%%m-%%d'))]"/>
+                        <separator />
+                    </group>
+                    <group expand="1" string="Group By">
+                        <filter string="Project" domain="[]" context="{'group_by':'project_id'}" />
+                        <separator />
+                        <filter string="Activity" domain="[]"
+                            context="{'group_by':'tms_activity_id'}" />
+                        <separator />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_view_working_hour_support_ticket_from_activity"
+            model="ir.actions.act_window">
+            <field name="name">Working Hours</field>
+            <field name="res_model">tms.working.hour</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_working_hour_support_ticket_filter"/>
+            <field name="context">
+            {
+                "search_default_tms_activity_id": active_id,
+                "default_tms_activity_id": active_id
+            }
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view"
+            id="action_view_working_hour_support_ticket_from_activity_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_working_hour_support_ticket_tree"/>
+            <field name="act_window_id" ref="action_view_working_hour_support_ticket_from_activity"/>
+        </record>
+
+        <record model="ir.actions.act_window.view"
+            id="action_view_working_hour_support_ticket_from_activity_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_tms_working_hour_support_ticket_form"/>
+            <field name="act_window_id"
+                ref="action_view_working_hour_support_ticket_from_activity"/>
+        </record>
+
+		<record id="action_view_working_hour" model="ir.actions.act_window">
+            <field name="name">Working Hours</field>
+            <field name="res_model">tms.working.hour</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">
+            {
+            	"search_default_filter_today": 1,
+            	"search_default_filter_current_user": 1,
+            }
+            </field>
+        </record>
+
+        <!-- Working Hours from Activites (form) > Working Hours button -->
+		<record id="action_view_working_hour_from_activity" model="ir.actions.act_window">
+            <field name="name">Working Hours</field>
+            <field name="res_model">tms.working.hour</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">
+            {
+            	"search_default_tms_activity_id": active_id
+            }
+            </field>
+        </record>        
+    </data>
+</openerp>

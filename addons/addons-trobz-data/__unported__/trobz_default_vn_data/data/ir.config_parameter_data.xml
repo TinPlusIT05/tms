@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="trobz_base.default_timezone" model="ir.config_parameter">
+        	<field name="key">Default Timezone</field>
+        	<field name="value">Asia/Ho_Chi_Minh</field>
+        </record>
+        
+        <record id="trobz_base.language_to_load" model="ir.config_parameter">
+        	<field name="key">language_to_load</field>
+        	<field name="value">vi_VN</field>
+        </record>
+        
+        <record id="active_currencies" model="ir.config_parameter">
+        	<field name="key">active_currencies</field>
+        	<field name="value">VND,AUD,CAD,CHF,DKK,EUR,GBP,HKD,INR,JPY,KRW,KWD,MYR,NOK,RUB,SEK,SGD,THB,USD</field>
+        </record>
+        
+        <record id="update_currency_service" model="ir.config_parameter">
+        	<field name="key">update_currency_service</field>
+        	<field name="value">VCB_getter</field>
+        </record>
+
+    </data>
+
+</openerp>
+

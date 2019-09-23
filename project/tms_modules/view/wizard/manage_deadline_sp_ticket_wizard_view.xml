@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_manage_deadline_sp_ticket_wizard_form" model="ir.ui.view">
+            <field name="name">view.manage.deadline.sp.ticket.wizard.form</field>
+            <field name="model">manage.deadline.sp.ticket.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form >
+                    <group>
+                        <field name="comments" required="1" widget="bootstraps_markdown"/>
+                    </group>
+                    <group>
+                        <field name="deadline" type="html">
+                            <div class="oe_grey">
+                            The deadline can be set in case you consider that
+                            this is a defect and you have the commitment about<br/>
+                            the expected delivery date with the end users. However, depends on the current workload, the deadline can be<br/> adjusted based on the discussion with Trobz team,
+                            for example, there are some tickets with higher priority<br/> than this ticket, the deadline is closed to delivery date of the current milestone,or lack of the resource to do<br/>
+                            this ticket as the given deadline, ...
+                            </div>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="button_assign" type="object" string="Assign" class="oe_highlight" />
+                        <button string="Cancel" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_manage_deadline_sp_ticket_wizard" model="ir.actions.act_window">  
+            <field name="name">Manage Deadline Support Ticket</field>
+            <field name="res_model">manage.deadline.sp.ticket.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" ref="view_manage_deadline_sp_ticket_wizard_form" />
+        </record>
+    </data>
+</openerp>

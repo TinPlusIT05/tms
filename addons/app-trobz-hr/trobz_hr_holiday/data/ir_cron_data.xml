@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+        <record model="ir.cron" id="add_allocation_request_beginning_of_month_automatically">
+            <field name="name">Add Allocation Request Beginning of Month Automatically</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="nextcall" eval="(DateTime.now().replace(day=1) + relativedelta(months=1)).strftime('%Y-%m-01 00:00:01')"/>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="True"/>
+            <field name="doall" eval="True"/>
+            <field name="model" eval="'hr.holidays'"/>
+            <field name="function" eval="'add_allocation_request_each_month'"/>
+            <field name="args" eval="'()'" />
+        </record>
+        
+	</data>
+</openerp>
+

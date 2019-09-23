@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="view_tms_docker_repo_form" model="ir.ui.view">
+			<field name="name">tms.docker.repo.form</field>
+			<field name="model">tms.docker.repo</field>
+			<field name="arch" type="xml">
+				<form string="Docker Hub">
+					<sheet>
+						<group>
+							<div>
+								<div class="alert alert-info" attrs="{'invisible':[('update_alert','!=','uptodate')]}">
+									<strong>Info!</strong> Database image is up to date.
+								</div>
+
+								<div class="alert alert-warning" attrs="{'invisible':[('update_alert','!=','warning')]}">
+									<strong>Warning!</strong> The database image has not been updated for 1 day.
+								</div>
+
+								<div class="alert alert-danger" attrs="{'invisible':[('update_alert','!=','danger')]}">
+									<strong>Danger!</strong> The database image is not up to date.
+								</div>
+								<div>
+									<label for="name" style="font-weight:bold" string="Repository" />
+									<h1>
+										<field name="name" />
+									</h1>
+								</div>
+							</div>
+							<group colspan="4">
+								<group>
+									<field name="repo_type"/>
+									<field name="active"/>
+									<field name="everyone_can_pull" groups="tms_modules.group_profile_tms_sysadmin,tms_modules.group_profile_tms_sysadmin_manager"/>
+									<field name="latest_tag_id"/>
+									<field name="track_update_status"/>
+									<field name="auto_update_tag"/>
+									<field name="update_alert" invisible="1"/>
+								</group>
+								<group>
+									<field name="project_id" attrs="{'required':[('repo_type','in',('project_db','project_odoo'))]}"/>
+									<field name="instance_id" attrs="{'required':[('repo_type','=','project_db')], 'invisible':[('repo_type','!=','project_db')]}"
+									domain="[('project_id','=',project_id)]"/>
+									<field name="host_id" attrs="{'invisible':[('repo_type','!=','project_db')]}"/>
+									<field name="database_id" options="{'no_create': True, 'create_edit': False, 'no_open': True}" attrs="
+									{'required':[('repo_type','=','project_db')], 'invisible':[('repo_type','!=','project_db')]}"
+									domain="[('tms_instance_id','=',instance_id)]"/>
+									<field name="database_name" invisible="1"/>
+									<field name="db_backup_location" attrs="{'required':[('repo_type','=','project_db')], 'invisible':[('repo_type','!=','project_db')]}"/>
+									<field name="pg_version" attrs="
+									{'required':[('repo_type','=','project_db')], 'invisible':[('repo_type','!=','project_db')]}"/>
+								</group>
+							</group>
+						</group>
+						<notebook>
+							<page string="Users">
+								<group colspan="4">
+									<field name="tms_docker_repo_user_ids" colspan="4" nolabel="1">
+										<tree>
+											<field name="user_id" />
+											<field name="pull" />
+											<field name="push" />
+										</tree>
+									</field>
+								</group>
+							</page>
+							<page string="Tags">
+								<button name="show_full_tags" class="oe_highlight" string="Full Tags" type="object"/>
+								<group colspan="4">
+									<field name="tms_docker_repo_tag_ids" colspan="4" nolabel="1" readonly="True">
+										<tree>
+											<field name="name" />
+											<field name="create_date" />
+											<field name="size" />
+											<field name="db_file" string="DB Name"/>
+											<field name="active" />
+										</tree>
+									</field>
+								</group>
+							</page>    
+	                        <page string="Notes" groups="tms_modules.group_tms_dev_configuration_user"
+								attrs="{'invisible': [('repo_type', '!=', 'project_db')]}">
+                                <button type="action" class="oe_highlight"
+                                    name="%(choose_internal_users_to_notify_wizard_action)d"
+                                    string="Dockerize database"
+                                    context="{
+										'extra_vars_name': instance_id, 'default_database_name': database_name,
+										'default_notify_type': active_model,
+										'active_id': active_id}"
+                                    >
+                                </button>
+                                <group string="AWX Job History">
+                                    <field name="awx_job_history_ids" context="{'group_by':'job_id'}" nolabel="1">
+                                        <tree string="AWX Job History" create="false" delete="false" edit="false" >
+                                            <field name="name"/>
+                                            <field name="job_id"/>
+                                            <field name="instance_id"/>
+                                            <field name="host_id"/>
+                                            <field name="create_uid"/>
+                                            <field name="instance_user_ids" widget="many2many_tags"/>
+                                            <field name="status"/>
+                                        </tree>
+                                    </field>
+                                </group>
+	                        </page>
+						</notebook>
+	                    <field name="note" nolabel="1" placeholder="Put an internal note..."/>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_tms_docker_repo_tree" model="ir.ui.view">
+			<field name="name">tms.docker.repo.tree</field>
+			<field name="model">tms.docker.repo</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Repository" colors="orange:update_alert=='warning';red:update_alert=='danger'">
+					<field name="create_date" />
+					<field name="name" />
+					<field name="repo_type" />
+					<field name="active" />
+					<field name="update_alert" invisible="1" 	/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_tms_docker_repo_filter" model="ir.ui.view">
+			<field name="name">tms.docker.repo.filter</field>
+			<field name="model">tms.docker.repo</field>
+			<field name="arch" type="xml">
+				<search string="Filter">
+					<field name="name"/>
+					<group string="Filter">
+						<filter name="repo_type" string="Project DB" domain="
+							[('repo_type','=','project_db')]" />
+						<filter name="inactive" string="Inactive" domain="
+							[('active','=',False)]" />
+					</group>
+					<group string="Group By">
+						<filter string="Project" name="group_project" domain="[]" context="{'group_by':'project_id'}" />
+                        <separator />
+						<filter string="Repository Type" name="group_repo_type" domain="[]" context="{'group_by':'repo_type'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="action_view_tms_docker_repo_form" model="ir.actions.act_window">
+			<field name="name">Docker Repositories</field>
+			<field name="res_model">tms.docker.repo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</openerp>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="generate_demo_data_wizard_form_success" model="ir.ui.view">
+            <field name="name">generate_demo_data_wizard_form_success</field>
+            <field name="model">generate.demo.data.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Generate Demo Data" version="7.0">
+                    <group>
+	                    <div colspan="2">
+	                   		By default, no data is generated.
+	                   		You must overide button_generate_demo_data in your module to generate data.
+	                   	</div>
+	                   	<group>
+	                   		<field name="min_date"/>
+	                   		<field name="max_date"/>
+	                   		<field name="configuration"/>
+	                   	</group>
+                    </group>
+                    
+                    <footer>
+	                      	<button name="button_flush_generate_demo_data" string="Flush and Generate Demo Data" type="object" icon="gtk-refresh" class="oe_highlight" />
+	                      	<button name="button_generate_demo_data" string="Generate Demo Data" type="object" icon="gtk-ok" />
+	                      	<button name="button_flush_demo_data" string="Flush Demo Data" type="object" icon="gtk-delete" />
+	                      	or
+	                      	<button special="cancel" string="_Cancel" class="oe_link"/>                    
+                    </footer>
+                    
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_generate_demo_data" model="ir.actions.act_window">
+            <field name="name">Generate Demo Data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">generate.demo.data.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="generate_demo_data_wizard_form_success"/>  
+            <field name="target">new</field>
+        </record>
+        
+    </data>
+</openerp>

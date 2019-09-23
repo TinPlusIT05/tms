@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- add field is_profile in res groups form view -->
+        <record id="tms_module_view_res_groups_form_inherit" model="ir.ui.view">
+            <field name="name">res.groups.form</field>
+            <field name="model">res.groups</field>
+            <field name="inherit_id" ref="trobz_base.view_res_groups_form_inherit"/>
+            <field name="arch" type="xml">
+				<field name="is_profile" position="after">
+					<field name="wh_tickets_required"
+						   attrs="{'invisible': [('is_profile', '=', False)]}"/>
+   					<field name="notif_pref_id"
+						   attrs="{'invisible': [('is_profile', '=', False)]}"/>
+                    <field name="is_sysadmin"
+                           attrs="{'invisible': [('is_profile', '=', False)]}"/>
+				</field>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

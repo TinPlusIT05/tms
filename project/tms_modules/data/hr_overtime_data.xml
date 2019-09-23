@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+        <!-- Week Day -->
+        <record model="hr.overtime.type" id="ot_weekday">
+	        <field name="name">Week Day</field>
+            <field name="time">6:00 AM - 22:00 PM</field>
+            <field name="overtime_pay">150%</field>
+            <field name="description"></field>
+	    </record>
+        <record model="hr.overtime.type" id="ot_shift_night_weekday_200_percent">
+	        <field name="name">Shift Night WD 200%</field>
+            <field name="time">22:00 PM - 6:00 AM</field>
+            <field name="overtime_pay">200%</field>
+            <field name="description">Chưa làm thêm ban ngày</field>
+	    </record>
+        <record model="hr.overtime.type" id="ot_shift_night_weekday_210_percent">
+	        <field name="name">Shift Night WD 210%</field>
+            <field name="time">22:00 PM - 6:00 AM</field>
+            <field name="overtime_pay">210%</field>
+            <field name="description">Đã làm thêm ban ngày</field>
+	    </record>
+        <!-- Weekend -->
+        <record model="hr.overtime.type" id="ot_weekend">
+	        <field name="name">Weekend</field>
+            <field name="time">6:00 AM - 22:00 PM</field>
+            <field name="overtime_pay">200%</field>
+            <field name="description"></field>
+	    </record>
+        <record model="hr.overtime.type" id="ot_shift_night_weekend">
+	        <field name="name">Shift Night WK</field>
+            <field name="time">22:00 PM - 6:00 AM</field>
+            <field name="overtime_pay">270%</field>
+            <field name="description"></field>
+	    </record>
+        <!-- Holiday -->
+        <record model="hr.overtime.type" id="ot_holiday">
+	        <field name="name">Holiday</field>
+            <field name="time">6:00 AM - 22:00 PM</field>
+            <field name="overtime_pay">400%</field>
+            <field name="description"></field>
+	    </record>
+        <record model="hr.overtime.type" id="ot_shift_night_holiday">
+	        <field name="name">Shift Night Holiday</field>
+            <field name="time">22:00 PM - 6:00 AM</field>
+            <field name="overtime_pay">490%</field>
+            <field name="description"></field>
+	    </record>
+    </data>
+</openerp>

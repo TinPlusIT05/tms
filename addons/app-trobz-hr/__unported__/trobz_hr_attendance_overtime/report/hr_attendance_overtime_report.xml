@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="action_hr_attendance_overtime_report" model="ir.actions.report.xml">
+      <field name="name">Attendance Overtime Report</field>
+      <field name="model">hr.attendance</field>
+      <field name="type">ir.actions.report.xml</field>
+      <field name="report_name">hr.attendance.overtime.xls.report</field>
+      <field name="report_type">xls</field>
+      <field name="auto" eval="False"/>
+    </record>
+
+  </data>
+</openerp>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Internal Tools -->
+		<record id="tms_internal_tools_view_tree" model="ir.ui.view">
+			<field name="name">tms.internal.tools.tree</field>
+			<field name="model">tms.internal.tools</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Internal Tools">
+					<field name="name" />
+					<field name="host_group" />
+					<field name="host_ids" widget="many2many_tags"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="tms_internal_tools_view_search" model="ir.ui.view">
+			<field name="name">tms.internal.tools.search</field>
+			<field name="model">tms.internal.tools</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Internal Tools">
+					<group string="Field">
+                        <field name="name" />
+                        <field name="host_group" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+        <record id="tms_internal_tools_view_form" model="ir.ui.view">
+			<field name="name">tms.internal.tools.form</field>
+			<field name="model">tms.internal.tools</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Repositories" version="7.0">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" />
+								<field name="host_group" />
+							</group>
+							<group>
+								<field name="host_ids" widget="many2many_tags" 
+                                    options="{'no_create_edit': True}"/>
+							</group>
+						</group>
+                        <notebook>
+                            <page string="Maintenance" >
+                                <button type="action" class="oe_highlight"
+                                    name="%(choose_internal_users_to_notify_wizard_action)d"
+                                    string="Deploy latest version"
+                                    context="{
+										'extra_vars_name': name,
+										'default_notify_type': active_model,
+										'active_id': active_id}">
+                                </button>
+                                <group string="AWX Job History">
+                                    <field name="awx_job_history_ids" context="{'group_by':'job_id'}" nolabel="1">
+                                        <tree string="AWX Job History" create="false" delete="false" edit="false" >
+                                            <field name="name"/>
+                                            <field name="job_id"/>
+                                            <field name="create_uid"/>
+                                            <field name="instance_user_ids" widget="many2many_tags"/>
+                                            <field name="slack_note"/>
+                                            <field name="status"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                        
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+        <record id="action_view_tms_internal_tools" model="ir.actions.act_window">
+            <field name="name">Internal Tools</field>
+            <field name="res_model">tms.internal.tools</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="tms_internal_tools_view_tree"/>
+        </record>
+
+	</data>
+</openerp>

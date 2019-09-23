@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+                
+        <record id="action_view_trobz_api_log" model="ir.actions.act_window">
+            <field name="name">API Log</field>
+            <field name="res_model">trobz.api.log</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    
+        <menuitem 
+            id="menu_trobz_api_log" 
+            name="API" 
+            sequence="1" 
+            parent="base.menu_custom" 
+            action="action_view_trobz_api_log" />
+    
+    </data>
+</openerp>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_base_config_settings_form_inherit"
+            model="ir.ui.view">
+            <field name="name">view_base_config_settings_form_inherit
+            </field>
+            <field name="model">base.config.settings</field>
+            <field name="inherit_id" ref="base_setup.view_general_configuration" />
+            <field name="arch" type="xml">
+                <xpath expr="//form[@string='General Settings']"
+                    position="inside">
+                    <group>
+                        <label for="update_password_type" string="Change Password Policy"/>
+                        <div>
+                            <field name="update_password_type"
+                                class="oe_inline" />
+                            -
+                            <field name="update_password_date"
+                                class="oe_inline"
+                                attrs="{'invisible':['|',('update_password_type','=','periodically'),('update_password_type','=',False)]}" />
+                            <field name="update_password_period"
+                                class="oe_inline"
+                                attrs="{'invisible':['|',('update_password_type','=','specified_date'),('update_password_type','=',False)]}" />
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

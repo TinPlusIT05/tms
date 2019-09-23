@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_print_pit_report_wizard_form" model="ir.ui.view">
+              <field name="name">view.print.pit.report.wizard.form</field>
+              <field name="model">print.pit.report.wizard</field>
+              <field name="arch" type="xml">
+                <form string="PIT Report" version="7.0">
+                    <group string="PIT Report">
+                        <field name="period_id"/>
+                    </group>
+                    <footer>
+                        <button name="print_pit_report" string="Print"  type="object" class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+              </field>
+        </record>
+    </data>
+</openerp>

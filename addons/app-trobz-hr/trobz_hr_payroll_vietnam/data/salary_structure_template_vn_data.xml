@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+		<!--Salary rule category -->
+        <record id="REF" model="hr.salary.rule.category">
+            <field name="name">Amount for Reference</field>
+            <field name="code">REF</field>
+        </record>
+        
+        <record id="SOCW" model="hr.salary.rule.category">
+            <field name="name">Social Security</field>
+            <field name="code">SOCW</field>
+        </record>
+        
+        <record id="COMPA" model="hr.salary.rule.category">
+            <field name="name">Computed amount</field>
+            <field name="code">COMPA</field>
+        </record>      
+        
+		<record id="hr_payroll.ALW" model="hr.salary.rule.category">
+            <field name="name">Taxable Allowance and Bonus</field>
+            <field name="code">TAX_ALW</field>
+        </record>
+        
+        <record id="NONTAX_ALW" model="hr.salary.rule.category">
+            <field name="name">Nontaxable Allowance and Bonus</field>
+            <field name="code">NONTAX_ALW</field>
+        </record>
+        
+        <record id="OT" model="hr.salary.rule.category">
+            <field name="name">Overtime Salary</field>
+            <field name="code">OT</field>
+        </record>
+        
+        <record id="PREMIUM" model="hr.salary.rule.category">
+            <field name="name">Premium Salary</field>
+            <field name="code">PREMIUM</field>
+        </record>
+        
+        <record id="OTHER" model="hr.salary.rule.category">
+            <field name="name">Other</field>
+            <field name="code">OTHER</field>
+        </record>
+        
+        <!-- Sequence: 
+        - Basic, Overtime, Premium            000 - 60
+        - Taxable allowance and bonus         061 - 80
+        - Non taxable allowance and bonus     081 - 100
+        - 13th month salary                   100
+        - Insurance                           101 - 120
+        - PIT Deduction, Taxable income, PIT  121 - 160
+        - Advance                             161
+        - Gross                               171
+        - Net income                          200
+        -->
+        
+        <!-- Working Salary -->
+        <record id="hr_rule_sstvn_contractual_salary" model="hr.salary.rule">
+            <field name="name">Contractual Salary</field>
+            <field name="sequence" eval="0"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="code">ContractSal</field>
+            <field name="category_id" ref="REF"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.wage</field>
+            <field name="note">As specified in the contract.</field>
+        </record>
+        
+        <record id="hr_rule_sstvn_salary_per_day" model="hr.salary.rule">
+            <field name="name">Salary Per Day</field>
+            <field name="sequence" eval="1"/>    
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="code">SalPerDay</field>
+            <field name="category_id" ref="REF"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (worked_days.ScheduleDays and worked_days.ScheduleDays.number_of_days > 0) and ContractSal/ worked_days.ScheduleDays.number_of_days or 0</field>
+            <field name="note">contractual salary / Working days in month that compute base on the working schedule set on contract</field>
+        </record>
+        
+        <record id="hr_rule_sstvn_worked_days" model="hr.salary.rule">
+            <field name="name">Worked Days</field>
+            <field name="sequence" eval="2"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="code">WorkedDays</field>
+            <field name="category_id" ref="trobz_hr_payroll_vietnam.REF"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.WorkedDays and worked_days.WorkedDays.number_of_days or 0</field>
+            <field name="note">Worked Days</field>
+        </record>
+        
+        <record id="hr_rule_sstvn_worked_days_salary" model="hr.salary.rule">
+            <field name="name">Worked Days Salary</field>
+            <field name="sequence" eval="3"/>    
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="code">WorkedDaysSal</field>
+            <field name="category_id" ref="hr_payroll.BASIC"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.WorkedDays and abs(worked_days.WorkedDays.number_of_days) * SalPerDay or 0</field>
+            <field name="note">Worked days x Salary per day</field>
+        </record>
+        
+        <record id="hr_rule_sstvn_unpaid_leaves" model="hr.salary.rule">
+            <field name="name">Unpaid Leaves</field>
+            <field name="sequence" eval="4"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="code">UnpaidDays</field>
+            <field name="category_id" ref="trobz_hr_payroll_vietnam.REF"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = worked_days.UnpaidL and abs(worked_days.UnpaidL.number_of_days) or 0</field>
+            <field name="note">Unpaid Leaves</field>
+        </record>
+ 		
+ 		<record id="hr_rule_sstvn_unpaid_leaves_salary" model="hr.salary.rule">
+            <field name="name">Unpaid Leaves Salary</field>
+            <field name="sequence" eval="5"/>    
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="code">UnpaidLeaveSal</field>
+            <field name="category_id" ref="hr_payroll.BASIC"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = UnpaidDays * SalPerDay</field>
+            <field name="note">Unpaid leave days x Salary per day</field>
+        </record>
+
+		<record id="hr_rule_sstvn_gross_salary" model="hr.salary.rule">
+            <field name="name">Gross Salary</field>
+            <field name="sequence" eval="6"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="code">GrossSal</field>
+            <field name="category_id" ref="hr_payroll.GROSS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = WorkedDaysSal - UnpaidLeaveSal + categories.TAX_ALW + categories.NONTAX_ALW</field>
+            <field name="note">Worked days salary - Unpaid leaves salary.</field>
+        </record>
+        
+        <!-- There is no any overtime salary/premium salary/allowances  -->
+        <!-- 13th month salary -->
+        <record id="hr_rule_sstvn_thirdteenth_salary" model="hr.salary.rule">
+            <field name="name">13th Month Salary</field>
+            <field name="sequence" eval="100"/>         
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="code">thirdteenthSal</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = 0 &lt; payslip.thirdteenth_year &lt;= int(payslip.date_to[:4])</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (payslip.thirdteenth_year &lt; int(payslip.date_to[:4]) and payslip.sum('WorkedDaysSal', _import('datetime').date(payslip.thirdteenth_year, 1, 1), _import('datetime').date(payslip.thirdteenth_year, 12, 31), official_contract=True)/12) or (payslip.thirdteenth_year == int(payslip.date_to[:4]) and (WorkedDaysSal + payslip.sum('WorkedDaysSal', _import('datetime').date(payslip.thirdteenth_year, 1, 1), _import('datetime').date(payslip.thirdteenth_year, 12, 31), official_contract=True))/12)</field>
+            <field name="note">Sum of net salary in year / 12</field>
+        </record>
+        
+        <!-- Social Security -->
+        <record id="hr_rule_sstvn_ref_soc_insurance" model="hr.salary.rule">
+            <field name="name">Reference Salary For Social Insurance</field>
+            <field name="sequence" eval="101"/> 
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="code">RefSocIns</field>
+            <field name="category_id" ref="REF"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = min(contract.basic_wage, 23000000)</field>
+            <field name="note">Minimum between legal published amount (23,000,000) and contractual salary.</field>
+        </record>
+        
+		<record id="hr_rule_sstvn_soc_insurance_local" model="hr.salary.rule">
+            <field name="name">Social Insurance Local (8%)</field>
+            <field name="sequence" eval="102"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">SocInsL</field>
+            <field name="category_id" ref="SOCW"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 0.08 * RefSocIns</field>
+            <field name="note">Social insurance withholding tax for local contracts = 7% x Reference Salary Social Insurance.</field>
+        </record>
+
+		<record id="hr_rule_sstvn_health_insurance_local" model="hr.salary.rule">
+            <field name="name">Health Insurance Local (1.5%)</field>
+            <field name="sequence" eval="103"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">HealthInsL</field>
+            <field name="category_id" ref="SOCW"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 0.015 * RefSocIns</field>
+            <field name="note">Health insurance withholding tax for local contracts = 1,5% x Reference Salary Social Insurance.</field>
+        </record>
+        
+ 		<record id="hr_rule_sstvn_unemployment_insurance_local" model="hr.salary.rule">
+            <field name="name">Unemployment Insurance Local (1%)</field>
+            <field name="sequence" eval="104"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">UnempInsL</field>
+            <field name="category_id" ref="SOCW"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 0.01 * RefSocIns</field>
+            <field name="note">Unemployment insurance withholding tax for local contracts = 1% x Reference Salary Social Insurance.</field>
+        </record>       
+
+ 		<record id="hr_rule_sstvn_social_security_local" model="hr.salary.rule">
+            <field name="name">Social Security Withholding Tax</field>
+            <field name="sequence" eval="106"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">SocSec</field>
+            <field name="category_id" ref="COMPA"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.SOCW</field>
+            <field name="note">Social insurance local + Health insurance local + Unemployment insurance local.</field>
+        </record>    
+        
+        <record id="hr_rule_sstvn_company_soc_insurance_local" model="hr.salary.rule">
+            <field name="name">Social Insurance Local (company contribution)</field>
+            <field name="sequence" eval="107"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">CompSocInsL</field>
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 0.18 * RefSocIns</field>
+            <field name="note">Social insurance (company contribution) = 17% x Reference Salary Social Insurance.</field>
+        </record>
+
+        <record id="hr_rule_sstvn_company_health_insurance_local" model="hr.salary.rule">
+            <field name="name">Health Insurance Local (company contribution)</field>
+            <field name="sequence" eval="108"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">CompHealthInsL</field>
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 0.03 * RefSocIns</field>
+            <field name="note">Health insurance (company contribution) = 3% x Reference Salary Social Insurance.</field>
+        </record>
+        
+        <record id="hr_rule_sstvn_company_unemployment_insurance_local" model="hr.salary.rule">
+            <field name="name">Unemployment Insurance Local (company contribution)</field>
+            <field name="sequence" eval="109"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">CompUnempInsL</field>
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 0.01 * RefSocIns</field>
+            <field name="note">Unemployment insurance (company contribution) = 1% x Reference Salary Social Insurance.</field>
+        </record>       
+        
+        <record id="hr_rule_sstvn_company_social_security_local" model="hr.salary.rule">
+            <field name="name">Social Security (company contribution)</field>
+            <field name="sequence" eval="111"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">CompSocSec</field>
+            <field name="category_id" ref="COMPA"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.COMP</field>
+            <field name="note">Social insurance local (company contribution) + Health insurance local (company contribution) + Unemployment insurance local (company contribution).</field>
+        </record>
+
+        <!-- Calculate PIT -->
+        <record id="hr_rule_sstvn_nbr_dependent" model="hr.salary.rule">
+            <field name="name">Number Of Dependent Persons</field>
+            <field name="sequence" eval="121"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">NbDep</field>
+            <field name="category_id" ref="REF"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = employee.number_of_dependent</field>
+            <field name="note">Number of persons legally depending on the employee.</field>
+        </record>
+        
+        <record id="hr_rule_sstvn_ded_taxpayer" model="hr.salary.rule">
+            <field name="name">Deduction For Tax Payer</field>
+            <field name="sequence" eval="122"/>  
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">DedTaxP</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 9000000</field>
+            <field name="note">Deductible amount when computing the taxable income, it is a published fixed amount.</field>
+        </record>
+
+        <record id="hr_rule_sstvn_ded_dependent" model="hr.salary.rule">
+            <field name="name">Deduction For Dependent Persons</field>
+            <field name="sequence" eval="123"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">DedDep</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = 3600000 * NbDep</field>
+            <field name="note">Number of dependent persons x 3,600,000.</field>
+        </record>
+
+        <record id="hr_rule_sstvn_ded_family" model="hr.salary.rule">
+            <field name="name">Deduction For Family Circumstances</field>
+            <field name="sequence" eval="124"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">DedFam</field>
+            <field name="category_id" ref="hr_payroll.DED"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = DedTaxP + DedDep</field>
+            <field name="note">Deduction for tax payer + Deduction for dependent persons.</field>
+        </record>
+
+ 		<record id="hr_rule_sstvn_taxable_income" model="hr.salary.rule">
+            <field name="name">Taxable Income</field>
+            <field name="sequence" eval="125"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">PITAX</field>
+            <field name="category_id" ref="COMPA"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = max(0,GrossSal + categories.TAX_ALW - DedFam - SocSec)</field>
+            <field name="note">Gross salary + Allowances - Deduction for Family circumstances - Social security withholding tax</field>
+        </record>
+        
+ 		<!-- Change the formula of the PIT base on the child rules  -->
+ 		<record id="hr_rule_sstvn_pit" model="hr.salary.rule">
+            <field name="name">Personal Income Tax</field>
+            <field name="sequence" eval="141"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">PIT</field>
+            <field name="category_id" ref="COMPA"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute"><![CDATA[result = max(0,PITAX <= 5000000 and PITAX * 0.05 or PITAX <= 10000000 and PITAX * 0.1 - 250000 or PITAX <= 18000000 and PITAX * 0.15 - 750000 or PITAX <= 32000000 and PITAX * 0.2 - 1650000 or PITAX <= 52000000 and PITAX * 0.25 - 3250000 or PITAX <= 80000000 and PITAX * 0.3 - 5850000 or PITAX > 80000000 and PITAX * 0.35 - 9850000)]]></field>
+            <field name="note">Personal income tax: computation according to fiscal regulation, by tranche. ex. 5% tax on the first 5,000,000 then 10% on the next 5,000,000 etc.</field>
+         </record>
+         
+        <!--Advance with an simple inputs  -->
+        
+        <!-- Union -->
+        <record id="hr_rule_sstvn_company_union_fee" model="hr.salary.rule">
+            <field name="name">Union Fee (company contribution)</field>
+            <field name="sequence" eval="171"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="code">UnionFeeCom</field>
+            <field name="category_id" ref="OTHER"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = ((contract_qty > 1 and contract.date_end &lt;= payslip.date_to) or (contract_qty ==1))</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.is_union and 0.2 * RefSocIns or 0</field>
+            <field name="note">Union Fee (company contribution)</field>
+        </record>
+        
+        <record id="hr_rule_sstvn_union_fee" model="hr.salary.rule">
+            <field name="name">Union Fee</field>
+            <field name="sequence" eval="172"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="code">UnionFee</field>
+            <field name="category_id" ref="OTHER"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = ((contract_qty > 1 and contract.date_end &lt;= payslip.date_to) or (contract_qty ==1))</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.is_union and 25000 or 0</field>
+            <field name="note">Union Fee</field>
+        </record>
+
+        <!-- Net Income -->
+ 		<record id="hr_rule_sstvn_net_income" model="hr.salary.rule">
+            <field name="name">Net Income</field>
+            <field name="sequence" eval="200"/>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="is_unique_on_payslip" eval="True"/>
+            <field name="code">NetInc</field>
+            <field name="category_id" ref="hr_payroll.NET"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = GrossSal - SocSec - PIT - UnionFee</field>
+            <field name="note">Gross salary - Social security withholding tax - PIT</field>
+            <field name="register_id" ref="hr_payroll.contrib_register_employees"/>
+         </record>
+
+        <!-- Salary Structure -->
+        <!-- Add hr_rule_conditional_parameter in the Salary Structure Template Vietnam -->
+         <record id="salary_structure_template_vn" model="hr.payroll.structure">
+            <field name="code">SSTVN</field>
+            <field name="parent_id"></field>
+            <field name="name">Salary Structure Template Vietnam</field>
+            <field eval="[(6, 0, [
+            	ref('hr_rule_sstvn_contractual_salary'), 
+            	ref('hr_rule_sstvn_salary_per_day'), 
+            	ref('hr_rule_sstvn_worked_days'), 
+            	ref('hr_rule_sstvn_worked_days_salary'), 
+            	ref('hr_rule_sstvn_unpaid_leaves'), 
+            	ref('hr_rule_sstvn_unpaid_leaves_salary'), 
+                ref('hr_rule_sstvn_gross_salary'), 
+                ref('hr_rule_sstvn_nbr_dependent'),
+                ref('hr_rule_sstvn_ded_taxpayer'),
+                ref('hr_rule_sstvn_ded_dependent'),
+                ref('hr_rule_sstvn_ded_family'),
+                ref('hr_rule_sstvn_ref_soc_insurance'), 
+                ref('hr_rule_sstvn_soc_insurance_local'),
+                ref('hr_rule_sstvn_health_insurance_local'),
+                ref('hr_rule_sstvn_unemployment_insurance_local'),
+                ref('hr_rule_sstvn_union_fee'),
+                ref('hr_rule_sstvn_social_security_local'),
+                ref('hr_rule_sstvn_company_soc_insurance_local'),
+                ref('hr_rule_sstvn_company_health_insurance_local'),
+                ref('hr_rule_sstvn_company_unemployment_insurance_local'),
+                ref('hr_rule_sstvn_company_union_fee'),
+                ref('hr_rule_sstvn_company_social_security_local'),
+                ref('hr_rule_sstvn_thirdteenth_salary'),
+                ref('hr_rule_sstvn_taxable_income'),
+                ref('hr_rule_sstvn_pit'),
+                ref('hr_rule_sstvn_net_income'),])]" 
+                name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+ 	</data>
+</openerp>
+

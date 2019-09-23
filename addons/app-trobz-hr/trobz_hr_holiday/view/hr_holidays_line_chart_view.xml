@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+        <record id="view_hr_holidays_booking" model="ir.ui.view">
+            <field name="name">view_hr_holidays_booking</field>
+            <field name="model">hr.holidays.line</field>
+            <field name="arch" type="xml">
+                <booking>
+                    <items title="name" />
+                    <calendar base="days" timezone="+07:00" />
+                </booking>
+            </field>
+        </record>
+
+        <record id="hr_holidays_line_booking_chart" model="booking.chart">
+            <field name="name">HR holidays chart</field>
+            <field name="resource_model" ref="hr.model_hr_employee" />
+            <field name="create_model" ref="hr_holidays.model_hr_holidays" />
+            <field name="supported_model_ids"
+                eval="[(6,0,[ref('trobz_hr_holiday.model_hr_holidays_line')])]" />
+        </record>
+
+		<record id="action_hr_holidays_line_chart" model="ir.actions.act_window">
+			<field name="name">Leaves Chart</field>
+			<field name="view_mode">booking</field>
+			<field name="view_type">tree</field>
+			<field name="res_model">hr.employee</field>
+			<field name="context"
+				eval="{'booking_chart_id': ref('trobz_hr_holiday.hr_holidays_line_booking_chart')}" />
+			<field name="search_view_id"
+				ref="hr.view_employee_filter" />
+		</record>
+
+		<menuitem id="menu_hr_holidays_booking_chart"
+				  action="action_hr_holidays_line_chart"
+				  parent="hr_holidays.menu_open_ask_holidays" sequence="4" />
+
+	</data>
+</openerp>

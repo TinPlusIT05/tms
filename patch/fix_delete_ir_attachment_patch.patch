@@ -1,0 +1,31 @@
+From f5ebc509e18d4408ae0a421acfc0b4c9a488403c Mon Sep 17 00:00:00 2001
+From: Antony Lesuisse <al@openerp.com>
+Date: Sun, 21 Dec 2014 22:21:35 +0100
+Subject: [PATCH] [IMP] ir.attachment access right, use write mode of related
+ object
+
+For related models, check if we can write to the model, as linking
+or unlinking attachments can be seen as an update to the model.
+
+Courtesy of Vincent Vinet
+
+Closes: #1035
+---
+ /odoo/openerp/addons/base/ir/ir_attachment.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git /odoo/openerp/addons/base/ir/ir_attachment.py b/openerp/addons/base/ir/ir_attachment.py
+index 4c205066b6f88..a495635f71ae8 100644
+--- /odoo/openerp/addons/base/ir/ir_attachment.py
++++ /odoo/openerp/addons/base/ir/ir_attachment.py
+@@ -348,7 +348,9 @@ def check(self, cr, uid, ids, mode, context=None, values=None):
+             existing_ids = self.pool[model].exists(cr, uid, mids)
+             if len(existing_ids) != len(mids):
+                 require_employee = True
+-            ima.check(cr, uid, model, mode)
++            # For related models, check if we can write to the model, as linking
++            # or unlinking attachments can be seen as an update to the model
++            ima.check(cr, uid, model, 'write')
+             self.pool[model].check_access_rule(cr, uid, existing_ids, mode, context=context)
+         if require_employee:
+             if not self.pool['res.users'].has_group(cr, uid, 'base.group_user'):

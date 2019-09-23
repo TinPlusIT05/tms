@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_crm_lost_reason_tree" model="ir.ui.view">
+			<field name="name">view.crm.lost.reason.tree</field>
+			<field name="model">crm.lost.reason</field>
+			<field name="arch" type="xml">
+				<tree string="CRM Lost Reason" editable="top">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_crm_lost_reason_form" model="ir.ui.view">
+			<field name="name">view.crm.lost.reason.form</field>
+			<field name="model">crm.lost.reason</field>
+			<field name="arch" type="xml">
+				<form string="CRM Lost Reason" version="7.0">
+					<sheet>
+						<field name="name"/>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="view_crm_lost_reason_search" model="ir.ui.view">
+			<field name="name">view.crm.lost.reason.search</field>
+			<field name="model">crm.lost.reason</field>
+			<field name="arch" type="xml">
+				<search string="CRM Lost Reason">
+					<field name="name"/>
+				</search>
+			</field>
+		</record>
+	</data>
+</openerp>

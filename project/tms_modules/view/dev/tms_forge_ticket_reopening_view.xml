@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_tms_forge_ticket_reopening_tree" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.reopening.tree</field>
+            <field name="model">forge.ticket.reopening</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Forge Ticket Reopenings">
+                    <field name="date" />
+                    <field name="name" />
+                    <field name="project_id" />
+                    <field name="summary" />    
+                    <field name="development_time" />
+                    <field name="time_spent" />
+                    <field name="fixing_time_spent" />
+                    <field name="last_completer_id" />
+                    <field name="sprint" />
+                    <field name="past_reopening_times" />
+                    <field name="reopener_id" />
+                    <field name="reopening_type"/>
+
+                    <field name="pre_state" invisible="1"/>
+                    <field name="completion_date" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_forge_ticket_reopening_search" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.reopening.search</field>
+            <field name="model">forge.ticket.reopening</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Forge Ticket Reopening">
+                	<group string="Field">
+                        <field name="name"/>
+                        <field name="project_id"/>
+                        <field name="sprint"/>
+                        <field name="last_completer_id"/>
+                        <field name="reopener_id"/>
+                        <field name="reopening_type"/>
+                        <field name="proj_owner_id"/>
+                        <field name="team_id"/>
+                        <field name="team_manager_id"/>
+                    </group>
+                    <group string="Filter">
+                        <filter name="filter_reopened_closed" string="Reopened after closed"
+                            domain="[('pre_state', '=', 'closed')]"/>
+                        <separator />
+                        <filter name="filter_reopened_by_fc" string="Reopened by FC" domain="[('reopener_id.groups_id', 'in', %(tms_modules.group_profile_tms_functional_consultant)d)]"/>
+                    </group>
+                    <group expand="1" string="Group By">
+                        <filter name="group_by_date" string="Date"
+                            domain="[]" context="{'group_by':'date'}" />
+                        <separator />
+                        <filter name="group_by_name" string="Ticket"
+                            domain="[]" context="{'group_by':'name'}" />
+                        <separator />
+                        <filter name="group_by_sprint" string="Sprint"
+                            domain="[]" context="{'group_by':'sprint:day'}" />
+                        <separator />
+                        <filter name="group_by_completion_day" string="Completion Date"
+                            domain="[]" context="{'group_by':'completion_date'}" />
+                        <separator />
+                        <filter name="group_by_project" string="Project"
+                            domain="[]" context="{'group_by':'project_id'}" />
+                        <separator />
+                        <filter name="group_by_responsible" string="Responsible"
+                            domain="[]" context="{'group_by':'last_completer_id'}" />
+                        <separator />
+                        <filter name="group_by_past_reopening" string="Past Reopening Times"
+                            domain="[]" context="{'group_by':'past_reopening_times'}" />
+                        <separator />
+                        <filter name="group_by_reopening_type" string="Reopening Type"
+                            domain="[]" context="{'group_by': 'reopening_type'}"/>
+                        <separator />
+                        <filter name="group_by_prev_status" string="Previous Status"
+                            domain="[]" context="{'group_by': 'pre_state'}"/>
+                        <separator />
+                        <filter string="Project's Owner"
+                        	domain="[]"
+                        	context="{'group_by':'proj_owner_id'}"/>
+                        <separator />
+                        <filter string="Team"
+                        	domain="[]"
+                        	context="{'group_by':'team_id'}"/>
+                        <separator />
+                        <filter string="Team Manager"
+								domain="[]" context="{'group_by':'team_manager_id'}" />
+                        <separator />
+                        <filter string="Reopener"
+                                domain="[]" context="{'group_by':'reopener_id'}" />
+    				</group>
+                </search>
+            </field>
+        </record>
+		
+		<record id="view_tms_forge_ticket_reopening_form" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.reopening.form</field>
+            <field name="model">forge.ticket.reopening</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Forge Ticket Reopenings">
+                	<group colspan="4" col="5">
+                		<group colspan="3" col="2">
+                			<field name="summary"/>
+                			<field name="comment"/>
+                			<field name="reopening_type"/>
+	                		<field name="past_reopening_times"/>
+	                		<field name="development_time"/>
+	                		<field name="fixing_time_spent"/>
+		                    <field name="time_spent"/>
+                		</group>
+                		<group colspan="2" col="2">
+                			<field name="name"/>
+                			<field name="project_id"/>
+                			<field name="sprint" options="{'datepicker':{'beforeShowDay': [0,1,2,3,4,5]}}"/>
+                			<field name="completion_date"/>
+	                		<field name="date"/>
+                			<field name="last_completer_id"/>
+                			<field name="reopener_id"/>
+                			<field name="pre_state"/>
+                		</group>
+                	</group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

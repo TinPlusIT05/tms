@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+         <record model="ir.ui.view" id="view_hr_advanced_working_time_tree">
+            <field name="name">view.hr.advanced.working.time.tree</field>
+            <field name="model">hr.advanced.working.time</field>
+            <field name="arch" type="xml">
+                <tree string="Advanced Working Time">
+                    <field name="day"/>
+                    <field name="hour" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_advanced_working_time_form">
+            <field name="name">view.hr.advanced.working.time.form</field>
+            <field name="model">hr.advanced.working.time</field>
+            <field name="arch" type="xml">
+                <form string="Advanced Working Time" version="7.0">
+                    <group col="4">
+                        <field name="day"/>
+                        <field name="hour" widget="float_time"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_advanced_working_time_search">
+            <field name="name">view.hr.advanced.working.time.search</field>
+            <field name="model">hr.advanced.working.time</field>
+            <field name="arch" type="xml">
+                <search string="Advanced Working Time">
+                    <field name="day"/>
+                    <field name="hour"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</openerp>

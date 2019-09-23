@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data>
+        <record id="view_travel_request_tree" model="ir.ui.view">
+            <field name="name">travel.request.tree</field>
+            <field name="model">hr.travel.request</field>
+            <field name="arch" type="xml">
+                <tree string="travel_request" colors="red:duration &gt; 3">
+                    <field name="employee_id" />
+                    <field name="hr_travel_type_id" />
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="duration" />
+                    <field name="state" />
+                    <field name="employee_department_id"
+                        invisible="1" />
+                    <field name="employee_designation_id"
+                        invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_travel_request_filter" model="ir.ui.view">
+            <field name="name">view.travel.request.filter</field>
+            <field name="model">hr.travel.request</field>
+            <field name="arch" type="xml">
+                <search string="Travel Request">
+                    <field name="employee_id" />
+                    <field name="hr_travel_type_id" />
+                    <field name="employee_department_id" />
+                    <field name="employee_designation_id" />
+
+                    <filter name="round_trip" string="Round Trip"
+                        domain="[('round_trip','=',True)]" />
+                    <filter name="one_way_trip" string="One Way Trip"
+                        domain="[('one_way_trip','=',True)]" />
+                    <filter name="mutiple_visit_visa" string="Multiple Visit Visa"
+                        domain="[('mutiple_visit_visa','=',True)]" />
+                    <group expand="0" string="Group By...">
+                        <filter string="Employee Name" domain=""
+                            context="{'group_by':'employee_id'}" />
+                        <filter string="Destination" domain=""
+                            context="{'group_by':'destination_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_hr_travel_request_form" model="ir.ui.view">
+            <field name="name">view.hr.travel.request.form</field>
+            <field name="model">hr.travel.request</field>
+            <field name="arch" type="xml">
+                <form string="Travel Request" version="7.0">
+                    <header>
+                        <button name="button_confirm" string="Confirm"
+                            type="object" states="draft" class="oe_highlight" />
+                        <button name="button_approve" string="Approved"
+                            type="object" states="confirm" class="oe_highlight"
+                            groups="base.group_hr_manager" />
+                        <button name="button_refuse" string="Refuse"
+                            type="object" states="confirm" class="oe_highlight"
+                            groups="base.group_hr_manager" />
+                        <button name="button_reset_to_draft"
+                            string="Reset To Draft" type="object"
+                            states="refuse" groups="base.group_hr_manager" />
+                        <field name="state" widget="statusbar"
+                            statusbar_visible="draft,confirm,refuse,approved"
+                            statusbar_colors='{"draft":"blue","apply":"blue","approve":"blue","cancel":"blue","paid":"blue","rejected":"red"}' />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" />
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            <button name="act_view_attachments" 
+                                    class="oe_stat_button" 
+                                    icon="fa-folder-open" 
+                                    type="object">
+                                <field name="attachments_count" widget="statinfo" string="Documents"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="hr_travel_type_id" />
+                                <label for="start_date" string="Duration" />
+                                <div>
+                                    <field name="start_date" class="oe_inline" /> - <field name="end_date" class="oe_inline" />
+                                </div>
+                                <label for="duration" style="visibility: hidden;" />
+                                <div>
+                                    <field name="duration"
+                                        nolabel="1" class="oe_inline" /> days
+                                </div>
+                            </group>
+                            <group>
+                                <field name="employee_id" />
+                                <field name="employee_department_id" />
+                                <field name="employee_designation_id" />
+                            </group>
+                        </group>
+                        <group string="General Information">
+                            <group>
+                                <field name="visa_expiry_date" />
+                                <field name="mutiple_visit_visa" />
+                                <field name="round_trip" />
+                                <field name="one_way_trip" />
+                            </group>
+                            <group>
+                                <field name="destination_id" />
+                                <field name="ticket_price" />
+                                <field name="visa_cost" />
+                            </group>
+                            <separator string="Description" />
+                            <field name="general_description"
+                                nolabel="1" colspan="2"
+                                placeholder="Description" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_travel_request" model="ir.actions.act_window">
+            <field name="name">Travel Request</field>
+            <field name="res_model">hr.travel.request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</openerp>

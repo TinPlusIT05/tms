@@ -1,0 +1,51 @@
+# -*- encoding: UTF-8 -*-
+import wizard
+import tms_project_intensity
+import tms_project
+import tms_project_type
+import tms_milestone
+import tms_project_feature
+import tms_project_feature_group
+import tms_project_feature_tag
+import tms_project_feature_url
+import project_support_contracts
+
+import tms_instance
+import tms_free_instance
+import tms_delivery
+import tms_free_delivery
+
+import repository
+import project_subscriber
+
+import tms_host
+import tms_host_group
+import tms_host_virtualization
+import tms_operating_system
+
+import tms_subscriber
+import tms_forge_ticket
+import forge_ticket_reopening
+import tms_framework_version
+import forge_ticket_assign
+import tms_forge_ticket_card
+
+import instance_database
+import tms_project_tag
+import tms_ticket_task_type
+import tms_ticket_task_type_family
+import tms_forge_subscriber
+
+import multi_host_database
+import tms_docker_repo
+import tms_docker_repo_users
+import tms_docker_repo_tags
+import tms_wkhtmltopdf_version
+
+import workload_estimation
+import workload_estimation_risk
+import tms_forge_ticket_workload
+
+import calculate_kpi
+import tms_awx_job_history
+import tms_internal_tools

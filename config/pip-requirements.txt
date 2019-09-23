@@ -1,0 +1,18 @@
+# From addons/server-tools/field_secure/requirements.txt
+pycrypto==2.6.1
+# From addons/web-unleashed/web_unleashed/requirements.txt
+qunitsuite==0.3
+# From project/requirements.txt
+xlsxwriter==0.7.3
+safe_logger
+# From erppeek/requirements.txt
+erppeek
+python-dateutil
+click
+# From requirements.txt
+# From addons/addons-trobz/trobz_security_safe_password/requirements.txt
+cracklib==2.9.3
+# From addons/trobz-extra/requirements.txt
+unidecode==0.4.17
+pyinotify
+bcrypt

@@ -1,0 +1,319 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* trobz_hr_overtime
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-04 04:15+0000\n"
+"PO-Revision-Date: 2014-03-04 04:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,advanced_schedule_id:0
+msgid "Advanced Working Schedule"
+msgstr "Advanced Working Schedule"
+
+#. module: trobz_hr_overtime
+#: constraint:hr.overtime:0
+msgid "An overtime of this employee has already existed!"
+msgstr "An overtime of this employee has already existed!"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,break_stop:0
+msgid "Break End"
+msgstr "Break End"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,break_hour:0
+msgid "Break Hours"
+msgstr "Break Hours"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,break_start:0
+msgid "Break Start"
+msgstr "Break Start"
+
+#. module: trobz_hr_overtime
+#: selection:hr.overtime,mode:0
+msgid "By Employee"
+msgstr "By Employee"
+
+#. module: trobz_hr_overtime
+#: selection:hr.overtime,mode:0
+msgid "By Employees"
+msgstr "By Employees"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: trobz_hr_overtime
+#: selection:hr.overtime,state:0
+msgid "Cancelled"
+msgstr "Cancelled"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Comfirm"
+msgstr "Comfirm"
+
+#. module: trobz_hr_overtime
+#: selection:hr.overtime,type:0
+msgid "Compensation"
+msgstr "Compensation"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,compensation_date:0
+msgid "Compensation Date"
+msgstr "Compensation Date"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: selection:hr.overtime,state:0
+msgid "Confirmed"
+msgstr "Confirmed"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,contract_id:0
+msgid "Contract"
+msgstr "Contract"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Current Month"
+msgstr "Current Month"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,name:0
+msgid "Date"
+msgstr "Date"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,datetime_stop:0
+msgid "DateTime End"
+msgstr "DateTime End"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,datetime_start:0
+msgid "DateTime Start"
+msgstr "DateTime Start"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: selection:hr.overtime,state:0
+msgid "Done"
+msgstr "Done"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: selection:hr.overtime,state:0
+msgid "Draft"
+msgstr "Draft"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: field:hr.overtime,employee_id:0
+msgid "Employee"
+msgstr "Employee"
+
+#. module: trobz_hr_overtime
+#: constraint:hr.overtime:0
+msgid "Error! The overtime hours muste be greater than 0."
+msgstr "Error! The overtime hours muste be greater than 0."
+
+#. module: trobz_hr_overtime
+#: constraint:hr.overtime:0
+msgid "Error! break-stop must be less than break-start."
+msgstr "Error! break-stop must be less than break-start."
+
+#. module: trobz_hr_overtime
+#: constraint:hr.overtime:0
+msgid "Error! datetime-stop must be less than datetime-start."
+msgstr "Error! datetime-stop must be less than datetime-start."
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,working_hour:0
+msgid "Expected Working Hours"
+msgstr "Expected Working Hours"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,message_follower_ids:0
+msgid "Followers"
+msgstr "Followers"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Group by"
+msgstr "Group by"
+
+#. module: trobz_hr_overtime
+#: help:hr.overtime,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: trobz_hr_overtime
+#: help:hr.overtime,working_hour:0
+msgid "If an advanced working schedule is selected, working hour will be computed based on this schedule and the start and end.\n"
+"If no working schedule is selected, working hour is the result of (start - end)"
+msgstr "If an advanced working schedule is selected, working hour will be computed based on this schedule and the start and end.\n"
+"If no working schedule is selected, working hour is the result of (start - end)"
+
+#. module: trobz_hr_overtime
+#: help:hr.overtime,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "If checked new messages require your attention."
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: field:hr.overtime,employee_ids:0
+msgid "List of Employees"
+msgstr "List of Employees"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: trobz_hr_overtime
+#: help:hr.overtime,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: field:hr.overtime,mode:0
+msgid "Mode"
+msgstr "Mode"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: field:hr.overtime,month_year:0
+msgid "Month/Year"
+msgstr "Month/Year"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "My Overtime"
+msgstr "My Overtime"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "My orvetime"
+msgstr "My orvetime"
+
+#. module: trobz_hr_overtime
+#: help:hr.overtime,compensation_date:0
+msgid "On the compensation date, this emloyee absent. So, this employee must be compensated for this date on the register date"
+msgstr "On the compensation date, this emloyee absent. So, this employee must be compensated for this date on the register date"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Open"
+msgstr "Open"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: selection:hr.overtime,type:0
+#: model:ir.actions.act_window,name:trobz_hr_overtime.action_hr_overtime_tree
+#: model:ir.ui.menu,name:trobz_hr_overtime.menu_hr_overtime
+msgid "Overtime"
+msgstr "Overtime"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Overtimes"
+msgstr "Overtimes"
+
+#. module: trobz_hr_overtime
+#: model:ir.model,name:trobz_hr_overtime.model_hr_payslip
+msgid "Pay Slip"
+msgstr "Pay Slip"
+
+#. module: trobz_hr_overtime
+#: code:addons/trobz_hr_overtime/model/hr_overtime.py:209
+#: code:addons/trobz_hr_overtime/model/hr_overtime.py:257
+#, python-format
+msgid "Please setup the labor contract of this employee"
+msgstr "Please setup the labor contract of this employee"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Reason"
+msgstr "Reason"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,reason:0
+msgid "Reason of the Overtime"
+msgstr "Reason of the Overtime"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Reason of the Overtime..."
+msgstr "Reason of the Overtime..."
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Register Date"
+msgstr "Register Date"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+msgid "Set to draft"
+msgstr "Set to draft"
+
+#. module: trobz_hr_overtime
+#: view:hr.overtime:0
+#: field:hr.overtime,state:0
+msgid "State"
+msgstr "State"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,message_summary:0
+msgid "Summary"
+msgstr "Summary"
+
+#. module: trobz_hr_overtime
+#: model:ir.model,name:trobz_hr_overtime.model_hr_overtime
+msgid "Trobz HR Overtime"
+msgstr "Trobz HR Overtime"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,message_unread:0
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: trobz_hr_overtime
+#: code:addons/trobz_hr_overtime/model/hr_overtime.py:209
+#: code:addons/trobz_hr_overtime/model/hr_overtime.py:257
+#, python-format
+msgid "Warning!"
+msgstr "Warning!"
+
+#. module: trobz_hr_overtime
+#: field:hr.overtime,working_activity_id:0
+msgid "Working Activity"
+msgstr "Working Activity"
+
+#. module: trobz_hr_overtime
+#: model:ir.model,name:trobz_hr_overtime.model_post_object_trobz_hr_overtime
+msgid "post.object.trobz.hr.overtime"
+msgstr "post.object.trobz.hr.overtime"
+

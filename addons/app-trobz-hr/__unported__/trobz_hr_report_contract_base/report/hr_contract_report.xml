@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	   	<!--  Contract Report webkit -->
+	   	 <record id="hr_contract_report_header" model="ir.header_webkit">
+            <field name="footer_html"><![CDATA[]]></field>
+            <field name="orientation">Portrait</field>
+            <field name="format">A4</field>
+            <field name="paper_width">100</field>
+            <field name="paper_height">41</field>
+            <field name="html"><![CDATA[]]></field>
+            <field name="css"><![CDATA[]]></field>
+            <field eval="2.0" name="margin_top"/>
+            <field eval="2.0" name="margin_bottom"/>
+            <field name="name">Contract Report Header</field>
+        </record>
+        <report 
+            id="hr_contract_report_webkit"
+            string="Contract"
+            model="hr.contract"
+            name="hr_contract_report_webkit"
+            file="trobz_hr_report_contract_base/report/hr_contract_report.mako"
+            report_type="webkit"
+            header="0"
+            menu="True"
+        	webkit_header="hr_contract_report_header"/>
+        	
+    </data>
+</openerp>

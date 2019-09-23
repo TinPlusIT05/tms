@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-extend="DatabaseManager">
+        <t t-jquery="form#db_drop" t-operation="replace">
+            <t t-if="!widget.session.is_production_instance">
+                <form id="db_drop" name="drop_db_form" style="display: none; ">
+                    <div class="oe_view_manager oe_view_manager_current">
+                        <div class="oe_view_manager_header" style="padding: 8px;">
+                            <div class="oe_header_row">
+                                <h2 class="oe_view_title">
+                                    <span class="oe_view_title_text oe_breadcrumb_title">Drop Database</span>
+                                </h2>
+                                <button type="submit" class="oe_button oe_highlight db_drop">Drop</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table align="center" class="db_option_table">
+                        <tr>
+                            <td><label for="drop_db">Database:</label></td>
+                            <td class="oe_form_field oe_form_field_selection">
+                                <select t-if="widget.db_list" name="drop_db" autofocus="autofocus">
+                                    <t t-foreach="widget.db_list" t-as="db">
+                                        <option t-att-value="db">
+                                            <t t-esc="db" />
+                                        </option>
+                                    </t>
+                                </select>
+                                <input t-if="!widget.db_list" name="drop_db" class="required" type="text" autofocus="autofocus"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="drop_password">Master Password:</label></td>
+                            <td><input type="password" name="drop_pwd" class="required" /></td>
+                        </tr>
+                    </table>
+                </form>
+            </t>
+        </t>
+    </t>
+
+    <t t-name="DatabaseManager.menu">
+        <div class="oe_secondary_menu_section">Database Management</div>
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li><a href="#db_create">Create</a></li>
+            <li><a href="#db_duplicate">Duplicate</a></li>
+            <t t-if="!widget.session.is_production_instance">
+            <li><a href="#db_drop">Drop</a></li>
+            </t>
+            <li><a href="#db_backup">Backup</a></li>
+            <li><a href="#db_restore">Restore</a></li>
+            <li><a href="#db_change_password">Password</a></li>
+        </ul>
+    </t>
+</templates>

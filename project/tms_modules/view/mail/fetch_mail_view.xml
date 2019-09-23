@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_email_server_form" model="ir.ui.view">
+            <field name="name">fetchmail.server.form</field>
+            <field name="model">fetchmail.server</field>
+            <field name="inherit_id" ref="fetchmail.view_email_server_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Advanced Options']/field[@name='original']" position="before">
+                    <field name="only_message"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

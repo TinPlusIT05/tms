@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    
+        <record id="resource_tag_initial" model="booking.resource.tag">
+            <field name="name">Initial Project Iterations</field>
+            <field name="icon_name">fa fa-play</field>
+        </record>
+        
+        <record id="resource_tag_evolution" model="booking.resource.tag">
+            <field name="name">Evolution</field>
+            <field name="icon_name">fa fa-fast-forward</field>
+        </record>
+        
+        <record id="resource_tag_support" model="booking.resource.tag">
+            <field name="name">Support</field>
+            <field name="icon_name">fa fa-wrench</field>
+        </record>
+        
+        <record id="resource_tag_guaranty" model="booking.resource.tag">
+            <field name="name">Guaranty</field>
+            <field name="icon_name">fa fa-bug</field>
+        </record>
+        
+        <record id="resource_tag_other" model="booking.resource.tag">
+            <field name="name">Other</field>
+            <field name="icon_name">fa fa-question</field>
+        </record>
+        
+        <record id="resource_tag_prospection_demo" model="booking.resource.tag">
+            <field name="name">Prospection &amp; Demo</field>
+            <field name="icon_name">fa fa-users</field>
+        </record>
+        
+        <record id="resource_tag_rd" model="booking.resource.tag">
+            <field name="name">R&amp;D</field>
+            <field name="icon_name">fa fa-flask</field>
+        </record>
+        
+        <record id="resource_tag_supervision" model="booking.resource.tag">
+            <field name="name">Supervision</field>
+            <field name="icon_name">fa fa-eye</field>
+        </record>
+        
+    </data>
+</openerp>

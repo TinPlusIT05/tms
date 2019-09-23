@@ -1,0 +1,1 @@
+from trobz_hr_mail_contract_end.model import hr_contract

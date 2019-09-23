@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record id="view_tms_delivery_tree" model="ir.ui.view">
+			<field name="name">tms.delivery.tree</field>
+			<field name="model">tms.delivery</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Delivery" colors="red:state=='to_re_deliver';grey:state in ('pass','redelivered','done_no_test')">
+					<field name="name" />
+                    <field name="project_id" invisible ="1" />
+                    <field name="milestone_id" />
+                    <field name="create_uid"/>
+                    <field name="instance_id"/>
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="view_tms_delivery_filter" model="ir.ui.view">
+            <field name="name">tms.delivery.filter</field>
+            <field name="model">tms.delivery</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Deliveries">
+                    <filter name="open" icon="tms_planned" string="In Progress"
+                        domain="[('state','=',('in_progress'))]" />
+                    <filter icon="tms_warning" string="Exception"
+                        domain="[('state','=','exception')]" />
+                    <filter icon="tms_open" string="Done"
+                        domain="[('state','=','done')]" />
+                    <separator orientation="vertical" />
+
+                    <newline/>
+                    <group expand="0" string="Advanced search...">
+                        <field name="project_id" widget="selection"/>
+                        <field name="name" />
+                        <field name="state" />
+                    </group>
+                    <newline />
+
+                    <group expand="1" string="Group By...">
+                        <filter name="group_by_project" string="Project" domain="[]"
+                            context="{'group_by':'project_id'}" />
+                        <filter string="Milestone" domain="[]"
+                            context="{'group_by':'milestone_id'}" />
+                        <separator orientation="vertical" />
+                        <filter string="State"
+                            domain="[]" context="{'group_by':'state'}" />
+                        <separator orientation="vertical" />
+                        <filter string="Instance" domain="[]"
+                            context="{'group_by':'instance_id'}" />
+                         <separator orientation="vertical" />
+                        <filter string="Delivery Date" domain="[]"
+                            context="{'group_by':'name'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<record id="view_tms_delivery_form" model="ir.ui.view">
+			<field name="name">tms.delivery.form</field>
+			<field name="model">tms.delivery</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Delivery">
+
+					<field name="project_id" invisible="1"/>
+
+					<group colspan="4" col="6">
+						<field name="name"/>
+						<field name="instance_id" />
+						<field name="milestone_id" context="{'project_id':project_id}"/>
+						<field name="state" select="1" />
+					</group>
+					<notebook colspan="4">
+						<page string="Related Tickets">
+							<field name="forge_ticket_ids" nolabel="1">
+								<tree string="Forge tickets" colors="grey:state=='closed';red:priority=='very_high';rgb(233, 87, 4):priority=='high';SteelBlue:priority=='low'">
+				                    <field name="milestone_id" invisible="1" />
+				                    <field name="tms_activity_id" invisible="1" />
+				                    <field name="is_billable" invisible="1" />
+				                    <field name="tms_functional_block_id" invisible="1"/>
+				                    <field name="sequence" invisible="1"/>
+				                    <field name="id" string="id" />
+				                    <field name="tms_support_ticket_id"/>
+				                    <field name="project_id"/>
+				                    <field name="summary" />
+				                    <field name="owner_id" />
+				                    <field name="department_id"/>
+				                    <field name="sprint" />
+				                    <button name="button_previous_sprint" type="object" string="Move to previous sprint"
+										class="icon-chevron-left" />
+				                    <button name="button_remove_sprint" type="object" string="Remove sprint"
+										class="icon-remove" />
+									<button name="button_next_sprint" type="object" string="Move to next sprint"
+										class="icon-chevron-right" />
+				                    <field name="development_time" string="Estimate" sum="Total Time Planned" />
+				                    <field name="remaining_time" sum="Sum of the estimated remaining time." string="Remain"/>
+				                    <field name="priority" />
+				                    <button name="button_higher_priority" type="object" string="Set higher priority"
+				                    	class="icon-chevron-up" attrs="{'invisible': [('priority','=','very_high')]}"/>
+				                    <button name="button_lower_priority" type="object" string="Set lower priority"
+				                    	class="icon-chevron-down"  attrs="{'invisible': [('priority','=','low')]}"/>
+				                    <field name="state" />
+				                    <field name="delivery_status" invisible="1" />
+				                    <button name="button_accept" states="assigned" type="object" string="Accept" class="icon-circle custom-green-button" />
+				                    <button name="button_in_qa" states="ready_to_deploy" type="object" string="QA" class="icon-search" />
+				                </tree>
+							</field>
+						</page>
+						<page string="Note">
+							<newline/>
+							<field name="note" colspan="4"/>
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_view_tms_delivery" model="ir.actions.act_window">
+            <field name="name">Deliveries</field>
+            <field name="res_model">tms.delivery</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tms_delivery_tree"/>
+            <field name="context">{'order_by':['priority']}</field>
+        </record>
+	</data>
+</openerp>
+

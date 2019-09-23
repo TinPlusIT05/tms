@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdl=1: -->
+<templates id="template" xml:space="preserve">
+
+<t t-extend="UserMenu">
+    <t t-jquery=".dropdown ul li:has(a[data-menu=about])" t-operation="after">
+        <li><a href="#" data-menu="release_note">Release Notes</a></li>
+        <li class="oe_hidden"><div id="release-note-hidden" class="oe_hidden"></div></li>
+    </t>
+</t>
+
+</templates>

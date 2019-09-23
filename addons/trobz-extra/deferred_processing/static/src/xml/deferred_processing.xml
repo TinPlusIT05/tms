@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-name="deferred_processing.OpenDeferred">
+        <div title='Open my Deferred Processes' class="oe_topbar_item oe_topbar_open_deferred">
+            <button class="oe_e">R</button>
+        </div>
+    </t>
+</template>

@@ -1,0 +1,49 @@
+<openerp>
+	<data>
+		<!-- Form Department -->
+		<record id="view_hr_department_form_inherit" model="ir.ui.view">
+			<field name="name">view.hr.department.form.inherit</field>
+			<field name="model">hr.department</field>
+			<field name="inherit_id" ref="hr.view_department_form"/>
+			<field name="arch" type="xml">
+				<group position="after">
+					<group string="Department Hierarchy">
+						<field name ='root_department_id'/>
+						<field name ='team_id'/>
+						<field name ='sub_team_id'/>
+				     </group>
+			     </group>
+			</field>
+		</record>
+		
+		<!-- Tree Department -->
+		<record id="view_hr_department_tree_inherit" model="ir.ui.view">
+            <field name="name">view.hr.department.tree.inherit</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_tree"/>
+            <field name="arch" type="xml">
+                <field name="complete_name" position="before">
+					<field name ='root_department_id' invisible='1'/>
+					<field name ='team_id' invisible='1'/>
+					<field name ='sub_team_id' invisible='1'/>
+				</field>
+				
+            </field>
+        </record>
+        
+        <!-- Search and Group By in Department --> 
+		<record id="view_hr_department_search_inherit" model="ir.ui.view">
+            <field name="name">view.hr.department.search.inherit</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_filter"/>
+            <field name="arch" type="xml">
+                <field name="manager_id" position="after">
+	                <group expand="0" string="Group By...">
+    	                <filter string="Root Department" domain="" context="{'group_by':'root_department_id'}"/>
+						<filter string="Team" domain="" context="{'group_by':'team_id'}"/>
+               		</group>
+               	</field>
+             </field>
+        </record>
+	</data>
+</openerp>

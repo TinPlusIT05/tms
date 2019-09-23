@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+        <!-- hr.input.overtime search view -->
+        <record id="model_name_view_search" model="ir.ui.view">
+            <field name="name">hr.input.overtime.view.search</field>
+            <field name="model">hr.input.overtime</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    <field name="employee_id"/>
+                    <field name="date_ot"/>
+                    <field name="overtime_type_id"/>
+                    <filter string="Month" name="filter_month"
+                            domain="[
+                                ('date_ot','&gt;=',(context_today() + relativedelta(day=1)).strftime('%%Y-%%m-%%d')),
+                                ('date_ot','&lt;',(context_today() + relativedelta(day=1, months=1)).strftime('%%Y-%%m-%%d'))]"/>
+					<separator />
+                    <filter string="Review" name="filter_type_to_review"
+                            domain="[('state','=','to_review'),]"/>
+                    <filter string="Approved" name="filter_type_approved"
+                            domain="[('state','=','approved'),]"/>      
+					<separator />
+                    <filter string="Current User" name="filter_current_user"
+                            domain="[('employee_id.user_id','=',context.get('uid'))]"/>
+					<separator />
+                    <group expand="1" string="Group By">
+                        <filter string="OT Type" context="{'group_by':'overtime_type_id'}" />
+                        <separator />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- hr.input.overtime form view -->
+        <record id="hr_overtime_view_form" model="ir.ui.view">
+            <field name="name">hr.input.overtime.view.form</field>
+            <field name="model">hr.input.overtime</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <button name="button_confirm" string="Confirm" class="oe_highlight" type="object" 
+                            attrs="{'invisible': [('state','!=','draft')]}"
+                        />
+                        <button name="button_approve" string="Approve" class="oe_highlight" type="object"
+                            attrs="{'invisible': [('state','!=','to_review')]}" groups="base.group_hr_user,tms_modules.group_profile_tms_admin"/>
+                        <button name="button_refuse" string="Refuse" class="oe_highlight" attrs="{'invisible': [('state','!=','to_review')]}" type="object" groups="base.group_hr_user,tms_modules.group_profile_tms_admin"/>
+                        <button name="button_check_ot" string="Check OT" class="oe_highlight" attrs="{'invisible': [('state','!=','to_review')]}" type="object" groups="base.group_hr_user,tms_modules.group_profile_tms_admin"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,to_review,approved"/>
+                    </header>
+                    <sheet>
+                        <group string="Info">
+                            <group>
+                                <field name="employee_id" required="1" 
+                                options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"
+                                />
+                                <field name="date_ot" required="1"/>
+                                <field name="from_time" widget="float_time"/>
+                                <field name="to_time" widget="float_time"/>
+                            </group>
+                            <group>
+                                <field name="overtime_type_id" required="1" 
+                                options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"
+                                />
+                                <field name="total_wh" required="1"/>
+                            </group>
+                        </group>
+                        <group string="Purpose" required="1">
+                            <field name="purpose" nolabel="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- hr.input.overtime tree view -->
+        <record id="hr_overtime_view_tree" model="ir.ui.view">
+            <field name="name">hr.input.overtime.view.tree</field>
+            <field name="model">hr.input.overtime</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="state" invisible="1"/>
+                    <field name="employee_id"/>
+                    <field name="date_ot" />
+                    <field name="from_time" widget="float_time"/>
+                    <field name="to_time" widget="float_time"/>
+                    <field name="overtime_type_id" />
+                    <field name="total_wh"/>
+                </tree>
+            </field>
+        </record>
+        <!-- hr.overtime action window -->
+        <record id="hr_overtime_act" model="ir.actions.act_window">
+            <field name="name">Input OT</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.input.overtime</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_filter_month':1, 'search_default_filter_current_user':1}</field>
+        </record>
+    </data>
+</openerp>

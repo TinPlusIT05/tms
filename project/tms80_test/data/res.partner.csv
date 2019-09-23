@@ -1,0 +1,9 @@
+id,name,email,parent_id/id
+demo_partner_tc,Technical Consultant,tc@trobz.com,base.main_partner
+demo_partner_tpm,Technical Project Manager,tpm@trobz.com,base.main_partner
+demo_partner_qc,Quality Control,qc@trobz.com,base.main_partner
+demo_partner_fc,Functional Consultant,fc@trobz.com,base.main_partner
+demo_partner_manager,Admin,manager_user@trobz.com,base.main_partner
+demo_partner_hr,HR Manager,hr_manager@trobz.com,base.main_partner
+demo_partner_sysadmin,Sysadmin,sysadmin_partner@trobz.com,base.main_partner
+demo_partner_sales,Sales,sales@trobz.com,base.main_partner

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_update_subscriptions_wizard" model="ir.ui.view">
+			<field name="name">Update Subcription</field>
+			<field name="model">update.subscriptions.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Update Subcription Wizard" version="8.0">
+					<group>
+						<field name="user_id" />
+						<field name="tk_notif_pre_id" />
+					</group>
+					<footer>
+						<button icon="gtk-execute" string="Update Subscriptions"
+							name="update_subscriptions" type="object" />
+						or
+						<button icon="gtk-cancel" special="cancel" string="Cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

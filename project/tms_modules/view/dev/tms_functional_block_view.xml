@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+	<data>
+		<record id="view_tms_functional_block_tree" model="ir.ui.view">
+			<field name="name">tms.functional.block.tree</field>
+			<field name="model">tms.functional.block</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Functional">
+					<field name="name" />
+					<field name="project_ids" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_tms_functional_block_form" model="ir.ui.view">
+			<field name="name">tms.functional.block.form</field>
+			<field name="model">tms.functional.block</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Project">
+					<group>
+						<div class="oe_title">
+							<label for="name" class="oe_edit_only"/>
+							<h1>
+								<field name="name" />
+							</h1>
+							<label for="active" />
+							<field name="active" />
+						</div>
+					</group>
+					<group>
+						<field name="description" />
+					</group>
+					<separator string="Projects" />
+					<field name="project_ids" nolabel="1" />
+				</form>
+			</field>
+		</record>
+
+		<record id="view_tms_functional_block_filter" model="ir.ui.view">
+			<field name="name">tms.functional.block.filter</field>
+			<field name="model">tms.functional.block</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Search Functional">
+					<group string="Field">
+						<field name="name" />
+						<field name="project_ids" />
+						<field name="active" />
+						<field name="project_ids" string="Visible by project" context="{'visible': True}"/>
+					</group>
+					<group string="Filter">
+						<filter string="Generic Functional Blocks" name="projects"
+							domain="[('project_ids','=',False)]"
+							help='Functional blocks which are not associated to any projects' />
+						<separator />
+					</group>
+				</search>
+			</field>
+		</record>
+
+	</data>
+</openerp>

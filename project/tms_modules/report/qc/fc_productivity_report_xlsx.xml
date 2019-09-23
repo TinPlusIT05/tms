@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            id="fc_productivity_report_xlsx"
+            model="fc.productivity.wizard"
+            string="Fc Productivity"
+            report_type="xlsx"
+            name="report.fc.productivity.xlsx"
+            file="report.fc.productivity.xlsx"
+            attachment_use="False"
+        />
+    </data>
+</openerp>

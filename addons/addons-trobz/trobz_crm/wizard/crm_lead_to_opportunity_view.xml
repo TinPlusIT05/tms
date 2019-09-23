@@ -1,0 +1,19 @@
+<openerp>
+	<data>
+
+		<record id="trobz_view_crm_lead2opportunity_partner" model="ir.ui.view">
+        	<field name="name">trobz.crm.lead2opportunity.partner.form</field>
+          	<field name="model">crm.lead2opportunity.partner</field>
+          	<field name="inherit_id" ref="crm.view_crm_lead2opportunity_partner"/>
+          	<field name="arch" type="xml">
+          		<field name="action" position="replace">
+          			<field name="action" invisible="1"/>
+          		</field>
+          		<field name="partner_id" position="replace">
+          			<field name="partner_id" invisible="1"/>
+          		</field>
+          	</field>
+       </record> 
+
+     </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		
+		<!-- Human Resources > Human Resources > Termination of Employment -->
+		<menuitem
+			name="Termination of Employment"
+			id="menu_hr_hr_termination_of_employment"
+			parent="hr.menu_hr_main"
+			sequence="4"
+			groups="base.group_hr_manager"
+			action="action_hr_hr_termination_of_employment_wizard"/>
+						
+	</data>
+</openerp>

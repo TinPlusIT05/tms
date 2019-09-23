@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record model="ir.ui.view" id="trobz_report_base_act_report_xml_view1">
+			<field name="name">trobz.report.base.ir.actions.report.xml.aeroo.form</field>
+			<field name="model">ir.actions.report.xml</field>
+            <field name="priority">15</field>
+            <field name="inherit_id" ref="report_aeroo.act_report_xml_view1"/>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@string='Security']" position="after">
+                    <page string="Test Report">
+                        <separator string="Records" colspan="4"/>
+                        <field colspan="4" name="test_record_ids" nolabel="1" context="{'res_model': model}">
+                        	<tree string="Records" editable="bottom">
+                                <field name="res_id" />
+								<field name="comment" />
+								<field name="res_model" invisible="1"/>
+                           	</tree>
+                        </field>
+                        <separator string="Parameters" colspan="4"/>
+                        <field name="params" nolabel="1" />
+                        <separator string="" colspan="4"/>
+						<button name="print_test_report" 
+							string="Test Report"  
+							type="object" 
+							class="oe_highlight" />
+                    </page>
+                </xpath>
+			</field>
+		</record>
+
+    </data>
+</openerp>

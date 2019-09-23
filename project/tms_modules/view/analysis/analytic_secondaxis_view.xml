@@ -1,0 +1,74 @@
+<openerp>
+    <data noupdate="0">
+        <record model="ir.ui.view" id="view_analytic_secondaxis_form">
+            <field name="name">analytic.secondaxis.form</field>
+            <field name="model">analytic.secondaxis</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Analytic Second Axis">
+                    <field name="name" select="1"/>
+                    <field name="code" select="1"/>
+                    <field name="type" select="1"/>
+                    <field name="parent_id" select="1"/>
+                    <field name="company_id" select="1"/>
+                    <field name="currency_id" select="1"/>
+                    <separator colspan="4" string="Amounts &amp; Quantity"/>
+                    <field name="debit" />
+                    <field name="credit" />
+                    <field name="balance" />
+                    <field name="quantity" />
+                    <field name="project_ids" colspan="4"/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_analytic_secondaxis_list">
+            <field name="name">analytic.secondaxis.list</field>
+            <field name="model">analytic.secondaxis</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="6"/>
+            <field name="arch" type="xml">
+                <tree string="Analytic Second Axis">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="type"/>
+                    <field name="company_id"/>
+                    <field name="quantity" />
+                    <field name="currency_id" />
+                    <field name="debit" />
+                    <field name="credit" />
+                    <field name="balance" />
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_analytic_secondaxis_tree">
+            <field name="name">analytic.secondaxis.tree</field>
+            <field name="model">analytic.secondaxis</field>
+            <field name="type">tree</field>
+            <field name="field_parent">child_ids</field>
+            <field name="arch" type="xml">
+                <tree string="Analytic Second Axis">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="type"/>
+                    <field name="parent_id"/>
+                    <field name="quantity" />
+                    <field name="currency_id" />
+                    <field name="debit" />
+                    <field name="credit" />
+                    <field name="balance" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_analytic_secondaxis_list">
+            <field name="name">Analytic Second Axis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">analytic.secondaxis</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_analytic_secondaxis_list"/>
+        </record>
+    </data>
+</openerp>

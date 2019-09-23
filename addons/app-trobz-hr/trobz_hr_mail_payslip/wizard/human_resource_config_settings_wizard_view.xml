@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+	<data>
+		<record id="view_hr_config_setting_inherit" model="ir.ui.view">
+			<field name="name">view.hr.config.setting.inherit</field>
+            <field name="model">hr.config.settings</field>
+            <field name="inherit_id" ref="hr.view_human_resources_configuration"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//group[2]/div/div[2]" position ="after">
+            		<div>
+            			<field name="send_email_refund_payslip" class="oe_inline"/>
+                        <label for="send_email_refund_payslip"/>
+            		</div>
+            	</xpath>
+            </field>
+		</record>
+	</data>
+</openerp>

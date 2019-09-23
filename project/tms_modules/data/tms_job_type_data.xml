@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <record model="tms.job.type"
+            id="tms_job_type_supervision">
+            <field name="label">Supervision / Project management</field>
+            <field name="code">supervision</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_analysis">
+            <field name="label">Analysis / Specifications</field>
+            <field name="code">analysis</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_development">
+            <field name="label">Development / Unit test</field>
+            <field name="code">development</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_qc">
+            <field name="label">Quality control / Code review</field>
+            <field name="code">qc</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_functional">
+            <field name="label">Functional tests</field>
+            <field name="code">functional</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_deployment">
+            <field name="label">Deployment / Delivery</field>
+            <field name="code">deployment</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_documentation">
+            <field name="label">Documentation</field>
+            <field name="code">documentation</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_expertise">
+            <field name="label">Expertise</field>
+            <field name="code">expertise</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_sysadmin">
+            <field name="label">Sysadmin</field>
+            <field name="code">sysadmin</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_meeting">
+            <field name="label">Meeting</field>
+            <field name="code">meeting</field>
+        </record>
+        <record model="tms.job.type"
+            id="tms_job_type_other">
+            <field name="label">Other</field>
+            <field name="code">other</field>
+        </record>
+    </data>
+</openerp>

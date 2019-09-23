@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="tms_location_type_view_tree" model="ir.ui.view">
+            <field name="name">tms.location.type.view.tree</field>
+            <field name="model">tms.location.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Location Type">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="holiday_status_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="tms_location_type_view_form" model="ir.ui.view">
+            <field name="name">tms.location.type.view.form</field>
+            <field name="model">tms.location.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Location Type">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="holiday_status_id" options="{'no_create_edit': True}" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_tms_location_type" model="ir.actions.act_window">
+            <field name="name">Location Type</field>
+            <field name="res_model">tms.location.type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</openerp>

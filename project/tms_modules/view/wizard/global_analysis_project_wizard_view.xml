@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_global_analysis_project_wizard_form" model="ir.ui.view">
+			<field name="name">view.global.anlysis.project.wizard.form</field>
+			<field name="model">global.analysis.project.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Analysis Project">
+					<sheet>
+						<separator string="Global Analysis Project" />
+						<group>
+							<group>
+								<field name="start_date" />
+								<field name="end_date" />
+							</group>
+							<group>
+								<field name="project_id" />
+								<field name="activity_ids" widget="many2many_tags" />
+							</group>
+						</group>
+						<button string="Analyze" name="button_view_analytics_result"
+							type="object" class="oe_highlight" />
+						<sheet>
+							<field name="result" />
+						</sheet>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="global_analysis_project_wizard_action" model="ir.actions.act_window">
+			<field name="name">Global Analysis Project</field>
+			<field name="res_model">global.analysis.project.wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">inline</field>
+		</record>
+	</data>
+</openerp>

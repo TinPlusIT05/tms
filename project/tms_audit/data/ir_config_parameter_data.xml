@@ -1,0 +1,8 @@
+<openerp>
+    <data noupdate="1">
+        <record id="trobz_default_audit_board_percentage" model="ir.config_parameter">
+			<field name="key">trobz_default_audit_board_percentage</field>
+			<field name="value">90</field>
+		</record>
+    </data>
+</openerp>

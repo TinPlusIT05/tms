@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+
+	    <record model="res.groups" id="group_mailman_manager">
+	        <field name="name">Mailman Manager</field>
+	    </record>
+	    
+    </data>
+</openerp>
+

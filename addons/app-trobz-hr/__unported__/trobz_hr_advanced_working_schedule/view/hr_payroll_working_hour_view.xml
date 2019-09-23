@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        
+        <record model="ir.ui.view" id="view_hr_payroll_working_hour_tree_inherit">
+            <field name="name">view.hr.payroll.working.hour.tree.inherit</field>
+            <field name="model">hr.payroll.working.hour</field>
+            <field name="inherit_id" ref="trobz_hr_payroll_working_hour.view_hr_payroll_working_hour_tree"/>
+            <field name="arch" type="xml">
+                <field name="activity_id" position="before">
+                    <field name="advanced_schedule_id"/>
+                    <field name="contract_id" required="1"/>
+                    <field name="is_flexible" invisible="1"/>
+                </field>
+            </field>
+        </record>
+        
+        <!--Add fields: advanced_schedule_id, contract_id, is_flexible
+            Change to readonly fields that related to the advanced working schedule  -->
+        <record model="ir.ui.view" id="view_hr_payroll_working_hour_form_inherit">
+            <field name="name">view.hr.payroll.working.hour.form.inherit</field>
+            <field name="model">hr.payroll.working.hour</field>
+            <field name="inherit_id" ref="trobz_hr_payroll_working_hour.view_hr_payroll_working_hour_form"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" position="attributes">
+                    <attribute name="onchange">onchange_advanced_schedule_id(employee_id, date, advanced_schedule_id)</attribute>
+                </field>
+                <field name="date" position="attributes">
+                    <attribute name="onchange">onchange_advanced_schedule_id(employee_id, date, advanced_schedule_id)</attribute>
+                </field>
+                <field name="activity_id" position="before">
+                    <field name="advanced_schedule_id" on_change="onchange_advanced_schedule_id(employee_id, date, advanced_schedule_id)"/>
+                    <field name="is_flexible"/>
+                    <field name="contract_id"/>
+                    <field name="plan_line_id" invisible="1"/>
+                    <field name="overtime_id" invisible="1"/>
+                    <field name="leave_line_id" invisible="1"/>
+                    <field name="public_holiday_id" invisible="1"/>
+                </field>
+                <field name="expected_start" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="expected_end" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="break_start" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="break_end" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="expected_working_hour" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+                <field name="break_time" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_payroll_working_hour_search_inherit">
+            <field name="name">view.hr.payroll.working.hour.search.inherit</field>
+            <field name="model">hr.payroll.working.hour</field>
+            <field name="inherit_id" ref="trobz_hr_payroll_working_hour.view_hr_payroll_working_hour_search"/>
+            <field name="arch" type="xml">
+                <field name="activity_id" position="before">
+                    <field name="advanced_schedule_id"/>
+                    <filter string="None Flexible Days" domain="[('is_flexible','=',False)]"/> 
+                    <filter string="Flexible Days" domain="[('is_flexible','=',True)]"/>    
+                </field>
+                <filter string="Employee" position="after">
+                    <filter string="Advanced Working Schedule" domain="[]" context="{'group_by':'advanced_schedule_id'}"/>
+                    <filter string="Contract" domain="[]" context="{'group_by':'contract_id'}"/>
+                    <filter string="Flexible Days" domain="[]" context="{'group_by':'is_flexible'}"/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</openerp>

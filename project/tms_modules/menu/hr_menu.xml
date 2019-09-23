@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+		<!-- HUMAN RESOURCES (MAIN) -->
+		<menuitem
+			name="HR" id="hr.menu_hr_root"
+			action="action_view_working_hour" sequence="6" />
+
+
+		<!--
+		=============================================================
+		HUMAN RESOURCES > Human Resources (SECONDARY)
+		=============================================================
+		-->
+		<!-- HUMAN RESOURCES > Human Resources > Employees -->
+		<menuitem
+			name="Employees" id="hr.menu_open_view_employee_list_my"
+			parent="hr.menu_hr_main" sequence="3"
+			action="tms_open_view_employee_list_my" />
+
+		<!-- HUMAN RESOURCES > Human Resources > Employee Capacity -->
+		<menuitem
+			name="Employee Capacity" id="hr_employee_capacity_menu"
+			parent="hr.menu_hr_main" sequence="3"
+			action="action_open_hr_employee_capacity_tree_view"
+			groups="base.group_hr_manager,group_tms_delivery_user" />
+
+		<!--<menuitem-->
+		<!--	name="Staff Working Attendance Report" id="hr_reporting_staff_working_attendance_wizard_menu"-->
+		<!--	parent="hr.menu_hr_main" sequence="15"-->
+		<!--	action="action_staff_working_attendance_report_wizard"-->
+		<!--	groups="base.group_hr_manager" />-->
+
+
+		<!--
+		=============================================================
+		HR > Resource Bookings
+		=============================================================
+		-->
+
+		<!-- Resource Bookings -->
+		<menuitem
+			name="Resource Bookings" id="resource_booking"
+			parent="hr.menu_hr_root"
+			sequence="0" />
+
+		<!-- HUMAN RESOURCES > Human Resources > Dedicated Resource Contract -->
+		<menuitem
+			name="Dedicated Resources Contracts" id="hr_menu_hr_dedicated_resource_contract"
+			parent="resource_booking" sequence="10"
+			action="action_hr_dedicated_resource_contract"
+			groups="base.group_hr_manager,group_profile_tms_delivery_team_manager" />
+
+		<!-- HUMAN RESOURCES > Human Resources > Resource Allocation-->
+		<menuitem
+			name="Resource Allocations" id="hr_menu_hr_resource_allocation"
+			parent="resource_booking" sequence="15"
+			action="action_view_hr_resource_allocation"
+			groups="base.group_hr_manager,group_profile_tms_delivery_team_manager" />
+
+
+		<menuitem id="menu_dedicated_resource_contract_chart"
+				  name="Chart of Dedicated Resources Contracts"
+				  action="action_dedicated_resource_contract_chart"
+				  parent="resource_booking" sequence="11" />
+
+		<menuitem id="menu_booking_resource_allocation"
+				  name="Chart of Resource Allocation"
+				  action="action_booking_resource_allocation"
+				  parent="resource_booking" sequence="16" />
+		<!--
+		=============================================================
+		HUMAN RESOURCES > Working Hours (SECONDARY)
+		=============================================================
+		-->
+		<menuitem
+			name="Working Hours" id="menu_working_hour_secondary"
+			parent="hr.menu_hr_root" sequence="2"
+			groups="group_tms_dev_user,group_tms_employee_user,base.group_no_one" />
+
+		<!-- HUMAN RESOURCES > Working Hours > Working Hours -->
+        <menuitem
+            name="Working Hours" id="menu_working_hour"
+            parent="menu_working_hour_secondary" sequence="1"
+            action="action_view_working_hour" />
+
+		<!-- HUMAN RESOURCES > Working Hours > Export Working Hours  -->
+		<menuitem
+			name="Export Working Hours" id="hr_reporting_working_hours_export_menu"
+			parent="menu_working_hour_secondary" sequence="2"
+			action="action_open_working_hours_export_wizard_form" />
+
+		<menuitem
+			name="Working Hours (Dedicate Team)" id="hr_reporting_working_hours_dedicate_export_menu"
+			parent="menu_working_hour_secondary" sequence="4"
+			action="action_open_working_hours_dedicate_export_wizard_form" />
+
+		<record model="ir.ui.menu" id="hr_reporting_monthly_timesheet_export_menu">
+            <field name="name">Monthly Timesheet</field>
+            <field name="sequence" eval="6" />
+            <field name="action" ref="action_open_hr_monthly_timesheet_wizard_form" />
+            <field name="parent_id" ref="menu_working_hour_secondary"/>
+			<field name="groups_id" eval="[(6, 0, [ref('base.group_hr_manager')])]"/>
+        </record>
+        <!-- HUMAN RESOURCES > Working Hours > Medical Leave Summary  -->
+        <record model="ir.ui.menu" id="hr_reporting_em_leave_summary_export_menu">
+            <field name="name">Medical Leave Summary</field>
+            <field name="sequence" eval="7" />
+            <field name="action" ref="action_open_hr_em_leave_summary_wizard_form" />
+            <field name="parent_id" ref="menu_working_hour_secondary"/>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_hr_manager')])]"/>
+        </record>
+
+
+		<!--  HUMAN RESOURCES > Working Hours > Input OT -->
+		<menuitem
+            name="Input OT" id="hr_overtime_menu"
+            parent="menu_working_hour_secondary" sequence="8"
+            action="hr_overtime_act" />
+
+        <!-- HUMAN RESOURCES > Working Hours > Dedicated Team Leave  -->
+        <record model="ir.ui.menu" id="hr_reporting_dedicated_team_leave_export_menu">
+            <field name="name">Dedicated Team Leave</field>
+            <field name="sequence" eval="9" />
+            <field name="action" ref="action_open_hr_dedicated_team_leave_wizard_form" />
+            <field name="parent_id" ref="menu_working_hour_secondary"/>
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_hr_manager')])]"/>
+        </record>
+
+		<!-- Replace group 'Human Resources / Officer' for HUMAN RESOURCES > Contracts  -->
+		<record id="hr_contract.hr_menu_contract" model="ir.ui.menu">
+		    <field name="groups_id" eval="[(6,0,[ref('base.group_hr_user')])]"/>
+		</record>
+
+		<!--
+		=============================================================
+		HUMAN RESOURCES > Leaves (SECONDARY)
+		=============================================================
+		-->
+
+		<!-- HUMAN RESOURCES > Leaves > Detail Leaves Request Of Employees -->
+		<menuitem
+			name="Detail Leaves Request Of Employees" id="menu_open_holiday_detail"
+			parent="hr_holidays.menu_open_ask_holidays" sequence="41"
+			action="action_hr_holidays_detail" />
+
+
+		<!-- Action Open Create HR Resource Allocation Wizard Form View -->
+		<act_window
+			name="Create Resource Allocation"
+			src_model="hr.resource.allocation"
+			res_model="hr.resource.allocation.wizard"
+			id="action_hr_resource_allocation_wizard"
+			view_id="view_hr_resource_allocation_wizard_form"
+			view_type="form"
+			view_mode="form"
+			target="new"
+			key2="client_action_multi"
+		/>
+
+        <!-- HUMAN RESOURCES > Business Travel -->
+        <menuitem
+            name="Business Travel"
+            id="menu_tms_support_training"
+            parent="hr.menu_hr_root"
+            sequence="30"
+        />
+
+        <!-- HUMAN RESOURCES > Business Travel > Business Travel Request -->
+        <menuitem
+            name="Business Travel Request"
+            id="menu_tms_support_training_request"
+            parent="menu_tms_support_training"
+            sequence="10"
+            action="action_tms_support_training"
+        />
+
+		<!--
+        =============================================================
+        HR > Configuration > Teams
+        =============================================================
+        -->
+        <menuitem
+            name="Configuration" id="hr.menu_hr_configuration"
+            parent="hr.menu_hr_root" sequence="50"
+			groups="tms_modules.group_profile_tms_delivery_team_manager"/>
+		<menuitem
+            name="Teams" id="menu_open_hr_team"
+            parent="hr.menu_hr_configuration" sequence="41"
+            action="action_hr_team"
+			groups="tms_modules.group_profile_tms_delivery_team_manager"/>
+        <!--
+        =============================================================
+        HR > Configuration > User Job Types
+        =============================================================
+        -->
+
+        <menuitem
+            name="User Job Types" id="menu_open_hr_job_type"
+            parent="hr.menu_hr_configuration" sequence="42"
+            action="action_hr_job_types" />
+
+        <!--
+        =============================================================
+        HR > Configuration > Job Type (WH)
+        =============================================================
+        -->
+
+        <menuitem
+            name="Job Types (WH)" id="menu_open_tms_job_type"
+            parent="hr.menu_hr_configuration" sequence="43"
+            action="action_tms_job_type" />
+
+        <!--
+        =============================================================
+        HR > Configuration > Business Travel
+        =============================================================
+        -->
+
+        <menuitem
+            name="Business Travel"
+            id="menu_business_travel_config"
+            parent="hr.menu_hr_configuration"
+            sequence="4"
+        />
+
+        <!--
+        =============================================================
+        HR > Configuration > Business Travel > Location Types
+        =============================================================
+        -->
+
+        <menuitem
+            name="Location Types"
+            id="menu_tms_location_type"
+            parent="menu_business_travel_config"
+            sequence="10"
+            action="action_tms_location_type"
+        />
+
+		<!--
+        =============================================================
+        HR > Configuration > Contract
+        =============================================================
+        -->
+
+        <menuitem id="hr_contract.next_id_56"
+            name="Contract"
+            parent="hr.menu_hr_configuration"
+            sequence="30" groups="base.group_hr_user"/>
+
+        <menuitem
+            action="hr_contract.action_hr_contract_type"
+            id="hr_contract.hr_menu_contract_type"
+            parent="hr_contract.next_id_56" sequence="6"
+            groups="base.group_hr_user" />
+
+        <!--
+        =============================================================
+        HR > Recruitment
+        =============================================================
+        -->
+		<menuitem name="Recruitment" id="base.menu_crm_case_job_req_main"
+		parent="hr.menu_hr_root" groups="base.group_user"/>
+
+        <!-- HR > Recruitment > Resumes and Letters -->
+        <menuitem
+            name="Resumes and Letters"
+            parent="base.menu_crm_case_job_req_main"
+            id="hr_applicant_document.menu_crm_case_categ0_act_job02"
+            action="hr_applicant_document.hr_applicant_resumes" sequence="3"
+            groups="base.group_hr_user"/>
+
+		<!--
+        =============================================================
+        HR > Configuration > Settings
+        =============================================================
+        -->
+
+        <menuitem id="menu_human_resources_configuration" name="Settings"
+            parent="hr.menu_hr_configuration"
+            sequence="-1" action="hr.action_human_resources_configuration"/>
+    </data>
+</openerp>

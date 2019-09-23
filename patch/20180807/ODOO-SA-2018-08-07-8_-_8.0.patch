@@ -1,0 +1,13 @@
+diff --git a/openerp/models.py b/openerp/models.py
+index 07cbf42c1856d..e3e9f09bd1869 100644
+--- a/openerp/models.py
++++ b/openerp/models.py
+@@ -76,7 +76,7 @@
+ 
+ regex_order = re.compile('^(\s*([a-z0-9:_]+|"[a-z0-9:_]+")(\s+(desc|asc))?\s*(,|$))+(?<!,)$', re.I)
+ regex_object_name = re.compile(r'^[a-z0-9_.]+$')
+-onchange_v7 = re.compile(r"^(\w+)\((.*)\)$")
++onchange_v7 = re.compile(r"^([a-zA-Z]\w+)\((.*)\)$")
+ 
+ AUTOINIT_RECALCULATE_STORED_FIELDS = 1000
+ 

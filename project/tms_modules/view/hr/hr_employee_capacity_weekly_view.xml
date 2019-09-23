@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Capacity Weekly Tree View -->
+		<record model="ir.ui.view" id="view_hr_employee_capacity_weekly_tree">
+			<field name="name">view.hr.employee.capacity.tree</field>
+			<field name="model">hr.employee.capacity.weekly</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Employee Capacity Weekly">
+					<field name="employee_id"/>
+					<field name="start_date" />
+					<field name="production_rate" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Capacity Weekly Search View -->
+		<record model="ir.ui.view" id="view_hr_employee_capacity_weekly_search">
+			<field name="name">view.hr.employee.capacity.weekly.search</field>
+			<field name="model">hr.employee.capacity.weekly</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Employee Capacity Weekly">
+					<field name="employee_id" />
+					<field name="start_date" />
+					<field name="production_rate" />
+
+					<group string="Group by">
+						<filter name="filter_employee" string="Employee"
+							domain="[]" context="{'group_by': 'employee_id'}" />
+						<separator />
+						<filter name="filter_starting_date" string="Start Date" 
+							domain="[]" context="{'group_by': 'start_date'}" />
+						<separator  />
+						<filter name="filter_production_rate" string="Production Rate"
+							domain="[]" context="{'group_by': 'production_rate'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Capacity Weekly Form View -->
+		<record model="ir.ui.view" id="view_hr_employee_capacity_weekly_form">
+			<field name="name">view.hr.employee.capacity.form</field>
+			<field name="model">hr.employee.capacity.weekly</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Employee Capacity Weekly">
+					<sheet>
+						<group>
+							<group>
+								<field name="employee_id" />
+								<field name="start_date" />
+							</group>
+							<group>
+								<field name="production_rate" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_open_hr_employee_capacity_weekly_tree_view"
+			model="ir.actions.act_window">
+			<field name="name">Employee Capacity Weekly</field>
+			<field name="res_model">hr.employee.capacity.weekly</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+			<field name="view_id" ref="view_hr_employee_capacity_weekly_tree" />
+			<field name="search_view_id" ref="view_hr_employee_capacity_weekly_search" />
+		</record>
+	</data>
+</openerp>

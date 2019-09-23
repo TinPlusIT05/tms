@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Support ticket list view -->
+        <record id="view_tms_support_ticket_tree" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.tree</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="priority" eval="25"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Support tickets" colors="grey:state=='closed';red:priority=='urgent';SteelBlue:priority=='minor';rgb(233, 87, 4):priority=='major'">
+                    <field name="name" string="ID" widget="char" />
+                    <field name="project_id" />
+                    <field name="summary" />
+                    <field name="owner_id" />
+                    <field name="ticket_type" invisible="context.get('invisible_ticket_type', True)" />
+                    <field name="workload" sum="Total Workload" />
+                    <field name="time_spent_day" sum="Total Time Spent" groups="tms_modules.group_tms_employee_user"/>
+                    <field name="workload_achieved" sum="Total Workload Achieved" invisible="1"/>
+                    <field name="invc_by_trobz_vn" groups="tms_modules.group_trobz_partner,base.group_user"
+                        invisible="context.get('invisible_invc_by_trobz_vn', True)"/>
+
+                    <!-- Ticket Milestone and Controls -->
+                    <field name="milestone_number" />
+                    <button name="button_previous_milestone" type="object"
+                        string="Move to previous milestone" class="icon-chevron-left"
+                        groups="tms_modules.group_tms_dev_user" />
+                     <button name="button_remove_milestone" type="object"
+                         string="Remove milestone" class="icon-remove"
+                         groups="tms_modules.group_tms_dev_user" />
+                     <button name="button_next_milestone" type="object"
+                         string="Move to next milestone" class="icon-chevron-right"
+                         groups="tms_modules.group_tms_dev_user" />
+
+                    <!-- Ticket Priority and Controls -->
+                    <field name="priority" invisible="context.get('invisible_priority', True)" />
+                    <button name="button_higher_priority" type="object" string="Set higher priority"
+                        attrs="{'invisible': [('priority','=','urgent')]}" class="icon-chevron-up" />
+                    <button name="button_lower_priority" type="object" string="Set lower priority"
+                        attrs="{'invisible': [('priority','=','minor')]}" class="icon-chevron-down" />
+
+                    <field name="state" />
+                    <field name="tms_forge_ticket_id" groups="base.group_user"/>
+                    <field name="forge_state" groups="base.group_user,tms_modules.group_trobz_partner"/>
+                    <field name="delivery_status" groups="base.group_user"/>
+                    <field name="opening_duration" groups="base.group_user"/>
+                    <field name="ownership_duration" groups="base.group_user"/>
+
+                    <!-- hidden fields for filter use -->
+                    <field name="tms_activity_id" invisible="context.get('invisible_tms_activity_id', True)"/>
+                    <field name="milestone_id" invisible="1"/>
+                    <field name="write_date" invisible="context.get('invisible_write_date', True)" />
+                    <field name="year" invisible="1" />
+                    <field name="month" invisible="1" />
+                    <field name="week" invisible="1" />
+                    <field name="trobz_partner_id" invisible="1" />
+                    <field name="missing_reactivity_reason" invisible="1" />
+                    <field name="tms_functional_block_id" invisible="1" />
+                    <field name="tms_project_tag_ids" invisible="1" />
+                    <field name="tms_functional_block_id" invisible="context.get('invisible_tms_functional_block_id', True)" />
+                    <field name="reporter_id" invisible="context.get('invisible_reporter_id', True)" />
+                    <field name="quotation_approved" invisible="context.get('invisible_quotation_approved', True)" />
+                    <field name="resolution" invisible="context.get('invisible_resolution', True)"/>
+                    <field name="date" invisible="context.get('invisible_date', True)"/>
+                    <field name="create_date" invisible="context.get('invisible_create_date', True)"/>
+                    <field name="quotation_approved_date" invisible="context.get('invisible_quotation_approved_date', True)" />
+                    <field name="closing_datetime" invisible="context.get('invisible_closing_datetime', True)" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Support ticket (light) list view -->
+        <record id="view_tms_support_ticket_light_tree" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.light.tree</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="priority" eval="26"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false" string="Support tickets light" colors="grey:state=='closed';red:priority=='urgent';SteelBlue:priority=='minor';rgb(233, 87, 4):priority=='major'">
+                    <field name="project_id" />
+                    <field name="name" string="ID" widget="char" />
+                    <field name="summary" />
+                    <field name="priority" invisible="1" />
+                    <field name="state" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Ticket doc list view -->
+        <record id="view_tms_support_ticket_tree_document" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.tree.document</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Ticket Doc" create="false" delete="false" edit="false">
+                    <field name="documentation_required" invisible="1"/>
+                    <field name="project_id"/>
+                    <field name="name" widget="char"/>
+                    <field name="state"/>
+                    <field name="documentation_status"/>
+                    <field name="documentation_links" widget="bootstrap_markdown" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Support ticket list view on TMS Milestone -->
+        <record id="view_tms_support_ticket_tree_on_tms_milestone" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.tree.on.tms.milestone</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Support tickets" colors="grey:state=='closed';red:priority=='urgent';SteelBlue:priority=='minor';rgb(233, 87, 4):priority=='major'">
+                    <field name="id" string="id"/>
+                    <field name="project_id" />
+                    <field name="summary" />
+                    <field name="owner_id" />
+                    <field name="ticket_type" />
+                    <field name="workload" sum="Total Invoiceable Workload" />
+                    <field name="time_spent_day" sum="Total Time Spent" groups="tms_modules.group_tms_employee_user"/>
+
+                    <!-- Ticket Milestone and Controls -->
+                    <field name="milestone_number" />
+                    <button name="button_previous_milestone" type="object"
+                           string="Move to previous milestone" class="icon-chevron-left" />
+                    <button name="button_remove_milestone" type="object"
+                        string="Remove milestone" class="icon-remove" />
+                    <button name="button_next_milestone" type="object"
+                        string="Move to next milestone" class="icon-chevron-right" />
+
+                    <!-- Ticket Priority and Controls -->
+                    <field name="priority" />
+                    <button name="button_higher_priority" type="object" string="Set higher priority"
+                        attrs="{'invisible': [('priority','=','urgent')]}" class="icon-chevron-up" />
+                    <button name="button_lower_priority" type="object" string="Set lower priority"
+                        attrs="{'invisible': [('priority','=','minor')]}" class="icon-chevron-down" />
+
+                    <field name="state"/>
+                    <field name="tms_forge_ticket_id" groups="base.group_user"/>
+                    <field name="forge_state" groups="base.group_user"/>
+                    <field name="delivery_status" groups="base.group_user"/>
+                    <field name="opening_duration" groups="base.group_user"/>
+                    <field name="ownership_duration" groups="base.group_user"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Support ticket search view -->
+        <record id="view_tms_support_ticket_search" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.search</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="priority" eval="21"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Support Tickets">
+                    <group string="Filter">
+                        <filter name="closed" string="Closed" groups="base.group_user"
+                            domain="[('state','=','closed')]" />
+                        <filter name="open" string="Opened"
+                            domain="[('state','!=','closed')]" />
+                        <separator />
+                        <filter name="my_ticket" string="My tickets"
+                            domain="[('owner_id','=',uid)]" />
+                        <separator />
+                        <filter name="filter_reporter_by_me" string="Reported by me"
+                            domain="[('reporter_id','=', uid)]" />
+                        <separator />
+                        <filter name="tms_customer" string="Customer"
+                            domain="[('owner_id.is_trobz_member','!=',True)]"
+                            groups="tms_modules.group_tms_dev_user,base.group_user"/>
+                        <filter name="tms_trobz" string="Trobz"
+                            domain="[('owner_id.is_trobz_member','=',True)]"
+                            groups="tms_modules.group_tms_dev_user,base.group_user"/>
+                        <separator />
+                        <filter name="filter_invc_trobz_vn" string="Invoiceable"
+                            domain="[('invc_by_trobz_vn', '=', True)]"
+                            groups="tms_modules.group_trobz_partner,base.group_user"/>
+                        <filter name="is_offer" string="Offered"
+                            groups="base.group_user"
+                            domain="[('is_offered','=',True)]" />
+                        <separator />
+                        <filter name="invoice_workload" string="With Invoice Workload"
+                            groups="base.group_user"
+                            domain="[('workload','&gt;',0.0)]"/>
+                        <separator />
+                        <filter name="not_invoiced" string="Not Invoiced"
+                            groups="base.group_user"
+                            domain="[('date','=',False)]"/>
+                        <separator />
+                        <filter name="quotation_approved" string="Quotation Approved"
+                            groups="base.group_user"
+                            domain="[('quotation_approved','=',True)]"/>
+                        <separator />
+                        <filter name="missing_reactivity" string="Missing Reactivity" domain="[('missing_reactivity','=',True),
+                            ('project_id.is_support_contract','=',True)]" groups="base.group_user" />
+                        <separator />
+                        <filter name="my_project" string="My projects"
+                            groups="base.group_user"
+                            domain="[('project_id.default_supporter_id', '=', uid)]" />
+                        <separator />
+                        <filter string="No Activity"
+                            groups="base.group_user"
+                            domain="[('tms_activity_id','=',False)]"/>
+                        <separator />
+                        <filter string="Support Contract"
+                            groups="base.group_user"
+                            domain="[('is_support_contract','=',True)]"/>
+                        <separator />
+                        <filter name="this_month" string="This Month"
+                            groups="base.group_user"
+                            domain="[('month', '=', context_today().strftime('%%m'))]" />
+                        <separator />
+                        <filter name="this_year" string="This Year"
+                            groups="base.group_user"
+                            domain="[('year', '=', context_today().year)]" />
+                        <filter name="not_delivered" string="Not Delivered"
+                            domain="[('state', 'in', ('new', 'assigned', 'planned_for_delivery'))]" />
+                        <separator />
+                        <filter string="Milestones to deliver this week"
+                            name="deliver_this_week" domain="[]"
+                            context="{'deliver_this_week': True}"/>
+                        <separator />
+                        <filter string="Milestones to deliver this month"
+                            name="deliver_this_month"
+                            domain="[('milestone_date','&lt;',
+                            (context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')),
+                            ('milestone_date','&gt;=',time.strftime('%%Y-%%m-01'))]"/>
+                        <separator />
+                        <filter name="assignee_partner_not_delivered" string="Assignee Partner Not Delivered"
+                            domain="[('state', 'in', ('new', 'assigned', 'planed_for_delivery')), ('owner_id.is_trobz_member','=',False)]"/>
+                        <separator />
+                        <filter name="assignee_partner_delivered" string="Assignee Partner Delivered"
+                            domain="[('state', '=', 'delivered'), ('owner_id.is_trobz_member','=',False)]"/>
+                        <separator />
+                        <filter name="assignee_trobz" string="Assignee Trobz"
+                            domain="[('state', 'in', ('new', 'assigned', 'planed_for_delivery', 'delivered', 'ok_for_production', 'ok_to_close')), ('owner_id.is_trobz_member','=',True)]"/>
+                        <filter string="Miss Deadline" name="miss_deadline"
+                            domain="[('deadline','&lt;',context_today().strftime('%%Y-%%m-%%d')),
+                            ('state', 'in', ['new', 'assigned', 'planned_for_delivery'])]"/>
+                        <filter string="Deadline in This Week" name="deadline_in_this_week"
+                            context="{'deadline_in_this_week': True}"/>
+                    </group>
+                    <group string="Field">
+                        <field name="summary" string="Summary|Descript."
+                            filter_domain="['|',('summary','ilike',self),('description','ilike',self)]" />
+                        <field name="id" />
+                        <field name="ticket_type"/>
+                        <field name="owner_id" />
+                        <field name="tms_activity_id"/>
+                        <field name="project_id" />
+                        <field name="priority" groups="base.group_user"/>
+                        <field name="tms_functional_block_id" />
+                        <field name="tms_project_tag_ids" />
+                        <field name="state" />
+                        <field name="resolution" />
+                        <field name="forge_state" groups="base.group_user,tms_modules.group_trobz_partner"/>
+                        <field name="missing_reactivity_reason" groups="base.group_user"/>
+                        <field name="trobz_partner_id" groups="base.group_user"/>
+                        <field name="milestone_id"/>
+                        <field name="select_quotation" groups="base.group_user"/>
+                        <field name="tms_forge_ticket_id" groups="base.group_user"/>
+                        <field name="delivery_status" groups="base.group_user"/>
+                        <field name="project_state" groups="base.group_user"/>
+                        <field name="create_uid" />
+                        <field name="reporter_id" />
+                        <field name="analytic_secondaxis_id" />
+                        <field name="proj_owner_id" />
+                        <field name="team_id"/>
+                        <field name="team_manager_id"/>
+                        <field name="subscriber_id"/>
+                        <field name="tk_default_notif_pre_id" />
+                        <field name="tk_notif_pref_id" />
+                    </group>
+                    <group string="Group By">
+                        <filter string="Activity"
+                            domain="[]" context="{'group_by':'tms_activity_id'}" />
+                        <filter string="Analytic Secondaxis"
+                            domain="[]" context="{'group_by':'analytic_secondaxis_id'}" />
+                        <filter string="Assignee"
+                            domain="[]" context="{'group_by':'owner_id'}" />
+                        <filter string="Creator"
+                            domain="[]" context="{'group_by':'create_uid'}" />
+                        <filter string="Delivery Status" groups="base.group_user"
+                            domain="[]" context="{'group_by':'delivery_status'}" />
+                        <filter string="Forge State"
+                            domain="[]" context="{'group_by':'forge_state'}"
+                            groups="base.group_user,tms_modules.group_trobz_partner" />
+                        <filter string="Functional Block"
+                            domain="[]" context="{'group_by':'tms_functional_block_id'}" />
+                        <filter string="Milestone"
+                            domain="[]" context="{'group_by':'milestone_id'}" />
+                        <filter string="Missing Reactivity Reason" groups="base.group_user"
+                            domain="[]" context="{'group_by':'missing_reactivity_reason'}" />
+                        <filter string="Ownership" groups="base.group_user"
+                            domain="[]" context="{'group_by':'ownership_duration'}" />
+                        <filter string="Partner" groups="base.group_user"
+                            domain="[]" context="{'group_by':'trobz_partner_id'}" />
+                        <filter string="Priority" groups="base.group_user"
+                            domain="[]" context="{'group_by':'priority'}" />
+                        <filter name="group_by_project" string="Project"
+                            domain="[]" context="{'group_by': 'project_id'}" />
+                        <filter string="Reporter"
+                            domain="[]" context="{'group_by':'reporter_id'}" />
+                        <filter string="Status"
+                            domain="[]" context="{'group_by':'state'}" />
+                        <!-- <filter string="Tags" domain="[]"
+                            context="{'group_by':'tms_project_tag_id'}" /> -->
+                        <filter string="Type"
+                            domain="[]" context="{'group_by':'ticket_type'}" />
+                        <separator />
+                        <filter string="Project's Owner"
+                            domain="[]"
+                            context="{'group_by':'proj_owner_id'}"/>
+                        <separator />
+                        <filter string="Team" domain="[]"
+                            context="{'group_by':'team_id'}"/>
+                        <separator />
+                        <filter string="Team Manager" domain="[]"
+                            context="{'group_by':'team_manager_id'}"/>
+                    </group>
+                     <group string="Display">
+                         <filter string="Activity" domain="[]" context="{'invisible_tms_activity_id': False}" />
+                         <filter string="Functional block" domain="[]" context="{'invisible_tms_functional_block_id': False}" />
+                         <filter string="Ticket type" domain="[]" context="{'invisible_ticket_type': False}" />
+                         <filter string="Priority" domain="[]" context="{'invisible_priority': False}" />
+                         <filter string="Invoiceable" domain="[]" context="{'invisible_invc_by_trobz_vn': False}" />
+                         <filter string="Reporter" domain="[]" context="{'invisible_reporter_id': False}" />
+                         <!-- <filter string="Tags" domain="[]" context="{'tms_project_tag_id': False}" /> -->
+                         <filter string="Quotation approved" domain="[]" context="{'invisible_quotation_approved': False}" />
+                         <filter string="Resolution" domain="[]" context="{'invisible_resolution': False}" />
+                         <filter string="Invoicing date" domain="[]" context="{'invisible_date': False}" />
+                         <filter string="Opening Date" domain="[]" context="{'invisible_create_date': False}" />
+                         <filter string="Quotation Approval Date" domain="[]" context="{'invisible_quotation_approved_date': False}" />
+                         <filter string="Last Modification Date" domain="[]" context="{'invisible_write_date': False}" />
+                         <filter string="Closing Date" domain="[]" context="{'invisible_closing_datetime': False}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- empty search view for Invoiceable Tickets menu -->
+        <record id="view_tms_support_ticket_search_invoicing" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.search.invoicing</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="priority" eval="21"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Invoiceable Tickets">
+                    <group string="Filter">
+                        <filter name="closed" string="Closed"
+                            domain="[('state','=','closed')]" />
+                        <filter name="open" string="Opened"
+                            domain="[('state','!=','closed')]" />
+                        <separator />
+                        <filter name="tms_customer" string="Customer"
+                            domain="[('owner_id.is_trobz_member','!=',True)]"
+                            groups="tms_modules.group_tms_dev_user"/>
+                        <filter name="tms_trobz" string="Trobz"
+                            domain="[('owner_id.is_trobz_member','=',True)]"
+                            groups="tms_modules.group_tms_dev_user"/>
+                        <separator />
+                        <filter name="is_offer" string="Offered"
+                            domain="[('is_offered','=',True)]" />
+                        <separator />
+                        <filter name="invoice_workload" string="With Invoice Workload"
+                            domain="[('workload','&gt;',0.0)]"/>
+                        <separator />
+                        <filter name="not_invoiced" string="Not Invoiced"
+                            domain="[('date','=',False)]"/>
+                        <separator />
+                        <filter name="missing_reactivity" string="Missing Reactivity" domain="[('missing_reactivity','=',True),
+                            ('project_id.is_support_contract','=',True)]" groups="base.group_user" />
+                        <separator />
+                        <filter name="my_project" string="My projects"
+                            domain="[('project_id.default_supporter_id', '=', uid)]" />
+                        <separator />
+                        <filter name="my_ticket" string="My tickets"
+                            domain="[('owner_id','=',uid)]" />
+                        <separator />
+                        <filter string="No Activity"
+                            domain="[('tms_activity_id','=',False)]"/>
+                        <separator />
+                        <filter string="Support Contract"
+                            domain="[('is_support_contract','=',True)]"/>
+                        <separator />
+                        <filter name="this_month" string="This Month"
+                            domain="[('month', '=', context_today().strftime('%%m'))]" />
+                        <separator />
+                        <filter name="this_year" string="This Year"
+                            domain="[('year', '=', context_today().year)]" />
+                        <separator />
+                        <filter name="quotation_approved" string="Quotation Approved"
+                            domain="[('quotation_approved', '=',True)]" />
+                        <separator />
+                        <filter name="filter_reporter_by_me" string="Reported by me"
+                            domain="[('reporter_id','=', uid)]" />
+                        <separator />
+                        <filter name="invoicing_date_empty" string="Invoicing date empty"
+                            domain="[('date','=',False)]" />
+                        <separator />
+                        <filter name="type_evolution" string="Evolution"
+                            domain="[('ticket_type','=','evolution')]" />
+                    </group>
+                    <group string="Field">
+                        <field name="id" />
+                        <field name="summary" string="Summary|Descript."
+                            filter_domain="['|',('summary','ilike',self),('description','ilike',self)]" />
+                        <field name="ticket_type" />
+                        <field name="owner_id" />
+                        <field name="project_id" />
+                        <field name="priority"/>
+                        <field name="tms_functional_block_id" />
+                        <field name="tms_project_tag_ids" />
+                        <field name="state" />
+                        <field name="resolution" />
+                        <field name="forge_state" groups="base.group_user,tms_modules.group_trobz_partner"/>
+                        <field name="missing_reactivity_reason" />
+                        <field name="trobz_partner_id"/>
+                        <field name="milestone_id"/>
+                        <field name="select_quotation" />
+                        <field name="tms_forge_ticket_id" />
+                        <field name="delivery_status" />
+                        <field name="project_state" />
+                        <field name="quotation_approved"/>
+                        <field name="date"/>
+                        <field name="proj_owner_id" />
+                        <field name="team_id"/>
+                        <field name="team_manager_id"/>
+                    </group>
+                    <group string="Group By">
+                        <filter string="Activity"
+                            domain="[]" context="{'group_by':'tms_activity_id'}" />
+                        <filter string="Delivery Status"
+                            domain="[]" context="{'group_by':'delivery_status'}" />
+                        <filter string="Forge State"
+                            domain="[]" context="{'group_by':'forge_state'}"
+                            groups="base.group_user, tms_modules.group_trobz_partner"/>
+                        <filter string="Functional Block"
+                            domain="[]" context="{'group_by':'tms_functional_block_id'}" />
+                        <filter string="Milestone"
+                            domain="[]" context="{'group_by':'milestone_id'}" />
+                        <filter string="Missing Reactivity Reason"
+                            domain="[]" context="{'group_by':'missing_reactivity_reason'}" />
+                        <filter string="Owner"
+                            domain="[]" context="{'group_by':'owner_id'}" />
+                        <filter string="Ownership"
+                            domain="[]" context="{'group_by':'ownership_duration'}" />
+                        <filter string="Partner"
+                            domain="[]" context="{'group_by':'trobz_partner_id'}" />
+                        <filter string="Priority"
+                            domain="[]" context="{'group_by':'priority'}" />
+                        <filter name="group_by_project" string="Project"
+                            domain="[]" context="{'group_by': 'project_id'}" />
+                        <filter string="Status"
+                            domain="[]" context="{'group_by':'state'}" />
+                        <filter string="Type"
+                            domain="[]" context="{'group_by':'ticket_type'}" />
+                        <separator />
+                        <filter string="Project's Owner" domain="[]"
+                            context="{'group_by':'proj_owner_id'}"/>
+                        <separator />
+                        <filter string="Team" domain="[]"
+                            context="{'group_by':'team_id'}"/>
+                        <separator />
+                        <filter string="Team Manager" domain="[]"
+                            context="{'group_by':'team_manager_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Trobz support ticket search view -->
+        <record id="view_tms_support_ticket_search_document" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.search.document</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="priority" eval="10"/>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Ticket Doc">
+                    <group string="Field">
+                        <field name="project_id"/>
+                        <field name="name"/>
+                        <field name="state"/>
+                        <field name="documentation_status"/>
+                        <field name="proj_owner_id"/>
+                        <field name="team_id"/>
+                        <field name="team_manager_id"/>
+                    </group>
+                    <group string="Group by">
+                        <filter string="Documentation Status" domain="[]" context="{'group_by':'documentation_status'}"/>
+                        <filter string="Project" domain="[]" context="{'group_by':'project_id'}"/>
+                        <filter string="Ticket Status" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Project's Owner" domain="[]"
+                            context="{'group_by':'proj_owner_id'}"/>
+                        <filter string="Team" domain="[]"
+                            context="{'group_by':'team_id'}"/>
+                        <filter string="Team Manager" domain="[]"
+                            context="{'group_by':'team_manager_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Support Ticket Form View -->
+        <record id="view_tms_support_ticket_form" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.form</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Support Tickets" class="extended-form-view">
+                    <header>
+                        <field name="state" widget="statusbar" clickable="True"/>
+                    </header>
+                    <group colspan="4" col="10">
+                        <!-- HIDDEN FIELDS -->
+                        <field name="is_usr_trobz_member" invisible="1"/>
+                        <field name="is_usr_trobz_partner" invisible="1"/>
+                        <field name="workload" invisible="1"/>
+
+                        <!-- LEFT SIDE :: 8-->
+                        <group colspan="8" col="2">
+                            <group colspan="2" col="4">
+                                <group colspan="4" style="margin:0px">
+                                    <h2>
+                                        <field name="summary" nolabel="1"
+                                            placeholder="An explicit summary (to know what this ticket is about without reading the description)" />
+                                    </h2>
+                                </group>
+                                <group colspan="4" col="3" style="margin:0px">
+                                    <field name="project_id" nolabel="1"
+                                        placeholder="Project" attrs="{'readonly': [('state','!=','new')]}"/>
+                                    <field name="tms_functional_block_id"
+                                        nolabel="1" placeholder="Functional block"
+                                        context="{'project_id_from_ticket': project_id}" />
+                                    <field name="tms_project_tag_ids"
+                                        widget="many2many_tags"
+                                        nolabel="1" placeholder="Project Tag"
+                                        context="{'default_project_id': project_id}" />
+                                </group>
+                            </group>
+
+                            <!-- COMMON TICKET INFO -->
+                            <div class="tms_left_info_container">
+                                <group colspan="2" col="4">
+                                    <group>
+                                        <label for="milestone_id" />
+                                        <div class="address_format">
+                                            <field name="milestone_id" context="{'form_view_ref': 'tms_modules.view_tms_milestone_support_ticket_form'}"
+                                                domain="[('project_id','=',project_id)]" />
+
+                                            <div class="tms_field_button_container">
+                                                <!-- Milestone buttons -->
+                                                <button name="button_previous_milestone" type="object"
+                                                    help="Move to next milestone" class="ticket_button tms_field_button icon-chevron-left"
+                                                    groups="tms_modules.group_tms_dev_user,tms_modules.group_profile_tms_customer" />
+                                                 <button name="button_remove_milestone" type="object"
+                                                     help="Remove milestone" class="ticket_button tms_field_button icon-remove"
+                                                     groups="tms_modules.group_tms_dev_user,tms_modules.group_profile_tms_customer" />
+                                                 <button name="button_next_milestone" type="object"
+                                                     help="Move to next milestone" class="ticket_button tms_field_button icon-chevron-right"
+                                                     groups="tms_modules.group_tms_dev_user,tms_modules.group_profile_tms_customer" />
+                                             </div>
+                                        </div>
+                                        <field name="owner_id" />
+                                        <field name="tms_forge_ticket_id" groups="base.group_user" />
+                                        <field name="forge_state" groups="base.group_user,tms_modules.group_trobz_partner" />
+                                        <field name="sp_check_manage_dealine_on_sp_tickets" invisible="1"/>
+                                        <field name="deadline" attrs="{'invisible': [('sp_check_manage_dealine_on_sp_tickets', '=', False)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="ticket_type"
+                                        attrs="{'readonly': [('is_usr_trobz_member','=',False)]}" />
+                                        <field name="reporter_id" />
+                                        <label for="priority" />
+                                        <div class="address_format">
+                                            <field name="priority"/>
+
+                                            <div class="tms_field_button_container">
+                                                <!-- Priority buttons -->
+                                                <button name="button_higher_priority" type="object"
+                                                    attrs="{'invisible': [('priority','=','urgent')]}"
+                                                    help="Increase the priority" class="ticket_button tms_field_button icon-chevron-up" />
+                                                <button name="button_lower_priority" type="object"
+                                                     attrs="{'invisible': [('priority','=','minor')]}"
+                                                    help="Decrease the priority" class="ticket_button tms_field_button icon-chevron-down" />
+                                            </div>
+                                        </div>
+                                        <field name="workload_char"/>
+                                        <field name="workload_achieved" invisible="1"/>
+                                        <field name="time_spent_day" groups="tms_modules.group_tms_employee_user"/>
+                                        <field name="invc_by_trobz_vn"
+                                        attrs="{'readonly': [('is_usr_trobz_member','=',False)]}"
+                                        groups="tms_modules.group_trobz_partner,base.group_user"/>
+                                        <field name="quotation_approved"
+                                        attrs="{'readonly': [('is_usr_trobz_member','=',False)]}"/>
+                                    </group>
+                                </group>
+                            </div>
+
+                            <group colspan="2" col="1">
+                                <field name="description"
+                                    widget="bootstrap_markdown"
+                                    nolabel="1"
+                                    placeholder="Write a ticket description here..."/>
+                            </group>
+                        </group>
+
+                        <!-- RIGHT SIDE :: 2 -->
+                        <group colspan="2" col="2" class="tms_form_group_info">
+
+                            <!-- TICKET ID SECTION -->
+                            <group colspan="2" class="tms_ticket_number_container">
+                                <h2 class="ticket_id_number">
+                                    <span>
+                                        <span class="ticket-id-label">S#</span>
+                                        <field class="ticket-id-number" name="name" widget="char" />
+                                    </span>
+                                    <span class="ticket_id_text_label">Ticket ID</span>
+                                </h2>
+                            </group>
+
+                            <!-- COMMAND BUTTONS -->
+                            <group colspan="2" col="1">
+                                <field name = "is_subscribed" invisible="1"/>
+                                <button name="button_subscribe" type="object"
+                                    string="Subscribe Me"
+                                    class="icon-eye-open ticket_button"
+                                    attrs="{'invisible': [('is_subscribed', '=', True)]}" />
+
+                                <button name="button_unsubscribe" type="object"
+                                    string="Unsubscribe Me"
+                                    class="icon-eye-close ticket_button"
+                                    attrs="{'invisible': [('is_subscribed', '=', False)]}" />
+
+                                <button name="button_planned_for_delivery"
+                                    type="object" string="Planned for delivery"
+                                    states="assigned"
+                                        class="icon-folder-open ticket_button"
+                                    groups="base.group_user"/>
+
+                                <button name="button_delivered_in_staging"
+                                    type="object" string="Delivered in Staging"
+                                    states="assigned,planned_for_delivery"
+                                    class="icon-exchange ticket_button"
+                                    groups="base.group_user"/>
+
+                                <button name="button_ok_for_production" type="object"
+                                    states="delivered" groups="tms_modules.group_tms_support_viewer"
+                                    string="Ok for Production" class="icon-ok-sign ticket_button"
+                                    help="Mark this ticket is ready to be delivered to production."/>
+
+                                <button name="button_ok_to_close" type="object" string="OK to close"
+                                    states="new,assigned"
+                                        class="icon-ok-circle ticket_button"
+                                    groups="tms_modules.group_tms_support_viewer"
+                                    help ="OK Close Ticket"/>
+
+                                <!-- TODO: Ask to remove this button, it's useless -->
+                                <!--<button name="button_close" type="object" string="Close support ticket"-->
+                                    <!--groups="base.group_user" class="icon-remove ticket_button"-->
+                                    <!--help ="Close Support Ticket"/>-->
+
+                                <button name="button_assign_to_trobz" type="object"
+                                    states="delivered,ok_for_production,closed"
+                                    groups="tms_modules.group_tms_support_viewer"
+                                    string="Re-Open to Trobz" class="icon-reply ticket_button"
+                                    help="Re-open this ticket and assign it to the default supporter of Trobz."/>
+
+                                <button name="button_assign_to_trobz" type="object" string="Assign to Trobz"
+                                    states="new,assigned,planned_for_delivery"
+                                    groups="tms_modules.group_tms_support_viewer"
+                                    class="icon-group ticket_button"
+                                    help="Assign this ticket to the default supporter of Trobz"/>
+
+                                <button name="button_assign_to_reporter" type="object" string="Assign to Reporter"
+                                    states="new,assigned,planned_for_delivery,delivered,ok_for_production,closed"
+                                    groups="base.group_user,tms_modules.group_tms_support_viewer"
+                                    class="icon-user ticket_button"
+                                    help="Assign this ticket to the supporter" />
+
+                                <button name="button_create_forge_ticket" type="object" string="Create forge ticket"
+                                    help="Create a forge ticket copying several fields from the support ticket and linking the 2 tickets."
+                                    groups="base.group_user" class="icon-code ticket_button" />
+
+                                <button name="button_launch_in_forge" type="object" string="Launch in Forge"
+                                    help="
+                                        If there are no forge ticket on this support ticket then create a forge ticket normally as when using the button Create forge ticket.
+                                        If a forge ticket is linked on the support ticket, update the forge ticket:
+                                            Summary: remove [Quotation sent]
+                                            Quotation: No
+                                            Sprint: set a sprint to current sprint"
+                                    groups="base.group_user"
+                                    class="icon-cogs ticket_button" />
+                            </group>
+                        </group>
+                    </group>
+
+                    <!-- TAB CONTENTS -->
+                    <notebook colspan="4">
+                        <page string="Comments">
+                            <button
+                                string="Only comments"
+                                icon="icon-minus-sign-alt"
+                                class="oe_inline oe_stat_button empty_button hide_record button_highlight"
+                                help="Show only the comments">
+                            </button>
+                            <button
+                                string="Full History"
+                                icon="icon-plus-sign-alt"
+                                class="oe_inline oe_stat_button empty_button show_all"
+                                help="Show full history">
+                            </button>
+                            <button
+                                string="Add comment" type="action"
+                                name="%(action_add_comment_in_ticket)d"
+                                icon="fa-pencil"
+                                class="oe_inline oe_stat_button">
+                            </button>
+                            <field name="tms_support_ticket_comment_ids" mode="tree" colspan="4" nolabel="1"
+                                    context="{'tms_support_ticket_id': active_id,'form_view_ref':'tms_modules.view_tms_ticket_comment_form_ticket_ref', 'add_item_on_top': True}">
+                                <tree string="Comment" colors="grey:type!='comment';grey:is_invalid==True" classTarget="tms_hidden record_hidden:type!='comment';">
+                                    <field name="type" invisible="1" />
+                                    <field name="name" />
+                                    <field name="comment" widget="bootstrap_markdown" />
+                                    <field name="author_id" />
+                                    <field name="is_invalid" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Time spent" groups="tms_modules.group_tms_support_time_spent_access,base.group_user">
+                            <group>
+                                <group>
+                                    <field name="time_spent" />
+                                </group>
+                                <group>
+                                    <field name="date" attrs="{'readonly': [('is_usr_trobz_member','=',False)]}"/>
+                                    <field name="is_offered" />
+                                </group>
+                            </group>
+                            <group>
+                                <field name="tms_working_hour_ids" colspan="4" nolabel="1"
+                                    attrs="{'readonly': ['|','|',('tms_activity_id','=',False),('name','=',False),('is_usr_trobz_member','=',False)]}"
+                                    context="{'tms_support_ticket_id':active_id,'tms_activity_id':tms_activity_id}">
+                                    <tree string="Time Spent by Hours">
+                                        <field name="date" />
+                                        <field name="user_id" />
+                                        <field name="tms_support_ticket_id" invisible="1" />
+                                        <field name="duration_hour" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Tracking info">
+                            <group>
+                                <group>
+                                    <field name="resolution" />
+                                    <field name="delivery_status" groups="base.group_user" />
+                                </group>
+                                <group>
+                                    <field name="tms_activity_id" domain="[('project_id','=',project_id)]"
+                                        attrs="{'readonly': [('is_usr_trobz_member','=',False)]}"
+                                        context="{'form_view_ref': 'tms_modules.view_tms_activity_support_ticket_form'}"/>
+                                </group>
+                                <group string="Ticket Dates" colspan="4">
+                                    <group>
+                                        <field name="create_date" />
+                                        <field name="closing_datetime" />
+                                        <field name="write_date" />
+                                    </group>
+                                    <group>
+                                        <field name="quotation_approved_date" readonly="1" />
+                                        <field name="staging_delivery_date" readonly="1" />
+                                        <field name="ok_production_date" readonly="1" />
+                                    </group>
+                                </group>
+                            </group>
+                            <group string="Subscriber Emails">
+                                <field name="additional_subscribers" nolabel="1" />
+                            </group>
+                            <group string="Subscribers">
+                                <field name="support_ticket_subscriber_ids"
+                                    colspan="4" nolabel="1">
+                                    <tree string="Subscribers" editable="bottom">
+                                        <field name="name" domain="[('supporter_of_project_ids', '=like', parent.project_id)]"/>
+                                        <field name="tk_default_notif_pre_id" />
+                                        <field name="tk_notif_pref_id" />
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Trobz info" groups="base.group_user">
+                            <group>
+                                <group>
+                                    <field name="customer_id" invisible="1"/>
+                                    <field name="ownership_date"/>
+                                    <field name="ownership_duration"/>
+                                    <field name="trobz_ownership_total_time"/>
+                                </group>
+                                <group>
+                                    <field name="project_state"/>
+                                    <field name="opening_duration" />
+                                    <field name="is_support_contract"/>
+                                    <field name="missing_reactivity" />
+                                    <field name="missing_reactivity_reason" attrs="{'invisible': [('missing_reactivity','=',False)] }"/>
+                                </group>
+                            </group>
+                            <group string="Internal Comment">
+                                <field name="internal_comment" nolabel="1" />
+                            </group>
+                        </page>
+                        <page string="Documentation" attrs="{'invisible':[('manage_documentation','=',False)]}">
+                            <group>
+                                <field name="manage_documentation" invisible="1"/>
+                                <field name="documentation_required" />
+                                <field name="documentation_status" widget="statusbar" clickable="True"/>
+                                <separator string="Documentation Links" colspan="4"/>
+                                <field name="documentation_links" colspan="4" widget="bootstrap_markdown" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tms_support_ticket_gantt" model="ir.ui.view">
+            <field name="name">tms.support.ticket.gantt</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="type">gantt</field>
+            <field name="arch" type="xml">
+                <gantt
+                    date_start="create_date"
+                    date_stop="date_end_gantt"
+                    string="Support Ticket"
+                    default_group_by="ticket_type"
+                    color="owner_id"
+                    mode="year">
+                    <field name="id" />
+                    <field name="summary" />
+                    <field name="owner_id" />
+                    <field name="ticket_type" />
+                </gantt>
+            </field>
+        </record>
+
+        <record id="view_tms_support_ticket_form_customer_only"
+                model="ir.ui.view">
+             <field name="name">view.tms.support.ticket.form.customer.only</field>
+             <field name="model">tms.support.ticket</field>
+             <field name="inherit_id" ref="tms_modules.view_tms_support_ticket_form"/>
+             <field name="groups_id" eval="[(6, 0, [ref('group_tms_customer')])]"/>
+             <field name="arch" type="xml">
+                 <field name="description" position="attributes">
+                     <attribute name="attrs">{'readonly': [('workload', '>', 0)]}</attribute>
+                 </field>
+             </field>
+         </record>
+
+        <!-- F#12625 More > Subscribe/Unsubscribe -->
+        <act_window id="action_subscribe"
+        res_model="toggle.subscribe.ticket.wizard"
+        src_model="tms.support.ticket"
+        target="new"
+        multi="True"
+        key2="client_action_multi"
+        view_mode="form"
+        view_id="view_subscribe_ticket_wizard_form"
+        name="Subscribe"/>
+
+        <act_window id="action_unsubscribe"
+        res_model="toggle.subscribe.ticket.wizard"
+        src_model="tms.support.ticket"
+        target="new"
+        multi="True"
+        key2="client_action_multi"
+        view_mode="form"
+        view_id="view_unsubscribe_ticket_wizard_form"
+        name="Unsubscribe"/>
+
+        <!--
+        ======================================================
+        tms.support.ticket (Support Tickets)
+        ======================================================
+        -->
+        <!-- Support tickets for Customer/Partner -->
+        <record id="action_view_tms_support_ticket_open" model="ir.actions.act_window">
+            <field name="name">Support Tickets</field>
+            <field name="res_model">tms.support.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_support_ticket_search"/>
+            <field name="context">{'search_default_open':1, 
+                'readonly_by_pass':1}</field>
+        </record>
+        <!-- Support tickets for Customer/Partner -->
+        <record id="action_view_tms_support_ticket_light_open" model="ir.actions.act_window">
+            <field name="name">Support Tickets (Light)</field>
+            <field name="res_model">tms.support.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="view_tms_support_ticket_search"/>
+            <field name="view_id" ref="view_tms_support_ticket_light_tree"/>
+            <field name="context">{'readonly_by_pass':1}}</field>
+        </record>
+        <!-- Support tickets for Trobz user -->
+        <record id="action_view_tms_trobz_support_ticket_open" model="ir.actions.act_window">
+            <field name="name">Trobz Support Tickets</field>
+            <field name="res_model">tms.support.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_support_ticket_search"/>
+            <field name="view_id" ref="view_tms_support_ticket_tree"/>
+            <field name="context">{'search_default_group_by_project':1, 'search_default_open':1, 'search_default_tms':1, 'search_default_missing_reactivity':1, 'search_default_project_state':'active',
+            'readonly_by_pass':1}}</field>
+        </record>
+        <!-- Support tickets for Activities -->
+        <record id="action_tms_support_ticket_from_activity" model="ir.actions.act_window">
+            <field name="name">Support Tickets</field>
+            <field name="res_model">tms.support.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_support_ticket_search"/>
+            <field name="context">{'search_default_open': 1,
+                 'search_view_ref': 'tms_modules.view_tms_support_ticket_search',
+                 'tree_view_ref': 'tms_modules.view_tms_support_ticket_tree_on_tms_milestone',
+                 'search_default_tms_activity_id': active_id,
+                 'readonly_by_pass':1}}</field>
+        </record>
+
+        <!--
+        ======================================================
+        tms.support.ticket (Invoiceable Tickets)
+        ======================================================
+        -->
+        <record id="action_view_tst_open_owned_workload" model="ir.actions.act_window">
+            <field name="name">Invoiceable Tickets</field>
+            <field name="res_model">tms.support.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+             <field name="search_view_id" ref="view_tms_support_ticket_search_invoicing" />
+            <field name="context">{
+                'search_default_quotation_approved': 1,
+                'search_default_invoicing_date_empty': 1,
+                'search_default_type_evolution': 1}</field>
+        </record>
+        <!--
+        ======================================================
+        tms.support.ticket (Rescue Support Ticket to Invoice)
+        ======================================================
+        -->
+        <record id="action_view_tms_support_ticket2invoice_open" model="ir.actions.act_window">
+            <field name="name">Rescue Support Ticket to Invoice</field>
+            <field name="res_model">tms.support.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tms_support_ticket_tree"/>
+            <field name="search_view_id" ref="view_tms_support_ticket_search"/>
+            <field name="context">{'search_default_filter_invc_trobz_vn': 1,'search_default_not_invoiced':1, 'search_default_resolution':'fixed', 'search_default_closed':1, 'search_default_invoice_workload':1, 'search_default_project':1, 'search_default_select_quotation':'no', 'search_default_is_offered': 0}</field>
+        </record>
+
+        <!--
+        ======================================================
+        tms.support.ticket (Ticket Doc)
+        ======================================================
+        -->
+        <record id="action_view_tms_support_ticket_open_tree_document" model="ir.actions.act_window">
+            <field name="name">Ticket Doc</field>
+            <field name="res_model">tms.support.ticket</field>
+            <field name="view_id" ref="view_tms_support_ticket_tree_document"/>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('documentation_required','=',True)]</field>
+        </record>
+
+        <!-- Add Tms Support Ticket Pivot -->
+        <record id="view_tms_support_ticket_pivot" model="ir.ui.view">
+            <field name="name">tms.support.ticket.pivot</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="arch" type="xml">
+                <graph string="Tms Support Ticket Analysis" type="pivot">
+                    <field name="project_id" type="row"/>
+                    <field name="ticket_type" type="col"/>
+                    <field name="nbr" operator="+"/>
+                 </graph>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_tms_support_ticket_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_tms_support_ticket_tree"/>
+            <field name="act_window_id" ref="action_view_tms_support_ticket_open"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_tms_support_ticket_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_tms_support_ticket_form"/>
+            <field name="act_window_id" ref="action_view_tms_support_ticket_open"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_tms_support_ticket_pivot_all">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_tms_support_ticket_pivot"/>
+            <field name="act_window_id" ref="action_view_tms_support_ticket_open"/>
+       </record>
+
+        <!-- Button Open Update Subcription Wizard on Tree View-->
+        <record model="ir.values" id="action_open_update_subcription_in_support_ticket">
+            <field name="model_id" ref="model_tms_support_ticket"/>
+            <field name="name">Update Subcription</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_window_open_update_subcription_in_ticket'))" />
+            <field name="key">action</field>
+            <field name="model">tms.support.ticket</field>
+        </record>
+
+        <record id="view_tms_support_ticket_form_customer_inherit" model="ir.ui.view">
+            <field name="name">view.tms.support.ticket.form.customer.inherit</field>
+            <field name="model">tms.support.ticket</field>
+            <field name="inherit_id" ref="tms_modules.view_tms_support_ticket_form" />
+            <field name="groups_id" eval="[(6, 0, [ref('tms_modules.group_profile_tms_customer') ])]" />
+            <field name="arch" type="xml">
+                <field name="milestone_id" position="attributes">
+                   <attribute name="readonly">1</attribute>
+                </field>
+                <field name="tms_functional_block_id" position="attributes">
+                   <attribute name="readonly">1</attribute>
+                </field>
+                <field name="tms_project_tag_ids" position="attributes">
+                   <attribute name="readonly">1</attribute>
+                </field>
+                <field name="workload_char" position="attributes">
+                   <attribute name="readonly">1</attribute>
+                </field>
+                <field name="resolution" position="attributes">
+                   <attribute name="readonly">1</attribute>
+                </field>
+                <field name="additional_subscribers" position="attributes">
+                   <attribute name="readonly">1</attribute>
+                </field>
+                <field name="support_ticket_subscriber_ids" position="attributes">
+                   <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

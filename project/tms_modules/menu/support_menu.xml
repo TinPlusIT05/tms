@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <!--
+        ================================
+        SUPPORT
+        ================================
+        -->
+        <menuitem
+            name="Support" id="menu_support_main" sequence="4"
+            action="action_view_tms_support_ticket_open" />
+
+        <!-- Access right for SUPPORT menu -->
+        <record model="ir.ui.menu" id="menu_support_main">
+            <field name="groups_id" eval="[(6, 0, [
+                ref('base.group_no_one'),
+                ref('group_tms_support_viewer'),
+                ref('group_tms_support_user'),
+                ref('group_profile_external_developer'),
+                ref('group_tms_customer_read_only')])]" />
+        </record>
+
+        <!--
+        ================================
+        SUPPORT > Support Tickets
+        ================================
+        -->
+        <menuitem
+            name="Support Tickets" id="menu_support_tickets_secondary"
+            parent="menu_support_main" sequence="1" />
+
+        <!-- SUPPORT > Support Tickets > Support Tickets -->
+        <menuitem
+            name="Support Tickets"  id="menu_tms_support_ticket"
+            parent="menu_support_tickets_secondary" sequence="10"
+            action="action_view_tms_support_ticket_open"
+            groups="group_tms_customer,base.group_user,group_profile_external_developer" />
+
+        <!-- SUPPORT > Support Tickets > Invoiceable Tickets -->
+        <menuitem
+            name="Invoiceable Tickets" id="menu_tms_invoiceable_tickets"
+            parent="menu_support_tickets_secondary" sequence="30"
+            action="action_view_tst_open_owned_workload"
+            groups="group_tms_customer,base.group_user" />
+
+        <!-- SUPPORT > Support Tickets > Project Activities -->
+        <menuitem
+            name="Project Activities" id="menu_tms_activity_support_ticket"
+            parent="menu_support_tickets_secondary" sequence="55"
+            action="action_view_tms_activity_support_ticket"
+            groups="base.group_user,group_tms_customer" />
+
+        <!-- SUPPORT > Support Tickets > Support Dashboard -->
+        <menuitem
+            name="Support Dashboard" id="menu_support_dashboard"
+            parent="menu_support_tickets_secondary" sequence="80"
+            action="open_tms_support_board" />
+
+        <!--
+        ================================
+        SUPPORT > Trobz Support Tickets
+        ================================
+        -->
+
+        <menuitem
+            name="Trobz Support Tickets" id="menu_support_tickets_trobz"
+            parent="menu_support_main" sequence="2"
+            groups="base.group_user,tms_modules.group_trobz_partner" />
+
+        <!-- SUPPORT > Trobz Support Tickets > Project Milestones-->
+        <menuitem
+            name="Project Milestones"  id="menu_tms_milestone_support_ticket"
+            parent="menu_support_tickets_trobz" sequence="30"
+            action="action_view_tms_milestone_support_ticket"
+            groups="base.group_user,tms_modules.group_trobz_partner"/>
+
+        <!-- SUPPORT > Trobz Support Tickets > Trobz Support Tickets -->
+        <menuitem
+            name="Trobz Support Tickets"  id="menu_tms_support_ticket_trobz"
+            parent="menu_support_tickets_trobz" sequence="20"
+            action="action_view_tms_trobz_support_ticket_open"
+            groups="base.group_user"/>
+
+        <!-- SUPPORT > Trobz Support Tickets > Rescue Support Ticket To Invoice -->
+        <menuitem
+            name="Rescue Support Ticket to Invoice" id="menu_tms_support_ticket2invoice"
+            parent="menu_support_tickets_trobz" sequence="40"
+            action="action_view_tms_support_ticket2invoice_open"
+            groups="base.group_user" />
+
+        <!-- SUPPORT > Trobz Support Tickets > Trobz Support Activity -->
+        <menuitem
+            name="Trobz Support Activity" id="menu_tms_ticket_comment"
+            parent="menu_support_tickets_trobz" sequence="50"
+            action="action_view_tms_ticket_comment_open"
+            groups="base.group_user,group_trobz_partner" />
+
+        <!-- SUPPORT > Trobz Support Tickets > Recalculate Reactivity -->
+        <menuitem
+            name="Recalculate Reactivity" id="menu_tms_recalculate_reactivity"
+            parent="menu_support_tickets_trobz" sequence="70"
+            action="action_open_view_recalculate_reactivity"
+            groups="base.group_user" />
+
+        <!-- SUPPORT > Trobz Support Tickets > Ticket Doc -->
+        <menuitem
+            name="Ticket Doc" id="menu_tms_support_ticket_document"
+            parent="menu_support_tickets_trobz"
+            action="action_view_tms_support_ticket_open_tree_document" sequence="90"/>
+
+		<record model="ir.ui.menu" id="menu_tms_support_ticket_document">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]" />
+        </record>
+
+        <!--
+        ================================
+        SUPPORT > Reports
+        ================================
+        -->
+        <menuitem
+            name="Reports" id="menu_tms_support_reports_secondary"
+            parent="menu_support_main" sequence="3"
+            groups="base.group_user,tms_modules.group_tms_customer" />
+
+        <!-- SUPPORT > Report > Activity Report -->
+        <menuitem
+            name="Activity Report" id="menu_tms_cust_activity_report_wizard"
+            parent="menu_tms_support_reports_secondary" sequence="10"
+            action="action_open_customer_support_activity_report_wizard"
+            groups="base.group_user" />
+
+        <!-- SUPPORT > Report > Activity Report -->
+        <menuitem
+            name="Delivery Acceptance Report" id="menu_tms_delivery_acceptance_report_wizard"
+            parent="menu_tms_support_reports_secondary" sequence="20"
+            action="action_delivery_acceptance_wizard"
+            groups="base.group_user" />
+
+        <!-- SUPPORT > Reports > Support Tickets (light) -->
+        <menuitem
+            name="Support Tickets (light)" id="menu_tms_support_ticket_light"
+            parent="menu_tms_support_reports_secondary" sequence="30"
+            action="action_view_tms_support_ticket_light_open"/>
+
+        <record model="ir.ui.menu" id="menu_tms_support_ticket_light">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_user')])]" />
+        </record>
+
+        <!-- SUPPORT > Reports > Support Tickets Export -->]
+        <menuitem
+            name="Support Tickets Export" id="menu_tms_cust_support_ticket_export_wizard"
+            parent="menu_tms_support_reports_secondary" sequence="40"
+            action="action_open_customer_support_tickets_report_wizard"
+            groups="base.group_user,tms_modules.group_tms_customer" />
+
+        <!-- SUPPORT > Reports > Working Hours -->
+        <menuitem
+            name="Working Hours" id="menu_tms_working_hour"
+            parent="menu_tms_support_reports_secondary" sequence="50"
+            action="action_view_working_hour"
+            groups="tms_modules.group_profile_tms_partner_admin,base.group_user" />
+    </data>
+</openerp>

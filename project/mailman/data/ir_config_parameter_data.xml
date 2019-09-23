@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+  	<data noupdate='1'>
+
+        <record id="mailman_server" model="ir.config_parameter">
+        	<field name="key">mailman-api-url</field>
+        	<field name="value">http://172.17.42.1:8000/</field>
+        </record>
+        <record id="request_timeout" model="ir.config_parameter">
+            <field name="key">request-timeout</field>
+            <field name="value">120</field>
+        </record>
+
+	</data>
+</openerp>

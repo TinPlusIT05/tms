@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+		<record id="view_tms_instance_tree" model="ir.ui.view">
+			<field name="name">tms.instance.tree</field>
+			<field name="model">tms.instance</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Instance" colors="grey:state=='inactive';lightgrey:state=='deleted';red:state=='exception';blue:state=='sleep'">
+					<field name="server_type" invisible='1'/>
+					<field name="url" invisible='1' />
+                    <field name="operating_system" invisible="1"/>
+					<field name="project_id" invisible="1"/>
+					<field name="name" />
+					<field name="milestone_id" />
+					<field name="host_id"/>
+					<field name="physical_host_id"/>
+					<field name="ssh_port" />
+                    <field name="xmlrpc_port"/>
+                    <field name="state"/>
+                    <button name="button_test" type="object" string="Test" class="icon-search" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="view_tms_instance_filter" model="ir.ui.view">
+            <field name="name">tms.instance.filter</field>
+            <field name="model">tms.instance</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Instance">
+                    <filter name="open" icon="tms_open" string="Opened" domain="[('state','in',('active','exception','sleep'))]" />
+                    <separator orientation="vertical" />
+                    <filter name="exception" icon="tms_error" string="Exception" domain="[('state','=','exception')]" />
+                    <separator orientation="vertical" />
+                    <field name="project_id" widget="selection"/>
+                    <field name="state" />
+                    <field name="name" />
+                    <field name="server_type"/>
+                    <field name="proj_owner_id"/>
+                    <field name="host_id"/>
+                    <field name="physical_host_id"/>
+                    <field name="team_id"/>
+                    <field name="team_manager_id"/>
+                    <newline />
+                    <group expand="1" string="Group By...">
+                        <filter string="Project" icon="tms_project" domain="[]"
+                        	context="{'group_by':'project_id'}" />
+                        <separator orientation="vertical" />
+                        <filter string="Type" icon="tms_type" domain="[]"
+                        	context="{'group_by':'server_type'}" />
+                        <separator orientation="vertical" />
+                        <filter string="State" icon="tms_state"
+                            domain="[]" context="{'group_by':'state'}" />
+                        <separator orientation="vertical" />
+                        <filter string="Operating System" icon='tms_type' domain="[]"
+                            context="{'group_by': 'operating_system'}" />
+                        <separator orientation="vertical" />
+                        <filter string='Host' icon='gtk-home' domain='[]'
+                            context="{'group_by': 'host_id'}" />
+                        <separator orientation="vertical" />
+                        <filter string="Project's Owner" domain='[]'
+                            context="{'group_by': 'proj_owner_id'}" />
+                        <separator orientation="vertical" />
+                        <filter string="Node" name="group_by_node"
+                            context="{'group_by': 'physical_host_id'}"/>
+                        <separator orientation="vertical" />
+                        <filter string="Team" name="group_by_team"
+                            context="{'group_by': 'team_id'}"/>
+                        <filter string="Team Manager" name="group_by_team_manager"
+                            context="{'group_by': 'team_manager_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+		<record id="view_tms_instance_form" model="ir.ui.view">
+			<field name="name">tms.instance.form</field>
+			<field name="model">tms.instance</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Instances" version="7.0">
+					<sheet>
+						<group>
+							<group>
+								<field name="is_project_manager" invisible="1"/>
+								<field name="project_id"/>
+                                <field name="server_type"/>
+							</group>
+							<group>
+                                <field name="name"/>
+								<field name="milestone_id" domain="[('project_id', '=', project_id)]" context="{'default_project_id': project_id}"/>
+		                    </group>
+	                    </group>
+						<notebook>
+							<page string="General">
+                                <group string="Address" colspan="4" col="4">
+				    				<field name="host_id"/>
+                                    <field name="ssh_port"/>
+                                    <field name="url"/>
+                                    <field name="xmlrpc_port"/>
+                                    <field name="xmlrpc_url"/>
+                                    <field name="backend_ip"/>
+                                    <field name="backend_port"/>
+                                </group>
+                                <group string="Status" colspan="4" col="4">
+                                    <field name="state"/>
+                                    <field name="active"/>
+                                </group>
+                                <group string="Security" colspan="4" col="4">
+                                    <group>
+                                        <field name="ssl"/>
+                                    </group>
+                                    <group>
+                                        <field name="http_auth"/>
+                                        <field name="htpasswd_file" attrs="{'invisible':[('http_auth','=',False)]}"/>
+                                        <field name="https_login" attrs="{'invisible':[('http_auth','=',False)]}"/>
+                                        <field name="https_password" attrs="{'invisible':[('http_auth','=',False)]}"/>
+                                    </group>
+                                </group>
+                                <group string="Multi-host" colspan="4" col="4">
+                                	<field name="multi_host"/>
+                                </group>
+							</page>
+                            <page string="Databases Info">
+                            	 <group string = "PostgreSQL" colspan = "4">
+                                    <group>
+                                        <field name="psql_host" string="Host" />
+                                        <field name="psql_port" string="Port" />
+                                    </group>
+                                    <group>
+                                        <field name="psql_user" string="Username" />
+                                        <field name="psql_pass" string="Password" />
+                                    </group>
+                                </group>
+                                <group string = "Databases" colspan = "4">
+	                                <field name="instance_database_ids" colspan="4" nolabel="1">
+	                                    <tree string="Databases Info" editable="top">
+	                                        <field name="name" />
+	                                        <field name="password" string = 'Odoo admin Password'/>
+                                            <field name="login" string="Login"/>
+	                                    </tree>
+	                                </field>
+                                </group>
+                            </page>
+							<page string="Users">
+                                <button type="action" class="oe_highlight"
+                                    name="%(choose_internal_users_to_notify_wizard_action)d"
+                                    string="Regenerate HTTP auth file"
+                                    context="{
+                                        'extra_vars_name': name, 'active_id': active_id,
+										'default_notify_type': active_model}"
+                                    groups="tms_modules.group_tms_project_user,tms_modules.group_tms_dev_configuration_user">
+                                </button>
+								<field name="instance_user_ids" nolabel="1" colspan="4"/>
+							</page>
+							<page string="Tests">
+								<group colspan = "4">
+									<field name="test_instance"/>
+								</group>
+								<group colspan = "4">
+									<group>
+										<field name="datetime_test"/>
+									</group>
+									<group>
+										<button name="button_test" type="object" string="Test"
+											class="icon-search" />
+									</group>
+								</group>
+	                            <field name="last_error" nolabel="1" />
+							</page>
+							<page string='Notes'>
+                                <group string="AWX Job History">
+                                    <field name="awx_job_history_ids" context="{'group_by':'job_id'}" nolabel="1">
+
+                                        <tree string="AWX Job History" create="false" delete="false" edit="false" >
+                                            <field name="name"/>
+                                            <field name="job_id"/>
+                                            <field name="instance_id"/>
+                                            <field name="host_id"/>
+                                            <field name="create_uid"/>
+                                            <field name="instance_user_ids" widget="many2many_tags"/>
+                                            <field name="status"/>
+                                        </tree>
+                                        
+                                    </field>
+                                </group>
+                                <group string="Note">
+                                    <field name="note" colspan="4" nolabel="1"/>
+                                </group>
+							</page>
+
+							<page string="Configuration">
+								<group>
+									<field name="custom_parameter" widget = 'serialized' />
+								</group>
+							</page>
+                            <page string="Multi Architecture" attrs="{'invisible': [('multi_host', '=', False)]}">
+                            	<group colspan = "4">
+                                	<field name="haproxy_host_id" options="{'no_create': True}"/>
+                                	<field name="nfs_host_id" no_create="true" options="{'no_create': True}"/>
+                                	<field name="front_end_ids" options="{'no_create': True}"/>
+                                	<field name="back_end_ids" options="{'no_create': True}"/>
+                                	<field name="database_ids" options="{'no_create': True}">
+                                		<tree editable="bottom">
+                                			<field name="host_id"/>
+                                			<field name="master"/>
+                                		</tree>
+                                	</field>  	
+                            	</group>
+                            </page> 
+						</notebook> 
+					</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_view_tms_instance_exception" model="ir.actions.act_window">
+            <field name="name">Instances in Exception</field>
+            <field name="res_model">tms.instance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_tms_instance_tree"/>
+            <field name="context">{'search_default_exception':1,}</field>
+        </record>
+	</data>
+</openerp>

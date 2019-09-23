@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="tms_invoice_line_tree_view">
+			<field name="name">tms.invoice.line.tree</field>
+			<field name="model">tms.invoice.line</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Invoice Lines">
+					<field name="name" />
+					<field name="invoice_due_date" />
+					<field name="activity_id" />
+					<field name="product" />
+					<field name="description" />
+					<field name="sold_qty" />
+					<field name="budget_man_days" />
+					<field name="status" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="tms_invoice_line_form_view">
+			<field name="name">tms.invoice.line.form</field>
+			<field name="model">tms.invoice.line</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Invoice Lines">
+					<sheet>
+						<group colspan = "4" col = "4">
+							<field name="name" />
+							<field name="invoice_due_date" />
+							<field name="activity_id" />
+							<field name="product" />
+							<label for="description" string = "Description"/>
+							<field name="description" colspan="4" nolabel="1" />
+							<field name="sold_qty" />
+							<field name="budget_man_days" />
+							<field name="status" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- TMS Invoice Line -->
+		<record id="action_view_tms_invoice_line" model="ir.actions.act_window">
+			<field name="name">Invoice Lines</field>
+			<field name="res_model">tms.invoice.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+	</data>
+</openerp>

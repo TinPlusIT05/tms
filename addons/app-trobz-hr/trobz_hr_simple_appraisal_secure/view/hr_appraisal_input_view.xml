@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_hr_appraisal_input_form_inherit" model="ir.ui.view">
+			<field name="name">view_hr_appraisal_input_form_inherit</field>
+			<field name="model">hr.appraisal.input</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="trobz_hr_simple_appraisal.view_hr_appraisal_input_form" />
+			<field name="arch" type="xml">
+                <xpath expr="//field[@name='input_line_ids']/form/group/field[@name='explanation']" position="attributes">
+                    <attribute name="options">{'multiple_line': true}</attribute>
+                </xpath>
+				<field name="explanation" position="attributes">
+					<attribute name="options">{'multiple_line': true}</attribute>
+				</field>
+				<field name="explanation" position="attributes">
+                    <attribute name="options">{'multiple_line': true}</attribute>
+                </field>
+                <field name="extra_comments" position="attributes">
+                    <attribute name="options">{'multiple_line': true}</attribute>
+                </field>
+			</field>
+		</record>
+	</data>
+</openerp>

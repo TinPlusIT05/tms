@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Advanced Working Time -->
+    	<record id="action_hr_advanced_working_time" model="ir.actions.act_window">
+            <field name="name">Advanced Working Time</field>
+            <field name="res_model">hr.advanced.working.time</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem 
+            id="hr_advanced_working_time_menu"
+            sequence="0"
+            parent="trobz_hr_payroll_working_hour.menu_working_schedule"
+            action="action_hr_advanced_working_time"
+            />
+            
+    	<!-- Advanced Working Schedule -->
+    	<record id="action_hr_advanced_working_schedule" model="ir.actions.act_window">
+            <field name="name">Advanced Working Schedule</field>
+            <field name="res_model">hr.advanced.working.schedule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+    	<menuitem 
+            id="hr_advanced_working_schedule_menu"
+            sequence="1"
+            parent="trobz_hr_payroll_working_hour.menu_working_schedule"
+            action="action_hr_advanced_working_schedule"
+            />
+            
+       <!-- Advanced Working plan template -->     
+        <menuitem 
+            name="Advanced Working Plan Template"
+            id="resource_calendar_menu"
+            sequence="2"
+            parent="trobz_hr_payroll_working_hour.menu_working_schedule"
+            action="resource.action_resource_calendar_form"
+            />
+            
+        <!-- Generate Payroll Working Hours -->
+        <record id="action_generate_working_hour_wizard" model="ir.actions.act_window">
+            <field name="name">Generate Payroll Working Hours</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">generate.working.hour.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_generate_working_hour_wizard_form" />
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem 
+            id="hr_payroll_generate_working_hour_menu"
+            sequence="0"
+            parent="trobz_hr_payroll_working_hour.working_hour_menu"
+            action="action_generate_working_hour_wizard"
+            />
+            
+		<!-- Compute Payroll Working Hours -->
+        <record id="action_compute_working_hour_wizard" model="ir.actions.act_window">
+            <field name="name">Compute Payroll Working Hours</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">compute.working.hour.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_compute_working_hour_wizard_form" />
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem 
+            id="hr_payroll_compute_working_hour_menu"
+            sequence="1"
+            parent="trobz_hr_payroll_working_hour.working_hour_menu"
+            action="action_compute_working_hour_wizard"
+            />
+            
+        <!-- Expected Working Days -->
+        <record id="action_hr_advanced_working_schedule" model="ir.actions.act_window">
+            <field name="name">Advanced Working Schedule</field>
+            <field name="res_model">hr.advanced.working.schedule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <record id="action_hr_expected_working_day" model="ir.actions.act_window">
+            <field name="name">Expected Working Days</field>
+            <field name="res_model">hr.expected.working.day</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_current_month':1}</field>
+        </record>
+        
+        <menuitem 
+            id="hr_expected_working_day_menu"
+            sequence="3"
+            parent="hr.menu_hr_configuration"
+            action="action_hr_expected_working_day"
+            />
+    </data>
+</openerp>

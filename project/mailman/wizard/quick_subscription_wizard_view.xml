@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Quick Subscription Wizard Form View -->
+		<record id="quick_subscription_wizard_form_view" model="ir.ui.view">
+			<field name="name">quick.subscription.wizard.form.view</field>
+			<field name="model">quick.subscription.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Customer Support Tickets Export" version="7.0">
+					<group>
+						<group>
+							<field name="email_list" string="Input email addresses (one per line)" />
+						</group>
+					</group>
+
+					<footer>
+						<button string="Add all" name="button_add_subscribers"
+							type="object" class="oe_highlight" context="{'email_list': email_list}" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<!-- Quick Subscription Result Wizard Form View -->
+		<record id="quick_subscription_rs_wizard_form" model="ir.ui.view">
+			<field name="name">quick_subscription_rs_wizard_form</field>
+			<field name="model">quick.subscription.wizard</field>
+			<field name="arch" type="xml">
+				<form version="7.0">
+					<group string="Quick subscription result">
+						<group>
+							<field name="result" widget="html" nolabel="1" />
+						</group>
+					</group>
+					<footer>
+						<button string="Close" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<!-- Action Quick Subscription Wizard -->
+		<record id="action_quick_subscription_wizard" model="ir.actions.act_window">
+			<field name="name">Quick Subscription Wizard</field>
+			<field name="res_model">quick.subscription.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="view_type">form</field>
+			<field name="target">new</field>
+			<field name="domain">[]</field>
+			<field name="context">{}</field>
+			<field name="view_id" ref="quick_subscription_wizard_form_view" />
+		</record>
+
+
+	</data>
+</openerp>    				

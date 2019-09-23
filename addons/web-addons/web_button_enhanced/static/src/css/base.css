@@ -1,0 +1,10 @@
+
+/* text font should not be changed */
+*[class*='icon-']:before {
+    font-family: FontAwesome !important;
+}
+
+/* only the icon use new font from the libraries */
+*[class*='icon-'] * {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}

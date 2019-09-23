@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="trobz_hr_document_hr_configuration_view" model="ir.ui.view">
+            <field name="name">trobz.hr.document.hr.configuration.view</field>
+            <field name="model">hr.config.settings</field>
+            <field name="inherit_id" ref="hr.view_human_resources_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='contract_grp']" position="after">
+					<group name="trobz_hr_document">
+                        <label for="id" string="Documents"/>
+                        <div>
+                            <div>
+                                <field name="reminder_doc_expiring_in_30_days" class="oe_inline"/>
+                                <label for="reminder_doc_expiring_in_30_days"/>
+                            </div>
+                            <div>
+                                <field name="reminder_doc_expired" class="oe_inline"/>
+                                <label for="reminder_doc_expired"/>
+                            </div>
+                        </div>
+                    </group>
+				</xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<openerp>
+    
+    <data>
+
+        <!-- Wedding -->
+        <record model="hr.holidays.status" id="trobz_hr_holiday_vn.trobz_holiday_status_wedding">
+            <field name="name">Wedding</field>
+            <field name="working_activity_id" ref="working_activity_SpecialL"/>
+        </record>
+
+        <!-- Children's Wedding -->
+        <record model="hr.holidays.status" id="trobz_hr_holiday_vn.trobz_holiday_status_children_wedding">
+            <field name="name">Children's wedding</field>
+            <field name="working_activity_id" ref="working_activity_SpecialL"/> 
+        </record>
+        
+        <!-- Funeral of parents/parents-in-law/spouse/children -->
+        <record model="hr.holidays.status" id="trobz_hr_holiday_vn.trobz_holiday_status_funeral_special">
+            <field name="name">Funeral of parents/parents-in-law/spouse/children</field>
+            <field name="working_activity_id" ref="working_activity_SpecialL"/>
+        </record> 
+        
+        <!-- Funeral of spouse's sister/brother -->
+        <record model="hr.holidays.status" id="trobz_hr_holiday_vn.trobz_holiday_status_funeral_normal">
+            <field name="name">Funeral of spouse's sister/brother</field>
+            <field name="working_activity_id" ref="working_activity_SpecialL"/>
+        </record>
+        
+        <!-- Child's birth (father) -->
+        <record model="hr.holidays.status" id="trobz_hr_holiday_vn.trobz_holiday_status_child_birth_father">
+            <field name="name">Child's birth (father)</field>
+            <field name="working_activity_id" ref="working_activity_SpecialL"/>
+        </record>
+        
+        <!-- Child's birth (mother) -->
+        <record model="hr.holidays.status" id="trobz_hr_holiday_vn.trobz_holiday_status_child_birth_mother">
+            <field name="name">Child's birth (mother)</field>
+            <field name="working_activity_id" ref="working_activity_SpecialL"/>
+        </record>
+
+        <!-- Casual leave (paid) -->
+        <record model="hr.holidays.status" id="hr_holidays.holiday_status_cl">
+            <field name="name">Casual leave (paid)</field>
+            <field name="working_activity_id" ref="working_activity_CasL"/>        
+        </record>
+
+        <!-- Stoppage leave-->
+        <record model="hr.holidays.status" id="trobz_hr_holiday_vn.trobz_holiday_status_stoppage">
+            <field name="name">Stoppage leave</field>            
+            <field name="working_activity_id" ref="working_activity_StoppageL"/>     
+        </record>
+        
+        <!-- Accident -->
+        <record model="hr.holidays.status" id="trobz_hr_holiday_vn.trobz_holiday_status_accident">
+            <field name="name">Accident</field>
+            <field name="working_activity_id" ref="working_activity_AccidentL"/>
+        </record>
+        
+    </data>
+</openerp>

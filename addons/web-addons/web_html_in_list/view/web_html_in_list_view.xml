@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <template id="html_in_list_view" name="html_in_list_view" inherit_id="web_unleashed.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/web_html_in_list/static/src/css/column_html.css" type="text/css"/>
+                <script type="text/javascript" src="/web_html_in_list/static/src/js/column_html.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

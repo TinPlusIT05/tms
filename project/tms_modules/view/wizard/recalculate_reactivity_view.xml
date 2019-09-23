@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- Recalculate Missing Reactivity Form View  -->
+    	<record model="ir.ui.view" id="view_recalculate_reactivity_form">
+    		<field name="name">view.recalculate.reactivity.form</field>
+    		<field name="model">recalculate.reactivity</field>
+    		<field name="type">form</field>
+    		<field name="arch" type="xml">
+    			<form string="Calculate Missing Reactivity" version="7.0">
+    				<h3>Are you sure want to calculate missing reactivity?</h3>
+		   			<footer>
+		    			<button type="object" string="Run scheduler" class="oe_highlight"
+		    				name="button_auto_trigger_recalculate_reactivity" />
+		    			<label string="or " />
+		    			<button string="Cancel" special="cancel" class="oe_link" />
+		   			</footer>
+    			</form>
+    		</field>
+    	</record>
+
+    	<!-- Action Open Recalculate Missing Reactivity Form View -->
+    	<record model="ir.actions.act_window" id="action_open_view_recalculate_reactivity">
+    		<field name="name">Recalculate Reactivity</field>
+    		<field name="res_model">recalculate.reactivity</field>
+    		<field name="view_type">form</field>
+    		<field name="view_mode">form</field>
+    		<field name="target">new</field>
+    	</record>
+    </data>
+</openerp>

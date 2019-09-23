@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <!-- Sick Leave (Unclassified) -->
+        <record model="hr.holidays.status"
+            id="tms_holiday_status_sick_leave_unclassified">
+            <field name="name">Sick leave (unclassified)</field>
+            <field name="limit">True</field>
+        </record>
+
+        <!-- Sick leave (Social Insurance) -->
+        <record model="hr.holidays.status"
+            id= "tms_holidays_status_sick_leave_social_insurance">
+            <field name="name">Sick leave (Social Insurance)</field>
+            <field name="limit">True</field>
+            <field name="double_validation">True</field>
+            <field name="payment_type">unpaid</field>
+            <field name="code">SIn</field>
+            <field name="activity_id" search="[('name','=','Days Off')]"/>
+        </record>
+
+        <!-- BT leave (inside HCMC) -->
+        <record model="hr.holidays.status"
+            id= "tms_holidays_status_bt_inside_hcmc">
+            <field name="name">BT inside HCMC</field>
+            <field name="limit">True</field>
+            <field name="double_validation">True</field>
+            <field name="payment_type">paid</field>
+            <field name="code">BTI</field>
+            <field name="activity_id" search="[('name','=','Days Off')]"/>
+        </record>
+
+        <!-- BT leave (outside HCMC) -->
+        <record model="hr.holidays.status"
+            id= "tms_holidays_status_bt_outside_hcmc">
+            <field name="name">BT Outside HCMC</field>
+            <field name="limit">True</field>
+            <field name="double_validation">True</field>
+            <field name="payment_type">paid</field>
+            <field name="code">BTO</field>
+            <field name="activity_id" search="[('name','=','Days Off')]"/>
+        </record>
+
+        <!-- BT leave (Abroad) -->
+        <record model="hr.holidays.status"
+            id= "tms_holidays_status_bt_abroad">
+            <field name="name">BT Abroad</field>
+            <field name="limit">True</field>
+            <field name="double_validation">True</field>
+            <field name="payment_type">paid</field>
+            <field name="code">BTA</field>
+            <field name="activity_id" search="[('name','=','Days Off')]"/>
+        </record>
+
+        <!-- Compensatory leave -->
+        <record model="hr.holidays.status"
+            id= "tms_holidays_status_compensatory_leave">
+            <field name="name">Compensatory leave</field>
+            <field name="limit">True</field>
+            <field name="double_validation">True</field>
+            <field name="payment_type">paid</field>
+            <field name="code">CL</field>
+            <field name="activity_id" search="[('name','=','Days Off')]"/>
+        </record>
+
+        <!-- Company trip leave -->
+        <record model="hr.holidays.status"
+            id= "tms_holidays_status_companytrip">
+            <field name="name">Company Trip</field>
+            <field name="limit">True</field>
+            <field name="double_validation">True</field>
+            <field name="payment_type">to_confirm</field>
+            <field name="code">CT</field>
+            <field name="activity_id" search="[('name','=','Days Off')]"/>
+        </record>
+
+         <!-- Children's Wedding -->
+		<record model="hr.holidays.status" id="hr_holiday_status_children_wedding">
+			<field name="name">Children's wedding</field>
+		   	<field name="code">SIL</field>
+		   	<field name="max_days_allowed">1.00</field>	
+		   	<field name="payment_type">paid</field>
+            <field name="code">SIL</field>
+            <field name="active">True</field>
+            <field name="activity_id" search="[('name','=','Days Off')]"/>
+		</record>
+        <!-- Compensatory work -->
+        <record model="hr.holidays.status"
+            id= "tms_holidays_status_compensatory_work">
+            <field name="name">Compensatory Work</field>
+            <field name="limit">True</field>
+            <field name="double_validation">True</field>
+            <field name="payment_type">paid</field>
+            <field name="code">CW</field>
+            <field name="activity_id" search="[('name','=','Days Off')]"/>
+        </record>
+    </data>
+</openerp>

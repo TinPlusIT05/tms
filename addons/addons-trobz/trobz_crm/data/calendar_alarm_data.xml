@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+        <record model="calendar.alarm"
+            id="tms_reminder_5min">
+            <field name="name">5 minutes before</field>
+            <field name="interval">minutes</field>
+            <field name="duration">5</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_10min">
+            <field name="name">10 minutes before</field>
+            <field name="interval">minutes</field>
+            <field name="duration">10</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_15min">
+            <field name="name">15 minutes before</field>
+            <field name="interval">minutes</field>
+            <field name="duration">15</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_20min">
+            <field name="name">20 minutes before</field>
+            <field name="interval">minutes</field>
+            <field name="duration">20</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_25min">
+            <field name="name">25 minutes before</field>
+            <field name="interval">minutes</field>
+            <field name="duration">25</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_30min">
+            <field name="name">30 minutes before</field>
+            <field name="interval">minutes</field>
+            <field name="duration">30</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_45min">
+            <field name="name">45 minutes before</field>
+            <field name="interval">minutes</field>
+            <field name="duration">45</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_1hour">
+            <field name="name">1 hour before</field>
+            <field name="interval">hours</field>
+            <field name="duration">1</field>
+            <field name="type">email</field>
+        </record>
+  
+        <record model="calendar.alarm"
+            id="tms_reminder_2hour">
+            <field name="name">2 hours before</field>
+            <field name="interval">hours</field>
+            <field name="duration">2</field>
+            <field name="type">email</field>
+        </record>      
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_3hour">
+            <field name="name">3 hours before</field>
+            <field name="interval">hours</field>
+            <field name="duration">3</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_12hour">
+            <field name="name">12 hours before</field>
+            <field name="interval">hours</field>
+            <field name="duration">12</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_24hour">
+            <field name="name">24 hours before</field>
+            <field name="interval">hours</field>
+            <field name="duration">24</field>
+            <field name="type">email</field>
+        </record>
+        
+        <record model="calendar.alarm"
+            id="tms_reminder_2day">
+            <field name="name">2 days before</field>
+            <field name="interval">days</field>
+            <field name="duration">2</field>
+            <field name="type">email</field>
+        </record>
+        
+    </data>
+</openerp>

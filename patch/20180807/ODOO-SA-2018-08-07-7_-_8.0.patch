@@ -1,0 +1,12 @@
+diff --git a/addons/auth_crypt/auth_crypt.py b/addons/auth_crypt/auth_crypt.py
+index 30c953e5780c8..bc5c3377765d4 100644
+--- a/addons/auth_crypt/auth_crypt.py
++++ b/addons/auth_crypt/auth_crypt.py
+@@ -34,6 +34,7 @@ def init(self, cr):
+ 
+     def set_pw(self, cr, uid, id, name, value, args, context):
+         if value:
++            self.write(cr, uid, [id], {})  # force update of write_date
+             self._set_password(cr, uid, id, value, context=context)
+             self.invalidate_cache(cr, uid, context=context)
+ 

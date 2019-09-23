@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<openerp>
+	<data noupdate="1">
+		<record model="pit.details" id="pit_detail_seq_1">
+			<field name="name">Less than 5 million</field>
+			<field name="price">5000000</field>
+			<field name="tax">5</field>
+			<field name="sequence">1</field>
+			<field name="income_before_tax">NET/0.95</field>
+		</record>
+
+		<record model="pit.details" id="pit_detail_seq_2">
+			<field name="name">From 5 million to 10 million</field>
+			<field name="price">10000000</field>
+			<field name="tax">10</field>
+			<field name="sequence">2</field>
+			<field name="income_before_tax">(NET-0.25)/0.9</field>
+		</record>
+
+		<record model="pit.details" id="pit_detail_seq_3">
+			<field name="name">From 10 million to 18 million</field>
+			<field name="price">18000000</field>
+			<field name="tax">15</field>
+			<field name="sequence">3</field>
+			<field name="income_before_tax">(NET-0.75)/0.85</field>
+		</record>
+
+		<record model="pit.details" id="pit_detail_seq_4">
+			<field name="name">From 18 million to 32 million</field>
+			<field name="price">32000000</field>
+			<field name="tax">20</field>
+			<field name="sequence">4</field>
+			<field name="income_before_tax">(NET-1.65)/0.8</field>
+		</record>
+
+		<record model="pit.details" id="pit_detail_seq_5">
+			<field name="name">From 32 million to 52 million</field>
+			<field name="price">52000000</field>
+			<field name="tax">25</field>
+			<field name="sequence">5</field>
+			<field name="income_before_tax">(NET-3.25)/0.75</field>
+		</record>
+
+		<record model="pit.details" id="pit_detail_seq_6">
+			<field name="name">From 52 million to 80 million</field>
+			<field name="price">80000000</field>
+			<field name="tax">30</field>
+			<field name="sequence">6</field>
+			<field name="income_before_tax">(NET-5.85)/0.7</field>
+		</record>
+
+		<record model="pit.details" id="pit_detail_seq_7">
+			<field name="name">More than 80 million</field>
+			<field name="price">80000000</field>
+			<field name="tax">35</field>
+			<field name="sequence">7</field>
+			<field name="income_before_tax">(NET-9.85)/0.65</field>
+		</record>
+
+	</data>
+</openerp>

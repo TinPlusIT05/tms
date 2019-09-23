@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- Admin -->
+        <menuitem
+            name="Admin" id="trobz_base.admin_menu"
+            groups="trobz_base.group_configure_user,base.group_hr_manager,group_profile_tms_delivery_team_manager,base.group_user"
+            sequence="500"/>
+            
+            
+        <menuitem
+            name="Mailing Lists"
+            id="mailman.mailman_mailinglist"
+            parent="trobz_base.admin_user_root_menu"/>
+    </data>
+</openerp>

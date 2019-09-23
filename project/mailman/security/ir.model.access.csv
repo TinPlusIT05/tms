@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+
+"access_mailman_list_viewer","mailman.list.viewer","model_mailman_list","base.group_user",1,0,0,0
+"access_mailman_list_manager","mailman.list.manager","model_mailman_list","group_mailman_manager",1,1,1,1

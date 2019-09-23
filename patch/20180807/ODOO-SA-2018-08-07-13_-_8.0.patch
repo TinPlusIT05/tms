@@ -1,0 +1,12 @@
+diff --git a/openerp/addons/base/module/module.py b/openerp/addons/base/module/module.py
+index 158edf311d892..42f8c6708fb69 100644
+--- a/openerp/addons/base/module/module.py
++++ b/openerp/addons/base/module/module.py
+@@ -183,6 +183,7 @@ def _get_desc(self, cr, uid, ids, field_name=None, arg=None, context=None):
+                     'doctitle_xform': False,
+                     'output_encoding': 'unicode',
+                     'xml_declaration': False,
++                    'file_insertion_enabled': False,
+                 }
+                 output = publish_string(source=module.description or '', settings_overrides=overrides, writer=MyWriter())
+                 res[module.id] = html_sanitize(output)

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- List view -->
+		<record id="connection_config_tree" model="ir.ui.view">
+			<field name="name">connection.config.tree</field>
+			<field name="model">connection.config</field>
+			<field name="arch" type="xml">
+				<tree string="Connection Config">
+					<field name="url"/>
+					<field name="url_type"/>
+					<field name="last_check_date"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form view -->
+		<record id="connection_config_form" model="ir.ui.view">
+			<field name="name">connection.config.form</field>
+			<field name="model">connection.config</field>
+			<field name="arch" type="xml">
+				<form string="Connection Config" version="7.0">
+					<sheet>
+						<group col="4" colspan="4">
+							<field name="url"/>
+							<field name="url_type"/>
+							<field name="last_check_date"/>
+						</group>
+						<group string="Running again">
+							<field name="b_run_again"/>
+							<field name="date_run_again"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

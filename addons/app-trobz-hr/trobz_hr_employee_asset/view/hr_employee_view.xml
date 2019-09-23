@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_hr_employee_form_inherit_asset">
+			<field name="name">view.hr.employee.form.inherit.asset</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<page string='HR Settings' position="before">
+					<page string='Assets'>
+						<field name='asset_ids'>
+							<tree string="Assets" editable="bottom">
+								<field name='product_id'/>
+								<field name='lot_id'/>
+								<field name='delivery_date' />
+								<field name='comment' />
+							</tree>
+						</field>
+					</page>
+				</page>
+			</field>
+		</record>
+	</data>
+</openerp>

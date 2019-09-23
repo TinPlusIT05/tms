@@ -1,0 +1,65 @@
+FB,Summary,Workload,Milestone,Description,Assignee,Reporter,Project,activity,Customer
+Homepage,global - navigation adjustment (mobile),2.5,3.1,Change the navigation which is used in mobile layout as defined in the new mockup and Design adaptation,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,homepage header adjustment (mobile),4,3.1,"The following is the change from the new design + design adaptation:
+  - The top bar will contain the main logo of UMA, toggle mobile navigation button, a magnify icon, shopping cart, language switcher.",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,homepage header adjustment (desktop),2,3.1,"The the mockup for desktop, the header will look a bit different from the old design.
+- Search bar is moved next to the logo, change the HTML layout of magento to move the search bar.
+- Login/Signup Link, Shopping Cart, Language Switcher are moved to the top most bar.
+- Shopping Cart popup should be changed as mockup.",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,homepage header slider adjustment (desktop + mobile),1.5,3.1,Change this slider to use full-width layout and also change the icon to make it look like the new mockup.,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Widget,Image Button Gallery: for homepage - Happy Furniture To You (desktop + mobile) + Featured Category,6,3.1,"- Create a new Static CMS Block that holds the structure as the mockup with placeholder image, user has to upload image by themselves.
+
+All customizable banners (simple banner image upload and custom link to some url defined for each one of the items",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Widget,homepage - New Arrivals (desktop + mobile),3.5,3.3,"- Create a slider allow user to add banner with short, long description and a link, make use of the slider module added in previous milestone to store data add new javascript library to implement slider as in the mockup, also make the template work on mobile.
+Should be a circular slider, where we can upload images with a custom link and wysiwyg description (which as in the design will be shown when the user hovers on top of it - OR clicks if its a touch screen)",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Widget,homepage - Featured Products (desktop + mobile) [complicated slider],7.5,3.3,"should be ordered by most popular products
+if possible there should be no page refresh when changing category
+it's circular and would autoslide after 6 seconds
+When hovering it should be shown as on the design, with the three actions in the bottom (view, add to card, add to wishlist)
+Clicking on the image should take us to the product page.",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Widget,Our Address,1,3.1,"Static background image with the map.
+Customizable text and links to the map page.",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Footer adjustments,1.5,3.1,"Adapt to the new design, one thing to notice is the footer will look different on mobile. The information on mobile is compact",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Breadcrumb adjustment,1,3.1,Integrate HTML and CSS for the desktop and mobile for the breadcrumb,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Widget,add Deal Today Only block widget on products page,1.5,3.3,This slider should be shown at the top of the website when users reach the products page,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Widget,Show Best Seller products,1,3.3,Show best seller products as a slider at the top of products page,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Move Filters to left sidebar (desktop),1.5,3.1,"- move all the filters from the top (old mockup) and place them on the left sidebar (new mockup)
+- this requires to use two column layout, which is temporary disabled in milestone 2.1",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Filter display and behavior adjustments (mobile). Same as tiki.vn,1.5,3.1,See mockups for mobile product grid,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Color,"Adapt color swatcher change to the new mockup (for grid and product page, rendering only)",1,3.2,"When we implement Color Swatcher feature, we have changed a lot of magento functionality to make the filter work, and in the new mockup, the filter is moved to the sidebar, basically we need to adapt the code to make it work on sidebar and it may leave unintended imptact, so this line is just to make sure color swatcher feature works correctly after moving the filter from top to the left sidebar.",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Color,Color management in Odoo and Magento,3,3.2,Assumption to do as per suggested by Trobz on 2016-04-06 by email (modifications in Odoo and Magento),tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of products page,1.5,3.1,Integrating HTML and CSS for desktop and mobile,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Change product slider to display horrizontally and adapt to new design in product page,1,3.1,"This requirement is about changing default stylesheet of magento slider to make it look like the new mockup, in the mockup for mobile, there is no arrow for the slider because we dont use it on mobile",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Website,Remove the use of Product Collection (F#14331),0.5,3.1,"remove Product Collection placed at the bottom of the page and show Popular Products slider instead, require manual configuration after done, the configuration step will be provided in the setup guide.",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of product page,1.5,3.1,Cut and apply HTML material provided by UMA,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Contact,Allow user to input address in contact form,0.5,3.1,"This requirement including:
+- changing the template to add one more field
+- changing the email template of contact us page",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Contact,Add right CMS Static block for contact information in contact page,0.5,3.1,Add a new CMS static block to store contact information,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of contact us page,1,3.1,"This page is simple, split HTML from source file and then apply it to contact page.",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+About us,Create new slider and show it at the top of about us page,1,3.1,"Create a new banner slider and show it on this page, with some button for navigation",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Widget,"Add block to show Our mission, Our vision, Our value on about us page",1,3.1,Create CMS Static Block for this requirement and place it under the slider,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of About us page,1.5,3.1,Integrating HTML and CSS for desktop and mobile,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of Our shops page,3.5,3.1,Integrating HTML and CSS for desktop and mobile,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of Wishlist page,1.5,3.2,Integrating HTML and CSS for desktop and mobile,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of Shopping cart page,1.5,3.1,Integrating HTML and CSS for desktop and mobile,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Checkout,support extra steps (payment method...) in checkout process,5,3.1,"Requires destruction for old ticket which was implemented a while ago, Below are steps need to be done in this requirement:
+
+- Bring multiple steps checkout all back which means revert everything @chien did when he implemented two-steps checkout -> this is not easy because two steps checkout has changed a lot of files in magento system, so the revert can make unintended impact (10h)
+
+- Check the native of magento to see how many input fields supported for each step comparing to the new mockup from UMA (10h).
+    - What kind of payment method supported in payment step.
+    - Add a new checkbox to billing step, for policy agreement stuff.
+
+- Add option at the first step of checkout to allow user to login using social media account (5h).
+
+- in checkout options group, allow to sign-in with social media account. (8h)",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of checkout page,2,3.1,Cut and apply HTML material provided by UMA,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Signup,Clean the signup page and remove some fields,0.5,3.1,"With the old mockup, signup page has a lot of fields required but in the new mockup, only some fields which are necessary for the signup process are shown",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of signup page,1,3.1,Cut and apply HTML material provided by UMA,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Integrating new design of login page,1,3.1,Cut and apply HTML material provided by UMA,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Room,Add products count to room page,0.5,3.3,Show how many products for each category listed in room page,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Layout and HTML integration,Add flexible layout for room page,0.5,3.1,"The picture of each category in the room page can be different, so make it look like the new mockup.
+
+This requires some adjustment on the layout of the room page, the width and height of each picture should be calculated somehow",tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA
+Website,- Promotions area (replaced by Image Button Gallery) (F#14368),0,3.1,--,tam,jcdrubay,uma [magento],Ticket for Design 2016-2,UMA

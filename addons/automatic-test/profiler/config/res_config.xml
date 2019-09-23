@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_profiler_general_configuration" model="ir.ui.view">
+            <field name="name">Profiler Settings</field>
+            <field name="model">base.config.settings</field>
+            <field name="inherit_id" ref="base_setup.view_general_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[last()-1]" position="after">
+                	<group>
+                        <label for="id" string="Profiler"/>
+                        <div>
+                            <div>
+		                        <field name="profiler_enabled" class="oe_inline"/>
+		                        <label for="profiler_enabled"/>
+		                    </div>
+		                    <div>
+		                        <label for="profiler_csv_path"/>
+		                        <field name="profiler_csv_file" width="100" />
+		                    </div>
+		                </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,48 @@
+From 46ab8d8895fe36ab61cd938eaf7ad641687dd883 Mon Sep 17 00:00:00 2001
+From: Nils Hamerlinck <nils@hamerlinck.fr>
+Date: Thu, 26 Jul 2018 23:42:55 +0700
+Subject: [PATCH] [FIX] dbfilter_from_header: prevent autoloading
+
+---
+ dbfilter_from_header/__init__.py    | 8 +++++++-
+ dbfilter_from_header/__openerp__.py | 2 ++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/dbfilter_from_header/__init__.py b/dbfilter_from_header/__init__.py
+index 14138f0807..02682cd83b 100644
+--- a/dbfilter_from_header/__init__.py
++++ b/dbfilter_from_header/__init__.py
+@@ -19,8 +19,10 @@
+ #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #
+ ##############################################################################
++import logging
+ import re
+ from openerp import http
++from openerp.tools import config
+ 
+ db_filter_org = http.db_filter
+ 
+@@ -38,4 +40,8 @@ def db_filter(dbs, httprequest=None):
+         dbs = [db for db in dbs if re.match(db_filter_hdr, db)]
+     return dbs
+ 
+-http.db_filter = db_filter
++if config.get('proxy_mode') and \
++   'dbfilter_from_header' in config.get('server_wide_modules'):
++    _logger = logging.getLogger(__name__)
++    _logger.info('monkey patching http.db_filter')
++    http.db_filter = db_filter
+diff --git a/dbfilter_from_header/__openerp__.py b/dbfilter_from_header/__openerp__.py
+index 766fd0b9f3..1b693d49c2 100644
+--- a/dbfilter_from_header/__openerp__.py
++++ b/dbfilter_from_header/__openerp__.py
+@@ -34,6 +34,8 @@
+     proxy_set_header X-OpenERP-dbfilter [your filter];
+     proxy_set_header X-Odoo-dbfilter [your filter];
+ 
++    Then make sure that proxy_mode = True in Odoo's configuration file.
++
+     The addon has to be loaded as server-wide module.
+     """,
+     "category": "Tools",

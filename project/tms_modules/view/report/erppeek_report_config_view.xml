@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_erppeek_report_config_tree" model="ir.ui.view">
+			<field name="name">view.erppeek.report.config.tree</field>
+			<field name="model">erppeek.report.config</field>
+			<field name="arch" type="xml">
+				<tree string="ERP Peeks Config">
+					<field name="tms_instance_id" />
+					<field name="database_id" />
+					<field name="file_path" />
+					<field name="command" />
+					<field name="command_options_guide" />
+					<field name="profile_ids" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_erppeek_report_config_form" model="ir.ui.view">
+			<field name="name">view.erppeek.report.config.form</field>
+			<field name="model">erppeek.report.config</field>
+			<field name="arch" type="xml">
+				<form string="ERP Peeks Report Config">
+					<sheet>
+						<group colspan="4">
+							<separator string="ERP Peeks Report Config" colspan="2" />
+							<field name="tms_instance_id" />
+							<field name="database_id" options="{'no_create_edit': True,'no_create': True}"
+								domain="[('tms_instance_id','=', tms_instance_id)]" />
+							<field name="file_path" />
+							<field name="command" />
+							<field name="command_options_guide" />
+							<field name="profile_ids" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_erppeek_report_config_search" model="ir.ui.view">
+			<field name="name">view.erppeek.report.config.search</field>
+			<field name="model">erppeek.report.config</field>
+			<field name="arch" type="xml">
+				<search string="Search">
+					<field name="tms_instance_id" />
+					<field name="database_id" />
+					<group expand="1" string="Filter">
+						<filter name="my_responsible" string="My Responsibility"
+							domain="[('responsible_id', '=', uid)]" />
+					</group>
+					<group expand="1" string="Group by">
+						<filter name="group_by_employee" string="Employee" domain="[]"
+							context="{'group_by':'tms_instance_id'}" />
+						<filter name="group_by_job_title" string="Job Title"
+							domain="[]" context="{'group_by':'database_id'}" />
+					</group>
+
+				</search>
+			</field>
+		</record>
+
+		<record id="action_view_erppeek_report_config" model="ir.actions.act_window">
+			<field name="name">Report Config</field>
+			<field name="res_model">erppeek.report.config</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_erppeek_report_config_tree" />
+		</record>
+	</data>
+</openerp>

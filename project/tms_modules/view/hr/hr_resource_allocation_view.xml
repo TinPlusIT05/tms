@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="view_hr_resource_allocation_tree" model="ir.ui.view">
+            <field name="name">hr.resource.allocation.tree</field>
+            <field name="model">hr.resource.allocation</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Resource Allocation">
+                    <field name="employee_id"/>
+                    <field name="activity_id"/>
+                    <field name="project_id" invisible="1" />
+                    <field name="date_from" invisible="1"/>
+                    <field name="date_to" invisible="1"/>
+                    <field name="sprint"/>
+					<button name="button_extend1week" type="object" 
+						help="Extend +1 sprint"
+						class="ticket_button tms_field_button icon-angle-right" />
+					<button name="button_extend1month" 
+						type="object" help="Extend + 4 sprints" 
+						class="ticket_button tms_field_button icon-double-angle-right"/>
+                    <field name="occupancy" sum="Total Budget Occupancy %"/>
+                    <field name="analytic_second_axis_id"/>
+                    <field name="priority"/>
+                    <field name="day_remaining" sum="Sum of estimated remaining time"/>
+                    <field name="delivery_deadline"/>
+                    <field name="completion_forecast"/>
+                    
+                    <field name="employee_department_id" invisible="1"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_hr_resource_allocation_filter" model="ir.ui.view">
+            <field name="name">hr.resource.allocation.filter</field>
+            <field name="model">hr.resource.allocation</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Working hours">
+                    <group string="Field">
+                        <!-- SEARCH BY FIELDS -->
+                        <field name="employee_id"/>
+                        <field name="activity_id"/>
+                        <field name="project_id"/>
+                        <field name="analytic_second_axis_id"/>
+                        <field name="priority"/>
+                        <field name="employee_department_id"/>
+                        <field name="employee_parent_id"/>
+                        <field name="sprint"/>
+                        
+                    </group>
+                	<group string="Filter">
+	                	<!-- SEARCH BY CUSTOM FILTERS -->
+						<separator />
+	                    <filter string="2 months" name="filter_2_months"
+	                    	domain="[
+	                    		('date_to','&gt;',context_today().strftime('%%Y-%%m-%%d')),
+	                    		('date_from','&lt;',(context_today()+datetime.timedelta(days=62)).strftime('%%Y-%%m-%%d'))]"/>
+						<separator />
+						<filter string="Billable" name="filter_billable"
+							domain="[('is_billable', '=', True)]" />
+                        <separator />
+                        <filter string="High" name="filter_high_priority"
+							domain="[('priority', '=', 'high')]" />
+						<separator />
+                        <filter string="Normal" name="filter_normal_priority"
+							domain="[('priority', '=', 'normal')]" />
+						<separator />
+                        <filter string="Low" name="filter_low_priority"
+							domain="[('priority', '=', 'low')]" />
+						<separator />
+						<filter string="Current" name="filter_current"
+	                    	domain="[('date_from', '&lt;=', context_today().strftime('%%Y-%%m-%%d')), '|',
+	                    	('date_to','&gt;=',context_today().strftime('%%Y-%%m-%%d')), ('date_to','=',False)]"/>
+						<separator />
+					</group>
+
+                    <group expand="1" string="Group By">
+                        <!-- GROUP BY -->
+                        <filter string="Employee" domain="[]" context="{'group_by':'employee_id'}" />
+                        <separator />
+                        <filter string="Activity" domain="[]" context="{'group_by':'activity_id'}" />
+                        <separator />
+                        <filter string="Priority" domain="[]" context="{'group_by':'priority'}" />
+                        <separator />
+                        <filter string="Manager" domain="[]" context="{'group_by':'employee_parent_id'}" />
+                        <separator />
+                        <filter string="Department" domain="[]" context="{'group_by':'employee_department_id'}" />
+                        <separator />
+                        <filter string="Sprint" domain="[]" context="{'group_by':'sprint:day'}" />
+                        <separator />
+                        <filter string="Project" domain="[]" context="{'group_by':'project_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_tms_hr_resource_allocation_form" model="ir.ui.view">
+            <field name="name">hr.resource.allocation.form</field>
+            <field name="model">hr.resource.allocation</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Working Hour" version="7.0">
+                	<sheet>
+                		<group>
+                			<group>
+                                <field name="employee_id"/>
+                                <field name="activity_id"/>
+		                    </group>
+		                    <group>
+                                <field name="date_from" invisible="1"/>
+                                <field name="date_to" invisible="1"/>
+                                <field name="holiday_id" invisible="1"/>
+                            
+                            <label for="sprint"/>
+                            <div class="address_format">
+								<field name="sprint" required="1" options="{'datepicker':{'beforeShowDay': [0,1,2,3,4,5]}}"/>
+								<div class="tms_field_button_container">
+									<button name="button_extend1week" type="object" help="Extend + 1 sprint" class="ticket_button tms_field_button icon-angle-right" />
+									<button name="button_extend1month" type="object" help="Extend +4 sprints" class="ticket_button tms_field_button icon-double-angle-right"/>
+								</div>
+							</div>
+                                <field name="occupancy"/>
+			                    <field name="actual_occupancy"/>
+                                <field name="name" invisible="1"/>
+		                    </group>
+                		</group>
+                        <notebook colspan="4">
+                            <page string="Activity">
+                                <group colspan="4">
+                                    <group>
+                                        <field name="analytic_second_axis_id"/>
+                                        <field name="priority"/>
+                                        <field name="day_remaining"/>
+                                    </group>
+                                    <group>
+                                        <field name="delivery_deadline"/>
+                                        <field name="completion_forecast"/>
+                                    </group>
+                                </group>
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+		<record id="action_view_hr_resource_allocation" model="ir.actions.act_window">
+            <field name="name">Resource Allocation</field>
+            <field name="res_model">hr.resource.allocation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_filter_2_months':True}</field>
+        </record>
+    </data>
+</openerp>

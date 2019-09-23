@@ -1,0 +1,6 @@
+<openerp>
+    <data noupdate="0">
+        <!-- run post security setup for tms_audit -->
+        <function model="post.object.security.tms.audit" name="start" />
+    </data>
+</openerp>

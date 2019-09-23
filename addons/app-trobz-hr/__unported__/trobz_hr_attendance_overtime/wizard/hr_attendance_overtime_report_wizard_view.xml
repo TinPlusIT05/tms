@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="hr_attendance_overtime_report_wizard_view" model="ir.ui.view">
+            <field name="name">hr.attendance.overtime.report.wizard.view</field>
+            <field name="model">hr.attendance.overtime.report.wizard</field>
+            <field name="arch" type="xml">
+            	<form string="Attendance Overtime Report" version="7.0">
+            		<group>
+            			<group>
+            				<field name="date_from"/>
+            				<field name="department_id"/>
+            			</group>
+            			<group>
+            				<field name="date_to"/>
+            				<field name="manager_id"/>
+            			</group>
+            		</group>
+            		<footer>
+                       <button name="print_report" string="Print" type="object" class="oe_highlight" />
+                        	or
+                    	<button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+            	</form>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_hr_attendance_overtime_report_wizard">
+			<field name="name">Attendance Overtime Report Wizard</field>
+			<field name="res_model">hr.attendance.overtime.report.wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" eval="hr_attendance_overtime_report_wizard_view" />
+			<field name="target">new</field>
+		</record>
+    </data>
+</openerp>

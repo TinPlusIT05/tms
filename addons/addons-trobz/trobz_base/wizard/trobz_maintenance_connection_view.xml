@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_trobz_maintenance_connection_form" model="ir.ui.view">
+            <field name="name">view_trobz_maintenance_connection_form</field>
+            <field name="model">trobz.maintenance.connection</field>
+            <field name="arch" type="xml">
+            	<form string="Maintenance Connection">
+            		<header>
+            			<button name="test_connection" string="Go" type="object" />
+            		</header>
+            		<p>Input the delay time then click "Go" button</p>
+            		<field name="delay" />
+            	</form>
+            </field>
+        </record>
+        
+        <!-- Actions -->
+		<record id="action_trobz_maintenance_connection_form" model="ir.actions.act_window">
+			<field name="name">Maintenance Connection</field>
+			<field name="res_model">trobz.maintenance.connection</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_trobz_maintenance_connection_form" />
+			<field name="target">new</field>
+		</record>
+
+    </data>
+</openerp>

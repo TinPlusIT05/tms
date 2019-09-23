@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="report_extent_payslip_template">
+			<t t-call="trobz_hr_report_payslip.report_extent_payslip_template_layout" />
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="header">
+						<table class='table_header' width="100%">
+							<tr>
+								<th width="50%">
+									<img t-att-src="'data:image/png;base64,%s' % o.company_id.logo_web"
+										style="max-height: 100px;" />
+								</th>
+								<th width="50%" colspan="2" class='table_header_title'>PAYSLIP</th>
+							</tr>
+							<tr width="50%">
+								<td width="50%" rowspan="2">
+									<span t-esc="get_company_address(o.company_id)" />
+								</td>
+								<td width="25%">
+									From:
+									<span t-esc="o.company_id.name" />
+								</td>
+								<td width="25%">
+									To:
+									<span t-esc="o.employee_id.name" />
+								</td>
+							</tr>
+							<tr>
+								<td width="50%" colspan="2">
+									Reference:
+									<span t-esc="o.number" />
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="page">
+						<table class='table_header' width="100%">
+							<tr>
+								<td></td>
+								<td rowspan="4" style="background: #ddd;">
+									<span t-esc="get_employee_address(o.employee_id)[0] or ''" /> <br/>
+                                    <span t-esc="get_employee_address(o.employee_id)[1] or ''" /> <span t-esc="get_employee_address(o.employee_id)[2] or ''" /> <br/>
+                                    <span t-esc="get_employee_address(o.employee_id)[3] or ''" />  <br/>
+                                    <span t-esc="get_employee_address(o.employee_id)[4] or ''" />
+								</td>
+							</tr>
+							<tr>
+								<td width="50%">Designation: <span t-esc="o.contract_id and o.contract_id.job_id and o.contract_id.job_id.name or ''" /></td>
+							</tr>
+							<tr>
+								<td width="50%">
+									Department:
+									<span
+										t-esc="o.employee_id.department_id and o.employee_id.department_id.name or ''" />
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+						<br />
+						<table class='table_main' width="100%">
+							<tr>
+								<th width="15%">Code</th>
+								<th width="40%">Name</th>
+								<th width="15%">Base</th>
+								<th width="15%">Quantity/Rate</th>
+								<th width="15%">Total amount</th>
+							</tr>
+						</table>
+						<br />
+						<table class='table_main' width="100%">
+							<tr>
+								<th width="15%"></th>
+								<th width="40%"></th>
+								<th width="15%"></th>
+								<th width="15%"></th>
+								<th width="15%"></th>
+							</tr>
+							<t t-foreach="get_line_categs(o.id)" t-as="categ">
+								<tr style="font-weight: bold;">
+									<td>
+										<span t-esc="categ[1]" />
+									</td>
+									<td>
+										<span t-esc="categ[0]" />
+									</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<t t-foreach="get_line_details(o.id, categ[2])" t-as="line">
+									<tr>
+										<td>
+											<span t-esc="line[0]" />
+										</td>
+										<td>
+											<span t-esc="line[1]" />
+										</td>
+										<td style="text-align:right">
+											<span t-esc="get_format_number(line[2])" />
+										</td>
+										<td style="text-align:right">
+											<span t-esc="line[3]" />
+										</td>
+										<td style="text-align:right">
+											<span t-esc="get_format_number(line[4])" />
+										</td>
+									</tr>
+								</t>
+							</t>
+						</table>
+						<br />
+						<table class='table_pay' width="100%">
+							<tr>
+								<td colspan="3" width="50%"></td>
+								<td width="25%" style="background: #ddd; border: 2px solid;">Net income to pay</td>
+								<td width="25%" style="background: #ddd; border: 2px solid; text-align:right"><span t-esc="get_format_number(get_net_income_to_pay(o.id))" /><span style="font-size: 14pt;" t-esc="o.company_id.currency_id.symbol" /></td>
+							</tr>
+						</table>
+						<br />
+						<div class='section_end'>
+							<div class='section_end_left'>
+								<table class='table_end' width="70%">
+									<tr>
+										<td colspan="2" style="font-weight:bold;">Annual Leaves</td>
+									</tr>
+									<tr>
+										<td width="90%">Paid leaves available</td>
+										<td width="10%" style="text-align:right"><span t-esc="get_annual_leaves(o.employee_id.id, o)[0]" /></td>
+									</tr>
+									<tr>
+										<td width="90%">Paid leaves taking during the period</td>
+										<td width="10%" style="text-align:right"><span t-esc="get_annual_leaves(o.employee_id.id, o)[1]" /></td>
+									</tr>
+									<tr>
+										<td width="90%">Remaining leaves</td>
+										<td width="10%" style="text-align:right"><span t-esc="get_annual_leaves(o.employee_id.id, o)[2]" /></td>
+									</tr>
+								</table>
+							</div>
+							<div class='section_end_right'>
+								<table class='table_end' width="100%">
+									<tr>
+										<td colspan="2"  style="font-weight:bold;">Bank details</td>
+									</tr>
+									<tr>
+										<td width="50%">Account number</td>
+										<td width="50%" style="text-align:right"><span t-esc="o.employee_id.bank_account_id and o.employee_id.bank_account_id.acc_number or ''" /></td>
+									</tr>
+									<tr>
+										<td width="50%">Account owner</td>
+										<td width="50%" style="text-align:right"><span t-esc="o.employee_id.bank_account_id and o.employee_id.bank_account_id.partner_id and o.employee_id.bank_account_id.partner_id.name or ''" /></td>
+									</tr>
+									<tr>
+										<td width="50%">Bank transfer date</td>
+										<td width="50%" style="text-align:right"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</t>
+			</t>
+		</template>
+
+		<template
+			id="trobz_hr_report_payslip.report_extent_payslip_template_style">
+			.table_header {
+			border: 0;
+			line-height: 20px;
+			}
+			.table_header td, .table_header th{
+			padding: 5px;
+			}
+			.table_header_title{
+			font-size: 32pt;
+			line-height: 40px;
+			}
+			.table_main {
+			border: 1px solid;
+			line-height: 20px;
+			background: #ddd;
+			}
+			.table_main td, .table_main th{
+			padding: 5px;
+			}
+			.table_pay{
+			line-height: 40px;
+			font-weight: bold;
+			}
+			.table_pay td, .table_pay th{
+			padding: 5px;
+			}
+			.section_end{
+			overflow: hidden;
+			}
+			.section_end_left{
+			float: left;
+			width: 50%;
+			}
+			.section_end_right{
+			float: left;
+			width: 50%;
+			}
+			.table_end {
+			border: 0;
+			line-height: 20px;
+			background: #ddd;
+			}
+			.table_end td, .table_end th{
+			padding: 5px;
+			}
+		</template>
+
+		<template
+			id="trobz_hr_report_payslip.report_extent_payslip_template_layout"
+			inherit_id="web.layout" primary="True">
+			<!-- Add report style -->
+			<xpath expr="//head" position="inside">
+				<style type="text/css">
+					<t t-call="trobz_hr_report_payslip.report_extent_payslip_template_style" />
+				</style>
+			</xpath>
+		</template>
+
+		<!-- name = name of report template xml id -->
+		<report id="action_report_extent_payslip" string="Full Payslip"
+			model="hr.payslip" name="trobz_hr_report_payslip.report_extent_payslip_template"
+			report_type="qweb-pdf" />
+	</data>
+</openerp>

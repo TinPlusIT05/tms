@@ -1,0 +1,6 @@
+.html_in_list .html_details {
+    height: 115px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 5px;
+}

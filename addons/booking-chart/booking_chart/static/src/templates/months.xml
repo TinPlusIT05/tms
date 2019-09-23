@@ -1,0 +1,42 @@
+<template>
+    
+    <t t-name="Booking.Calendar.Timelapses">
+        <div class="calendar-timelapses-wrapper"></div>
+    </t>
+
+    <!-- template for backbone Month model -->
+    <t t-name="Booking.Calendar.month">
+
+        <div t-att-class="'calendar-month ' + (model.current() ? 'current' : '')"
+             t-att-id="'month-' + model.id"
+             t-att-style="'width:' + model.nbDays() + 'em'">
+            
+            <div class="calendar-month-name">
+                <span class="month-normal-size"><t t-esc="model.value()" /></span>
+            </div>
+            
+            <div class="calendar-days">
+                <t t-foreach="model.days()" t-as="day">
+                <div t-att-class="'calendar-day ' + day.special()">
+                    <span class="day_fullname"><t t-raw="day.format('dddd')" /></span>
+                    <span class="day_name"><t t-raw="day.format('ddd')" /></span>
+                    <span class="day_number"><t t-raw="day.format('D')" /></span>
+                </div>
+                </t>
+            </div>
+             
+            <div class="resources"
+                 t-att-style="
+                    'background-position: -' + ( ( model.weekday() == 0 ? 7 : model.weekday() ) - 1) + 'em 0em,' +
+                                               (model.current() ? model.numberOfDaysFromToday() : '0') + 'em 0em;'
+                 ">
+            </div>
+        </div>
+    </t>
+    
+    <t t-name="Booking.Calendar.months.grouped">
+        <div class="resources-groupline"></div> 
+        <div class="resources-grouped"></div>
+    </t>
+
+</template>

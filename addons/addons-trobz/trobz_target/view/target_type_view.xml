@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<!-- List view -->
+		<record id="target_type_tree" model="ir.ui.view">
+			<field name="name">target.type.tree</field>
+			<field name="model">target.type</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Target Type">
+					<field name="name" />
+					<field name="description" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form view -->
+		<record id="target_type_view" model="ir.ui.view">
+			<field name="name">target.type.form</field>
+			<field name="model">target.type</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Target Type">
+					<sheet>
+						<group>
+							<field name="name" />
+							<newline />
+							<field name="description" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Search view -->
+		<record id="target_type_search" model="ir.ui.view">
+			<field name="name">target.type.search</field>
+			<field name="model">target.type</field>
+			<field name="arch" type="xml">
+				<search string="Target Type">
+					<field name="name" />
+					<field name="description" />
+				</search>
+			</field>
+		</record>
+
+		<!-- Actions -->
+		<record id="action_target_type" model="ir.actions.act_window">
+			<field name="name">Target Type</field>
+			<field name="res_model">target.type</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="tms_location_inside_hcm" model="tms.location.type">
+            <field name="name">Inside HCM</field>
+            <field name="code">BTi</field>
+        </record>
+
+        <record id="tms_location_outside_hcm" model="tms.location.type">
+            <field name="name">Outside HCM</field>
+            <field name="code">BTo</field>
+        </record>
+
+        <record id="tms_location_outside_vietnam" model="tms.location.type">
+            <field name="name">Outside Viet Nam</field>
+            <field name="code">BTf</field>
+        </record>
+    </data>
+</openerp>

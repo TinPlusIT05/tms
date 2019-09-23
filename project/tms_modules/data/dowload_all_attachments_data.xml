@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="attachments_tms_forge_ticket" model="dowload.all.attachments">
+            <field name="name">Forge Ticket</field>
+            <field name="model_id" ref="tms_modules.model_tms_forge_ticket"/>
+        </record>
+        <record id="attachments_tms_support_ticket" model="dowload.all.attachments">
+            <field name="name">Support Ticket</field>
+            <field name="model_id" ref="tms_modules.model_tms_support_ticket"/>
+        </record>
+
+    </data>
+</openerp>
+

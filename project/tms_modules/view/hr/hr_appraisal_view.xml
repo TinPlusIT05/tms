@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_hr_appraisal_tree_inherit" model="ir.ui.view">
+			<field name="name">view.hr.appraisal.tree.inherit</field>
+			<field name="model">hr.appraisal</field>
+			<field name="type">tree</field>
+			<field name="inherit_id" ref="trobz_hr_simple_appraisal.view_hr_appraisal_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="/tree" position="attributes">
+	            	<attribute name="default_order">create_date desc</attribute>
+	     	    </xpath>
+			</field>
+		</record>
+
+		<record id="view_hr_appraisal_template_form_inherit" model="ir.ui.view">
+			<field name="name">view.hr.appraisal.template.form.inherit</field>
+			<field name="model">hr.appraisal.template</field>
+			<field name="inherit_id" ref="trobz_hr_simple_appraisal.view_hr_appraisal_template_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//sheet/group/field/tree/field[@name='sequence']" position="attributes">
+	            	<attribute name="invisible">0</attribute>
+	     	    </xpath>
+				<xpath expr="//sheet/group/field/tree" position="attributes">
+				 	<attribute name="default_order">group_id, sequence, name, help</attribute>
+				 	<attribute name="editable">bottom</attribute>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_hr_appraisal_input_form_inherit" model="ir.ui.view">
+			<field name="name">view.hr.appraisal.input.form.inherit</field>
+			<field name="model">hr.appraisal.input</field>
+			<field name="arch" type="xml">
+				<xpath expr="//sheet/group/field/tree" position="attributes">
+				 	<attribute name="default_order">group_name, question_id.sequence, question_id.name, question_id.help</attribute>
+				</xpath>
+				<xpath expr="//field[@name='extra_comments']" position="before">
+				 	<field name="expect_salary_raise" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_hr_appraisal_form_inherit" model="ir.ui.view">
+			<field name="name">view.hr.appraisal.form.inherit</field>
+			<field name="model">hr.appraisal</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="trobz_hr_simple_appraisal.view_hr_appraisal_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='button_done']" position="replace">
+					<button name="button_done" string="Done" type="object"
+							class="oe_highlight" states="in_progress" groups="base.group_hr_manager,tms_modules.group_profile_tms_delivery_team_manager" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

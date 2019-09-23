@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- wizard view -->
+        <record model="ir.ui.view" id="view_mail_wizard_invite_inherit">
+            <field name="name">view.mail.wizard.invite.inherit</field>
+            <field name="model">mail.wizard.invite</field>
+            <field name="inherit_id" ref="mail.mail_wizard_invite_form"/>
+            <field name="arch" type="xml">
+                  <field name="partner_ids" position="attributes">
+                        <attribute name="context">{'force_email':True, 'show_email':True}</attribute>
+                  </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

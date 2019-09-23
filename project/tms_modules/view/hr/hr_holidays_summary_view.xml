@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Leaves Summary Tree View -->
+		<record id="hr_holidays_summary_tree" model="ir.ui.view">
+			<field name="name">hr.holidays.summary.tree</field>
+			<field name="model">hr.holidays.summary</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Detail Leaves Request For Employees" >
+					<field name="year"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Leaves Summary Form view -->
+		<record id="hr_holidays_summary_form" model="ir.ui.view">
+			<field name="name">hr.holidays.summary.form</field>
+			<field name="model">hr.holidays.summary</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Detail Leaves Request For Employees" version="7.0">
+					<group colspan="4" col="1">
+						<sheet>
+							<field name="year"/>
+							<field name="holidays_summary_line_ids" nolabel="1">
+								<tree>
+									<field name="employee_id"/>
+									<field name="allocation_day"/>
+									<field name="casual_leave_paid_day"/>
+									<field name="sick_leave_paid_day"/>
+									<field name="upaid_leave_day"/>
+									<field name="other_paid_leave_day"/>
+									<field name="remaining_total"/>
+								</tree>
+							</field>
+						</sheet>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Leaves Summary Search View -->
+		<record id="hr_holidays_summary_search" model="ir.ui.view">
+			<field name="name">hr.holidays.summary.search</field>
+			<field name="model">hr.holidays.summary</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Detail Leaves Request For Employees">
+					<field name="year"/>
+				</search>
+			</field>
+		</record>
+    </data>
+</openerp>

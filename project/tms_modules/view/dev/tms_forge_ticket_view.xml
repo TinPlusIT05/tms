@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- Forge Ticket Tree View -->
+        <record id="view_tms_forge_ticket_tree" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.tree</field>
+            <field name="model">tms.forge.ticket</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Forge tickets" colors="grey:state=='closed';red:priority=='very_high';rgb(233, 87, 4):priority=='high';SteelBlue:priority=='low'">
+					<field name="name" string="ID" widget="char" />
+					<field name="project_id" />
+					<field name="summary" />
+					<field name="owner_id" />
+
+					<field name="milestone_number" />
+					<button name="button_previous_milestone" type="object" string="Move to previous milestone"
+						class="icon-chevron-left" />
+					<button name="button_remove_milestone" type="object" string="Remove milestone"
+						class="icon-remove" />
+					<button name="button_next_milestone" type="object" string="Move to next milestone"
+						class="icon-chevron-right" />
+
+					<field name="sprint" string="Sprint"/>
+					<button name="button_previous_sprint" type="object" string="Move to previous sprint"
+						class="icon-chevron-left" />
+					<button name="button_remove_sprint" type="object" string="Remove sprint"
+						class="icon-remove" />
+					<button name="button_next_sprint" type="object" string="Move to next sprint"
+						class="icon-chevron-right" />
+
+					<field name="development_time" string="Estimate" sum="Total Time Planned" />
+                    <field name="qc_estimate"/>
+					<field name="remaining_time" sum="Sum of the estimated remaining time." string="Remain"/>
+
+					<field name="priority" />
+					<button name="button_higher_priority" type="object" string="Set higher priority"
+						class="icon-chevron-up"  attrs="{'invisible': [('priority','=','very_high')]}"/>
+					<button name="button_lower_priority" type="object" string="Set lower priority"
+						class="icon-chevron-down" attrs="{'invisible': [('priority','=','low')]}"/>
+
+					<field name="state" />
+                    <field name="support_ticket_type" invisible="1" />
+					<field name="sequence" invisible="1"/>
+					<field name="milestone_id" invisible="1" />
+					<field name="is_billable" invisible="1" />
+					<field name="tms_activity_id" invisible="1" />
+					<field name="tms_functional_block_id" invisible="1" />
+					<field name="tms_project_tag_ids" invisible="1" />
+					<field name="delivery_status" invisible="1" />
+					<field name="trobz_partner_id" invisible="1" />
+
+					<button name="button_accept" type="object" string="WIP" states="assigned"
+						class="icon-circle custom-green-button" />
+					<button name="button_in_qa" type="object" string="QA" states="ready_to_deploy"
+						class="icon-search" />
+
+					<!--<button name="button_re_assign" type="object"-->
+						<!--string="Re-assign Ticket" states="wip" class="icon-circle ticket_button custom-red-button"/>-->
+                </tree>
+            </field>
+        </record>
+
+		<!-- Forge Tickets (Latest Modified) Tree View -->
+        <record id="view_tms_latest_modified_tree" model="ir.ui.view">
+            <field name="name">Latest Modified</field>
+            <field name="model">tms.forge.ticket</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+				<tree string="Forge Tickets" colors="grey:state=='closed';red:priority=='very_high';rgb(233, 87, 4):priority=='high';SteelBlue:priority=='low'">
+					<field name="name" string="ID" widget="char"/>
+					<field name="project_id" />
+					<field name="summary" />
+					<field name="write_date" />
+					<field name="create_date" />
+					<field name="state" />
+
+					<!-- Hidden Fields and Buttons -->
+					<field name="sprint" invisible="1"/>
+					<button name="button_previous_sprint" type="object" string="Move to previous sprint"
+                        icon="tms_previous" invisible="1"/>
+					<button name="button_remove_sprint" type="object" string="Remove sprint"
+                        icon="tms_remove" invisible="1" />
+					<button name="button_next_sprint" type="object" string="Move to next sprint"
+                        icon="tms_next" invisible="1"/>
+
+					<field name="development_time" string="Estimate" sum="Total Time Planned" invisible="1"/>
+					<field name="remaining_time" sum="Sum of the estimated remaining time." string="Remain" invisible="1"/>
+					<field name="priority" invisible="1"/>
+					<button name="button_higher_priority" type="object" string="Set higher priority"
+                        icon="tms_priority" attrs="{'invisible': [('priority','=','very_high')]}" invisible="1"/>
+					<button name="button_lower_priority" type="object" string="Set lower priority"
+                        icon="tms_priority_lower"  attrs="{'invisible': [('priority','=','low')]}" invisible="1"/>
+
+                    <field name="support_ticket_type" invisible="1" />
+					<field name="milestone_id" invisible="1" />
+					<field name="tms_activity_id" invisible="1" />
+					<field name="is_billable" invisible="1" />
+					<field name="tms_functional_block_id" invisible="1" />
+					<field name="tms_project_tag_ids" invisible="1" />
+					<field name="description" invisible="1" />
+					<field name="owner_id" invisible="1"/>
+
+					<button name="button_accept" states="assigned" type="object" string="WIP"
+                        class="icon-circle" invisible="1"/>
+					<button name="button_in_qa" states="ready_to_deploy" type="object" string="QA"
+                        class="icon-search" invisible="1"/>
+				</tree>
+            </field>
+        </record>
+
+        <record id="view_tms_forge_ticket_filter" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.filter</field>
+            <field name="model">tms.forge.ticket</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Forge Ticket">
+                    <group string="Field">
+                        <field name="summary" string="Summary|Descript."
+                            filter_domain="['|',('summary','ilike',self),('description','ilike',self)]" />
+                        <field name="name" />
+                        <field name="parent_forge_ticket_id"/>
+						<field name="project_id"/>
+						<field name="trobz_partner_id"/>
+                        <field name="tms_activity_id"/>
+                        <field name="priority" />
+                        <field name="yaml_test_status" />
+                        <field name="quotation" />
+                    	<field name="delivery_status"/>
+                    	<field name="completion_sprint_date"/>
+                    	<field name="department_id" />
+			  			<field name="project_state"/>
+			  			<field name="milestone_id" />
+						<field name="sprint" string="Sprint"/>
+	                    <field name="developer_id" />
+	                    <field name="last_modified_author_id" />
+                        <field name="tms_functional_block_id" />
+                        <field name="tms_activity_id"/>
+						<field name="owner_id" string="Assignee"
+							domain="[('is_trobz_member','=',True)]" />
+                        <field name="support_ticket_type" />
+                        <field name="create_uid" />
+						<field name="reporter_id" />
+						<field name="proj_owner_id" />
+						<field name="tms_project_tag_ids" string="(project) Tag"/>
+						<field name="team_id"/>
+						<field name="team_manager_id"/>
+						<field name="job_id"/>
+ 						<field name="job_type_id"/>
+						<field name="subscriber_id" />
+						<field name="tk_default_notif_pre_id" />
+						<field name="tk_notif_pref_id" />
+                    </group>
+					<group string="Filter">
+						<filter string="Very High" name="urgent"
+							domain="[('priority','=','very_high')]" help='Very High Priority'/>
+	                    <separator />
+	                    <filter string="My tickets" name="my_ticket"
+	                    	domain="[('owner_id','=',uid)]" />
+	                    <separator />
+
+						<filter string="Current Sprint" name="current_sprint"
+	                    	domain="[('sprint','=',(context_today() + relativedelta(weekday=5, weeks=0)).strftime('%Y-%m-%d'))]"/>
+	                    <separator />
+	                    <filter string="Open" name="open"
+	                    	domain="[('state','!=','closed')]" />
+						<separator />
+						<filter string="Assigned" name="tms_assigned"
+							domain="[('state','=','assigned')]" />
+						<filter string="WIP" name="tms_accept"
+							domain="[('state','=','wip')]" />
+						<filter string="Completed" name="filter_completed"
+							domain="[('state','=','code_completed')]" help="Code Completed" />
+						<filter string="Ready" name="Filter_ready_deploy"
+							domain="[('state','=','ready_to_deploy')]" help="Ready to deploy" />
+						<filter string="QA" name="qa"
+							domain="[('state','=','in_qa')]" />
+						<filter string="Closed" name="filter_closed"
+							domain="[('state','=','closed')]" />
+						<separator />
+	                    <filter string="Billable" name="filter_billable"
+	                    	domain="[('is_billable','=',True)]" />
+	                    <filter string="No Billable" name="filter_no_billable"
+	                    	domain="[('is_billable','=',False)]" />
+						<separator />
+						<filter string="Has Sprint" name="filter_has_sprint"
+							domain="[('sprint','!=',False)]" />
+						<separator />
+
+						<filter string="Doesn't Have Sprint" name="filter_hasno_sprint"
+							domain="[('sprint','=',False)]" />
+						<separator />
+						<filter string="No estimate" name="filter_no_estimate"
+							domain="[('development_time','in',(None,'0','0.00','0.01'))]" help="No estimate" />
+						<separator />
+						<filter string="No func. block" name="filter_no_functional_block"
+							domain="[('tms_functional_block_id','=',None),]" help="No Functional Block" />
+						<separator />
+						<filter string="No Tag" name="filter_no_project_tag"
+							domain="[('tms_project_tag_ids','=',False),]" help="No Project Tag" />
+						<separator />
+
+						<filter string="No sprint" name="filter_no_sprint"
+							domain="[('sprint','=',None)]" help="Not planned in any sprint" />
+						<separator />
+						<filter string="No Milestone" name="filter_no_milestone"
+							domain="[('milestone_id','=',None)]" />
+						<separator />
+						<filter string="No Activity" name="filter_no_activity"
+							domain="[('tms_activity_id','=',None)]" />
+                        <separator />
+                        <filter name="filter_quotation" string="Quotation"
+                            domain="[('quotation','=','yes')]" />
+                        <filter name="filter_quotation" string="No Quotation"
+                            domain="[('quotation','=','no')]" />
+                        <separator />
+                        <filter name="filter_reporter_by_me" string="Reported by me"
+                            domain="[('reporter_id','=', uid)]" />
+					</group>
+                    <group string="Group By">
+                        <filter string="Project" name="group_project" domain="[]" context="{'group_by':'project_id'}" />
+                        <separator />
+                        <filter string="Parent" domain="[]" context="{'group_by':'parent_forge_ticket_id'}"/>
+                        <separator />
+                        <filter string="Activity" name="group_activity" domain="[]" context="{'group_by':'tms_activity_id'}" />
+                        <separator />
+
+                        <filter string="Sprint" name="group_ssprint" domain="[]" context="{'group_by':'sprint:day'}" />
+						<separator />
+                        <filter name="group_by_developer" string="Developer"
+                            domain="[]" context="{'group_by':'developer_id'}" />
+                        <separator />
+                        <filter string="Milestone" name="group_milestone" domain="[]" context="{'group_by':'milestone_id'}" />
+                        <separator />
+                        <filter string="Priority" name="group_priority" domain="[]" context="{'group_by':'priority'}" />
+                        <separator />
+                        <filter string="Assignee" name="group_owner" domain="[]" context="{'group_by':'owner_id'}" />
+                        <separator />
+                        <filter string="Status" name="group_status" domain="[]" context="{'group_by':'state'}" />
+                        <separator />
+                        <filter string="Functional Block" name="group_functional_block" domain="[]" context="{'group_by':'tms_functional_block_id'}" />
+                        <separator />
+                        <filter string="Delivery Status" name="group_delivery_status" domain="[]" context="{'group_by':'delivery_status'}" />
+                        <separator />
+                        <filter string="Department" name="group_department" domain="[]" context="{'group_by':'department_id'}"/>
+                        <separator />
+                        <filter string="Partner" name="group_partner" domain="[]" context="{'group_by':'trobz_partner_id'}"/>
+                        <separator />
+                        <filter string="Support Ticket Type" name="group_support_ticket_type" domain="[]" context="{'group_by':'support_ticket_type'}"/>
+                        <separator />
+                        <filter string="Creator" name="group_creater" domain="[]" context="{'group_by':'create_uid'}"/>
+                        <separator />
+                        <filter string="Reporter" name="group_reporter" domain="[]" context="{'group_by':'reporter_id'}"/>
+                        <separator />
+                        <filter string="Project's Owner" name="group_proj_owner_id"
+                        	domain="[]" context="{'group_by':'proj_owner_id'}"/>
+                        <separator />
+                        <filter string="Team" name="group_team_id"
+                        	domain="[]" context="{'group_by':'team_id'}"/>
+                        <seperator />
+                        <filter string="Team Manager"
+								domain="[]" context="{'group_by':'team_manager_id'}" />
+						<seperator />
+						<filter string="Job Title"
+ 								domain="[]" context="{'group_by':'job_id'}" />
+ 						<seperator />
+                         <filter string="User Job Type"
+ 								domain="[]" context="{'group_by':'job_type_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_tms_forge_ticket_gantt" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.gantt</field>
+            <field name="model">tms.forge.ticket</field>
+            <field name="type">gantt</field>
+            <field name="arch" type="xml">
+                <gantt
+                    date_start="gantt_start"
+                    date_stop="gantt_end"
+                    string="Forge Ticket"
+                    default_group_by="project_id"
+                    color="activity_id">
+                     <level object="tms.project" link="project_id" domain="[]">
+                        <field name="id" />
+                        <field name="summary" />
+                        <field name="owner_id" />
+                        <field name="state" />
+                    </level>
+                </gantt>
+            </field>
+        </record>
+
+        <record id="view_tms_forge_ticket_form" model="ir.ui.view">
+            <field name="name">view.tms.forge.ticket.form</field>
+            <field name="model">tms.forge.ticket</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Forge Tickets" version="7.0">
+                	<header>
+                		<field name="state" widget="statusbar" clickable="True"/>
+                	</header>
+                	<group colspan="4" col="10">
+
+                		<!-- LEFT SIDE :: 8-->
+						<group colspan="8" col="2">
+							<group colspan="2" col="4">
+								<group colspan="4" style="margin:0px">
+									<h2>
+										<field name="summary" nolabel="1"
+											placeholder="An explicit summary (to know what this ticket is about without reading the description)" />
+									</h2>
+								</group>
+								<group colspan="2" col="3" style="margin:0px">
+									<field name="project_id" nolabel="1"
+										placeholder="Project"
+										domain="[('state','!=','done')]" />
+									<field name="tms_functional_block_id"
+										nolabel="1" placeholder="Functional block"
+										context="{'project_id_from_ticket': project_id}" />
+									<field name="tms_project_tag_ids" nolabel="1" placeholder="Project Tag"
+										widget="many2many_tags"
+										context="{'default_project_id': project_id}" />
+								</group>
+								<group colspan="3" style="margin:0px">
+								</group>
+							</group>
+
+							<!-- COMMON TICKET INFO -->
+							<div class="tms_left_info_container">
+								<group colspan="2" col="4">
+									<group>
+										<label for="milestone_id" />
+										<div class="address_format">
+											<field name="milestone_id"
+												domain="[('project_id','=',project_id)]" />
+
+											<div class="tms_field_button_container">
+												<button name="button_previous_milestone" type="object" help="Move to previous milestone"
+													class="ticket_button tms_field_button icon-chevron-left" />
+
+												<button name="button_remove_milestone" type="object" help="Remove milestone"
+													class="ticket_button tms_field_button icon-remove" />
+
+												<button name="button_next_milestone" type="object" help="Move to next milestone"
+													class="ticket_button tms_field_button icon-chevron-right" />
+											</div>
+										</div>
+										<field name="owner_id" context="{'project_id': project_id}"/>
+										<field name="forge_check_manage_dealine_on_sp_tickets" invisible="1"/>
+                                        <field name="parent_forge_ticket_id" context="{'display_forge_ticket_id_with_summary': True}"
+											options="{'no_create': True, 'no_create_edit': True}"/>
+                                        <field name="deadline" attrs="{'invisible': [('forge_check_manage_dealine_on_sp_tickets', '=', False)]}"/>
+									</group>
+									<group>
+										<field name="std_development_time" id="std_est"/>
+										<field name="development_time"/>
+                                        <field name="qc_estimate"/>
+                                        <field name="sum_qc_time"/>
+
+                                        <label for="priority" />
+                                        <div class="address_format">
+                                            <field name="priority" />
+                                            <div class="tms_field_button_container">
+                                            <button name="button_higher_priority" type="object" help="Increase the priority"
+                                                class="ticket_button tms_field_button icon-chevron-up"
+                                                attrs="{'invisible': [('priority','=','very_high')]}" />
+
+                                            <button name="button_lower_priority" type="object" help="Decrease the priority"
+                                                class="ticket_button tms_field_button icon-chevron-down"
+                                                attrs="{'invisible': [('priority','=','low')]}" />
+                                       	 	</div>
+                                        </div>
+
+
+										<label for="sprint" />
+										<div class="address_format">
+											<field name="sprint" options="{'datepicker':{'beforeShowDay': [0,1,2,3,4,5]}}"/>
+											<div class="tms_field_button_container">
+												<!-- Sprint buttons -->
+												<button name="button_previous_sprint" type="object" help="Move to previous sprint"
+													class="ticket_button tms_field_button icon-chevron-left" />
+												<button name="button_remove_sprint" type="object" help="remove sprint"
+													class="ticket_button tms_field_button icon-remove" />
+												<button name="button_next_sprint" type="object" help="Move to next sprint"
+													class="ticket_button tms_field_button icon-chevron-right" />
+											</div>
+										</div>
+
+                                        <label for="tms_support_ticket_id" />
+                                        <div class="address_format">
+											<field name="tms_support_ticket_id" />
+											<div class="tms_field_button_container">
+		                                        <button name="button_create_support_ticket" type="object" help="Create support ticket"
+		                                            class="ticket_button tms_field_button fa-plus"
+		                                            attrs="{'invisible': [('tms_support_ticket_id', '!=', False)]}" />
+	                                        </div>
+                                        </div>
+										<field name="support_ticket_state" attrs="{'invisible': [('tms_support_ticket_id', '=', False)]}" />
+									</group>
+								</group>
+							</div>
+
+							<group colspan="2">
+								<field name="description" widget="bootstrap_markdown" nolabel="1" colspan="2" placeholder="Write a ticket description here..." />
+							</group>
+                            <group colspan="2">
+                                <h3>Test Case</h3>
+                                <br/>
+                                <field name="qc_testcase_ids" nolabel="1" colspan="2">
+                                    <tree editable="bottom" colors="grey:test_result=='suspended';red:test_result=='fail'">
+										<field name="sequence" widget="handle"/>
+										<field name="no_number"/>
+                                        <field name="summary"/>
+                                        <field name="procedure"/>
+                                        <field name="test_date"/>
+                                        <field name="expected_result"/>
+                                        <field name="actual_result"/>
+                                        <field name="test_result"/>
+                                        <field name="remark"/>
+                                    </tree>
+                                </field>
+                            </group>
+							<group colspan="2">
+								<h3>Children Forge Ticket</h3>
+								<br/>
+								<field name="child_forge_ticket_ids" nolabel="1" colspan="2"
+									context="{'default_project_id': project_id, 'default_tms_functional_block_id': tms_functional_block_id,
+										'default_milestone_id': milestone_id, 'default_parent_forge_ticket_id': active_id,
+										'default_priority': priority,
+										'default_sprint': sprint,
+										'default_tms_activity_id': tms_activity_id}">
+									<tree>
+										<field name="name"/>
+										<field name="summary" string="Title"/>
+										<field name="owner_id"/>
+										<field name="milestone_id"/>
+										<field name="development_time" sum='Total Estimation Time'/>
+										<field name="time_spent" sum='Total Time Spent'/>
+										<field name="remaining_time" sum='Total Est. Remaining Time'/>
+										<field name="state"/>
+									</tree>
+								</field>
+							</group>
+							<group colspan="2">
+								<h3>Dev Productivity</h3>
+								<br/>
+								<field name="card_ids" nolabel="1" colspan="2"
+									context="{'default_assignee_id': owner_id}">
+									<tree editable="bottom">
+										<field name="name" readonly="1"/>
+										<field name="assignee_id"/>
+										<field name="working_date" required="1"/>
+										<field name="pct_complete" sum="Total"/>
+									</tree>
+								</field>
+							</group>
+						</group>
+
+						<!-- RIGHT SIDE :: 2 -->
+						<group colspan="2" col="2" class="tms_form_group_info">
+							<!-- TICKET ID SECTION -->
+							<group colspan="2" class="tms_ticket_number_container">
+								<h2 class="ticket_id_number">
+									<span>
+									    <span class="ticket-id-label">F#</span>
+									    <field class="ticket-id-number" name="name" widget="char" />
+									</span>
+									<span class="ticket_id_text_label">Ticket ID</span>
+								</h2>
+							</group>
+
+							<!-- COMMAND BUTTONS -->
+							<group colspan="2" col="1">
+								<field name="is_subscribed" invisible="1" />
+
+								<button string="Download support attachments" name="download_support_attachments" type="object" class="icon-download ticket_button">
+									<div><field name="num_support_attachment"/></div>
+								</button>
+
+								<button name="button_subscribe" type="object" string="Subscribe Me"
+									class="icon-eye-open ticket_button" attrs="{'invisible':  [('is_subscribed', '=', True)]}" />
+
+								<button name="button_unsubscribe" type="object" string="Unsubscribe Me"
+									class="icon-eye-close ticket_button" attrs="{'invisible':  [('is_subscribed', '=', False)]}" />
+
+								<button name="button_poke" type="object"
+									help="Remind Assignee To check the Ticket" string="Poke Ticket Assignee"
+									class="icon-bullhorn ticket_button" />
+
+								<button name="%(action_tms_reopen_forge_ticket)d" type="action"
+									help="Re-open ticket" string="Re-open Ticket"
+									attrs="{'invisible': [('state','in',['assigned', 'wip'])]}"
+									class="icon-reply ticket_button"
+									context="{'default_reopen_sprint': sprint}"/>
+
+                                <!--<button name="button_re_assign" type="object"-->
+                                    <!--help="Re-assign ticket" string="Re-assign Ticket"-->
+									<!--states="wip" class="icon-circle ticket_button custom-red-button"/>-->
+
+								<button name="button_accept" states="assigned" type="object"
+									string="WIP Ticket" class="icon-circle ticket_button custom-green-button" />
+
+								<button name="button_code_completed" states="wip" type="object"
+									string="Code completed" class="icon-ok ticket_button" />
+
+								<button name="button_ready_to_deploy" states="code_completed" type="object"
+									string="Ready to deploy" class="icon-ok-sign ticket_button" />
+
+								<button name="button_in_qa" states="ready_to_deploy" type="object"
+									string="Assign To QA" class="icon-search ticket_button" />
+
+							</group>
+						</group>
+                	</group>
+
+               		<notebook>
+               			<page string="Comments">
+                            <button
+                                string="Only comments"
+                                icon="icon-minus-sign-alt"
+                                class="oe_inline oe_stat_button empty_button hide_record button_highlight"
+                                help="Show only the comments">
+                            </button>
+                            <button
+                                string="Full History"
+                                icon="icon-plus-sign-alt"
+                                class="oe_inline oe_stat_button empty_button show_all"
+                                help="Show full history">
+                            </button>
+                            <button
+                                string="Add comment" type="action"
+                                name="%(action_add_comment_in_ticket)d"
+                                icon="fa-pencil"
+                                class="oe_inline oe_stat_button">
+                            </button>
+               				<field name="tms_forge_ticket_comment_ids" mode="tree" nolabel="1"
+								context="{'tms_forge_ticket_id':active_id,'form_view_ref':'tms_modules.view_tms_ticket_comment_form_ticket_ref', 'add_item_on_top': True}">
+								<tree string="Comment" colors="grey:type!='comment';grey:is_invalid==True" classTarget="tms_hidden record_hidden:type!='comment';">
+									<field name="name" />
+									<field name="comment" widget="bootstrap_markdown" />
+									<field name="author_id" />
+									<field name="type" invisible="1" />
+									<field name="is_invalid" invisible="1"/>
+								</tree>
+							</field>
+               			</page>
+						<page string="Time Spent">
+							<group>
+								<group>
+									<field name="tms_activity_id" />
+									<field name="time_spent" />
+									<field name="total_time_spent" readonly="1"/>
+								</group>
+								<group>
+									<field name="remaining_time"/>
+									<field name="additional_budget_time"/>
+								</group>
+							</group>
+							<group>
+								<field name="tms_working_hour_ids" nolabel="1"
+									attrs="{'readonly': ['|',('tms_activity_id','=',False),('name','=',False)]}"
+									context="{'tms_forge_ticket_id':active_id,'tms_activity_id':tms_activity_id}">
+									<tree string="Time Spent by Hours (Select an activity first.)">
+										<field name="date" />
+										<field name="name" />
+										<field name="user_id" />
+										<field name="duration_hour" />
+										<field name="tms_forge_ticket_id" invisible="1" />
+									</tree>
+								</field>
+							</group>
+							<group string="Help">
+								<field name="help_time" widget="text_WYSIWYG" nolabel="1" />
+							</group>
+							<group string="Help-old" col="1">
+								<label align="0.0" string="The remaining time is calculated like this:"/>
+								<label align="0.0" string=" - New to WIP: max(Estimate - time spent, 0.5 * Estimate)" />
+								<label align="0.0" string=" - Code completed : 0.2 * Estimate" />
+								<label align="0.0" string=" - Ready to deploy -> qa: 0.1 * Estimate" />
+								<label align="0.0" string=" - Closed:0" />
+							</group>
+						</page>
+						<page string="Test Logs">
+               				<field name="test_log_ids" nolabel="1" readonly="1"
+               					context="{'default_type': 'test_log', 'tms_forge_ticket_id':active_id,'form_view_ref':'tms_modules.view_tms_ticket_test_log_form'}">
+               					<tree colors="green:test_result=='pass';red:test_result=='fail';grey:test_result=='suspended'">
+               						<field name="comment" string="Summary" widget="bootstrap_markdown" />
+               						<field name="test_procedure" widget="bootstrap_markdown" />
+               						<field name="test_data" widget="bootstrap_markdown" />
+               						<field name="test_result" />
+               						<field name="test_remark" widget="bootstrap_markdown" />
+               						<field name="author_id" />
+               						<field name="create_date" />
+               					</tree>
+               				</field>
+               			</page>
+						<page string="Info">
+							<group string="Tracking info">
+								<group>
+									<field name="quotation" />
+									<field name="resolution"/>
+								</group>
+								<group>
+									<field name="reporter_id" />
+									<field name="developer_id" />
+									<field name="last_completer_id" />
+								</group>
+							</group>
+							<group>
+								<group>
+									<field name="create_date" />
+									<field name="last_assigned_date" />
+									<field name="closing_datetime" />
+									<field name="closed_by"/>
+									<field name="fixing_time_spent"/>
+								</group>
+								<group>
+									<field name="completion_sprint_date" />
+									<field name="reopening_times" />
+									<field name="completion_time_spent" />
+								</group>
+							</group>
+							<group string="Testing">
+								<group>
+									<field name="yaml_test_status" />
+								</group>
+								<group/>
+							</group>
+						</page>
+						<page string="Subscribers">
+							<field name="forge_ticket_subscriber_ids" nolabel="1">
+								<tree string="Subscribers" editable="bottom">
+									<field name="name" />
+									<field name="tk_default_notif_pre_id" />
+									<field name="tk_notif_pref_id" />
+								</tree>
+							</field>
+
+						</page>
+						<page string="List Delivery">
+							<group>
+								<field name="delivery_status" widget="statusbar"
+									statusbar_visible="in_development,in_integration,ready_for_staging,in_staging,in_production"/>
+							</group>
+							<group string="Deliveries">
+								<field name="delivery_id" nolabel="1">
+									<tree string="List Deliveries">
+										<field name="name" />
+										<field name="server_type" />
+										<field name="instance_id" />
+									</tree>
+								</field>
+							</group>
+						</page>
+						<page string="Reopening Times">
+							<field name="forge_reopening_ids" nolabel="1">
+								<tree string="Forge Ticket Reopenings" create="false">
+									<field name="date" />
+									<field name="last_completer_id" />
+									<field name="reopener_id" />
+									<field name="reopening_type"/>
+									<field name="development_time" />
+									<field name="time_spent" />
+									<field name="fixing_time_spent" />
+									<field name="past_reopening_times" />
+									<field name="name" invisible="1" />
+								</tree>
+							</field>
+						</page>
+						<page string="Assign Times">
+							<field name="forge_assign_ids" nolabel="1">
+								<tree string="Forge Ticket Assigns" create="false" readonly="1">
+									<field name="date" />
+									<field name="assignee_id" />
+									<field name="forge_state" />
+								</tree>
+							</field>
+						</page>
+						<page string="Quotation">
+							<group>
+								<group string="Estimation by Type">
+									<field name="type_quotation" />
+									<field name="formula_description" />
+									<field name="formula" invisible="1" />
+									<field name="formula_parameter" />
+									<field name="evolution_workload_task_type" />
+								</group>
+								<group string="Estimation from development estimation">
+									<field name="evolution_workload_from_dev" />
+								</group>
+								<group string="Final Estimation" colspan="2">
+									<group>
+										<field name="evolution_workload_min" />
+										<field name="evolution_workload_max" />
+										<field name="evolution_workload_final" />
+									</group>
+									<group>
+										<field name="evolution_workload_check" />
+										<field name="evolution_workload_comment" />
+									</group>
+								</group>
+							</group>
+						</page>
+						<page string="Workload Estimation">
+							<group>
+								<group>
+									<field name="sum_wl_est"/>
+								</group>
+							</group>
+							<group>
+								<field name="tms_workload_ids" nolabel="1">
+									<tree editable="bottom">
+										<field name="wl_est_id" required="1" />
+										<field name="wl_risk_id"/>
+										<field name="wl_est_qty" />
+										<field name="std_est" sum="Total Standard Estimated"/>
+										<field name="final_est" sum="Total Final Estimated Workload"/>
+										<field name="diff_est" sum="Total Difference Estimated Workload"/>
+									</tree>
+								</field>
+							</group>
+               			</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+
+		<!-- Action Open Forge Tickets Tree View (The one used in Forge Tickets menu)-->
+		<record id="action_view_tms_forge_ticket_open" model="ir.actions.act_window">
+            <field name="name">Forge Tickets</field>
+            <field name="res_model">tms.forge.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,gantt,graph</field>
+            <field name="search_view_id" ref="view_tms_forge_ticket_filter"/>
+            <field name="context">{'search_default_open':1, 'search_default_my_ticket':1, 'order_by':['priority'], 'display_forge_ticket_id_with_summary': True}</field>
+        </record>
+
+		<!-- Action Open Forge Tickets (Urgent Tickets) Tree View -->
+		<record id="action_tms_urgent_ticket_open" model="ir.actions.act_window">
+			<field name="name">Urgent Tickets</field>
+			<field name="res_model">tms.forge.ticket</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_open':1,'search_default_urgent':1}</field>
+		</record>
+
+		<!-- Action Open Forge Tickets (Dashboard use) Tree View -->
+		<record id="action_view_tms_forge_ticket_open_dash_board" model="ir.actions.act_window">
+			<field name="name">Forge Tickets</field>
+			<field name="res_model">tms.forge.ticket</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,gantt</field>
+			<field name="context"> {'search_default_open':1, 'search_default_my_ticket':1, 'group_by':['project_id'], 'order_by':['priority']} </field>
+		</record>
+
+		<!-- Action Open Forge Tickets (Forge Tickets in QA) Tree View -->
+		<record id="action_view_tms_forge_ticket_qa" model="ir.actions.act_window">
+			<field name="name">Forge Tickets in QA</field>
+			<field name="res_model">tms.forge.ticket</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,gantt</field>
+			<field name="domain">[]</field>
+			<field name="context"> {'search_default_qa':1, 'group_by':['project_id'], 'order_by':['priority']} </field>
+		</record>
+
+		<!-- Action Open Forge Tickets (My Tickets in this sprint) Tree View -->
+		<record id="action_tms_my_tickets_in_this_sprint" model="ir.actions.act_window">
+			<field name="res_model">tms.forge.ticket</field>
+			<field name="name">My Tickets in this sprint</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{'search_default_current_sprint':1,'search_default_my_ticket':1,'search_default_tms_assigned':1, 'search_default_tms_accept':1, 'search_default_group_milestone':1, 'display_forge_ticket_id_with_summary': True}</field>
+		</record>
+
+		<!-- Action Open Forge Tickets (Latest Modified) Tree View  -->
+		<record model="ir.actions.act_window" id="action_tms_latest_modified">
+			<field name="res_model">tms.forge.ticket</field>
+			<field name="name">Latest Modified</field>
+			<field name="view_mode">tree,form,gantt</field>
+			<field name="view_id" ref="view_tms_latest_modified_tree"/>
+			<field name="search_view_id" ref="view_tms_forge_ticket_filter"/>
+			<field name="domain">[]</field>
+			<field name="context">{'tms_latest_modified':True}</field>
+		</record>
+
+        <!-- ============================== -->
+        <!--         forge ticket analysis  -->
+        <!-- ============================== -->
+        <record id="tms_forge_ticket_tree_analysis" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.tree</field>
+            <field name="model">tms.forge.ticket</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="99"/>
+            <field name="arch" type="xml">
+                <tree string="Forge tickets" >
+                    <field name="development_time" string="Estimate" sum="Total Time Planned" />
+                    <field name="time_spent" string="Total Time Spent" sum="Total Time Spent" />
+                    <field name="time_spent_dev" string="Total Time Spent Dev" sum="Total Time Spent Dev" />
+                    <field name="time_spent_fc" string="Total Time Spent FC" sum="Total Time Spent FC" />
+                    <field name="completion_time_spent" string="Completion Time Spent" sum="Completion Time Spent" />
+                    <field name="fixing_time_spent" string="Fixing Time Spent" sum="Fixing Time Spent" />
+                    <field name="remaining_time" sum="Sum of the estimated remaining time." string="Remain"/>
+                    <field name="reopening_times" sum="Total reopening"/>
+                    <field name="id" string="id" />
+                    <field name="project_id" />
+                    <field name="summary" />
+                    <field name="developer_id" />
+                    <field name="completion_sprint_date"/>
+					<field name="sprint" string="Sprint"/>
+                    <field name="state" />
+                    <field name="delivery_status"/>
+
+                    <field name="analysis_department_id" invisible="1" />
+                    <field name="milestone_id" invisible="1" />
+                    <field name="tms_activity_id" invisible="1" />
+                    <field name="completion_date" invisible="1" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tms_forge_ticket_search_analysis" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.filter</field>
+            <field name="model">tms.forge.ticket</field>
+            <field name="type">search</field>
+            <field name="priority" eval="99"/>
+            <field name="arch" type="xml">
+                <search string="Search Forge Ticket">
+                    <group string="Field">
+                        <field name="name" />
+                        <field name="completion_sprint_date"/>
+                        <field name="project_id"/>
+                        <field name="milestone_id" />
+						<field name="sprint"/>
+                        <field name="developer_id" />
+                        <field name="tms_activity_id" />
+                        <field name="quotation" />
+                        <field name="analysis_department_id" />
+                        <field name="proj_owner_id"/>
+                        <field name="team_id"/>
+                        <field name="team_manager_id"/>
+                    </group>
+                    <group string="Filter">
+
+                        <filter name="current_sprint" icon="tms_sprint" string="Current Sprint"
+	                    	domain="[('sprint','=',(context_today() + relativedelta(weekday=5, weeks=0)).strftime('%Y-%m-%d'))]"/>
+						<separator />
+
+						<filter name="current_completion_sprint" string="Current Compl. Sprint"
+	                    	domain="[('completion_sprint_date','=',(context_today() + relativedelta(weekday=5, weeks=0)).strftime('%Y-%m-%d'))]"/>
+                        <separator />
+
+                        <filter string="Assigned" name="tms_assigned"
+                            domain="[('state','=','assigned')]" />
+
+                        <filter string="WIP" name="tms_accept"
+                            domain="[('state','=','wip')]" />
+
+                        <filter string="Complet." name="tms_completed"
+                            domain="[('state','=','code_completed')]" help="Code Completed" />
+
+                        <filter string="Ready" name="tms_ready_deploy"
+                            domain="[('state','=','ready_to_deploy')]" help="Ready to deploy" />
+
+                        <filter string="QA" name="qa"
+                            domain="[('state','=','in_qa')]" />
+
+                        <filter string="Closed" name="tms_closed"
+                            domain="[('state','=','closed')]" />
+                        <separator />
+                        <filter string="Billable" name="billable"
+                            domain="[('is_billable','=', True)]" />
+                        <separator />
+                        <filter string="Not Billable" name="not_billable"
+                            domain="[('is_billable','=', False)]" />
+                        <separator />
+                    </group>
+                    <group string="Group By">
+						<filter name="group_by_completion_sprint" string="Completion Sprint"
+                            domain="[]" context="{'group_by':'completion_sprint_date'}" />
+                        <separator />
+
+						<filter name="group_by_sprint" string="Sprint"
+                            domain="[]" context="{'group_by':'sprint:day'}" />
+                        <separator />
+                        <filter name="group_by_developer" string="Developer"
+                            domain="[]" context="{'group_by':'developer_id'}" />
+                        <separator />
+                        <filter string="Completion Date"
+                            domain="[]" context="{'group_by':'completion_date'}" />
+                        <separator />
+                        <filter name="group_by_project" string="Project"
+                            domain="[]" context="{'group_by':'project_id'}" />
+                        <separator />
+                        <filter string="Activity"
+                            domain="[]" context="{'group_by':'tms_activity_id'}" />
+                        <separator />
+                        <filter name="tms_milestone" string="Milestone"
+                            domain="[]" context="{'group_by':'milestone_id'}" />
+                        <separator />
+                        <filter string="Reopening Times"
+                            domain="[]" context="{'group_by':'reopening_times'}" />
+                        <separator />
+                        <filter string="Department"
+                            domain="[]" context="{'group_by':'analysis_department_id'}" />
+                        <separator />
+                        <filter string="Project's Owner"
+                        	domain="[]"
+                        	context="{'group_by':'proj_owner_id'}"/>
+						<filter string="Second Axis" icon="tms_type"
+								domain="[]" context="{'group_by':'analytic_secondaxis_id'}" />
+						<separator />
+						<filter string="Billable"
+								domain="[]" context="{'group_by':'is_billable_type'}" />
+						<separator />
+						<filter string="Partner Computed"
+								domain="[]" context="{'group_by':'partner_computed_id'}" />
+						<separator />
+						<filter string="Completion Year"
+								domain="[]" context="{'group_by':'completion_year'}" />
+						<separator />
+						<filter string="Team"
+								domain="[]" context="{'group_by':'team_id'}" />
+						<separator />
+						<filter string="Team Manager"
+								domain="[]" context="{'group_by':'team_manager_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Add Tms Forge Ticket Pivot -->
+        <record id="view_tms_forge_ticket_pivot" model="ir.ui.view">
+            <field name="name">tms.forge.ticket.pivot</field>
+            <field name="model">tms.forge.ticket</field>
+            <field name="arch" type="xml">
+            	<graph string="Tms Forge Ticket Analysis">
+	                <field name="project_id" type="row"/>
+                    <field name="milestone_number" type="col"/>
+                    <field name="remaining_time" type="measure"/>
+                    <field name="development_time" type="measure"/>
+                    <field name="time_spent" type="measure"/>
+             	</graph>
+            </field>
+        </record>
+
+       <record model="ir.actions.act_window.view" id="action_tms_support_ticket_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_tms_forge_ticket_tree"/>
+            <field name="act_window_id" ref="action_view_tms_forge_ticket_open"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_tms_support_ticket_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_tms_forge_ticket_form"/>
+            <field name="act_window_id" ref="action_view_tms_forge_ticket_open"/>
+        </record>
+
+        <!-- Action Open Forge Tickets (Productivity Analysis) Tree View -->
+        <record id="action_view_tms_forge_ticket_analysis" model="ir.actions.act_window">
+            <field name="name">Productivity Analysis</field>
+            <field name="res_model">tms.forge.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="tms_forge_ticket_tree_analysis"/>
+            <field name="search_view_id" ref="view_tms_forge_ticket_search_analysis"/>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_current_completion_sprint':1,'search_default_group_by_developer':1}</field>
+        </record>
+
+       	<record id="action_window_open_update_subcription_in_ticket" model="ir.actions.act_window">
+            <field name="name">Update Subcription</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">update.subscriptions.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_update_subscriptions_wizard"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+
+        <!-- Forge Ticket from Activites (form) > Forge Tickets button -->
+		<record id="action_tms_forge_ticket_from_activity" model="ir.actions.act_window">
+            <field name="name">Forge Tickets</field>
+            <field name="res_model">tms.forge.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_tms_forge_ticket_search_analysis"/>
+            <field name="context">{
+             	'tree_view_ref': 'tms_modules.view_tms_forge_ticket_tree',
+             	'search_default_tms_activity_id': active_id}</field>
+        </record>
+
+		<!-- Button Open Update Subcription Wizard on Tree View-->
+        <record model="ir.values" id="action_open_update_subcription_in_forge_ticket">
+            <field name="model_id" ref="model_tms_forge_ticket"/>
+            <field name="name">Update Subcription</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_window_open_update_subcription_in_ticket'))" />
+            <field name="key">action</field>
+            <field name="model">tms.forge.ticket</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="dowload_all_attachments_wizard_view" model="ir.ui.view">
+			<field name="name">Dowload All Attachments</field>
+			<field name="model">dowload.all.attachments.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Dowload_All Attachments" >
+					<field name="state" invisible="1" />
+					<div states="before">
+                        <h2>Please press button to Zip All Attachments</h2>
+                    </div>
+                    <div states="after">
+                        <h2>Zip All Attachments Complete!</h2>
+                    </div>
+					<group states="after">
+					    <field name="datas" readonly="1" filename="file_name"/>
+					    <field name="file_name" invisible="1"/>
+					</group>
+					<footer states="before">
+                        <button name="button_zip_file" string="Zip" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                    <footer states="after">
+                        <button string="Close" class="oe_link" special="cancel"/>
+                    </footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</openerp>

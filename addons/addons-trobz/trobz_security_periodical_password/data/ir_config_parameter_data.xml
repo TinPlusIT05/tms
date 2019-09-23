@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        
+         <record id="config_update_password_type" model="ir.config_parameter">
+        	<field name="key">config_update_password_type</field>
+        	<field name="value">specified_date</field> 
+        </record>
+        <record id="config_update_password_date" model="ir.config_parameter">
+        	<field name="key">config_update_password_date</field>
+        	<field name="value" eval="DateTime.today()" /> 
+        </record>
+        <record id="config_update_password_period" model="ir.config_parameter">
+        	<field name="key">config_update_password_period</field>
+        	<field name="value">2</field> 
+        </record>
+        
+    </data>
+</openerp>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+	    <record id="view_hr_attendance_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.attendance.form.inherit</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.view_attendance_form"/>
+            <field name="arch" type="xml">
+                <!-- <field name="employee_id" position="after">
+                    <field name="active"/>
+                </field> -->
+                <field name="action_desc" position="after">
+                    <field name="status"/>
+                </field>
+            </field>
+        </record>
+        
+		<record id="view_hr_attendance_tree_inherit" model="ir.ui.view">
+			<field name="name">view.hr.attendance.tree.inherit</field>
+			<field name="model">hr.attendance</field>
+			<field name="inherit_id" ref="hr_attendance.view_attendance_who"/>
+			<field name="arch" type="xml">
+				<field name="action" position="after">
+				    <!-- <field name="active" invisible="1"/> -->
+					<field name="status" invisible="1"/>
+					<field name="day_tz" invisible="1"/>
+					<field name="name_tz" invisible="1"/>
+				</field>
+				<tree position="attributes">
+					<attribute name="colors">red:status == 'inconsistent';grey:status == 'duplicate'</attribute>
+				</tree>
+			</field>
+		</record>
+		<record id="view_hr_attendance_filter_inherit" model="ir.ui.view">
+			<field name="name">view.hr.attendance.filter.inherit</field>
+			<field name="model">hr.attendance</field>
+			<field name="inherit_id" ref="hr_attendance.view_hr_attendance_filter"/>
+			<field name="arch" type="xml">
+				<field name="name" position="after">
+					<filter string="Inconsistent Attendances" domain="[('status','=','inconsistent')]"/>
+					<filter string="Consistent Attendances" domain="[('status','=','normal')]"/>
+				</field>
+				<filter name="today" position="replace">
+					<filter string="Today" name="today" domain="[('name_tz','&gt;=',current_date),('name_tz','&lt;=',current_date)]" />
+				</filter>
+				<filter string="Day" position='replace'>
+					<filter string="Day" domain="[]" context="{'group_by':'day_tz'}"/>
+					<filter string="Status" domain="[]" context="{'group_by': 'status'}"/>
+				</filter>
+				<group position="inside">
+					<field name="status"/>
+				</group>
+			</field>
+		</record>
+
+		<!--
+		<record id="view_hr_attendance_form_inherit" model="ir.ui.view">
+			<field name="name">view.hr.attendance.form.inherit</field>
+			<field name="model">hr.attendance</field>
+			<field name="inherit_id" ref="hr_attendance.view_attendance_form"/>
+			<field name="arch" type="xml">
+				<field name="action_desc" position="after">
+				</field>
+			</field>
+		</record>-->
+	</data>
+</openerp>

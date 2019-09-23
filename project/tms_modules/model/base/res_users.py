@@ -108,7 +108,7 @@ class ResUsers(models.SecureModel):
             WHERE rus.active = True
                 AND rus.must_input_working_hour = True
                 AND rus.is_trobz_member = True
-            ORDER BY rus.id;
+            ORDER BY rp.name;
         """
         self._cr.execute(sql)
         if self._cr.rowcount > 0:
